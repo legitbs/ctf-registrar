@@ -1,0 +1,61 @@
+.headline 
+  text-align: center
+  h1
+    font-family: 'Hiragino Kaku Gothic Pro', 'MS Gothic'
+    font-weight: bold
+    font-size: 160px
+    color: #ff0080
+    margin-top: 0px
+    @include transform(rotateZ(-12deg))
+    z-index: 10
+    position: relative
+  h2.overlay
+    $upshift: 140px
+    $bottomspace: 100px
+    font-family: Ubuntu
+    color: #ff0
+    background-color: black
+    margin: -$upshift auto ($upshift - $bottomspace) auto
+    width: 500px
+    z-index: 20
+    position: relative
+
+.jp
+  font-family: 'Hiragino Kaku Gothic Pro', 'MS Gothic'
+
+.invitation
+  $invitationWidth: 960px
+  $invitationPadding: 4px
+  $columnPadding: 4px
+  background-color: #ffe
+  padding: $invitationPadding
+  width: $invitationWidth
+  @include box-shadow(0 5px 5px 0px #888)
+  .column
+    width: ($invitationWidth / 2) - ($invitationPadding * 2) - ($columnPadding * 2)
+    padding: $columnPadding
+    float: left
+    background-color: transparent
+
+.registration
+  margin: 20px auto
+  width: 540px
+  background-color: #444
+  color: white
+  padding: 4px
+  border: 2px solid #ddd
+  font-size: 32px
+  form
+    label
+      display: block
+      margin: 4px auto
+      width: 480px
+      text-align: center
+      span
+        width: 180px
+        display: inline-block
+      input
+        width: 180px
+        font-size: 32px
+    button
+      font-size: 32px
