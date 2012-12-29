@@ -4,9 +4,9 @@
     font-family: 'Hiragino Kaku Gothic Pro', 'MS Gothic'
     font-weight: bold
     font-size: 160px
-    color: #ff0080
+    color: #ff0
     margin-top: 0px
-    @include transform(rotateZ(-12deg))
+    @include transform(rotateZ(8deg))
     z-index: 10
     position: relative
   h2.overlay
@@ -30,7 +30,8 @@
   background-color: #ffe
   padding: $invitationPadding
   width: $invitationWidth
-  @include box-shadow(0 5px 5px 0px #888)
+  @include transform(rotateZ(-2deg))
+  @include box-shadow(0 5px 5px 0px black)
   .column
     width: ($invitationWidth / 2) - ($invitationPadding * 2) - ($columnPadding * 2)
     padding: $columnPadding
@@ -38,13 +39,14 @@
     background-color: transparent
 
 .registration
-  margin: 20px auto
+  margin: 20px auto 40px auto
   width: 540px
   background-color: #444
   color: white
   padding: 4px
   border: 2px solid #ddd
   font-size: 32px
+  @include transform(rotateZ(1deg))
   form
     label
       display: block
@@ -59,3 +61,9 @@
         font-size: 32px
     button
       font-size: 32px
+
+.foot
+  background-color: black
+  color: white
+  margin-bottom: -20px
+  padding: 10px 10px 5px 10px
