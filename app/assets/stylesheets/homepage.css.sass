@@ -5,13 +5,21 @@
     font-weight: bold
     font-size: 160px
     color: #ff0
-    margin-top: 0px
-    @include transform(rotateZ(8deg))
+    margin:
+      top: 0px
+      left: auto
+      right: auto
+      bottom: 20px
     z-index: 10
     position: relative
+    width: 676px
+    height: 260px
+    background: image-url('kana-nonsense.png') no-repeat top center
+    span
+      display: none
   h2.overlay
-    $upshift: 140px
-    $bottomspace: 100px
+    $upshift: 80px
+    $bottomspace: 80px
     font-family: Ubuntu
     color: #ff0
     background-color: black
@@ -21,7 +29,7 @@
     position: relative
 
 .jp
-  font-family: 'Hiragino Kaku Gothic Pro', 'MS Gothic'
+  // font-family: 'Hiragino Kaku Gothic Pro', 'MS Gothic'
 
 .invitation
   $invitationWidth: 960px
@@ -39,10 +47,11 @@
     background-color: transparent
 
 .registration
+  $salmon: #fa8072
   margin: 20px auto 40px auto
   width: 540px
-  background-color: #444
-  color: white
+  background: $salmon image-url('stripes.png')
+  color: black
   padding: 4px
   border: 2px solid #ddd
   font-size: 32px
@@ -59,8 +68,16 @@
       input
         width: 180px
         font-size: 32px
+        border: 2px solid $salmon
     button
       font-size: 32px
+      $border: 2px solid
+      border:
+        top: $border $salmon
+        left: $border $salmon
+        bottom: $border darken($salmon, 20%)
+        right: $border darken($salmon, 20%)
+      background: white
 
 .foot
   background-color: black
