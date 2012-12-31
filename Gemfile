@@ -41,14 +41,6 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 # To use debugger
 # gem 'debugger'
 
-group :tools do
-  gem 'guard'
-  gem 'guard-cucumber'
-  gem 'guard-spork'
-  gem 'guard-test'
-  gem 'rb-fsevent'
-end
-
 group :test do
   gem 'cucumber-rails'
   gem 'database_cleaner'
