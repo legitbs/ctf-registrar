@@ -1,9 +1,8 @@
 require 'test_helper'
 
 class UsersControllerTest < ActionController::TestCase
-  test "should get create" do
-    get :create
-    assert_response :success
+  context 'the users controller' do
+    should 'show a form on incomplete (home screen) create'
+    should 'redirect to the dashboard on successful create'
   end
-
 end
