@@ -1,2 +1,42 @@
-%h1 Users#create
-%p Find me in app/views/users/create.html.haml
+.content#letter
+  #letterhead
+    %h1 
+      .jp みょ は焨
+      .en Official Waiver
+    .subhead
+      .jp 槣郎っ䧎 ビョにゃ餚䣵軣 のゑざ楦る 詃りゅウァ, ひょ饧 婃揣き䤤ピ
+      .en
+        Casualty Trauma Festival
+        %br
+        Disclaimer and Paperwork Bureau
+  .explanation
+    .jp
+      :markdown
+        きゅぎゅ ウァ榧チゞ馩 く槣郎っ䧎 訧ど盯, 谨よ查谧フィェ 猪竨娦馨駧 姎つ䛧 ずみょ は焨 鎌りゃげ堦䛨 ちぐぷぴゃホゥ 谢わ夯, たせじょ䋤仯 礊䪦獧ちゅ以 ゝ砥 谣ヒャ樦, は焨 ヒェ槊愥裟觩 馜䧟嫯饃きゃ ッぴょちゃ ぶ妦詧 䩵ッ餯䨤䝣 
+    .en
+      :markdown
+        Thanks for your coöperation so far. In order to finish making you
+        an honored Casualty Trauma Festival victim, we need a few more
+        pieces of information.
+    %br.clear
+  = form_for @user, url: user_path do |f|
+    .errors
+      = f.error_messages
+    %div
+      = f.label :username
+      = f.text_field :username
+    %div
+      = f.label :password
+      = f.password_field :password, value: (@password_stash || '')
+    %div
+      = f.label :password_confirmation
+      = f.password_field :password_confirmation
+    %div
+      = f.label :email
+      = f.text_field :email
+    %div
+      = f.label :email_confirmation
+      = f.text_field :email_confirmation
+    %div
+      %label &nbsp;
+      = f.submit value: 'Create Account'

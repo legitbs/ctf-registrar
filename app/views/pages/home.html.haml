@@ -28,11 +28,11 @@
   .registration
     =form_for User.new, url: user_path do |f|
       %label
-        %span Username
-        %input
+        %span Username:
+        = f.text_field :username
       %label
-        %span Password
-        %input{type: 'password'}
+        %span Password:
+        = f.password_field :password
       %label
         %button Create Account
         %button Log In
