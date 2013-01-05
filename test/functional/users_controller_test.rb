@@ -13,7 +13,7 @@ class UsersControllerTest < ActionController::TestCase
     end
 
     context 'on successful create' do
-      should 'redirect to the dashboard'
+      should redirect_to('the dashbaord'){ dashboard_path }
       should 'send a confirmation'
     end
   end
