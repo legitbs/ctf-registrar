@@ -1,0 +1,25 @@
+%h1 Listing teams
+
+%table
+  %tr
+    %th Name
+    %th Tag
+    %th Password digest
+    %th User
+    %th
+    %th
+    %th
+
+  - @teams.each do |team|
+    %tr
+      %td= team.name
+      %td= team.tag
+      %td= team.password_digest
+      %td= team.user
+      %td= link_to 'Show', team
+      %td= link_to 'Edit', edit_team_path(team)
+      %td= link_to 'Destroy', team, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Team', new_team_path

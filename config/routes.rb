@@ -1,5 +1,8 @@
 CtfRegistrar::Application.routes.draw do
   
+  resources :teams
+
+
   get 'dashboard', to: 'dashboard#index', as: :dashboard
 
   root to: 'high_voltage/pages#show', id: 'home'
