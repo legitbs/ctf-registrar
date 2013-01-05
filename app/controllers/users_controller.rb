@@ -3,7 +3,8 @@ class UsersController < ApplicationController
     @user = User.new params[:user]
     if @user.save
       flash[:success] = "You've registered!"
-      return redirect_to root_path
+      self.current_user = @user
+      return redirect_to dashboard_path
     end
 
     @password_stash = params[:user][:password]

@@ -13,7 +13,13 @@ class UsersControllerTest < ActionController::TestCase
     end
 
     context 'on successful create' do
+      setup do
+        @user_attrs = FactoryGirl.attributes_for :user_params_valid
+        @old_users = User.all
+        post :create, user: @user_attrs
+      end
       should redirect_to('the dashbaord'){ dashboard_path }
+      should set_session(:user_id)
       should 'send a confirmation'
     end
   end

@@ -5,5 +5,10 @@ FactoryGirl.define do
     username "fart"
     password "new york"
     email "butt@example.com"
+
+    factory :user_params_valid do
+      password_confirmation { password }
+      email_confirmation { email }
+    end
   end
 end
