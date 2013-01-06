@@ -3,3 +3,7 @@
     text-align: right
   &.en
     text-align: left
+
+@mixin letter($letterBackground: #ffe)
+  background-color: $letterBackground
+  border: 1px solid darken($letterBackground, 30%)
