@@ -28,8 +28,8 @@
         %span Password:
         = f.password_field :password
       %label
-        %button Create Account
-        %button Log In
+        = f.submit 'Create Account'
+        = f.submit 'Log In'
   .foot
     :markdown
       Copyright &copy; 2013 Legitimate Business Syndicate, All Rights Reserved.
