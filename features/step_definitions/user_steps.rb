@@ -2,6 +2,10 @@ Given /^I am on the homepage$/ do
   visit '/'
 end
 
+Given /^I expect an email$/ do
+  @mail_expectation = Mail::Message.any_instance.expects(:deliver)
+end
+
 When /^I complete the initial user form$/ do
   @user_attrs = FactoryGirl.attributes_for :user
 
@@ -21,6 +25,11 @@ end
 Then /^I should be logged in$/ do
   login_expectation = "Logged in as #{@user_attrs[:email]}"
   assert page.has_content?(login_expectation), "Couldn't find #{login_expectation.inspect}"
+end
+
+Then /^.+ should have a .+ email$/ do
+  invocation_count = @mail_expectation.instance_variable_get(:@invocation_count)
+  assert invocation_count > 0, "Expected #{invocation_count} to be greater than zero."
 end
 
 Given /^I am signed in$/ do

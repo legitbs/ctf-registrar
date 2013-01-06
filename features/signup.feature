@@ -5,6 +5,7 @@ Feature: Signup
 
 Scenario: Signup
   Given I am on the homepage
+  And I expect an email
   When I complete the initial user form
   And I complete the secondary user form
   Then I should be logged in
@@ -12,12 +13,14 @@ Scenario: Signup
 
 Scenario: Team creation
   Given I am signed in
+  And I expect an email
   When I complete the team creation form
   Then I should own a team
   And I should have a team creation confirmation email
 
 Scenario: Team joining
   Given I am signed in
+  And I expect an email
   When I complete the team join form
   Then I should be on a team
   And I should have a team joining confirmation email
