@@ -5,9 +5,11 @@ class UsersController < ApplicationController
     if params[:commit] == 'Log In'
       return try_login
     end
+
     @user = User.new params[:user]
     if @user.save
       flash[:success] = "You've registered!"
+      UserMailer.welcome_email(@user).deliver
       self.current_user = @user
       return redirect_to dashboard_path
     end
