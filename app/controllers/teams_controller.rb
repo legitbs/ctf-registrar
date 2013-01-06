@@ -1,14 +1,6 @@
 class TeamsController < ApplicationController
-  # GET /teams
-  # GET /teams.json
-  def index
-    @teams = Team.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @teams }
-    end
-  end
+  before_filter :require_logged_in
+  before_filter :require_team
 
   # GET /teams/1
   # GET /teams/1.json
@@ -79,5 +71,16 @@ class TeamsController < ApplicationController
       format.html { redirect_to teams_url }
       format.json { head :no_content }
     end
+  end
+
+  private
+  def team
+    current_user.owned_team
+  end
+
+  def require_team
+    return true if team
+    flash[:error] = "You don't own a team."
+    redirect_to dashboard_path
   end
 end
