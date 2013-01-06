@@ -1,6 +1,6 @@
 class TeamsController < ApplicationController
   before_filter :require_logged_in
-  before_filter :require_team
+  before_filter :require_team, except: [:new, :create]
 
   # GET /teams/1
   # GET /teams/1.json
@@ -32,16 +32,14 @@ class TeamsController < ApplicationController
   # POST /teams
   # POST /teams.json
   def create
-    @team = Team.new(params[:team])
+    @team = current_user.build_owned_team(params[:team])
 
-    respond_to do |format|
-      if @team.save
-        format.html { redirect_to @team, notice: 'Team was successfully created.' }
-        format.json { render json: @team, status: :created, location: @team }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @team.errors, status: :unprocessable_entity }
-      end
+    if @team.save
+      current_user.team_id = @team.id
+      current_user.save!
+      redirect_to dashboard_path
+    else
+      render action: "new"
     end
   end
 
