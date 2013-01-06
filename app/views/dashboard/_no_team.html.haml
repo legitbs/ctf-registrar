@@ -1,0 +1,37 @@
+#no_team
+  %p You're not on a team.
+  .join_team
+    %h2 Join a team
+    = form_for @new_membership, url: membership_path do |f|
+      %label
+        %div Tag
+        = f.text_field :tag
+      %label
+        %div Password
+        = f.text_field :password
+      %label
+        %div &nbsp;
+        %button Join
+  .create_team
+    %h2 Create a team
+    = form_for @new_team, url: team_path do |f|
+      %label
+        %div Name
+        = f.text_field :name
+        .description
+          Should be at least four characters long, memorable, and probably hilarious.
+      %label
+        %div Tag
+        = f.text_field :tag
+        .description
+          Your teammates will need this to join your team.
+          Should be two, three, or four characters long, and recognizable.
+      %label
+        %div Password
+        = f.password_field :password
+        .description
+          Your teammates will need this to join your team. 
+          Should be strong.
+      %label
+        %div &nbsp;
+        %button Create Team

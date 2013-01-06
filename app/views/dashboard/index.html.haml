@@ -3,69 +3,8 @@
   #who
     Logged in as #{current_user.email}
   .team
-    #no_team
-      %p You're not on a team.
-      .join_team
-        %h2 Join a team
-        = form_for @new_membership, url: membership_path do |f|
-          %label
-            %div Tag
-            = f.text_field :tag
-          %label
-            %div Password
-            = f.text_field :password
-          %label
-            %div &nbsp;
-            %button Join
-      .create_team
-        %h2 Create a team
-        = form_for @new_team, url: team_path do |f|
-          %label
-            %div Name
-            = f.text_field :name
-            .description
-              Should be at least four characters long, memorable, and probably hilarious.
-          %label
-            %div Tag
-            = f.text_field :tag
-            .description
-              Your teammates will need this to join your team.
-              Should be two, three, or four characters long, and recognizable.
-          %label
-            %div Password
-            = f.password_field :password
-            .description
-              Your teammates will need this to join your team. 
-              Should be strong.
-          %label
-            %div &nbsp;
-            %button Create team
-    #yes_team
-      .owner
-        %h1
-          .teaminfo
-            %span.teamname Team Name
-            %span.teamtag [TAG]
-        :markdown
-          You're the registered owner of #{'TEAM NAME'} [#{'TAG'}].
-
-          Give your teammates the tag (it's #{'TAG'}) and the team password you
-          entered when you created the team. Don't give them your personal account
-          password.
-
-          As captain, you'll be the one picking questions, submitting answers,
-          and hopefully not surrendering on too many questions.
-
-          Team members will be able to read questions, but not be able to pick new
-          questions, submit answers, or surrender on questions.
-      .member
-        %h1
-          .teaminfo
-            %span.teamname Team Name
-            %span.teamtag [TAG]
-        :markdown
-          You're a member of #{'TEAM NAME'} [#{'TAG'}].
-
-          When the game starts, you'll be able to read questions, but you'll have
-          to get the team captain to pick new questions, submit answers, and
-          surrender on questions.
+    - if current_user.participant?
+      = render partial: 'yes_team'
+    - else
+      = render partial: 'no_team'
+  
