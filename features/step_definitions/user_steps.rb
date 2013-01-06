@@ -23,3 +23,23 @@ Then /^I should be logged in$/ do
   assert page.has_content?(login_expectation), "Couldn't find #{login_expectation.inspect}"
 end
 
+Given /^I am signed in$/ do
+  @user = FactoryGirl.create :user
+  visit '/'
+  fill_in 'user_username', with: @user.username
+  fill_in 'user_password', with: @user.password
+  click_on 'Log In'
+end
+
+When /^I complete the team creation form$/ do
+  @team_attrs = FactoryGirl.attributes_for :team
+  fill_in 'team_name', with: @team_attrs[:name]
+  fill_in 'team_tag', with: @team_attrs[:tag]
+  fill_in 'team_password', with: @team_attrs[:password]
+  click_on 'Create Team'
+end
+
+Then /^I should own a team$/ do
+  team_expectation = "You're the registered owner of #{@team_attrs[:name]}."
+  assert page.has_content?(team_expectation), "Couldn't find #{team_expectation.inspect}"
+end
