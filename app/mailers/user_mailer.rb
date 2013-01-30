@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  default from: "team@legitbs.net"
+  default from: "team@legitbs.net", template_path: 'user_mailer'
 
   def welcome_email(user)
     @user = user
