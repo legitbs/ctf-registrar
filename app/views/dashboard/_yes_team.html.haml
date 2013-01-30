@@ -5,7 +5,7 @@
       :markdown
         You're the registered owner of #{team.name}.
 
-        Give your teammates the tag (it's #{'TAG'}) and the team password you
+        Give your teammates the tag (it's #{team.tag}) and the team password you
         entered when you created the team. Don't give them your personal account
         password.
 
@@ -17,7 +17,7 @@
   - else
     .member
       :markdown
-        You're a member of #{'TEAM NAME'} [#{'TAG'}].
+        You're a member of #{team.name} [#{team.tag}].
 
         When the game starts, you'll be able to read questions, but you'll have
         to get the team captain to pick new questions, submit answers, and
