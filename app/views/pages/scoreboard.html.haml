@@ -11,23 +11,19 @@
   #header
     = render partial: 'shared/logo'
   #gameboard
-    %table
-      %thead
-        %tr
-          - %w{japery capers tacos täargus wavves}.each do |s|
-            %th= s
-      %tbody
-        - 5.times do |t|
-          %tr
-            - 5.times do
-              - klass = %w{conquered surrendered fighting untouched}[rand(4)]
-              %td{class: klass}= t * 100
+    %p placeholder scoreboard
   %br.clear
   #messages
     #messages-inner
       :markdown
-        apr. 20 4:20 pm utc: Aliquam sit amet felis. Etiam congue. Donec risus risus, pretium ac, tincidunt eu, tempor eu, quam.
+        apr. 20 4:20 pm utc: An important game message of some kind. Perhaps the fednaught has
+        answered a question.
 
-        apr. 20 4:20 pm utc: Aliquam sit amet felis. Etiam congue. Donec risus risus, pretium ac, tincidunt eu, tempor eu, quam.      
+        apr. 20 4:20 pm utc: An important game message of some kind. Perhaps the fednaught has
+        answered a question.
 
-        apr. 20 4:20 pm utc: Aliquam sit amet felis. Etiam congue. Donec risus risus, pretium ac, tincidunt eu, tempor eu, quam.
+        apr. 20 4:20 pm utc: An important game message of some kind. Perhaps the fednaught has
+        answered a question.
+
+        apr. 20 4:20 pm utc: An important game message of some kind. Perhaps the fednaught has
+        answered a question.

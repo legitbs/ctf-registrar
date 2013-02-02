@@ -1,6 +1,7 @@
 .content#scoreboard
   @include perspective(350px)
   @include perspective-origin(80% 80%)
+
   #scorelist
     float: right
     background-color: #ffe
@@ -28,36 +29,27 @@
           display: inline-block
           width: 60px
           text-align: right
+  $gamezone_width: 680px
   #header
     float: left
   #gameboard
     float: left
     margin-top: 20px
-    table
-      $salmon: #fa8072
-      background: white image-url('stripes.png')
-      font-size: 18px
-      text-align: center
-      tr
-        th
-          padding: 16px
-        td
-          padding: 16px
-          width: 100px
-          &.untouched
-          &.conquered
-            @include linear-gradient(#080 80%, #ff0 100%)
-            color: white
-          &.surrendered
-            @include linear-gradient(black, black 80%, red 100%)
-            color: #800
-          &.fighting
-            @include radial-gradient(#88f, #004)
-            color: #ff4
+    // added to support the placeholder
+    background-color: #88f
+    color: white
+    text-align: center
+    font-weight: bold
+    font-size: 3em
+    width: $gamezone_width
+    height: 340px
   #messages
     background-color: black
     color: white
     margin-top: -60px
     padding: 4px
+    height: 120px
+    overflow: scroll
+    width: $gamezone_width - 8px
+
     #messages-inner
-      width: 640px
