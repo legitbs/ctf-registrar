@@ -1,14 +1,25 @@
+body
+  height: 100%
+
 .content
   width: 960px
   margin: 10px auto
   
-.beta-notice
+#beta-notice
   position: fixed
   top: 100px
+  right: 100px
   background-color: rgba(0, 0, 0, 0.8)
   color: white
   z-index: 200
-  .beta-notice-content
+  a#close-box
+    float: right
+    display: block
+    margin: 4px
+    padding: 6px
+    color: red
+    text-decoration: none
+  #beta-notice-content
     text-align: center
     width: 480px
   a
