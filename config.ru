@@ -3,6 +3,12 @@
 require ::File.expand_path('../config/environment',  __FILE__)
 
 use Rack::Auth::Basic, 'omg' do |username, password|
-  [username, password] == ['ownOahibs', 'Neizgoav6']
+  logins = [
+    ['ownOahibs', 'Neizgoav6'], # original
+    ['legitbsness', 'frustration and alcoholism'], # new
+    ['darktangent', 'rio promo code dirktangent'], # dt and judging
+  ]
+
+  logins.include? [username, password]
 end
 run CtfRegistrar::Application
