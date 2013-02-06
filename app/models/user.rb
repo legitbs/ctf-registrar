@@ -28,3 +28,4 @@ class User < ActiveRecord::Base
     errors.add :owned_team, "must be the same as the participant team"
   end
 end
+
