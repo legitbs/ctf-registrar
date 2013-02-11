@@ -183,7 +183,7 @@ DEPENDENCIES
   jquery-rails
   mocha
   pg
-  rails (= 3.2.12)
+  rails (~> 3.2.12)
   rdiscount
   sass-rails (~> 3.2.3)
   shoulda
