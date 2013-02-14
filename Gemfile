@@ -10,7 +10,7 @@ gem 'honeybadger'
 gem 'pg'
 gem 'haml-rails'
 gem 'high_voltage'
-gem 'BlueCloth'
+gem 'maruku'
 gem 'dynamic_form'
 
 # Gems used only for assets and not required
