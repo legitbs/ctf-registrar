@@ -10,7 +10,7 @@ gem 'honeybadger'
 gem 'pg'
 gem 'haml-rails'
 gem 'high_voltage'
-gem 'rdiscount'
+gem 'maruku'
 gem 'dynamic_form'
 
 gem 'validates_email_format_of'
