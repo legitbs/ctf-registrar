@@ -1,7 +1,8 @@
 .content#dashboard
   #logo= render partial: 'shared/logo'
   #who
-    Logged in as #{current_user.email}
+    Logged in as #{current_user.email}.
+    = link_to 'Log out?', session_path, method: :delete
   .team
     - if current_user.participant?
       = render partial: 'yes_team'
