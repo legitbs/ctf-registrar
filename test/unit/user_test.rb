@@ -12,5 +12,11 @@ class UserTest < ActiveSupport::TestCase
 
       assert @user.authenticate 'asdf'
     end
+
+    should 'not accept ugly emails' do
+      @user.email = "bkerley+<html>@brycekerley.net"
+      refute @user.save
+      assert_not_empty @user.errors
+    end
   end
 end

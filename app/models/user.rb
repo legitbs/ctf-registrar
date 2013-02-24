@@ -8,9 +8,7 @@ class User < ActiveRecord::Base
 
   validates :username, :email, presence: true, uniqueness: true
   validates(:email, confirmation: true, 
-    format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i,
-      message: "doesn't look like an email address"
-    })
+    email_format: { message: "doesn't look like an email address" })
   validate :owned_team_and_team_must_match
 
   def owner?
