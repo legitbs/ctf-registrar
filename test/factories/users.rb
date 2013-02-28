@@ -2,9 +2,9 @@
 
 FactoryGirl.define do
   factory :user do
-    username "fart"
+    username { "fart #{rand(1000)}" }
     password "new york"
-    email "butt@example.com"
+    email { "butt#{rand(1000)}@example.com" }
 
     factory :user_params_valid do
       password_confirmation { password }

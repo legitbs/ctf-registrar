@@ -1,7 +1,6 @@
 FactoryGirl.define do
   factory :team do
-    name 'butt team'
-    tag 'butt'
+    name { "butt team #{rand(10000)}" }
     password 'kenny'
     user
   end
