@@ -18,7 +18,7 @@ class UsersControllerTest < ActionController::TestCase
         @old_users = User.all
         post :create, user: @user_attrs
       end
-      should redirect_to('the dashbaord'){ dashboard_path }
+      should redirect_to('the dashboard'){ dashboard_path }
       should set_session(:user_id)
       should 'send a confirmation'
     end
