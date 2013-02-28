@@ -4,8 +4,8 @@
     %h2 Join a team
     = form_for @new_membership, url: membership_path do |f|
       %label
-        %div Tag
-        = f.text_field :tag
+        %div Team Name
+        = f.text_field :name
       %label
         %div Password
         = f.text_field :password
@@ -20,13 +20,6 @@
         = f.text_field :name
         .description
           Should be at least four characters long, memorable, and probably hilarious.
-      %label
-        %div Tag
-        = f.text_field :tag
-        .description
-          Your teammates will need this to join your team, and
-          it'll be shown next to your successes in event log entries.
-          Should be two, three, or four characters long, and recognizable.
       %label
         %div Password
         = f.password_field :password
