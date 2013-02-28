@@ -7,10 +7,7 @@ class TeamTest < ActiveSupport::TestCase
     end
 
     should belong_to :user
-    should ensure_length_of :tag
-    should validate_presence_of :tag
     should validate_presence_of :name
-    should validate_uniqueness_of :tag
     should validate_presence_of :name
 
     should 'securely store passwords' do
