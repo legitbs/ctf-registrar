@@ -12,6 +12,7 @@ use Rack::Auth::Basic, 'omg' do |username, password|
     ['jordan', 'hilarious georgia brown dot mp3'], # jordan w
     ['steve v', 'not the erlang steve v'], # steve v
     ['froggiestyle', 'party chatte krewe'], # froggie style chat
+    ['basho', 'riak is pretty much ownage'], # bryce's coworkers
   ]
 
   logins.include? [username, password]
