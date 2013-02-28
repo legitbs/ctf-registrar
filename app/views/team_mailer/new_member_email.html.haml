@@ -1,0 +1,24 @@
+!!!5
+%html
+  %head
+    %meta{content: 'text/html; charset=UTF-8', :'http-equiv' => 'Content-Type'}
+  %body
+    %h1 You joined a team for the 2013 CTF Quals
+    :markdown
+      Thanks for joining a team in the 2013 CTF. Here are your team's
+      details:
+
+      Name: #{@team.name}
+
+      A copy of this message has been forwarded to your honorable captain,
+      #{@user.username}.
+
+      ## What's next for #{@newbie.username}?
+
+      Nothing until the competition! Thanks again for signing up!
+
+      ## What's next for #{@user.username}?
+
+      Make sure the rest of your team gets registered. If you don't know this
+      new exciting team member of yours, you have a terrible password or an
+      opsec problem, and you should contact us about it.

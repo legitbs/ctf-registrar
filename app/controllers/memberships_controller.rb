@@ -6,6 +6,7 @@ class MembershipsController < ApplicationController
 
     current_user.team = m.team
     if m.team && current_user.save
+      TeamMailer.new_member_email(current_user).deliver
       flash[:notice] = "Joined the team \"#{m.team.name}\"."
     else
       flash[:error] = "Couldn't join the team."
