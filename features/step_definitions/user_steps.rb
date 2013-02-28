@@ -51,3 +51,15 @@ Then /^I should own a team$/ do
   team_expectation = "the registered owner of #{@team_attrs[:name]}."
   assert page.has_content?(team_expectation), "Couldn't find #{team_expectation.inspect}"
 end
+
+When /^I complete the team join form$/ do
+  @team = FactoryGirl.create :team
+  fill_in 'membership_name', with: @team.name
+  fill_in 'membership_password', with: 'kenny'
+  click_on 'Join'
+end
+
+Then /^I should be on a team$/ do
+  team_expectation = "member of #{@team.name}."
+  assert page.has_content?(team_expectation), "Couldn't find #{team_expectation.inspect}"
+end
