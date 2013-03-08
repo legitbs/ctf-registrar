@@ -11,7 +11,7 @@ module ApplicationHelper
     accum += @analytics unless @analytics.nil?
     accum << ['_setCustomVar', 1, 'HTTPAuth', request.env['REMOTE_USER']] if request.env['REMOTE_USER']
     accum << ['_setCustomVar', 2, 'Username', current_user.username] if current_user
-    if current_user && (!current_user.team.nil?)
+    if current_user && (!current_user.team.nil?) && (!current_user.team.name.blank?)
       accum << ['_setCustomVar', 3, 'Team', current_user.team.name]
     end
     "_gaq.push(#{accum.to_json});"
