@@ -6,7 +6,6 @@
     = javascript_include_tag "application"
     = csrf_meta_tags
     %meta{name: 'google', value: 'notranslate'}
-    %meta{name: 'legitbsusername', value: request.env['REMOTE_USER']}
   %body
     = yield
     #beta-notice
@@ -17,7 +16,8 @@
 
           This site is in development. The database in use now will not
           be carried forward. Please send all comments to 
-          [bryce](mailto:bkerley@brycekerley.net) or bitch at bryce on
+          [vito](mailto:vito@legitbs.net) or bitch on
           the [google plus group](https://plus.google.com/u/0/105889323777735843449/posts/h7sT74PeJ56?cfem=1)
 
           <3 thanks! <3
+    = render partial: 'shared/analytics'
