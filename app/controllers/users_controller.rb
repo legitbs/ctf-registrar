@@ -9,6 +9,7 @@ class UsersController < ApplicationController
     @user = User.new params[:user]
     if @user.save
       flash[:success] = "You've registered!"
+      analytics_flash '_trackEvent', 'Users', 'signup'
       UserMailer.welcome_email(@user).deliver
       self.current_user = @user
       return redirect_to dashboard_path
@@ -28,6 +29,8 @@ class UsersController < ApplicationController
     end
 
     self.current_user = @user
+
+    analytics_flash '_trackEvent', 'Users', 'login'
     return redirect_to dashboard_path
   end
 end

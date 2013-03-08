@@ -22,6 +22,8 @@ class TeamsController < ApplicationController
       TeamMailer.new_team_email(@team).deliver
       current_user.team_id = @team.id
       current_user.save!
+
+      analytics_flash '_trackEvent', 'Teams', 'create'
       redirect_to dashboard_path
     else
       render action: "new"

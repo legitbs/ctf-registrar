@@ -24,4 +24,9 @@ class ApplicationController < ActionController::Base
     @current_user = user
     session[:user_id] = @current_user.id
   end
+
+  def analytics_flash(*args)
+    flash[:analytics] ||= []
+    flash[:analytics] << args
+  end
 end
