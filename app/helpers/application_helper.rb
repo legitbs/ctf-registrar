@@ -14,6 +14,8 @@ module ApplicationHelper
     if current_user && (!current_user.team.nil?) && (!current_user.team.name.blank?)
       accum << ['_setCustomVar', 3, 'Team', current_user.team.name]
     end
-    "_gaq.push(#{accum.to_json});"
+    accum.map do |i|
+      "_gaq.push(#{i.to_json});"  
+    end.join("\n")
   end
 end
