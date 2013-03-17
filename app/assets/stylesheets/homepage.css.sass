@@ -5,7 +5,7 @@
   background-color: #ffe
   padding: $invitationPadding
   width: $invitationWidth
-  @include transform(rotateZ(-2deg))
+  @include transform(rotate3d(0, 0, 1, 1deg))
   @include box-shadow(0 5px 5px 0px black)
   .column
     width: ($invitationWidth / 2) - ($invitationPadding * 2) - ($columnPadding * 2)
@@ -22,7 +22,7 @@
   padding: 4px
   border: 2px solid #ddd
   font-size: 32px
-  @include transform(rotateZ(1deg))
+  @include transform(rotate3d(0, 0, 1, -2deg))
   form
     label
       display: block
