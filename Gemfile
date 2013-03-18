@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 3.2.12'
+gem 'rails', '~> 3.2.13'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -50,6 +50,6 @@ group :test do
   gem 'cucumber-rails'
   gem 'database_cleaner'
   gem 'shoulda'
-  gem 'mocha'
+  gem 'mocha', '~> 0.13.3'
   gem 'factory_girl_rails'
 end
