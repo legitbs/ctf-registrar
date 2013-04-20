@@ -3,38 +3,22 @@
     = render partial: 'shared/logo'
 
   .invitation
-    .jp.column
-      :markdown
-        日本人の友人たちを使いこなせるための特別メッセージ：私たちは日本語で全体の競争を提示することはできませんので、非常に残念に思います。この屈辱私たちをお赦しください、我々はあなたが関係なく、競争を楽しむことを願っています。
+    :markdown
+      # Welcome and OMG
 
-        によってあなたに持って来られる死傷トラウマ祭（CTF）へようこそ
-        正当なビジネスのシンジケート！私たちはなるだろうことを発表できることを誇りに思っている
-        2013年にDEF CON21でCTFをホスティング。これは、我々が実行されることを意味します
-        死傷外傷祭修飾子6月にいくつかの時間。
+      Are you excited? We are! It's time to register for the DEF CON CTF
+      qualifiers! We're beside ourselves with excitement!~
 
-        我々は、より開かれた曖昧、そして、できればもっと楽しいことを約束します。
+      You've undoubtedly read everything we've posted on
+      [our main website](https://legitbs.net/), read every single thread about
+      CTF in the
+      [DEF CON forums](https://forum.defcon.org/forumdisplay.php?f=716), and
+      of course you've been staying up to date with
+      [@legitbs_ctf on Twitter](https://twitter.com/LegitBS_CTF), so
+      let's cut to the chase:
 
-        これまで関心をお寄せいただきありがとうございます。作成または参加したい場合
-        修飾子チームは、下記のお申し込み下さい。
-
-    .en.column
-      :markdown
-        Welcome to the Casualty Trauma Festival (CTF) brought to you by
-        Legitimate Business Syndicate! We're proud to announce that we'll be
-        hosting the CTF at DEF CON 21 in 2013. This means we will be running
-        Casualty Trauma Festival qualifiers some time in June.
-
-        We wish to uphold the proud DEF CON CTF traditions of tough exploitation
-        challenges, difficult reverse engineering, and guerilla software
-        security patches; at the same time, we want to modernize some aspects
-        of the competition, and reduce some of the traditional advantages of
-        incumbency, enormous teams, and extreme specialization.
-
-        We promise to be more open, less ambiguous, and hopefully more fun.
-
-        Thanks for your interest so far. If you'd like to create or join a
-        qualifiers team, please sign up below.
-    .clear
+      Register and set up your team below!
+  .clear
 
   .registration
     =form_for User.new, url: user_path do |f|
@@ -49,13 +33,53 @@
       %label
         = f.submit 'Create Account'
         = f.submit 'Log In'
-  .foot
-    :markdown
-      Copyright &copy; 2013 Legitimate Business Syndicate, All Rights Reserved.
-      Readers and users claim all liability for injury, trauma, discomfort, and
-      death resulting from CTF participation. LBS disclaims all responsibility
-      for terrible things that happen to readers and users as a result of their
-      participation in CTF activities.
+  #schedule
+    %h1 Schedule
+    %dl
+      %dt April 1
+      %dd Schedule Announced
+      %dt May 1
+      %dd Registration Open
+      %dt June 15, Midnight UTC
+      %dd Qualification Starts
+      %dt June 17, Midnight UTC
+      %dd Qualification Ends
+      %dt August 2
+      %dd Competition Starts
+      %dt August 4
+      %dd Competition Ends
+    %table
+      %thead
+        %tr
+          %th TZ
+          %th Quals Start
+          %th Quals End
+      %tbody
+        %tr
+          %th Tokyo
+          %td June 15, 9am
+          %td June 17, 9am
+        %tr
+          %th Moscow
+          %td June 15, 4am
+          %td June 17, 4am
+        %tr#utc
+          %th UTC
+          %td June 15, Midnight
+          %td June 17, Midnight
+        %tr
+          %th New York
+          %td June 14, 8pm
+          %td June 16, 8pm
+        %tr
+          %th Los Angeles
+          %td June 14, 5pm
+          %td June 16, 5pm
+    %p
+      Did we leave out your city?
+      %a{href: 'http://www.timeanddate.com/worldclock/fixedtime.html?iso=20130615T00'}
+        Here's a bunch more.
+
     /
       :plain                          
            ___ Fueled by _     __   __        __   ___     __ 

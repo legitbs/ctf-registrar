@@ -1,17 +1,17 @@
 .invitation
-  $invitationWidth: 960px
-  $invitationPadding: 4px
+  $invitationWidth: 460px
+  $invitationPadding: 12px
   $columnPadding: 4px
   background-color: #ffe
   padding: $invitationPadding
   width: $invitationWidth
+  margin: 0 auto
   @include transform(rotate3d(0, 0, 1, 1deg))
   @include box-shadow(0 5px 5px 0px black)
-  .column
-    width: ($invitationWidth / 2) - ($invitationPadding * 2) - ($columnPadding * 2)
-    padding: $columnPadding
-    float: left
-    background-color: transparent
+  h1
+    margin-top: 0
+  p:last-child
+    margin-bottom: 0
 
 .registration
   $salmon: #fa8072
@@ -22,7 +22,6 @@
   padding: 4px
   border: 2px solid #ddd
   font-size: 32px
-  @include transform(rotate3d(0, 0, 1, -2deg))
   form
     label
       display: block
@@ -47,8 +46,40 @@
         right: $border darken($salmon, 20%)
       background: white
 
-.foot
-  background-color: black
-  color: white
-  margin-bottom: -20px
-  padding: 10px 10px 5px 10px
+#schedule
+  $blue: hsl(200, 100%, 50%)
+  @include transform(rotate3d(0, 0, 1, -1.0deg))
+  background-color: white
+  background: image-url("grid.png")
+  padding: 0 0 12px 0
+  width: 480px
+  box-shadow: 0 5px 5px 0px black
+  margin: -8px auto 8px
+  z-index: -10
+  h1
+    text-align: center
+    background-color: $blue
+    color: white
+    margin: 0
+    padding: 4px
+  h2
+    text-align: center
+  dl
+    dt
+      font-weight: bold
+      text-align: center
+      margin: 4px auto 2px
+    dd
+      text-align: center
+      margin: 2px auto 4px
+  table
+    margin: 4px auto
+    text-align: left
+    tr#utc, tr#our_game
+      background-color: $blue
+      color: white
+    td
+      padding: 4px
+  p
+    text-align: center
+
