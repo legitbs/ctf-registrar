@@ -49,9 +49,9 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 # gem 'debugger'
 
 group :test do
-  gem 'cucumber-rails'
+  gem 'cucumber-rails', require: false
   gem 'database_cleaner'
   gem 'shoulda'
-  gem 'mocha', '~> 0.13.3'
+  gem 'mocha', '~> 0.13.3', require: 'mocha/setup'
   gem 'factory_girl_rails'
 end
