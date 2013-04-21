@@ -5,3 +5,12 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+[
+  "Ghoti in the Shell", # shellcode
+  "10100111001", # binary leetness
+  "transfer protocol", # web
+  
+  ].each_with_index do |name, order|
+    Category.where(name: name, order: order).first_or_create
+  end
