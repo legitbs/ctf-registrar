@@ -11,7 +11,36 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130228013227) do
+ActiveRecord::Schema.define(:version => 20130421193203) do
+
+  create_table "categories", :force => true do |t|
+    t.string   "name"
+    t.integer  "order"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "challenges", :force => true do |t|
+    t.string   "name"
+    t.string   "clue"
+    t.string   "answer_digest"
+    t.integer  "category_id"
+    t.integer  "points"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "challenges", ["category_id"], :name => "index_challenges_on_category_id"
+
+  create_table "solutions", :force => true do |t|
+    t.integer  "team_id"
+    t.integer  "challenge_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "solutions", ["challenge_id"], :name => "index_solutions_on_challenge_id"
+  add_index "solutions", ["team_id"], :name => "index_solutions_on_team_id"
 
   create_table "teams", :force => true do |t|
     t.string   "name"
