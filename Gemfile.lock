@@ -83,8 +83,6 @@ GEM
       railties (>= 3.1, < 4.1)
     high_voltage (1.2.2)
     hike (1.2.2)
-    honeybadger (1.6.2)
-      json
     i18n (0.6.1)
     immigrant (0.1.4)
       activerecord (>= 3.0)
@@ -105,6 +103,7 @@ GEM
     mocha (0.13.3)
       metaclass (~> 0.0.1)
     multi_json (1.7.2)
+    newrelic_rpm (3.6.0.83)
     nokogiri (1.5.9)
     pg (0.15.1)
     polyglot (0.3.3)
@@ -178,11 +177,11 @@ DEPENDENCIES
   foreigner
   haml-rails
   high_voltage
-  honeybadger
   immigrant
   jquery-rails
   maruku
   mocha (~> 0.13.3)
+  newrelic_rpm
   pg
   rails (~> 3.2.13)
   sass-rails (~> 3.2.3)
