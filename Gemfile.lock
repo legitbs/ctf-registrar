@@ -70,6 +70,8 @@ GEM
     factory_girl_rails (4.2.1)
       factory_girl (~> 4.2.0)
       railties (>= 3.0.0)
+    foreigner (1.4.1)
+      activerecord (>= 3.0.0)
     gherkin (2.11.8)
       multi_json (~> 1.3)
     haml (4.0.2)
@@ -84,6 +86,9 @@ GEM
     honeybadger (1.6.2)
       json
     i18n (0.6.1)
+    immigrant (0.1.4)
+      activerecord (>= 3.0)
+      foreigner (>= 1.2.1)
     journey (1.0.4)
     jquery-rails (2.2.1)
       railties (>= 3.0, < 5.0)
@@ -170,9 +175,11 @@ DEPENDENCIES
   database_cleaner
   dynamic_form
   factory_girl_rails
+  foreigner
   haml-rails
   high_voltage
   honeybadger
+  immigrant
   jquery-rails
   maruku
   mocha (~> 0.13.3)
