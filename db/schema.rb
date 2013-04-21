@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130421193203) do
+ActiveRecord::Schema.define(:version => 20130421193717) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -67,5 +67,14 @@ ActiveRecord::Schema.define(:version => 20130421193203) do
   add_index "users", ["email"], :name => "index_users_on_email"
   add_index "users", ["team_id"], :name => "index_users_on_team_id"
   add_index "users", ["username"], :name => "index_users_on_username"
+
+  add_foreign_key "challenges", "categories", :name => "challenges_category_id_fk"
+
+  add_foreign_key "solutions", "challenges", :name => "solutions_challenge_id_fk"
+  add_foreign_key "solutions", "teams", :name => "solutions_team_id_fk"
+
+  add_foreign_key "teams", "users", :name => "teams_user_id_fk"
+
+  add_foreign_key "users", "teams", :name => "users_team_id_fk"
 
 end
