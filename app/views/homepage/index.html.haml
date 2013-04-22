@@ -31,6 +31,7 @@
         %span Password:
         = f.password_field :password
       %label
+        %input{name: 'squelch', value: 'squelch', type: 'hidden'}
         = f.submit 'Create Account'
         = f.submit 'Log In'
   #schedule
