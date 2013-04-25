@@ -1,0 +1,40 @@
+.content#scoreboard
+  #messages
+    #messages-inner
+      :markdown
+        apr. 20 4:20 pm utc: An important game message of some kind. Perhaps the fednaught has
+        answered a question.
+
+        apr. 20 4:20 pm utc: An important game message of some kind. Perhaps the fednaught has
+        answered a question.
+
+        apr. 20 4:20 pm utc: An important game message of some kind. Perhaps the fednaught has
+        answered a question.
+  #scorelist
+    %ul
+      - 25.times do |n|
+        %li
+          %span.teamname= rand(36**10).to_s(36)
+          %span.score= 2500 - n
+      %li.current
+        %span.teamname fail team 2000
+        %span.score 5
+  #gameboard
+    %table
+      - @categories.each do
+        %col
+      %thead
+        %tr
+          - @categories.each do |cat|
+            %th{id: "category_#{cat[0]}"}= cat[1]
+      %tbody
+        - @challenges.each do |row|
+          %tr
+            - row.each do |single|
+              %td{:class => challenge_class_for(single)}
+                %a{href: '#', title: single['challenge_name']}
+                  = single['points']
+  %br.clear
+
+  /       apr. 20 4:20 pm utc: An important game message of some kind. Perhaps the fednaught has
+  /       answered a question.
