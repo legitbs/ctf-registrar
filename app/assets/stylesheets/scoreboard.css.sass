@@ -1,14 +1,14 @@
 .content#scoreboard
   #scorelist
     float: right
-    background-color: #ffe
+    background-color: $parchment
     ul
       list-style-type: none
       margin: 2px
       padding: 0
       li
         &.current
-          background-color: #ff0080
+          background-color: $pinku
           color: white
         span
           display: inline-block
@@ -16,11 +16,31 @@
         .score
           text-align: right
   #gameboard
-    background-color: #88f
-    color: white
-    text-align: center
-    font-weight: bold
-    font-size: 3em
+    table
+      float: left
+      text-align: center
+      table-layout: fixed
+      col
+        width: auto
+      th
+        font-size: 10pt
+        height: 60px
+        color: white
+        background-color: $blue
+        padding: 4px
+        margin: 3px
+        text-shadow: black 0 0 4px
+      td
+        &.solved a
+          background-color: $green
+        a
+          display: block
+          background-color: $pinku
+          border: 1px solid white
+          margin: 0
+          padding: 30px
+          color: white
+          text-decoration: none
   #messages
     background-color: black
     color: white
@@ -82,14 +102,12 @@
       float: left
     #gameboard
       float: left
-      margin-top: 20px
-      // added to support the placeholder
-      width: $gamezone_width
-      height: 340px
+      table
+        width: $gamezone_width
     #messages
+      float: left
       background-color: black
       color: white
-      margin-top: -60px
       padding: 4px
       height: 120px
       overflow: scroll

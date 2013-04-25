@@ -12,6 +12,7 @@
 
 @import "bourbon";
 @import "mixins";
+@import "color";
 @import "layout";
 @import "partials";
 @import "homepage";
@@ -21,7 +22,7 @@
 @import "fonts";
 
 body {
-  background-color: #ff0080;
+  background-color: $pinku;
   background-image: image-url('strawberry-linen.jpg');
   font-family: Ubuntu;
 }

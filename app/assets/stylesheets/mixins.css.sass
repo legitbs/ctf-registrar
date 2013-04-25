@@ -7,3 +7,9 @@
 @mixin letter($letterBackground: #ffe)
   background-color: $letterBackground
   border: 1px solid darken($letterBackground, 30%)
+
+@mixin unnumbered-list
+  list-style-type: none
+  &, & li
+    margin: 0
+    padding: 0

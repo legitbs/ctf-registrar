@@ -2,7 +2,7 @@
   $invitationWidth: 460px
   $invitationPadding: 12px
   $columnPadding: 4px
-  background-color: #ffe
+  background-color: $parchment
   padding: $invitationPadding
   width: $invitationWidth
   margin: 0 auto
@@ -14,7 +14,6 @@
     margin-bottom: 0
 
 .registration
-  $salmon: #fa8072
   margin: 20px auto 40px auto
   width: 540px
   background: $salmon image-url('stripes.png')
@@ -47,7 +46,6 @@
       background: white
 
 #schedule
-  $blue: hsl(200, 100%, 50%)
   @include transform(rotate3d(0, 0, 1, -1.0deg))
   background-color: white
   background: image-url("grid.png")
