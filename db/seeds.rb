@@ -16,3 +16,13 @@
 ].each_with_index do |name, order|
   Category.where(name: name, order: order).first_or_create
 end
+
+Category.find_each do |cat|
+  (1..5).each do |val|
+    Challenge.where(name: "#{cat.name} #{val}",
+                    clue: "#{cat.name}",
+                    category_id: cat.id,
+                    points: val
+                    ).first_or_create
+  end
+end
