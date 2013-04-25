@@ -1,4 +1,6 @@
 CtfRegistrar::Application.routes.draw do
+  get "scoreboard", to: 'scoreboard#index', as: :scoreboard
+
   get 'dashboard', to: 'dashboard#index', as: :dashboard
 
   root to: 'homepage#index', id: 'home'
