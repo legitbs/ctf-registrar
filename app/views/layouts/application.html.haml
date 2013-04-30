@@ -8,16 +8,4 @@
     %meta{name: 'google', value: 'notranslate'}
   %body
     = yield
-    #beta-notice
-      %a#close-box{href: '#', :'data-action' => 'close'} close
-      #beta-notice-content
-        :markdown
-          Legit BS CTF 2013
-
-          This site is in development. The database in use now will not
-          be carried forward. Please send all comments to 
-          [vito](mailto:vito@legitbs.net) or bitch on
-          the [google plus group](https://plus.google.com/u/0/105889323777735843449/posts/h7sT74PeJ56?cfem=1)
-
-          <3 thanks! <3
     = render partial: 'shared/analytics'
