@@ -1,6 +1,10 @@
 class UsersController < ApplicationController
   before_filter :require_logged_out
   
+  def new
+    @user = User.new
+  end
+
   def create
     if params[:commit] == 'Log In'
       return try_login
