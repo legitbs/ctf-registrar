@@ -1,5 +1,5 @@
 CtfRegistrar::Application.routes.draw do
-  get "scoreboard", to: 'scoreboard#index', as: :scoreboard
+  # get "scoreboard", to: 'scoreboard#index', as: :scoreboard
 
   get 'dashboard', to: 'dashboard#index', as: :dashboard
 
