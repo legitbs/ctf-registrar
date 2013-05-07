@@ -9,10 +9,10 @@ module ApplicationHelper
     accum = []
     accum += flash[:analytics] unless flash[:analytics].nil?
     accum += @analytics unless @analytics.nil?
-    accum << ['_setCustomVar', 1, 'HTTPAuth', request.env['REMOTE_USER']] if request.env['REMOTE_USER']
-    accum << ['_setCustomVar', 2, 'Username', current_user.username] if current_user
+    accum << ['_setCustomVar', 1, 'HTTPAuth', h(request.env['REMOTE_USER'])] if request.env['REMOTE_USER']
+    accum << ['_setCustomVar', 2, 'Username', h(current_user.username)] if current_user
     if current_user && (!current_user.team.nil?) && (!current_user.team.name.blank?)
-      accum << ['_setCustomVar', 3, 'Team', current_user.team.name]
+      accum << ['_setCustomVar', 3, 'Team', h(current_user.team.name)]
     end
     accum.map do |i|
       "_gaq.push(#{i.to_json});"  
