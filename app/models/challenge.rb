@@ -8,7 +8,9 @@ class Challenge < ActiveRecord::Base
         a.name as category_name,
         c.name as challenge_name,
         c.points,
-        s.created_at
+        s.created_at,
+        c.unlocked_at,
+        c.solved_at
       FROM
         challenges AS c
         INNER JOIN categories AS a
