@@ -33,10 +33,12 @@
       td
         padding: 0
         &.solved a
-          background-color: $green
+          background: #127A07 image-url('green-check.png')
+        &.burning a
+          background: #b00 image-url('burning-love.gif') bottom repeat-x
         a
           display: block
-          background-color: $pinku
+          background-color: darken($pinku, 5%)
           border: 1px solid white
           margin: 0
           padding: 30px
