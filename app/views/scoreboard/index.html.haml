@@ -31,7 +31,7 @@
         - @challenges.each do |row|
           %tr
             - row.each do |single|
-              %td{:class => challenge_class_for(single)}
+              %td{:class => challenge_class_for(single), id: challenge_id_for(single)}
                 %a{href: '#', title: single['challenge_name']}
                   = single['points']
   %br.clear
