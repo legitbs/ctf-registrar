@@ -1,5 +1,6 @@
 CtfRegistrar::Application.routes.draw do
   get "scoreboard", to: 'scoreboard#index', as: :scoreboard
+  get "scoreboard/challenge/:id", to: 'scoreboard#challenge', as: :challenge
 
   get 'dashboard', to: 'dashboard#index', as: :dashboard
 

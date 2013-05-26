@@ -5,5 +5,24 @@ class ScoreboardController < ApplicationController
     @challenges = Challenge.for_scoreboard Team.first
 
     @challenge = Challenge.find 12
+
+    respond_to do |f|
+      f.html
+      f.json {
+        render json: {
+          leaderboard: @leaderboard,
+          challenges: @challenges
+        }
+      }
+    end
+  end
+
+  def challenge
+    @challenge = Challenge.find params[:id]
+
+    respond_to do |f|
+      f.html
+      f.json { render json: f }
+    end
   end
 end
