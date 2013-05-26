@@ -34,7 +34,7 @@ class Team < ActiveRecord::Base
         'score' => current_team.score,
         'current' => true}
     end
-Rails.logger.info scoreboard_rows
+
     return scoreboard_rows
   end
 

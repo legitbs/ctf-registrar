@@ -16,6 +16,7 @@
         .score
           text-align: right
   #gameboard
+    position: relative
     table
       float: left
       text-align: center
@@ -44,48 +45,48 @@
           padding: 30px
           color: white
           text-decoration: none
-  #challenge
-    position: absolute
-    z-index: 10
-    bottom: 20px
-    left: 20px
-    right: 20px
-    background-color: rgba(0,0,0,0.75)
-    color: white
-    border: 4px solid $blue
-    border-radius: 10px
-    box-shadow: black 0 2px 16px 0
-    .bar
-      background-color: black
-      padding: 4px
+    #challenge
+      position: absolute
+      z-index: 10
+      top: 120px
+      left: 20px
+      right: 20px
+      background-color: rgba(0,0,0,0.75)
       color: white
-      border-top-left-radius: 10px
-      border-top-right-radius: 10px
-      h3
-        margin: 4px
-      a:link, a:visited
-        float: right
-        color: white
-        text-decoration: none
-        display: inline-block
-        border: 1px solid white
-        border-radius: 2px
-        margin: 2px
+      border: 4px solid $blue
+      border-radius: 10px
+      box-shadow: black 0 2px 16px 0
+      .bar
+        background-color: black
         padding: 4px
-        text-align: right
-    .content
-      padding: 8px
-      overflow: wrap
-      h1
-        margin: 2px
-      input
         color: white
-        border: 1px solid white
-        background: transparent
-        font-size: 14px
-        &[type='text']
-          padding: 2px
-          width: 400px
+        border-top-left-radius: 10px
+        border-top-right-radius: 10px
+        h3
+          margin: 4px
+        a:link, a:visited
+          float: right
+          color: white
+          text-decoration: none
+          display: inline-block
+          border: 1px solid white
+          border-radius: 2px
+          margin: 2px
+          padding: 4px
+          text-align: right
+      .content
+        padding: 8px
+        overflow: wrap
+        h1
+          margin: 2px
+        input
+          color: white
+          border: 1px solid white
+          background: transparent
+          font-size: 14px
+          &[type='text']
+            padding: 2px
+            width: 400px
   #messages
     background-color: black
     color: white
