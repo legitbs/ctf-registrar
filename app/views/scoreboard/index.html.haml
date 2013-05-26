@@ -12,13 +12,10 @@
         answered a question.
   #scorelist
     %ul
-      - 25.times do |n|
-        %li
-          %span.teamname= rand(36**10).to_s(36)
-          %span.score= 2500 - n
-      %li.current
-        %span.teamname fail team 2000
-        %span.score 5
+      - @leaderboard.each do |t|
+        %li{class: t['current'] ? 'current' : ''}
+          %span.teamname= t['team_name']
+          %span.score= t['score']
   #gameboard
     %table
       - @categories.each do
@@ -34,7 +31,15 @@
               %td{:class => challenge_class_for(single), id: challenge_id_for(single)}
                 %a{href: '#', title: single['challenge_name']}
                   = single['points']
+    #challenge
+      .bar
+        %a{href: '#'} close
+        %h3.meta
+          #{ @challenge.category.name}: #{ @challenge.points} points
+      .content
+        %h1.name= @challenge.name
+        %p.clue= @challenge.clue
+        %form
+          %input{type: 'text', placeholder: 'answer'}
+          %input{type: 'submit'}
   %br.clear
-
-  /       apr. 20 4:20 pm utc: An important game message of some kind. Perhaps the fednaught has
-  /       answered a question.
