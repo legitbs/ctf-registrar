@@ -18,8 +18,8 @@ class Challenge < ActiveRecord::Base
         LEFT JOIN solutions AS s
           ON c.id = s.challenge_id and s.team_id=#{team.id.to_i}
       ORDER BY
-        c.points asc,
-        a.id asc
+        c.points ASC,
+        a.id ASC
     SQL
 
     challenge_rows.group_by{|r| r['points']}.values
