@@ -37,15 +37,15 @@
                     title: "#{single['challenge_name']}: #{challenge_class_for(single)}")
                 - else
                   %a= single['points']
-    / #challenge{style: 'display: none'}
-    /   .bar
-    /     %a{href: '#'} close
-    /     %h3.meta
-    /       #{ @challenge.category.name}: #{ @challenge.points} points
-    /   .content
-    /     %h1.name= @challenge.name
-    /     %p.clue= @challenge.clue
-    /     %form
-    /       %input{type: 'text', placeholder: 'answer'}
-    /       %input{type: 'submit'}
+    #challenge{style: 'display: none'}
+      .bar
+        %a{href: '#'} close
+        %h3.meta
+          {{ category_name }}: {{ points }} points
+      .content
+        %h1.name {{ challenge_name }}
+        %p.clue {{ challenge_clue }}
+        =form_tag(challenge_path(":challenge_id"), method: :post) do
+          %input{type: 'text', placeholder: 'answer'}
+          %input{type: 'submit'}
   %br.clear
