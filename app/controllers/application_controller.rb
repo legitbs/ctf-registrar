@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  helper_method :current_user
+  helper_method :current_user, :current_team
 
   def require_logged_in
     return true if current_user
@@ -16,8 +16,19 @@ class ApplicationController < ActionController::Base
     redirect_to dashboard_path
   end
 
+  def require_on_team
+    return true if current_user && current_user.team
+
+    flash[:error] = "You're not a member of a team."
+    redirect_to dashboard_path
+  end
+
   def current_user
     @current_user ||= User.find session[:user_id] rescue nil
+  end
+
+  def current_team
+    @current_team ||= current_user.team rescue nil
   end
 
   def current_user=(user)
