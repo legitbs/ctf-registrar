@@ -9,7 +9,6 @@
 [
   "transfer protocol", # web
   "ethically sourced", # exploitation
-  "a stitch in time", # patching
   "Ghoti in the Shell", # shellcode
   "10100111001", # guerilla programming
   "gnireenigne", # reverse engineering

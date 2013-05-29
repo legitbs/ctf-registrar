@@ -29,17 +29,23 @@
           %tr
             - row.each do |single|
               %td{:class => challenge_class_for(single), id: challenge_id_for(single)}
-                %a{href: '#', title: single['challenge_name']}
-                  = single['points']
-    #challenge
-      .bar
-        %a{href: '#'} close
-        %h3.meta
-          #{ @challenge.category.name}: #{ @challenge.points} points
-      .content
-        %h1.name= @challenge.name
-        %p.clue= @challenge.clue
-        %form
-          %input{type: 'text', placeholder: 'answer'}
-          %input{type: 'submit'}
+                - if single['created_at']
+                  %a= single['points']
+                - elsif single['unlocked_at']
+                  = link_to(single['points'], 
+                    challenge_path(single['challenge_id']),
+                    title: "#{single['challenge_name']}: #{challenge_class_for(single)}")
+                - else
+                  %a= single['points']
+    / #challenge{style: 'display: none'}
+    /   .bar
+    /     %a{href: '#'} close
+    /     %h3.meta
+    /       #{ @challenge.category.name}: #{ @challenge.points} points
+    /   .content
+    /     %h1.name= @challenge.name
+    /     %p.clue= @challenge.clue
+    /     %form
+    /       %input{type: 'text', placeholder: 'answer'}
+    /       %input{type: 'submit'}
   %br.clear
