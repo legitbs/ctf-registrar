@@ -8,6 +8,14 @@ class Team < ActiveRecord::Base
 
   has_many :solutions
 
+  def score
+    solutions.joins(:challenge).sum('challenges.points')
+  end
+
+  def solution_for(challenge)
+    solutions.where(challenge_id: challenge.id).first_or_initialize
+  end
+
   def self.for_scoreboard(current_team)
     scoreboard_rows = connection.select_all <<-SQL
       SELECT
@@ -36,9 +44,5 @@ class Team < ActiveRecord::Base
     end
 
     return scoreboard_rows
-  end
-
-  def score
-    solutions.joins(:challenge).sum('challenges.points')
   end
 end

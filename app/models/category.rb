@@ -1,5 +1,6 @@
 class Category < ActiveRecord::Base
   attr_accessible :name, :order
+  has_many :challenges
 
   def self.for_scoreboard
     connection.select_rows <<-SQL
