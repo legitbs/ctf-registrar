@@ -33,18 +33,25 @@
         text-shadow: black 0 0 4px
       td
         padding: 0
+        a
+          display: block
+          border: 1px solid white
+          margin: 0
+          padding: 20px
+          color: white
+          text-decoration: none
+          font-size: 24pt
+          font-weight: bold
+        &.live a
+          text-shadow: black 0 2px 8px
+          background: $pinku image-url('pink-heart.png')
+        &.locked a
+          background: #5B0702 image-url('red-x.png')
         &.solved a
           background: #127A07 image-url('green-check.png')
         &.burning a
+          text-shadow: black 0 2px 8px
           background: #b00 image-url('burning-love.gif') bottom repeat-x
-        a
-          display: block
-          background-color: darken($pinku, 5%)
-          border: 1px solid white
-          margin: 0
-          padding: 30px
-          color: white
-          text-decoration: none
     #challenge
       position: absolute
       z-index: 10
@@ -162,3 +169,21 @@
       width: $gamezone_width - 8px
 
       #messages-inner
+
+
+.content#challenge
+  .challenge
+    width: 640px
+    margin: auto
+    background-color: $parchment
+    padding: 12px
+    box-shadow: black 0 2px 8px
+    form
+      input, button, a:link, a:visited
+        background-color: white
+        font-size: 16px
+        padding: 4px
+        display: inline-block
+        border: 1px solid black
+        text-decoration: none
+        color: black
