@@ -34,18 +34,20 @@
                 - elsif single['unlocked_at']
                   = link_to(single['points'], 
                     challenge_path(single['challenge_id']),
+                    class: 'live_challenge',
+                    :'data-challenge-id' => single['challenge_id'],
                     title: "#{single['challenge_name']}: #{challenge_class_for(single)}")
                 - else
                   %a= single['points']
     #challenge{style: 'display: none'}
       .bar
-        %a{href: '#'} close
+        %a#close_button{href: '#'} close
         %h3.meta
-          {{ category_name }}: {{ points }} points
+          {{ category.name }}: {{ challenge.points }} points
       .content
-        %h1.name {{ challenge_name }}
-        %p.clue {{ challenge_clue }}
-        =form_tag(challenge_path(":challenge_id"), method: :post) do
+        %h1.name {{ challenge.name }}
+        %p.clue {{ challenge.clue }}
+        =form_tag(challenge_path(":challenge_id"), method: :post, id: 'challenge_form') do
           %input{type: 'text', placeholder: 'answer'}
           %input{type: 'submit'}
   %br.clear

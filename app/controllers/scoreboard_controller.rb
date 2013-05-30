@@ -25,7 +25,7 @@ class ScoreboardController < ApplicationController
 
     respond_to do |f|
       f.html
-      f.json { render json: {challenge: @challenge, solution: @solution} }
+      f.json { render json: {category: @challenge.category, challenge: @challenge, solution: @solution} }
     end
   end
 

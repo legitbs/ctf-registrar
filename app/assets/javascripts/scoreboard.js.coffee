@@ -8,20 +8,45 @@ jQuery ($)->
   challengeLinks = $('a.live_challenge')
 
   loadChallenge = (challengeId, url)->
-    $.ajax url: url, dataType: 'json', success: (data)->
-      new_data = Mustache.render(template, data)
-      challengeWindow.html(new_data)
-      $('#challenge_form').attr('action', url)
+    $.ajax 
+      url: url
+      dataType: 'json'
+      method: 'get'
+      success: (data)->
+        new_data = Mustache.render(template, data)
+        challengeWindow.html(new_data)
+        $('#challenge_form').attr('action', url)
+        challengeWindow.show()
+
+  submitChallenge = (formdata, url)->
+    $.ajax 
+      url: url
+      dataType: 'json'
+      method: 'post'
+      success: (data)->
+        alert data
+        document.location.href = "/scoreboard/choice"
+      statusCode: 
+        500: (data)->
+          alert "server busted :("
+        400: (data)->
+          alert "wrong!"
+
 
   challengeLinks.click (e) ->
     e.preventDefault()
     id = this.dataset['challengeId']
     url = this.href
     loadChallenge(id, url)
-    challengeWindow.show()
-    
+
   challengeWindow.on 'click', 'a#close_button', (e)->
     challengeWindow.hide()
     e.preventDefault()
+
+  challengeWindow.on 'submit', 'form', (e)->
+    e.preventDefault()
+    formData = $(this).serializeArray()
+    submitChallenge(formData, this.action)
+    false
 
   template = challengeWindow.html()
