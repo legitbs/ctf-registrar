@@ -3,7 +3,7 @@ CtfRegistrar::Application.routes.draw do
   get "scoreboard/challenge/:id", to: 'scoreboard#challenge', as: :challenge
   post "scoreboard/challenge/:id", to: 'scoreboard#answer'
   get "scoreboard/choice", to: 'scoreboard#choice', as: :choice
-  post "scoreboard/choice", to: 'scoreboard#pick', as: :pick
+  post "scoreboard/choice", to: 'scoreboard#pick'
 
   get 'dashboard', to: 'dashboard#index', as: :dashboard
 
