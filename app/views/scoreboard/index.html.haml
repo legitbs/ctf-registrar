@@ -1,15 +1,12 @@
 .content#scoreboard
   #messages
-    #messages-inner
-      :markdown
-        apr. 20 4:20 pm utc: An important game message of some kind. Perhaps the fednaught has
-        answered a question.
+    %ol#messages-inner
+      %li
+        .metadata
+          %span.timestamp {{ timestamp }}
+          %span.sender {{ sender }}
+        %p.message {{ message }}
 
-        apr. 20 4:20 pm utc: An important game message of some kind. Perhaps the fednaught has
-        answered a question.
-
-        apr. 20 4:20 pm utc: An important game message of some kind. Perhaps the fednaught has
-        answered a question.
   #scorelist
     %ul
       - @leaderboard.each do |t|
@@ -48,6 +45,6 @@
         %h1.name {{ challenge.name }}
         %p.clue {{ challenge.clue }}
         =form_tag(challenge_path(":challenge_id"), method: :post, id: 'challenge_form') do
-          %input{type: 'text', placeholder: 'answer'}
+          %input#answer{type: 'text', placeholder: 'answer', name: 'answer'}
           %input{type: 'submit'}
   %br.clear

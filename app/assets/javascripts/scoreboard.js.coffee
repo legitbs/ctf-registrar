@@ -4,6 +4,35 @@
 jQuery ($)->
   return unless $('.content#scoreboard').length == 1
 
+  blink = (el)->
+    el.animate
+      'background-color': $.Color 'red'
+    el.animate
+      'background-color': $.Color 'transparent'
+
+  class Log
+    constructor: ->
+      @messageList = $('#messages ol')
+      @messageTemplate = @messageList.html()
+      @messageList.html('')
+      @appendLocal("Welcome to the 2013 DEF CON CTF Qualifications!")
+      this
+    appendLocal: (message) ->
+      now = new Date
+      @append
+        message: message
+        timestamp: now.toLocaleString()
+        sender: ">local<"
+    append: (message) ->
+      new_entry = Mustache.render @messageTemplate, message
+      @messageList.prepend new_entry
+      @massage
+      blink @messageList.children(':first-child')
+    massage: ->
+      if @messageList.find('li').length > 20
+        @messageList('li:nth-child(20)').remove()
+  Log.log = new Log
+
   challengeWindow = $('#challenge')
   challengeLinks = $('a.live_challenge')
 
@@ -18,19 +47,28 @@ jQuery ($)->
         $('#challenge_form').attr('action', url)
         challengeWindow.show()
 
-  submitChallenge = (formdata, url)->
+  submitChallenge = (formData, url)->
     $.ajax 
       url: url
+      data: formData
       dataType: 'json'
       method: 'post'
-      success: (data)->
+      success: (data, textStatus, jqx)->
         alert data
         document.location.href = "/scoreboard/choice"
       statusCode: 
-        500: (data)->
-          alert "server busted :("
-        400: (data)->
-          alert "wrong!"
+        500: (data, textStatus, jqx)->
+          Log.log.appendLocal "you broke it :("
+        400: (data, textStatus, jqx)->
+          response = $.parseJSON(data.responseText)
+          if response['weird']
+            return document.location.reload()
+          else
+            Log.log.appendLocal "Wrong answer :("
+            el = challengeWindow.find('input#answer')
+            blink el
+            el.val('')
+
 
 
   challengeLinks.click (e) ->
