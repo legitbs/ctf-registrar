@@ -17,10 +17,17 @@ class ApplicationController < ActionController::Base
   end
 
   def require_on_team
-    return true if current_user && current_user.team
+    return true if current_user && current_team
 
     flash[:error] = "You're not a member of a team."
     redirect_to dashboard_path
+  end
+
+  def require_hot_team
+    return true if current_user && current_team && current_team.hot
+
+    redirect_to dashboard_path
+    return false
   end
 
   def current_user

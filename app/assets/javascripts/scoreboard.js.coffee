@@ -1,6 +1,3 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 jQuery ($)->
   return unless $('.content#scoreboard').length == 1
 
@@ -33,6 +30,10 @@ jQuery ($)->
         @messageList('li:nth-child(20)').remove()
   Log.log = new Log
 
+  if document.location.hash == "#!solved"
+    Log.log.appendLocal "You got it!"
+  document.location.hash = ""
+
   challengeWindow = $('#challenge')
   challengeLinks = $('a.live_challenge')
 
@@ -54,8 +55,11 @@ jQuery ($)->
       dataType: 'json'
       method: 'post'
       success: (data, textStatus, jqx)->
-        alert data
-        document.location.href = "/scoreboard/choice"
+        if data.hot
+          document.location.href = "/scoreboard/choice"
+        else
+          document.location.hash = "#!solved"
+          document.location.reload()
       statusCode: 
         500: (data, textStatus, jqx)->
           Log.log.appendLocal "you broke it :("

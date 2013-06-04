@@ -9,4 +9,19 @@ class Category < ActiveRecord::Base
       ORDER BY c.id asc
       SQL
   end
+
+  def self.for_picker
+    connection.select_rows <<-SQL
+      SELECT 
+        c.id, 
+        c.name, 
+        c.order, 
+        COUNT(a.id)
+      FROM categories AS c
+      RIGHT JOIN challenges AS a 
+        ON a.category_id = c.id
+      WHERE a.unlocked_at IS NULL
+      GROUP BY c.id
+    SQL
+  end
 end

@@ -21,7 +21,7 @@ class Challenge < ActiveRecord::Base
           ON c.id = s.challenge_id and s.team_id=#{team.id.to_i}
       ORDER BY
         c.points ASC,
-        a.id ASC
+        a.order ASC
     SQL
 
     challenge_rows.group_by{|r| r['points']}.values
