@@ -22,9 +22,8 @@
               %td{:class => choice_class_for(single), id: challenge_id_for(single)}
                 - if single['class'] == 'burning'
                   = link_to(single['points'], 
-                    challenge_path(single['challenge_id']),
-                    class: 'live_challenge',
-                    :'data-challenge-id' => single['challenge_id'],
+                    pick_path(single['challenge_id']),
+                    method: 'post',
                     title: "#{single['challenge_name']}: #{challenge_class_for(single)}")
                 - else
                   %a= single['points']
