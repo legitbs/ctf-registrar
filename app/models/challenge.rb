@@ -27,6 +27,28 @@ class Challenge < ActiveRecord::Base
     challenge_rows.group_by{|r| r['points']}.values
   end
 
+  def self.for_picker(team)
+    challenges = for_scoreboard team
+    min_unlock = Challenge.
+      where(unlocked_at: nil).
+      order('points asc').
+      limit(1).
+      first.points
+    max_unlock = min_unlock + 1
+    already = Hash.new
+
+    challenges.flatten.each do |c|
+      next c['class'] = 'solved' if c['created_at']
+      next c['class'] = 'live' if c['unlocked_at']
+      next c['class'] = 'locked' if c['points'].to_i > max_unlock
+      next c['class'] = 'locked' if already[c['category_name']]
+      already[c['category_name']] = true
+      c['class'] = 'burning'
+    end
+
+    return challenges
+  end
+
   def as_json(args)
     super args.merge except: %i{answer_digest created_at updated_at}
   end

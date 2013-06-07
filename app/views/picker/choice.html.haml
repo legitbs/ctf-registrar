@@ -1,4 +1,12 @@
 .content#scoreboard
+  #scorelist
+    %ul
+      - @leaderboard.each do |t|
+        %li{class: t['current'] ? 'current' : ''}
+          %span.teamname= t['team_name']
+          %span.score= t['score']
+  #instructions
+    %p Pick a new hot challenge!
   #gameboard
     %table
       - @categories.each do
