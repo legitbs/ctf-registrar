@@ -11,17 +11,29 @@ class Category < ActiveRecord::Base
   end
 
   def self.for_picker
-    connection.select_rows <<-SQL
+    rows = connection.select_all <<-SQL
       SELECT 
-        c.id, 
+        c.id AS category_id, 
         c.name, 
-        c.order, 
-        COUNT(a.id)
+        a.points,
+        a.id as challenge_id
       FROM categories AS c
-      RIGHT JOIN challenges AS a 
-        ON a.category_id = c.id
-      WHERE a.unlocked_at IS NULL
-      GROUP BY c.id
+      RIGHT JOIN challenges AS a ON a.category_id = c.id
+      WHERE 
+        a.solved_at IS NULL
+      ORDER BY
+        a.points ASC,
+        c.order ASC
     SQL
+
+    min_point = rows.first['points']
+
+    collector = Hash.new
+    rows.each do |r|
+      next if collector[r['category_id']]
+      collector[r['category_id']] = r
+    end
+
+    return collector
   end
 end

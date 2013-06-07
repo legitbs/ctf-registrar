@@ -1,4 +1,22 @@
-%h1 counts
-- @counts.each do |v|
-  %p
-    = v.inspect
+.content#scoreboard
+  #gameboard
+    %table
+      - @categories.each do
+        %col
+      %thead
+        %tr
+          - @categories.each do |cat|
+            %th{id: "category_#{cat[0]}"}= cat[1]
+      %tbody
+        - @challenges.each do |row|
+          %tr
+            - row.each do |single|
+              %td{:class => choice_class_for(single), id: challenge_id_for(single)}
+                - if single['class'] == 'burning'
+                  = link_to(single['points'], 
+                    challenge_path(single['challenge_id']),
+                    class: 'live_challenge',
+                    :'data-challenge-id' => single['challenge_id'],
+                    title: "#{single['challenge_name']}: #{challenge_class_for(single)}")
+                - else
+                  %a= single['points']

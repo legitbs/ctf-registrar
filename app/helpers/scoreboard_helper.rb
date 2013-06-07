@@ -6,6 +6,10 @@ module ScoreboardHelper
     return 'live'
   end
 
+  def choice_class_for(single_challenge_row)
+    single_challenge_row['class']
+  end
+
   def challenge_id_for(single_challenge_row)
     "#{single_challenge_row['category_name'].parameterize}-#{single_challenge_row['points']}"
   end
