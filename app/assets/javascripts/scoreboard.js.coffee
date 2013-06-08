@@ -7,6 +7,50 @@ jQuery ($)->
     el.animate
       'background-color': $.Color 'transparent'
 
+  class Poller
+    constructor: ->
+      @messages = $('#messages')
+      @messagePath = @messages.data('message-path')
+      @interval = Number @messages.data('message-interval')
+      @since = 0
+      @startPoll()
+    startPoll: ->
+      window.setTimeout(@poll(), @interval)
+    requeue: ->
+      finish = new Date().getTime()
+      lag = finish - @start
+      window.setTimeout(@poll(), @interval - lag)
+    poll: ->
+      f = ->
+        @start = new Date().getTime()
+        $.ajax
+          url: @messagePath
+          dataType: 'json'
+          method: 'get'
+          data:
+            since: @since
+          success: @receive()
+          error: @error()
+      f.bind(this)
+    error: ->
+      f = (jqx, textStatus, errorThrown)->
+        @requeue()
+      f.bind(this)
+    receive: ->
+      f = (data, textStatus, jqx)->
+        for notice in data['notices']
+          timestamp = new Date(notice['created_at'])
+          
+          if Number(timestamp) > @since
+            @since = Number(timestamp) / 1000
+
+          Log.log.append
+            message: notice['body']
+            timestamp: timestamp.toLocaleString()
+            sender: (notice['team_id'] ? '>private<' : '<global>')
+        @requeue()
+      f.bind(this)
+
   class Log
     constructor: ->
       @messageList = $('#messages ol')
@@ -28,7 +72,9 @@ jQuery ($)->
     massage: ->
       if @messageList.find('li').length > 20
         @messageList('li:nth-child(20)').remove()
+
   Log.log = new Log
+  Poller.poller = new Poller
 
   if document.location.hash == "#!solved"
     Log.log.appendLocal "You got it!"

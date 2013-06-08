@@ -17,7 +17,11 @@ class PickerController < ApplicationController
     return redirect_to choice_path if found.nil?
     return redirect_to choice_path unless found['class'] == 'burning'
 
-    @challenge.unlock!
+    @challenge.transaction do
+      @challenge.unlock!
+      @team.hot = false
+      @team.save
+    end
 
     redirect_to scoreboard_path
   end

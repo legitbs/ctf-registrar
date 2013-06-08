@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130527204451) do
+ActiveRecord::Schema.define(:version => 20130608161305) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -33,6 +33,20 @@ ActiveRecord::Schema.define(:version => 20130527204451) do
   end
 
   add_index "challenges", ["category_id"], :name => "index_challenges_on_category_id"
+  add_index "challenges", ["solved_at"], :name => "challenges_solved_at_idx"
+  add_index "challenges", ["unlocked_at", "points"], :name => "challenges_unlocked_at_points_idx"
+  add_index "challenges", ["unlocked_at"], :name => "challenges_unlocked_at_idx"
+
+  create_table "notices", :force => true do |t|
+    t.string   "body"
+    t.integer  "team_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "notices", ["created_at"], :name => "index_notices_on_created_at"
+  add_index "notices", ["team_id", "created_at"], :name => "index_notices_on_team_id_and_created_at"
+  add_index "notices", ["team_id"], :name => "index_notices_on_team_id"
 
   create_table "solutions", :force => true do |t|
     t.integer  "team_id"

@@ -1,4 +1,7 @@
 .content#scoreboard
+  @mixin firestarter
+    background: #b00 image-url('burning-love.gif') bottom repeat-x
+
   #scorelist
     float: right
     background-color: $parchment
@@ -16,14 +19,15 @@
         .score
           text-align: right
   #instructions
-    color: white
-    background-color: black
+    color: yellow
+    @include firestarter
     text-align: center
     float: left
-    outline: 4px solid $pinku
+    outline: 4px solid yellow
     margin: 4px
+    margin-bottom: 8px
     p
-      text-shadow: $pinku 0px 0px 4px
+      text-shadow: black 0px 0px 4px
       padding: 10px
 
   #gameboard
@@ -61,8 +65,8 @@
         &.solved a
           background: #127A07 image-url('green-check.png')
         &.burning a
+          @include firestarter
           text-shadow: black 0 2px 8px
-          background: #b00 image-url('burning-love.gif') bottom repeat-x
     #challenge
       position: absolute
       z-index: 10
@@ -177,6 +181,8 @@
     $gamezone_width: 680px
     #header
       float: left
+    #instructions
+      width: $gamezone_width - 8px
     #gameboard
       float: left
       table

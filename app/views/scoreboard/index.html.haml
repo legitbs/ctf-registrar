@@ -1,5 +1,5 @@
 .content#scoreboard
-  #messages
+  #messages{:'data-message-path' => notices_path, :'data-message-interval' => 1_000}
     %ol#messages-inner
       %li
         .metadata

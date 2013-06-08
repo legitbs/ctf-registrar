@@ -5,6 +5,8 @@ CtfRegistrar::Application.routes.draw do
   get "scoreboard/choice", to: 'picker#choice', as: :choice
   post "scoreboard/choice/:id", to: 'picker#pick', as: :pick
 
+  get "notices", to: 'notices#index', as: :notices, format: :json
+
   get 'dashboard', to: 'dashboard#index', as: :dashboard
 
   root to: 'homepage#index', id: 'home'
