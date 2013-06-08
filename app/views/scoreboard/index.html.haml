@@ -1,13 +1,14 @@
 .content#scoreboard
-  #messages{:'data-message-path' => notices_path, :'data-message-interval' => 1_000}
+  #messages{:'data-message-path' => notices_path, :'data-message-interval' => 60_000}
     %ol#messages-inner
       %li
         .metadata
           %span.timestamp {{ timestamp }}
           %span.sender {{ sender }}
         %p.message {{ message }}
-
   #scorelist
+    #timer{:'data-remain' => (Time.at(1371254400) - Time.now)}
+      {{ hours }}:{{ minutes }}:{{ seconds }} left
     %ul
       - @leaderboard.each do |t|
         %li{class: t['current'] ? 'current' : ''}

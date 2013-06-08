@@ -5,6 +5,12 @@
   #scorelist
     float: right
     background-color: $parchment
+    #timer
+      font-weight: bold
+      font-size: 1.6em
+      border-bottom: 2px solid black
+      padding: 2px
+      text-align: center
     ul
       list-style-type: none
       margin: 2px
@@ -33,6 +39,7 @@
   #gameboard
     position: relative
     table
+      width: 500px
       float: left
       text-align: center
       table-layout: fixed
@@ -112,6 +119,7 @@
   #messages
     background-color: black
     color: white
+    width: 500px
     ol
       list-style: none
       padding-left: 0
@@ -146,8 +154,8 @@
 
     #gameboard    
       float: left
-      width: 570px
-      height: 340px
+      table
+        width: 570px
 
     br.clear
       display: none

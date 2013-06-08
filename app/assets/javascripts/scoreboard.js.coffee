@@ -7,6 +7,36 @@ jQuery ($)->
     el.animate
       'background-color': $.Color 'transparent'
 
+  pad = (n) ->
+    return "0#{n}" if n < 10 && n >= 0
+    n
+
+  class Countdown
+    constructor: ->
+      @timer = $('#timer')
+      @timerTemplate = @timer.html()
+      @timer.html('')
+      @update(@timer.data 'remain')
+      @startPoll()
+    startPoll: ->
+      window.setTimeout(@poll(), 0)
+    update: (@remain)->
+      @remainPeg = new Date()
+    poll: ->
+      f = ->
+        now = new Date()
+        diff = (now - @remainPeg) / 1000
+        seconds = @remain - diff
+        minutes = seconds / 60
+        hours = minutes / 60
+        cd = 
+          hours: ~~hours
+          minutes: pad(~~(minutes % 60))
+          seconds: pad(~~(seconds % 60))
+        @timer.html(Mustache.render(@timerTemplate, cd))
+        window.setTimeout(@poll(), 500)
+      f.bind(this)
+
   class Poller
     constructor: ->
       @messages = $('#messages')
@@ -15,7 +45,7 @@ jQuery ($)->
       @since = 0
       @startPoll()
     startPoll: ->
-      window.setTimeout(@poll(), @interval)
+      window.setTimeout(@poll(), 0)
     requeue: ->
       finish = new Date().getTime()
       lag = finish - @start
@@ -53,6 +83,7 @@ jQuery ($)->
             message: notice['body']
             timestamp: timestamp.toLocaleString()
             sender: sender
+        Countdown.countdown.update data['remain']
         @requeue()
       f.bind(this)
 
@@ -61,7 +92,6 @@ jQuery ($)->
       @messageList = $('#messages ol')
       @messageTemplate = @messageList.html()
       @messageList.html('')
-      @appendLocal("Welcome to the 2013 DEF CON CTF Qualifications!")
       this
     appendLocal: (message) ->
       now = new Date
@@ -80,6 +110,7 @@ jQuery ($)->
 
   Log.log = new Log
   Poller.poller = new Poller
+  Countdown.countdown = new Countdown
 
   if document.location.hash == "#!solved"
     Log.log.appendLocal "You got it!"
