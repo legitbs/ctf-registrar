@@ -54,6 +54,15 @@ class ScoreboardController < ApplicationController
       if hot
         current_team.hot = true
         current_team.save
+
+        n = Notice.new
+        n.body = "#{current_team.name} solved #{@challenge.name} [#{@challenge.category.name}] for #{@challenge.points} points."
+        n.save
+      else
+        n = Notice.new
+        n.body = "Your teammate #{current_user.username} solved #{@challenge.name} [#{@challenge.category.name}] for #{@challenge.points} points."
+        n.team = current_team
+        n.save
       end
     end
 

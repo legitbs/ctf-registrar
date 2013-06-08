@@ -44,10 +44,15 @@ jQuery ($)->
           if Number(timestamp) > @since
             @since = Number(timestamp) / 1000
 
+            sender = if notice['team_id']
+              '>private<'
+            else
+              '<global>'
+
           Log.log.append
             message: notice['body']
             timestamp: timestamp.toLocaleString()
-            sender: (notice['team_id'] ? '>private<' : '<global>')
+            sender: sender
         @requeue()
       f.bind(this)
 
