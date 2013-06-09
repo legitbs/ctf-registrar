@@ -6,7 +6,7 @@ class Notice < ActiveRecord::Base
     since ||= 0
     where(
           '(created_at > :since) and (team_id is null or team_id = :team_id)', 
-          since: Time.at(since.to_i + 0.4),
+          since: Time.at(since.to_i + 1),
           team_id: team.id)
   end
 

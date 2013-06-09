@@ -19,8 +19,8 @@ class PickerController < ApplicationController
 
     @challenge.transaction do
       @challenge.unlock!
-      @team.hot = false
-      @team.save
+      current_team.hot = false
+      current_team.save
     end
 
     redirect_to scoreboard_path

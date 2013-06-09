@@ -135,7 +135,6 @@ jQuery ($)->
   document.location.hash = ""
 
   challengeWindow = $('#challenge')
-  challengeLinks = $('a.live_challenge')
 
   loadChallenge = (challengeId, url)->
     $.ajax 
@@ -175,7 +174,7 @@ jQuery ($)->
 
 
 
-  challengeLinks.click (e) ->
+  $('#gameboard').on 'click', 'a.live_challenge', (e) ->
     e.preventDefault()
     id = this.dataset['challengeId']
     url = this.href
