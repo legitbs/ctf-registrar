@@ -9,6 +9,12 @@
   #scorelist
     #timer{:'data-remain' => (Time.at(1371254400) - Time.now)}
       {{ hours }}:{{ minutes }}:{{ seconds }} left
+    #scoreboard_template{style: 'display: none'}
+      {{#teams}}
+      %li{class: '{{classname}}'}
+        %span.teamname {{team_name}}
+        %span.score {{score}}
+      {{/teams}}
     %ul
       - @leaderboard.each do |t|
         %li{class: t['current'] ? 'current' : ''}

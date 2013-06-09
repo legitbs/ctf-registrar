@@ -29,7 +29,9 @@ class Team < ActiveRecord::Base
         INNER JOIN challenges AS c 
           ON s.challenge_id = c.id
       GROUP BY t.id
-      ORDER BY score DESC
+      ORDER BY 
+        score DESC,
+        team_id ASC
       LIMIT 25
     SQL
 

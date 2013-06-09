@@ -4,6 +4,8 @@ class NoticesController < ApplicationController
   def index
     @notices = Notice.for current_team, params[:since]
 
+    @scoreboard = Team.for_scoreboard current_team
+
     finish = Time.at 1371254400
     now = Time.now
     remain = finish - now
@@ -11,7 +13,8 @@ class NoticesController < ApplicationController
     respond_to do |r|
       r.json { render json: {
         notices: @notices,
-        remain: remain
+        remain: remain,
+        scoreboard: @scoreboard
         } }
     end
   end

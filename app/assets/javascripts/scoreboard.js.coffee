@@ -37,6 +37,23 @@ jQuery ($)->
         window.setTimeout(@poll(), 500)
       f.bind(this)
 
+  Scoreboard = (->
+    sbt = $('#scoreboard_template')
+    template = sbt.html()
+    sbt.remove()
+
+    list = $('#scorelist ul')
+
+    return (scoreboard)->
+      for t in scoreboard
+        t['classname'] = 'current' if t['current']
+
+      team_html = Mustache.render(template, {teams: scoreboard})
+
+      list.html(team_html)
+  )()
+
+
   class Poller
     constructor: ->
       @messages = $('#messages')
@@ -84,6 +101,7 @@ jQuery ($)->
             timestamp: timestamp.toLocaleString()
             sender: sender
         Countdown.countdown.update data['remain']
+        Scoreboard data['scoreboard']
         @requeue()
       f.bind(this)
 
