@@ -1,5 +1,6 @@
 class DashboardController < ApplicationController
   before_filter :require_logged_in
+  before_filter :lbs_cookie
 
   helper_method :team
 

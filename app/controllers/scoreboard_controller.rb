@@ -1,5 +1,6 @@
 class ScoreboardController < ApplicationController
   before_filter :require_on_team
+  before_filter :require_during_game, except: :index
 
   def index
     @leaderboard = Team.for_scoreboard current_team

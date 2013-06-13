@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  helper_method :current_user, :current_team
+  helper_method :current_user, :current_team, :during_game?
 
   def require_logged_in
     return true if current_user
@@ -28,6 +28,27 @@ class ApplicationController < ActionController::Base
 
     redirect_to dashboard_path
     return false
+  end
+
+  def game_window
+    @game_window = Time.at(1371254400)..Time.at(1371427200)
+  end
+
+  def during_game?
+    game_window.cover? Time.now
+  end
+
+  def require_during_game
+    return true if cookies[:legitbs] == 'onAyWehinatdauvyuidsijyousAcbedpyipNesOc'
+    return true if during_game?
+
+    redirect_to dashboard_path
+    return false
+  end
+
+  def lbs_cookie
+    return unless params[:butts] == 'rututopankAdabvepyurHacfegwyajMevfafquob'
+    cookies[:legitbs] = params[:legitbs]
   end
 
   def current_user
