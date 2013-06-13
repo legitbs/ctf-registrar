@@ -1,7 +1,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  helper_method :current_user, :current_team, :during_game?
+  helper_method :current_user, :current_team 
+  helper_method :during_game?, :before_game?, :game_window
 
   def require_logged_in
     return true if current_user
@@ -36,6 +37,10 @@ class ApplicationController < ActionController::Base
 
   def during_game?
     game_window.cover? Time.now
+  end
+
+  def before_game?
+    game_window.first > Time.now
   end
 
   def require_during_game

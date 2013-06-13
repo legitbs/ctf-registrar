@@ -5,7 +5,18 @@
     = link_to 'Log out?', session_path, method: :delete
   .team
     - if current_user.participant?
+      .countdown
+        %h1 Countdown
+        - if during_game?
+          %p
+            = link_to 'Play now!', scoreboard_path
+            The game ends in about #{time_ago_in_words game_window.last, true}.
+            = link_to 'Not exact enough?', 'http://www.timeanddate.com/worldclock/fixedtime.html?iso=20130617T00'
+        - elsif before_game?
+          %p
+            = link_to 'Gawk at the scoreboard,', scoreboard_path
+            the game starts in about #{time_ago_in_words game_window.first, true}.
+            = link_to 'Too vague?', 'http://www.timeanddate.com/worldclock/fixedtime.html?iso=20130615T00'
       = render partial: 'yes_team'
     - else
       = render partial: 'no_team'
-  
