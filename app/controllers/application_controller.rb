@@ -51,6 +51,14 @@ class ApplicationController < ActionController::Base
     return false
   end
 
+  def require_before_game
+    return true if cookies[:legitbs] == 'onAyWehinatdauvyuidsijyousAcbedpyipNesOc'
+    return true if during_game?
+
+    redirect_to dashboard_path
+    return false
+  end
+
   def lbs_cookie
     return unless params[:butts] == 'rututopankAdabvepyurHacfegwyajMevfafquob'
     cookies[:legitbs] = params[:legitbs]

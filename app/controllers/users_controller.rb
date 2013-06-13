@@ -10,6 +10,11 @@ class UsersController < ApplicationController
       return try_login
     end
 
+    if !before_game?
+      flash[:error] = "Game's on, can't sign up anymore :("
+      return redirect_to root_path
+    end
+
     @user = User.new params[:user]
     return render action: 'new' if params[:squelch]
     if @user.save
