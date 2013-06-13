@@ -6,7 +6,7 @@ class NoticesController < ApplicationController
 
     @scoreboard = Team.for_scoreboard current_team
 
-    finish = Time.at 1371254400
+    finish = Time.at 1371427200
     now = Time.now
     remain = finish - now
 
