@@ -9,6 +9,7 @@ CtfRegistrar::Application.load_tasks
 namespace :deploy do
   task :staging => 'assets:precompile' do
     sh "git push heroku master"
+    sh "rm -rf public/assets"
   end
 
   task :prod => 'assets:precompile' do
