@@ -6,6 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+require 'bcrypt'
 categories = {}
 
 [
@@ -46,6 +47,12 @@ categories['3dub'].challenges.create(
                                      answer_digest: p['DyacphakukKefumsh2SwalvyocfowgitenhonEaf'],
                                      points: 4
                                      )
+categories['3dub'].challenges.create(
+                                     name: 'worsemedicine',
+                                     clue: 'http://worsemedicine.shallweplayaga.me/',
+                                     answer_digest: 'x',
+                                     points: 5
+                                     )
 
 categories['OMGACM'].challenges.create(
                                        name: 'pieceofeight',
@@ -69,16 +76,23 @@ categories['OMGACM'].challenges.create(
                                        answer_digest: p['yippie kay yay motherfucker 3nc83n89fg'],
                                        points: 2
                                            )
+categories['OMGACM'].challenges.create(
+                                       name: 'bob',
+                                       points: 5
+                                           )
 
-categories['0x41414141'].challenges.create(
+bitter = categories['0x41414141'].challenges.create(
                                        name: 'bitterswallow',
-                                       clue: 'bitterswallow.shallweplayaga.me:6492 [[server binary]]',
+                                       clue: 'bitterswallow.shallweplayaga.me:6492 http://assets-2013.legitbs.net/liabilities/bs',
                                        answer_digest: p['sometimes you just have to suck it up.'],
                                        points: 1
                                            )
+
+bitter.unlock!
 categories['0x41414141'].challenges.create(
                                        name: 'blackbox',
-                                       clue: "[[core file]]\nRunning at 131.247.27.201:1234",
+                                       clue: "http://assets-2013.legitbs.net/liabilities/blackbox.core\nRunning at 131.247.27.201:1234",
+                                       answer_digest: p['arm+bsd=shellcoding fun']
                                        points: 2
                                            )
 categories['0x41414141'].challenges.create(
@@ -89,13 +103,13 @@ categories['0x41414141'].challenges.create(
                                            )
 categories['0x41414141'].challenges.create(
                                        name: 'annyong',
-                                       clue: "HELLOHellohello\n[[server binary]]\nRunning at annyong.shallweplayaga.me:5679",
+                                       clue: "HELLOHellohello\nhttp://assets-2013.legitbs.net/liabilities/annyong\nRunning at annyong.shallweplayaga.me:5679",
                                        answer_digest: p['Kernel airbags have been fully deployed'],
                                        points: 4
                                            )
 categories['0x41414141'].challenges.create(
                                        name: 'yolo',
-                                       clue: 'usually, sometimes 12 times. 23.20.98.29:3647 [[server binary]]',
+                                       clue: 'usually, sometimes 12 times. 23.20.98.29:3647 http://assets-2013.legitbs.net/liabilities/yolo',
                                        answer_digest: p['it is not an excuse to be a slut'],
                                        points: 5
                                            )
@@ -112,7 +126,7 @@ categories['\\xff\\xe4\\xcc'].challenges.create(
                                                 )
 categories['\\xff\\xe4\\xcc'].challenges.create(
                                                 name: 'penser',
-                                                clue: 'good luck. penser.shallweplayaga.me:4660 [[server binary]]',
+                                                clue: 'good luck. penser.shallweplayaga.me:4660 http://assets-2013.legitbs.net/liabilities/penser',
                                                 points: 4
                                                 )
 categories['\\xff\\xe4\\xcc'].challenges.create(
@@ -128,15 +142,17 @@ categories['gnireenigne'].challenges.create(
                                                 name: 'musicman',
                                                 clue: "Can you hear that?\n[[server binary]]\nRunning at musicman.shallweplayaga.me:7890",
                                                 answer_digest: p['We make beautiful music together'],
-                                                points: 1
+                                                points: 3
                                                 )
 categories['gnireenigne'].challenges.create(
                                                 name: 'policebox',
+                                                clue: "But I already typed that..."
+                                                answer_digest: p['w0rlds.w0rst.k3yl0gger!']
                                                 points: 1
                                                 )
 categories['gnireenigne'].challenges.create(
                                                 name: 'thyself',
-                                                clue: "usage: ./client 50.16.112.8\n[[client binary]]",
+                                                clue: "usage: ./client 50.16.112.8\nhttp://assets-2013.legitbs.net/liabilities/client",
                                                 answer_digest: p['Good enough for government work'],
                                                 points: 2
                                                 )
