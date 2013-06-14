@@ -26,46 +26,54 @@ categories['3dub'].challenges.create(
                                     name: 'babysfirst',
                                     clue: 'http://babysfirst.shallweplayaga.me/',
                                     answer_digest: p['literally online lolling on line WucGesJi'],
-                                    points: 1
+                                    points: 2
                                     )
 categories['3dub'].challenges.create(
                                      name: 'badmedicine',
                                      clue: 'http://badmedicine.shallweplayaga.me/',
                                      answer_digest: p['who wants oatmeal raisin anyways twumpAdby'],
-                                     points: 2
-                                     )
-categories['3dub'].challenges.create(
-                                     name: 'rememberme',
-                                     clue: 'http://rememberme.shallweplayaga.me/',
-                                     answer_digest: p['DyacphakukKefumsh2SwalvyocfowgitenhonEaf'],
-                                     points: 3
+                                     points: 1
                                      )
 categories['3dub'].challenges.create(
                                      name: 'hypeman',
                                      clue: 'http://hypeman.shallweplayaga.me/',
                                      answer_digest: p['watch out for this Etdeksogav'],
+                                     points: 3
+                                     )
+categories['3dub'].challenges.create(
+                                     name: 'rememberme',
+                                     clue: 'http://rememberme.shallweplayaga.me/',
+                                     answer_digest: p['DyacphakukKefumsh2SwalvyocfowgitenhonEaf'],
                                      points: 4
                                      )
 
 categories['OMGACM'].challenges.create(
                                        name: 'pieceofeight',
+                                       clue: 'squaaak, pieces of eight. pieceofeight.shallweplayaga.me:8273',
+                                       answer_digest: p['enemas on parade'],
                                        points: 1
                                            )
 categories['OMGACM'].challenges.create(
                                        name: 'grandprix',
-                                       points: 2
-                                           )
-categories['OMGACM'].challenges.create(
-                                       name: 'frenemies',
+                                       clue: 'stay away from the zebras. grandprix.shallweplayaga.me:2038',
+                                       answer_digest: p['all our prix belong to you'],
                                        points: 3
                                            )
 categories['OMGACM'].challenges.create(
-                                       name: 'diehard'
+                                       name: 'passweird',
                                        points: 4
+                                           )
+categories['OMGACM'].challenges.create(
+                                       name: 'diehard',
+                                       clue: '...with a vengeance. diehard.shallweplayaga.me:4001',
+                                       answer_digest: p['yippie kay yay motherfucker 3nc83n89fg'],
+                                       points: 2
                                            )
 
 categories['0x41414141'].challenges.create(
                                        name: 'bitterswallow',
+                                       clue: 'bitterswallow.shallweplayaga.me:6492 [[server binary]]',
+                                       answer_digest: p['sometimes you just have to suck it up.'],
                                        points: 1
                                            )
 categories['0x41414141'].challenges.create(
@@ -75,6 +83,8 @@ categories['0x41414141'].challenges.create(
                                            )
 categories['0x41414141'].challenges.create(
                                        name: 'ergab',
+                                       clue: "Don't worry, I'm the Doctor. 131.247.27.199:5000 [[server binary]]",
+                                       answer_digest: 'fart',
                                        points: 3
                                            )
 categories['0x41414141'].challenges.create(
@@ -85,6 +95,8 @@ categories['0x41414141'].challenges.create(
                                            )
 categories['0x41414141'].challenges.create(
                                        name: 'yolo',
+                                       clue: 'usually, sometimes 12 times. 23.20.98.29:3647 [[server binary]]',
+                                       answer_digest: p['it is not an excuse to be a slut'],
                                        points: 5
                                            )
 
@@ -92,42 +104,50 @@ categories['\\xff\\xe4\\xcc'].challenges.create(
                                                 name: 'blackjack',
                                                 clue: "Are you ready to win some $$?\n[[server binary]]\nRunning at blackjack.shallweplayaga.me:6789",
                                                 answer_digest: p['Counting cards will get you banned from the casino'],
-                                                points: 1
-                                                )
-categories['\\xff\\xe4\\xcc'].challenges.create(
-                                                name: 'linked', 
                                                 points: 2
                                                 )
 categories['\\xff\\xe4\\xcc'].challenges.create(
-                                                name: 'parser',
+                                                name: 'linked', 
                                                 points: 3
                                                 )
 categories['\\xff\\xe4\\xcc'].challenges.create(
-                                                name: 'lena',
+                                                name: 'penser',
+                                                clue: 'good luck. penser.shallweplayaga.me:4660 [[server binary]]',
                                                 points: 4
                                                 )
 categories['\\xff\\xe4\\xcc'].challenges.create(
-                                                name: 'incest',
+                                                name: 'lena',
                                                 points: 5
+                                                )
+categories['\\xff\\xe4\\xcc'].challenges.create(
+                                                name: 'incest',
+                                                points: 1
                                                 )
 
 categories['gnireenigne'].challenges.create(
                                                 name: 'musicman',
                                                 clue: "Can you hear that?\n[[server binary]]\nRunning at musicman.shallweplayaga.me:7890",
                                                 answer_digest: p['We make beautiful music together'],
-                                                points 1
+                                                points: 1
                                                 )
 categories['gnireenigne'].challenges.create(
                                                 name: 'policebox',
-                                                points: 2
+                                                points: 1
                                                 )
 categories['gnireenigne'].challenges.create(
                                                 name: 'thyself',
                                                 clue: "usage: ./client 50.16.112.8\n[[client binary]]",
                                                 answer_digest: p['Good enough for government work'],
-                                                points: 3
+                                                points: 2
                                                 )
 categories['gnireenigne'].challenges.create(
                                                 name: 'timecubed',
                                                 points: 4
+                                                )
+
+categories['gnireenigne'].challenges.create(
+                                                name: 'tastycloud',
+                                                points: 5,
+                                                clue: "mmmmm. [[server binary]]",
+                                                answer_digest: p['pringlelingus and redbull without a cause']
                                                 )
