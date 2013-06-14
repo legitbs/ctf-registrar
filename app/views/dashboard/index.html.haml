@@ -14,8 +14,7 @@
             = link_to 'Not exact enough?', 'http://www.timeanddate.com/worldclock/fixedtime.html?iso=20130617T00'
         - elsif before_game?
           %p
-            = link_to 'Gawk at the scoreboard,', scoreboard_path
-            the game starts in about #{time_ago_in_words game_window.first, true}.
+            The game starts in about #{time_ago_in_words game_window.first, true}.
             = link_to 'Too vague?', 'http://www.timeanddate.com/worldclock/fixedtime.html?iso=20130615T00'
       = render partial: 'yes_team'
     - else
