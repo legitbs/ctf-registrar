@@ -37,7 +37,22 @@ class ScoreboardController < ApplicationController
     sticky_situation = @challenge.locked? || @solution.created_at
     correct = @challenge.correct_answer?(params[:answer]) rescue false
 
+    logbuf = [
+      "ANSWER ATTEMPT", 
+      current_team.inspect, 
+      current_user.inspect,
+      @challenge.inspect,
+      params[:answer]
+    ]
+
+    if sticky_situation
+      logbuf << 'STICKY SITUATION'
+    elsif !correct
+      logbuf << "WRONG ANSWER"
+    end
+
     if sticky_situation || !correct
+      Rails.logger.info logbuf.join(' ')
       return respond_to do |f|
         f.html { redirect_to challenge_path(@challenge.id) }
         f.json { render status: 400, json: {
@@ -48,11 +63,14 @@ class ScoreboardController < ApplicationController
       end
     end
 
+    logbuf << "RIGHT ANSWER"
+
     hot = nil
     @solution.transaction do
       hot = @challenge.solve!
       @solution.save
       if hot
+        logbuf << "OMG HOT"
         current_team.hot = true
         current_team.save
 
@@ -80,6 +98,8 @@ class ScoreboardController < ApplicationController
         }
       }
     end
+
+      Rails.logger.info logbuf.join(' ')
   end
 
   private
