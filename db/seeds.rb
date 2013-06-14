@@ -78,7 +78,9 @@ categories['OMGACM'].challenges.create(
                                            )
 categories['OMGACM'].challenges.create(
                                        name: 'bob',
-                                       points: 5
+                                       points: 5,
+                                       clue: 'Bob hates his job!  Running at [[server]]',
+                                       answer_digest: p['http://assets-2013.legitbs.net/liabilities/musicman'],
                                            )
 
 bitter = categories['0x41414141'].challenges.create(
@@ -92,7 +94,7 @@ bitter.unlock!
 categories['0x41414141'].challenges.create(
                                        name: 'blackbox',
                                        clue: "http://assets-2013.legitbs.net/liabilities/blackbox.core\nRunning at 131.247.27.201:1234",
-                                       answer_digest: p['arm+bsd=shellcoding fun']
+                                       answer_digest: p['arm+bsd=shellcoding fun'],
                                        points: 2
                                            )
 categories['0x41414141'].challenges.create(
@@ -140,14 +142,14 @@ categories['\\xff\\xe4\\xcc'].challenges.create(
 
 categories['gnireenigne'].challenges.create(
                                                 name: 'musicman',
-                                                clue: "Can you hear that?\n[[server binary]]\nRunning at musicman.shallweplayaga.me:7890",
+                                                clue: "Can you hear that?\nhttp://assets-2013.legitbs.net/liabilities/musicman\nRunning at musicman.shallweplayaga.me:7890",
                                                 answer_digest: p['We make beautiful music together'],
                                                 points: 3
                                                 )
 categories['gnireenigne'].challenges.create(
                                                 name: 'policebox',
-                                                clue: "But I already typed that..."
-                                                answer_digest: p['w0rlds.w0rst.k3yl0gger!']
+                                                clue: "But I already typed that...\nhttp://assets-2013.legitbs.net/liabilities/policebox\nhttp://assets-2013.legitbs.net/liabilities/core",
+                                                answer_digest: p['w0rlds.w0rst.k3yl0gger!'],
                                                 points: 1
                                                 )
 categories['gnireenigne'].challenges.create(
@@ -164,6 +166,6 @@ categories['gnireenigne'].challenges.create(
 categories['gnireenigne'].challenges.create(
                                                 name: 'tastycloud',
                                                 points: 5,
-                                                clue: "mmmmm. [[server binary]]",
+                                                clue: "mmmmm. http://assets-2013.legitbs.net/liabilities/tastycloud",
                                                 answer_digest: p['pringlelingus and redbull without a cause']
                                                 )
