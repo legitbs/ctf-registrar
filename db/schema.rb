@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130608161305) do
+ActiveRecord::Schema.define(:version => 20130616183230) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(:version => 20130608161305) do
   end
 
   add_index "solutions", ["challenge_id"], :name => "index_solutions_on_challenge_id"
+  add_index "solutions", ["team_id", "challenge_id"], :name => "index_solutions_on_team_id_and_challenge_id"
   add_index "solutions", ["team_id"], :name => "index_solutions_on_team_id"
 
   create_table "teams", :force => true do |t|
