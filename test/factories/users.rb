@@ -10,5 +10,9 @@ FactoryGirl.define do
       password_confirmation { password }
       email_confirmation { email }
     end
+
+    factory :team_member do
+      team
+    end
   end
 end

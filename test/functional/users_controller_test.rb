@@ -3,6 +3,7 @@ require 'test_helper'
 class UsersControllerTest < ActionController::TestCase
   context 'the users controller' do
     should 'show a form on incomplete (home screen) create' do
+      be_before_game
       @user_attrs = FactoryGirl.attributes_for :user
       @user_attrs.delete :email
 
@@ -14,6 +15,7 @@ class UsersControllerTest < ActionController::TestCase
 
     context 'on successful create' do
       setup do
+        be_before_game
         @user_attrs = FactoryGirl.attributes_for :user_params_valid
         @old_users = User.all
         post :create, user: @user_attrs

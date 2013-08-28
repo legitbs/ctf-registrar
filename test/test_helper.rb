@@ -10,4 +10,11 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
+  def be_during_game
+    @controller.stubs(:during_game?).returns(true)
+  end
+
+  def be_before_game
+    @controller.stubs(:before_game?).returns(true)
+  end
 end
