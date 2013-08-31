@@ -1,11 +1,21 @@
 !!! 5
 %html
   %head
-    %title DEF CON CTF 2013 Registrar
+    %title DEF CON CTF 2014
     = stylesheet_link_tag    "application", :media => "all"
-    = javascript_include_tag "application"
     = csrf_meta_tags
     %meta{name: 'google', value: 'notranslate'}
   %body
-    = yield
+    #scene
+      #layer-stars.layer{'data-depth' => '0.10'} &nbsp;
+      #layer-mountains.layer{'data-depth' => '0.20'}
+        = image_tag 'distant_mountains.png'
+      #layer-casinos.layer{'data-depth' => '0.50'}
+        = image_tag 'casinos.png'
+      #layer-casinos.layer{'data-depth' => '0.75'}
+        = image_tag 'rio.png'
+      #layer-main.layer{'data-depth' => '0.00'}
+        = yield
+
+    = javascript_include_tag "application"
     = render partial: 'shared/analytics'
