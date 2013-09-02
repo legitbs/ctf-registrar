@@ -17,7 +17,7 @@ class Team < ActiveRecord::Base
   end
 
   def self.for_scoreboard(current_team)
-    scoreboard_rows = connection.select_all <<-SQL
+    scoreboard_rows = connection.select_all(<<-SQL).to_a
       SELECT
         t.id AS team_id,
         t.name AS team_name, 
