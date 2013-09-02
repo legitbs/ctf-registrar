@@ -6,16 +6,18 @@
     = csrf_meta_tags
     %meta{name: 'google', value: 'notranslate'}
   %body
-    #scene
-      #layer-stars.layer{'data-depth' => '0.10'} &nbsp;
-      #layer-mountains.layer{'data-depth' => '0.20'}
-        = image_tag 'distant_mountains.png'
-      #layer-casinos.layer{'data-depth' => '0.50'}
-        = image_tag 'casinos.png'
-      #layer-casinos.layer{'data-depth' => '0.75'}
-        = image_tag 'rio.png'
-      #layer-main.layer{'data-depth' => '0.00'}
-        = yield
+    #container
+      #scene{data: {scalar_x: 25, scalar_y: 100, friction_x: 0.1, friction_y: 0.1}}
+        #layer-stars.layer{'data-depth' => '0.10'} &nbsp;
+        #layer-mountains.layer{'data-depth' => '0.20'}
+          = image_tag 'distant_mountains.png'
+        #layer-casinos.layer{'data-depth' => '0.50'}
+          = image_tag 'casinos.png'
+        #layer-casinos.layer{'data-depth' => '0.75'}
+          = image_tag 'rio.png'
+        #layer-main.layer{'data-depth' => '0.00'}
+          = yield
+          %br.clear
 
     = javascript_include_tag "application"
     = render partial: 'shared/analytics'

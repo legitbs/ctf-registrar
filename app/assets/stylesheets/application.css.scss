@@ -12,9 +12,11 @@
 
 @import "bourbon";
 @import "mixins";
-@import "parallax";
 @import "color";
 @import "layout";
+
+@import "parallax";
+
 @import "partials";
 @import "homepage";
 @import "scoreboard";
@@ -25,7 +27,6 @@
 body {
   background-color: black;
   background-image: image-url('stars.png');
-  font-family: Ubuntu;
 }
 
 .clear {

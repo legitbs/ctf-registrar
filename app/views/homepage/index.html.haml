@@ -1,6 +1,7 @@
+.headline
+  = render partial: 'shared/logo'
+
 .content
-  .headline
-    = render partial: 'shared/logo'
 
   .invitation
     :markdown
@@ -36,56 +37,7 @@
         %input{name: 'squelch', value: 'squelch', type: 'hidden'}
         = f.submit 'Create Account'
         = f.submit 'Log In'
-  #schedule
-    %h1 Schedule
-    %dl
-      %dt 
-        %s April 1
-      %dd 
-        %s Schedule Announced
-      %dt 
-        %s May 1
-      %dd 
-        %s Registration Open
-      %dt June 15, Midnight UTC
-      %dd Qualification Starts
-      %dt June 17, Midnight UTC
-      %dd Qualification Ends
-      %dt August 2
-      %dd Competition Starts
-      %dt August 4
-      %dd Competition Ends
-    %table
-      %thead
-        %tr
-          %th TZ
-          %th Quals Start
-          %th Quals End
-      %tbody
-        %tr
-          %th Tokyo
-          %td June 15, 9am
-          %td June 17, 9am
-        %tr
-          %th Moscow
-          %td June 15, 4am
-          %td June 17, 4am
-        %tr#utc
-          %th UTC
-          %td June 15, Midnight
-          %td June 17, Midnight
-        %tr
-          %th New York
-          %td June 14, 8pm
-          %td June 16, 8pm
-        %tr
-          %th Los Angeles
-          %td June 14, 5pm
-          %td June 16, 5pm
-    %p
-      Did we leave out your city?
-      %a{href: 'http://www.timeanddate.com/worldclock/fixedtime.html?iso=20130615T00'}
-        Here's a bunch more.
+
 
     /
       :plain                          

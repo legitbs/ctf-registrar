@@ -1,4 +1,13 @@
+body
+  overflow-x: hidden
+  #container
+    position: absolute
+    left: 0
+    right: 0
+    width: 100%
+    // overflow-x: hidden
 #scene
+  max-width: 960px
   margin: 0 auto
   #layer-stars
     background-image: image-url('Bitmap layer 2.png')
@@ -11,6 +20,14 @@
     margin-left: 128px
     margin-top: 400px
   #layer-rio
-    margin-top: 200px
-    margin-bottom: 0
-    margin-right: 0
+    img
+
+  #layer-main
+    .headline
+      float: right
+      text-align: right
+      margin: 1em
+    .content
+      width: 400px
+      padding: 1em
+      background: $parchment
