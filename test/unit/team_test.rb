@@ -8,7 +8,6 @@ class TeamTest < ActiveSupport::TestCase
 
     should belong_to :user
     should validate_presence_of :name
-    should validate_presence_of :name
 
     should 'securely store passwords' do
       @team.password = 'asdf'
