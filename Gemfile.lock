@@ -33,7 +33,7 @@ GEM
       activemodel
       fog
     bcrypt-ruby (3.0.1)
-    bourbon (3.1.6)
+    bourbon (3.1.8)
       sass (>= 3.2.0)
       thor
     builder (3.0.4)
@@ -150,7 +150,7 @@ GEM
     rdoc (3.12.2)
       json (~> 1.4)
     ruby-hmac (0.4.0)
-    sass (3.2.9)
+    sass (3.2.10)
     sass-rails (3.2.6)
       railties (~> 3.2.0)
       sass (>= 3.1.10)
