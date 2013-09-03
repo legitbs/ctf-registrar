@@ -16,7 +16,7 @@ class TeamsController < ApplicationController
   # POST /teams
   # POST /teams.json
   def create
-    @team = current_user.build_owned_team(params[:team])
+    @team = current_user.build_owned_team(team_params)
 
     if @team.save
       TeamMailer.new_team_email(@team).deliver
@@ -39,5 +39,9 @@ class TeamsController < ApplicationController
     return true if team
     flash[:error] = "You don't own a team."
     redirect_to dashboard_path
+  end
+
+  def team_params
+    params.require(:team).permit(:name, :password, :fun)
   end
 end
