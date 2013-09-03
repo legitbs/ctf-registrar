@@ -7,12 +7,12 @@
     %meta{name: 'google', value: 'notranslate'}
   %body
     #container
-      #scene{data: {scalar_x: 25, scalar_y: 100, friction_x: 0.1, friction_y: 0.1}}
-        #layer-mountains.layer{'data-depth' => '0.20'}
+      #scene{data: {limit_x: 8, limit_y: 10, scalar_x: 25, scalar_y: 5, friction_x: 0.1, friction_y: 0.1}}
+        #layer-mountains.layer{'data-depth' => 0.25}
           = image_tag 'distant_mountains.png'
-        #layer-casinos.layer{'data-depth' => '0.50'}
+        #layer-casinos.layer{'data-depth' => 0.5}
           = image_tag 'casinos.png'
-        #layer-rio.layer{'data-depth' => '0.75'}
+        #layer-rio.layer{'data-depth' => 0.75}
           = image_tag 'rio.png'
       #content
         = yield
