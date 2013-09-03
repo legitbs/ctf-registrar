@@ -23,10 +23,12 @@
       3. Wait until June 15.
   .clear
 
-  .registration
-    =form_for User.new, url: user_path do |f|
-      - if flash[:error]
-        %p.error= flash[:error]
+  .new
+    %h1 Register
+    = link_to 'Register a new account', new_user_path
+  .login
+    %h1 Log In
+    = form_for User.new, url: user_path do |f|
       %label
         %span Username:
         = f.text_field :username
@@ -37,4 +39,6 @@
         %input{name: 'squelch', value: 'squelch', type: 'hidden'}
         = f.submit 'Create Account'
         = f.submit 'Log In'
-
+  .forgot
+    %h1 Forgot Password
+    forgot password link
