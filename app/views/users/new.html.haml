@@ -1,10 +1,4 @@
 .content#letter
-  #letterhead
-    %h1 Official Waiver
-    .subhead
-      Casualty Trauma Festival
-      %br
-      Disclaimer and Paperwork Bureau
   .explanation
     :markdown
       Thanks for your coöperation so far. In order to finish making you
@@ -29,9 +23,21 @@
     %div
       = f.label :email
       = f.text_field :email
+      .explanation
+        We use your email address for a bunch of stuff: confirming account
+        creation, password resets, and coordinating your finals visit after
+        you qualify.
     %div
       = f.label :email_confirmation
       = f.text_field :email_confirmation
+    %div
+      = f.label :visa, "I'll need a visa to travel to Las Vegas"
+      = f.check_box :visa
+      .explanation
+        We welcome competitors from all over the world, but acknowledge
+        that a trip to the US might require extra paperwork.
+        = link_to 'http://travel.state.gov/visa/visa_1750.html' do
+          The US Department of State has more information about visa requirements.
     %div
       %label &nbsp;
       = f.submit value: 'Create Account'

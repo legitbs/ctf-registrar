@@ -14,6 +14,9 @@
     .field
       = f.label :password
       = f.password_field :password
+    .field
+      = f.label :fun, "Just playing for fun"
+      = f.check_box_field :fun
     .actions
       = f.submit 'Save'
       = link_to "Don't save", dashboard_path
