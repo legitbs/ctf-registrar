@@ -5,9 +5,8 @@ Feature: Signup
 
 Scenario: Signup
   Given I am on the homepage
-  And I expect an email
-  When I complete the initial user form
-  And I complete the secondary user form
+  When I visit the new user page
+  And I complete the user form
   Then I should be logged in
   And I should have a user creation confirmation email
 
