@@ -32,7 +32,7 @@ class ApplicationController < ActionController::Base
   end
 
   def game_window
-    @game_window = Time.at(1371254400)..Time.at(1371427200)
+    Time.at(1402790400)..Time.at(1402963200)
   end
 
   def during_game?
@@ -53,7 +53,7 @@ class ApplicationController < ActionController::Base
 
   def require_before_game
     return true if cookies[:legitbs] == 'onAyWehinatdauvyuidsijyousAcbedpyipNesOc'
-    return true if during_game?
+    return true if before_game?
 
     redirect_to dashboard_path
     return false
