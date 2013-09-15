@@ -1,20 +1,12 @@
 class UsersController < ApplicationController
   before_filter :require_logged_out
+  before_filter :require_before_game
   
   def new
     @user = User.new
   end
 
   def create
-    if params[:commit] == 'Log In'
-      return try_login
-    end
-
-    if !before_game?
-      flash[:error] = "Game's on, can't sign up anymore :("
-      return redirect_to root_path
-    end
-
     @user = User.new params[:user]
     return render action: 'new' if params[:squelch]
     if @user.save
