@@ -14,6 +14,10 @@
           = image_tag 'casinos.png'
         #layer-rio.layer{'data-depth' => 0.75}
           = image_tag 'rio.png'
+      - unless flash.empty?
+        #flashes
+          - flash.each do |k,v|
+            %p{class: "flash #{k}"}= v
       #content
         = yield
 
