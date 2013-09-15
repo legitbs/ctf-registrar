@@ -5,22 +5,11 @@
 
   .invitation
     :markdown
-      # Welcome and OMG
+      We're back for 2014, with the hard-won lessons of 2013
+      behind us, and an all-new and all-exciting game ahead
+      of you.
 
-      Are you excited? We are! It's time to register for the DEF CON CTF
-      qualifiers! We're beside ourselves with excitement!
-
-      You've undoubtedly read everything we've posted on
-      [our main website](https://legitbs.net/), read every single thread about
-      CTF in the
-      [DEF CON forums](https://forum.defcon.org/forumdisplay.php?f=716), and
-      of course you've been staying up to date with
-      [@legitbs_ctf on Twitter](https://twitter.com/LegitBS_CTF), so
-      let's cut to the chase:
-
-      1. Create a new user or log in to a user you've already created below.
-      2. Create or join a team after logging in.
-      3. Wait until June 15.
+      schedule blah blah
   .clear
 
   .new
@@ -29,15 +18,14 @@
   .login
     %h1 Log In
     = form_for User.new, url: user_path do |f|
-      %label
-        %span Username:
+      %div
+        = f.label :username
         = f.text_field :username
-      %label
-        %span Password:
+      %div
+        = f.label :password
         = f.password_field :password
-      %label
-        %input{name: 'squelch', value: 'squelch', type: 'hidden'}
-        = f.submit 'Create Account'
+      %div
+        %label
         = f.submit 'Log In'
   .forgot
     %h1 Forgot Password
