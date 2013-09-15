@@ -1,13 +1,8 @@
-.content#letter
-  .explanation
-    :markdown
-      Thanks for your coöperation so far. In order to finish making you
-      a Casualty Trauma Festival victim, we need a few more
-      pieces of information.
-
-      Please choose a unique username, select a secure password, and
-      enter an email address to be used for official game communication.
-    
+.content
+  :markdown
+    Choose a unique username, pick a secure password,
+    and give us an email address for official game communications.
+  
   = form_for @user, url: user_path do |f|
     .errors
       = f.error_messages
@@ -20,17 +15,23 @@
     %div
       = f.label :password_confirmation
       = f.password_field :password_confirmation
+      .explanation
+        Choose a secure but memorable password.
+        = link_to 'http://xkcd.com/936/' do
+          Non-memorable garbage isn't necessarily secure.
+        By popular demand, there will be a password reset process this year.
     %div
       = f.label :email
       = f.text_field :email
-      .explanation
-        We use your email address for a bunch of stuff: confirming account
-        creation, password resets, and coordinating your finals visit after
-        you qualify.
     %div
       = f.label :email_confirmation
       = f.text_field :email_confirmation
-    %div
+      .explanation
+        We use your email address for a bunch of stuff: confirming account
+        creation, password resets, and coordinating your finals visit after
+        you qualify. Your address will only be used for official game
+        communication.
+    %div.checkbox
       = f.label :visa, "I'll need a visa to travel to Las Vegas"
       = f.check_box :visa
       .explanation

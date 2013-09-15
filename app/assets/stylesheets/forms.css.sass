@@ -1,0 +1,42 @@
+form
+  font-size: 1.2em
+  div
+    margin-bottom: 0.5em
+    label
+      display: inline-block
+      font-weight: 400
+      width: 12em
+    .explanation
+      font-size: 0.8em
+      color: $deemphasized
+    input
+      width: 10em
+      background-color: transparent
+      border: 1px solid $light_purple
+      color: white
+      font-size: 1em
+      &:active
+        border: 1px solid white
+        box-shadow: 0 1px 2px $light_purple
+    &.checkbox
+      label
+        display: inline
+      input[type='checkbox']
+        @include appearance(none)
+        border: 1px solid $light_purple
+        font-size: 1em
+        display: inline-block
+        position: relative
+        height: 1em
+        max-height: 1em
+        min-width: 1em
+        max-width: 1em
+        padding: 0
+        margin-bottom: 0
+        width: auto
+        &:checked:after
+          content: '\2714'
+          color: $light_purple
+          position: relative
+          bottom: 4px
+          left: 2px
