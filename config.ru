@@ -2,19 +2,14 @@
 
 require ::File.expand_path('../config/environment',  __FILE__)
 
-# use Rack::Auth::Basic, 'omg' do |username, password|
-#   logins = [
-#     ['ownOahibs', 'Neizgoav6'], # original
-#     ['legitbsness', 'frustration and alcoholism'], # new
-#     ['darktangent', 'rio promo code dirktangent'], # dt and judging
-#     ['singularity', 'in this case it causes them'], # dustin 1
-#     ['snow crash', 'neal stephenson needs an editor'], # dustin 2
-#     ['jordan', 'hilarious georgia brown dot mp3'], # jordan w
-#     ['steve v', 'not the erlang steve v'], # steve v
-#     ['froggiestyle', 'party chatte krewe'], # froggie style chat
-#     ['basho', 'riak is pretty much ownage'], # bryce's coworkers
-#   ]
+if ENV['USE_PASSWORDS'] == 'yup'
+  use Rack::Auth::Basic, 'omg' do |username, password|
+    logins = [
+              ['amaze and delight', 'eight dollars for water'], # new
+             ]
+    
+    logins.include? [username, password]
+  end
+end
 
-#   logins.include? [username, password]
-# end
 run CtfRegistrar::Application
