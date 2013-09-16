@@ -1,0 +1,11 @@
+%h1 Two-Factor Authentication
+%p 
+  Enter the code from your one-time password application (Authy, Google 
+  Authenticator) or a fallback code.
+= form_tag token_new_session_path do
+  %div
+    %label{for: 'code'} Code
+    %input#code{type: 'text', name: 'code'}
+  %div
+    %label
+    %input{type: 'submit', value: 'Authenticate'}

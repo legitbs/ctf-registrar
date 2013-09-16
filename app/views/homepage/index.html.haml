@@ -17,16 +17,16 @@
     = link_to 'Register a new account', new_user_path
   .login
     %h1 Log In
-    = form_for User.new, url: user_path do |f|
+    = form_tag session_path do
       %div
-        = f.label :username
-        = f.text_field :username
+        = label_tag :username
+        = text_field_tag :username
       %div
-        = f.label :password
-        = f.password_field :password
+        = label_tag :password
+        = password_field_tag :password
       %div
         %label
-        = f.submit 'Log In'
+        = submit_tag 'Log In'
   .forgot
     %h1 Forgot Password
     forgot password link

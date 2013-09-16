@@ -14,7 +14,9 @@ CtfRegistrar::Application.routes.draw do
   resource :user
   resource :team
   resource :membership
-  resource :session
+  resource :session do
+    post 'token', on: :new
+  end
   resource :tokens
 
   # The priority is based upon order of creation:
