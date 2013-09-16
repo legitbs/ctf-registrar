@@ -38,6 +38,8 @@ gem 'rotp'
 gem 'rqrcode-rails3'
 gem 'mini_magick'
 
+gem 'rails_12factor'
+
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
 
