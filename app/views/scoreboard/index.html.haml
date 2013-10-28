@@ -7,7 +7,7 @@
           %span.sender {{ sender }}
         %p.message {{ message }}
   #scorelist
-    #timer{:'data-remain' => (Time.at(1371427200) - Time.now)}
+    #timer{:'data-remain' => (Time.at(game_window.last) - Time.now)}
       {{ hours }}:{{ minutes }}:{{ seconds }} left
     #scoreboard_template{style: 'display: none'}
       {{#teams}}

@@ -6,13 +6,13 @@ class NoticesController < ApplicationController
 
     @scoreboard = Team.for_scoreboard current_team
 
-    finish = Time.at 1371427200
+    finish = Time.at game_window.last
     now = Time.now
     remain = finish - now
 
     respond_to do |r|
       r.json { render json: {
-        notices: @notices,
+        notices: @notices.to_a,
         remain: remain,
         scoreboard: @scoreboard
         } }
