@@ -1,0 +1,21 @@
+.field
+  = f.label :name
+  = f.text_field :name
+  .explanation
+    Should be at least four characters long, memorable, and probably hilarious.
+.field
+  = f.label :password
+  = f.password_field :password
+.field
+  = f.label :password_confirmation
+  = f.password_field :password_confirmation
+  .explanation
+    Your teammates will need this to join your team. 
+    Should be strong but not obnoxiously so.
+.field.checkbox
+  = f.label :fun, "We're just playing for the fun of it"
+  = f.check_box :fun
+  .explanation
+    If you've already qualified or can't come to Las Vegas in August,
+    this'll save us some time contacting you. If you're not sure,
+    leave this unchecked.

@@ -40,3 +40,21 @@ form
           position: relative
           bottom: 4px
           left: 2px
+    .field_with_errors
+      display: inline-block
+      background-color: $error
+      color: $error_bright
+      margin: -2px
+      padding: 2px
+      label
+        padding: 4px 0
+        margin: 0
+      input
+        background-color: $error
+        border-color: $error_bright
+        color: $error_super
+    &#error_explanation
+      color: $error_super
+      h2
+        display: none
+      

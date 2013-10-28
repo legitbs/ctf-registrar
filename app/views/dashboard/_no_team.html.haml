@@ -15,17 +15,7 @@
   .create_team
     %h2 Create a team
     = form_for @new_team, url: team_path do |f|
-      %label
-        %div Name
-        = f.text_field :name
-        .description
-          Should be at least four characters long, memorable, and probably hilarious.
-      %label
-        %div Password
-        = f.password_field :password
-        .description
-          Your teammates will need this to join your team. 
-          Should be strong.
+      = render partial: 'teams/form', locals: {f: f}
       %label
         %div &nbsp;
         %button Create Team

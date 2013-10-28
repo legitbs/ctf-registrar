@@ -1,5 +1,4 @@
 .content#dashboard
-  #logo= render partial: 'shared/logo'
   #who
     Logged in as #{current_user.email}.
     = link_to 'Log out?', session_path, method: :delete
@@ -11,11 +10,11 @@
           %p
             = link_to 'Play now!', scoreboard_path
             The game ends in about #{time_ago_in_words game_window.last, true}.
-            = link_to 'Not exact enough?', 'http://www.timeanddate.com/worldclock/fixedtime.html?iso=20130617T00'
+            = link_to 'Not exact enough?', "http://www.timeanddate.com/worldclock/fixedtime.html?iso=#{game_window.last.iso8601}"
         - elsif before_game?
           %p
             The game starts in about #{time_ago_in_words game_window.first, true}.
-            = link_to 'Too vague?', 'http://www.timeanddate.com/worldclock/fixedtime.html?iso=20130615T00'
+            = link_to 'Too vague?', "http://www.timeanddate.com/worldclock/fixedtime.html?iso=#{game_window.first.iso8601}"
         %h2 Rules and Other Information
         :markdown
           We're hosting CTF chat in #defconctf on the "Hackint" 
@@ -25,19 +24,16 @@
           [https://twitter.com/legitbs_ctf](https://twitter.com/legitbs_ctf), and displayed 
           on the scoreboard as well.
 
-          Music and video by Hoju, live streaming:
-          [rtsp://stream.legitbs.net:1935/live/quals](rtsp://stream.legitbs.net:1935/live/quals)
-
-          There are five categories:
+          There are some categories:
           * "3dub", web-based challenges
           * "0x41414141", exploitation
           * "\xff\xe4\xcc", shellcode
           * "OMGACM", guerilla programming
           * "gnireenigne", reverse engineering
 
-          The game will start with one question unlocked and hot. When a question is unlocked 
-          for the first time, it’s hot. When a hot question is answered, it cools off, and 
-          the team that answered it gets to pick the next question to unlock.
+          The game will start with several questions unlocked. When a question is
+          answered for the first time, it'll unlock the next question in its category.
+          If it was the last in its category, it doesn't unlock anything.
 
           All answers will be preceded by “The key is: “. If you see “The key is: asdf 12345” 
           submit “asdf 12345” without the quotation marks. Keys are case sensitive.
@@ -53,7 +49,7 @@
           All challenges will be hosted at \*.shallweplayaga.me . Do not attack machines 
           outside of this subdomain.
 
-          The scoreboard is at https://2013.legitbs.net; you're in the right place.
+          The scoreboard is at https://2014.legitbs.net; you're in the right place.
 
           Do not attack machines inside of legitbs.net.
 
