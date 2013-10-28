@@ -35,8 +35,8 @@ end
 Given /^I am signed in$/ do
   @user = FactoryGirl.create :user
   visit '/'
-  fill_in 'user_username', with: @user.username
-  fill_in 'user_password', with: @user.password
+  fill_in 'username', with: @user.username
+  fill_in 'password', with: @user.password
   click_on 'Log In'
 end
 
@@ -44,6 +44,7 @@ When /^I complete the team creation form$/ do
   @team_attrs = FactoryGirl.attributes_for :team
   fill_in 'team_name', with: @team_attrs[:name]
   fill_in 'team_password', with: @team_attrs[:password]
+  fill_in 'team_password_confirmation', with: @team_attrs[:password]
   click_on 'Create Team'
 end
 
