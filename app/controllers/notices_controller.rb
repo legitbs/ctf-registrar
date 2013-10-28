@@ -12,7 +12,7 @@ class NoticesController < ApplicationController
 
     respond_to do |r|
       r.json { render json: {
-        notices: @notices.to_a,
+        notices: @notices.to_a.as_json,
         remain: remain,
         scoreboard: @scoreboard
         } }
