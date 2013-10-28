@@ -5,6 +5,10 @@ module ApplicationHelper
     end
   end
 
+  def body_class
+    ["con-#{controller.controller_name}", "act-#{controller.action_name}"].join ' '
+  end
+  
   def analytics_data
     accum = []
     accum += flash[:analytics] unless flash[:analytics].nil?
