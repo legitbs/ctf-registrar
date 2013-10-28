@@ -24,3 +24,29 @@ p = proc{|a| BCrypt::Password.create a}
 
 fart = "$2a$10$/tcBNuCm5oCxpuzfUeq8luZFS/Rk.IoOVsyVzcdSX7.uXxcI4Dlj6"
 
+categories['Vito Genovese'].challenges.create(name: 'asdf',
+                                              points: 1,
+                                              clue: 'asdf',
+                                              answer_digest: fart)
+categories['Vito Genovese'].challenges.create(name: 'asdf2',
+                                              points: 2,
+                                              clue: 'asdf2',
+                                              answer_digest: fart)
+
+if Rails.env.development?
+  [
+   "The Plaid Parliament of Pwning",
+   "The European Nopsled Team"
+  ].each do |t|
+    Team.where(name: t).first or Team.create(name: t, password: 'asdf', password_confirmation: 'asdf')
+  end
+  
+  23.times do |t|
+    Team.where(name: "Team #[t}").first or Team.create(name: "Team #{t}", password: 'asdf', password_confirmation: 'asdf')
+  end
+  
+  Team.all.order('created_at asc').each do |t|
+    t.solutions.where(challenge: Challenge.first).first_or_create
+  end
+end
+
