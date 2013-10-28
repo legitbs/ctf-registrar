@@ -5,7 +5,7 @@
     = stylesheet_link_tag    "application", :media => "all"
     = csrf_meta_tags
     %meta{name: 'google', value: 'notranslate'}
-  %body
+  %body{class: body_class}
     #container
       #scene{data: {limit_x: 8, limit_y: 10, scalar_x: 25, scalar_y: 5, friction_x: 0.1, friction_y: 0.1}}
         #layer-mountains.layer{'data-depth' => 0.25}
