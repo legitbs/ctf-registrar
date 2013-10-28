@@ -29,6 +29,8 @@ class SessionsController < ApplicationController
       return fail_login unless fallback
 
       fallback.destroy
+    else
+      return fail_login
     end
 
     session[:user_id] = @user.id
