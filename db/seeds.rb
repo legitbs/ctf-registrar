@@ -50,3 +50,4 @@ if Rails.env.development?
   end
 end
 
+Notice.where(body: "Welcome to the 2014 DEF CON Capture the Flag Qualification round, brought to you by Legitimate Business Syndicate", created_at: ApplicationController.allocate.game_window).first_or_create
