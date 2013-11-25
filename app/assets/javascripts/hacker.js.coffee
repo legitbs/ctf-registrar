@@ -44,7 +44,7 @@ jQuery ($) ->
     h = (color) ->
       c hackerColors[color]
     j = (color) ->
-      c hackerColors.pants[color]
+      c hackerColors.pants[color] || hackerColors.skin
     n = (color) ->
       c hackerColors.computer[color]
 
