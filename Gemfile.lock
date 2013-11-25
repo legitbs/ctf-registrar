@@ -30,7 +30,7 @@ GEM
       activemodel
       fog (>= 1.8.0)
     atomic (1.1.14)
-    bcrypt-ruby (3.0.1)
+    bcrypt-ruby (3.1.2)
     bourbon (3.1.8)
       sass (>= 3.2.0)
       thor
@@ -201,7 +201,7 @@ PLATFORMS
 
 DEPENDENCIES
   asset_sync
-  bcrypt-ruby (~> 3.0.0)
+  bcrypt-ruby
   bourbon
   coffee-rails (~> 4.0.0)
   cucumber-rails
