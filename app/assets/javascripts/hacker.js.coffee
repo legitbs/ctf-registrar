@@ -2,13 +2,8 @@ jQuery ($) ->
   zone = $('#hacker_zone')
   return unless zone.size() == 1
 
-  url = zone.children('#png_path').text()
   canvas = zone.children('canvas').get(0)
-  img = zone.children('#hacker_iamge')
-
   context = canvas.getContext '2d'
-  context.fillStyle = 'red'
-  context.fillRect 0, 0, 20, 20
 
   macbook =
     base: '#898989'
