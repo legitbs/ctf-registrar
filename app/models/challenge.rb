@@ -20,11 +20,11 @@ class Challenge < ActiveRecord::Base
         LEFT JOIN solutions AS s
           ON c.id = s.challenge_id and s.team_id=#{team.id.to_i}
       ORDER BY
-        c.points ASC,
-        a.order ASC
+        a.order ASC,
+        c.points ASC
     SQL
 
-    challenge_rows.group_by{|r| r['points']}.values
+    challenge_rows.group_by{|r| r['category_name']}.values
   end
 
   def self.for_picker(team)

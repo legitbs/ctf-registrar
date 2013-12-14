@@ -22,15 +22,10 @@
           %span.score= t['score']
   #gameboard
     %table
-      - @categories.each do
-        %col
-      %thead
-        %tr
-          - @categories.each do |cat|
-            %th{id: "category_#{cat[0]}"}= cat[1]
       %tbody
         - @challenges.each do |row|
           %tr
+            %th= row.first['category_name']
             - row.each do |single|
               %td{:class => challenge_class_for(single), id: challenge_id_for(single)}
                 - if single['created_at']
