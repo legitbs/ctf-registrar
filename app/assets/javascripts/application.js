@@ -14,6 +14,3 @@
 //= require jquery_ujs
 //= require_tree .
 
-if ($('body.con-scoreboard.act-index').length == 0) {
-    $('#scene').parallax()
-}
