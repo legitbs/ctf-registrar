@@ -17,10 +17,13 @@ jQuery ($) ->
     thigh: '#3646aa'
     calf: '#3646aa'
 
+  cargoShorts =
+    thigh: '#BCA987'
+
   vito =
     skin: '#FFE8BA'
     shirt: '#384945'
-    pants: jeans
+    pants: cargoShorts
     computer: macbook
     shoes: '#E28C05'
 
