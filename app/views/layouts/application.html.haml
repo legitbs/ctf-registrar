@@ -6,14 +6,12 @@
     = csrf_meta_tags
     %meta{name: 'google', value: 'notranslate'}
   %body{class: body_class}
+    #scene
+      #layer-vines.layer
+      #layer-altar.layer
+      #layer-ziggurat.layer
+        = image_tag 'ziggurat-2048.png'
     #container
-      #scene{data: {limit_x: 8, limit_y: 10, scalar_x: 25, scalar_y: 5, friction_x: 0.1, friction_y: 0.1}}
-        #layer-mountains.layer{'data-depth' => 0.25}
-          = image_tag 'distant_mountains.png'
-        #layer-altar.layer{'data-depth' => 0.5}
-          = image_tag 'altar computer-512.png'
-        #layer-ziggurat.layer{'data-depth' => 0.75}
-          = image_tag 'ziggurat-2048.png'
       - unless flash.empty?
         #flashes
           - flash.each do |k,v|

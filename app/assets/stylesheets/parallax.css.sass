@@ -1,17 +1,21 @@
 #scene
   position: fixed
   float: left
-  max-width: 960px
-  margin: 0 auto
+  margin: -2em auto
   z-index: -100
   .layer
+    position: fixed
     margin: 0
-    width: 960px
-  #layer-mountains
-    margin-left: -512px
-    img
-      margin-top: -64px
+  #layer-vines
+    background-image: asset-url("vines.png")
+    background-repeat: repeat-x
+    width: 100%
+    height: 512px
   #layer-altar
-    margin-left: 764px
+    background-image: asset-url("altar-computer-512.png")
+    width: 512px
+    height: 512px
+    left: 640px
   #layer-ziggurat
-    margin-top: 200px
+    margin-top: 220px
+    left: -140px
