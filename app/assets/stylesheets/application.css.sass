@@ -13,10 +13,13 @@
 @import "tokens"
 @import "scoreboard"
 
+html
+  height: 100%
+
 body
   width: 100%
   height: 100%
-  $breakpoint: 50%
-  $breakpoint_past: 45.1%
-  @include background(linear-gradient($dark_purple 0%, $purple $breakpoint, $distant_brown $breakpoint_past, $distant_brown 100%) top center no-repeat)
+  margin: 0
+  @include background(linear-gradient($dark_purple 0%, $purple 100%) fixed no-repeat)
+  background-size: cover
   background-color: $brown
