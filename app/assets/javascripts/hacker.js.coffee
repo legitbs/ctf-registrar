@@ -2,6 +2,23 @@ jQuery ($) ->
   zone = $('#hacker_zone')
   return unless zone.size() == 1
 
+  skinColor = ->
+    # random brightness
+    brightness = 0.25 + (0.75 * Math.random())
+
+    hue = (0.2833 * brightness * brightness) +
+          (0.0179 * brightness) +
+          (0.0932)
+
+    saturation = (-0.1294 * brightness * brightness * brightness) +
+                 (-1.2511 * brightness * brightness) +
+                 ( 1.4062 * brightness) +
+                  0.225
+
+    arr = hsvToRgb(hue, saturation, brightness)
+
+    "rgb(#{arr[0]}, #{arr[1]}, #{arr[2]})"
+
   macbook =
     base: '#898989'
     logo: '#FFFFFF'
@@ -18,21 +35,21 @@ jQuery ($) ->
     thigh: '#BCA987'
 
   vito =
-    skin: '#FFE8BA'
+    skin: skinColor()
     shirt: '#384945'
     pants: cargoShorts
     computer: macbook
     shoes: '#E28C05'
 
   sc =
-    skin: '#784835'
+    skin: skinColor()
     shirt: '#880088'
     pants: jeans
     computer: macbook
     shoes: '#2B2D41'
 
   da =
-    skin: '#2F1D17'
+    skin: skinColor()
     shirt: '#2B2D41'
     pants: dadjeans
     computer: macbook
