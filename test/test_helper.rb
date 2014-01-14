@@ -9,6 +9,8 @@ class ActiveSupport::TestCase
   include Shoulda::Matchers::ActiveModel
   extend Shoulda::Matchers::ActiveModel
 
+  include FactoryGirl::Syntax::Methods
+
   def be_during_game
     @controller.stubs(:during_game?).returns(true)
   end

@@ -8,7 +8,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new params[:user]
-    return render action: 'new' if params[:squelch]
+
     if @user.save
       flash[:success] = "You've registered!"
       analytics_flash '_trackEvent', 'Users', 'signup'
