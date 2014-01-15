@@ -1,4 +1,7 @@
 CtfRegistrar::Application.routes.draw do
+  get "resets/index"
+  get "resets/new"
+  get "resets/edit"
   get "scoreboard", to: 'scoreboard#index', as: :scoreboard
   get "scoreboard/challenge/:id", to: 'scoreboard#challenge', as: :challenge
   post "scoreboard/challenge/:id", to: 'scoreboard#answer'
