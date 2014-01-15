@@ -1,34 +1,39 @@
 .content
   :markdown
-    Enter your email address and demonstrate that you can solve a captcha
+    Enter your email address and demonstrate that you can solve a reCAPTCHA
     to start the reset process.
 
   = form_tag resets_path do
     %div
       = label_tag :email
       = text_field_tag :email
-    #legitbs_recaptcha
+    #legitbs_recaptcha{style: 'display: none', data: {pubkey: Recaptcha.configuration.public_key }}
+      #recaptcha_label
+        reCAPTCHA
       #recaptcha_image
-      .recaptcha_only_if_incorrect Incorrect. Try again.
-      %span.recaptcha_only_if_image Enter the words:
-      %span.recaptcha_only_if_audio Enter the numbers you hear:
+      .recaptcha_only_if_incorrect_sol Incorrect. Try again.
+      %label{for: 'recaptcha_response_field'}
+        %span.recaptcha_only_if_image Words
+        %span.recaptcha_only_if_audio Numbers
       %input#recaptcha_response_field{type: 'text', name: 'recaptcha_response_field'}
 
-      %div
-        %a.lbs_recap{data: {reload: true}}
-
-      .recaptcha_only_if_image
-        %a.lbs_recap{data: {become: 'audio'}}
-          Get an audio CAPTCHA
-
-      .recaptcha_only_if_audio
-        %a.lbs_recap{data: {become: 'image'}}
-          Get an image CAPTCHA
-
-      %div
-        %a.lbs_recap{data: {help: true}}
-          Get help
-
-  
+      #recaptcha_choices
+        %div
+          %a.lbs_recap{href: '#', data: {reload: true}}
+            Try a new CAPTCHA
+        .recaptcha_only_if_image
+          %a.lbs_recap{href: '#', data: {become: 'audio'}}
+            Try an audio CAPTCHA
+        .recaptcha_only_if_audio
+          %a.lbs_recap{href: '#', data: {become: 'image'}}
+            Try an image CAPTCHA
+        %div
+          %a.lbs_recap{href: '#', data: {help: true}}
+            Get help
+    %noscript
+      %iframe{src: "http://www.google.com/recaptcha/api/noscript?k=#{Recaptcha.configuration.public_key}", height: 300, width: 500, frameborder: 0}
+      %br
+      %textarea{name: 'recaptcha_challenge_field', rows: '3', cols: '40'}
+      %input{type: 'hidden', name: 'recaptcha_response_field', value: 'manual_challenge'}
 
         

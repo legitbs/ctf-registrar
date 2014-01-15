@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   belongs_to :team
   has_one :owned_team, class_name: 'Team'
   has_many :fallback_tokens
+  has_many :resets
   attr_accessible :username, :email, :email_confirmation
   attr_accessible :password, :password_confirmation
   attr_accessible :visa

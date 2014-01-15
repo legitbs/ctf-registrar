@@ -1,7 +1,4 @@
 CtfRegistrar::Application.routes.draw do
-  get "resets/index"
-  get "resets/new"
-  get "resets/edit"
   get "scoreboard", to: 'scoreboard#index', as: :scoreboard
   get "scoreboard/challenge/:id", to: 'scoreboard#challenge', as: :challenge
   post "scoreboard/challenge/:id", to: 'scoreboard#answer'
@@ -17,6 +14,7 @@ CtfRegistrar::Application.routes.draw do
   resource :user
   resource :team
   resource :membership
+  resources :resets
   resource :session do
     post 'token', on: :new
   end
