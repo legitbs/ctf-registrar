@@ -1,2 +1,34 @@
-%h1 Resets#new
-%p Find me in app/views/resets/new.html.haml
+.content
+  :markdown
+    Enter your email address and demonstrate that you can solve a captcha
+    to start the reset process.
+
+  = form_tag resets_path do
+    %div
+      = label_tag :email
+      = text_field_tag :email
+    #legitbs_recaptcha
+      #recaptcha_image
+      .recaptcha_only_if_incorrect Incorrect. Try again.
+      %span.recaptcha_only_if_image Enter the words:
+      %span.recaptcha_only_if_audio Enter the numbers you hear:
+      %input#recaptcha_response_field{type: 'text', name: 'recaptcha_response_field'}
+
+      %div
+        %a.lbs_recap{data: {reload: true}}
+
+      .recaptcha_only_if_image
+        %a.lbs_recap{data: {become: 'audio'}}
+          Get an audio CAPTCHA
+
+      .recaptcha_only_if_audio
+        %a.lbs_recap{data: {become: 'image'}}
+          Get an image CAPTCHA
+
+      %div
+        %a.lbs_recap{data: {help: true}}
+          Get help
+
+  
+
+        
