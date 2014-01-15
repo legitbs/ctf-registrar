@@ -18,6 +18,8 @@ gem 'high_voltage'
 gem 'maruku'
 gem 'dynamic_form'
 
+gem "recaptcha", "~> 0.3.6"
+
 gem 'validates_email_format_of'
 
 gem 'sass-rails',   '~> 4.0.0'
