@@ -12,6 +12,18 @@ class Reset < ActiveRecord::Base
   scope :expired, -> { where('created_at < ?', EXPIRATION.ago) }
   scope :not_expired, -> { where('created_at >= ?', EXPIRATION.ago) }
 
+  validates :consumed_at, absence: true, if: Proc.new{ |r| r.disavowed_at }
+
+  def consume!
+    self.consumed_at = Time.now
+    self.save!
+  end
+
+  def disavow!
+    self.disavowed_at = Time.now
+    self.save!
+  end
+
   def token
     key.chars.zip(@secret.chars).join
   end

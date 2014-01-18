@@ -6,6 +6,12 @@ class ResetTest < ActiveSupport::TestCase
     should 'be able to disavow a reset token'
   end
 
+  should 'initialize correctly' do
+    assert_nothing_raised do
+      r = Reset.new
+    end
+  end
+
   context 'a Reset' do
     setup do
       @reset = create :reset
