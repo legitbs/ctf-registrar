@@ -3,6 +3,6 @@ class UserMailer < ActionMailer::Base
 
   def welcome_email(user)
     @user = user
-    mail to: user.email, subject: 'Welcome to 2013 CTF Quals'
+    mail to: user.email, subject: 'Welcome to 2014 DEF CON CTF Qualifications'
   end
 end
