@@ -1,0 +1,26 @@
+!!!5
+%html
+  %head
+    %meta{content: 'text/html; charset=UTF-8', :'http-equiv' => 'Content-Type'}
+  %body
+    %h1 DEF CON CTF Password Reset
+    :markdown
+      Hello #{@user.username.inspect}!
+
+      Somebody reset your password on the DEF CON CTF Qualifications 
+      website.
+
+      ## Yes, You Did It
+
+      Excellent! We're glad it worked for you!
+
+      ## No, You Didn't Reset Your Password
+
+      Somebody was able to get the reset token out of your email
+      before it expired.
+
+      First, un-hack your email.
+      
+      Next, visit the password reset interface at:
+
+      #{link_to new_reset_url}
