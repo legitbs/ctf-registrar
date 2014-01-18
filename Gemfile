@@ -15,7 +15,7 @@ gem 'foreigner'
 gem 'immigrant'
 gem 'haml-rails'
 gem 'high_voltage'
-gem 'maruku'
+gem 'rdiscount'
 gem 'dynamic_form'
 
 gem "recaptcha", "~> 0.3.6"

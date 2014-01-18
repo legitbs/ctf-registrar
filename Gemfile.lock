@@ -111,7 +111,6 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
-    maruku (0.7.0)
     metaclass (0.0.1)
     mime-types (1.25.1)
     mini_magick (3.7.0)
@@ -160,6 +159,7 @@ GEM
       ffi (>= 0.5.0)
     rb-kqueue (0.2.0)
       ffi (>= 0.5.0)
+    rdiscount (2.1.6)
     recaptcha (0.3.6)
     rotp (1.6.0)
     rqrcode (0.4.2)
@@ -228,7 +228,6 @@ DEPENDENCIES
   high_voltage
   immigrant
   jquery-rails
-  maruku
   mini_magick
   mocha (~> 0.13.3)
   newrelic_rpm
@@ -236,6 +235,7 @@ DEPENDENCIES
   protected_attributes
   rails (~> 4.0.0)
   rails_12factor
+  rdiscount
   recaptcha (~> 0.3.6)
   rotp
   rqrcode-rails3
