@@ -53,3 +53,7 @@ group :test do
   gem 'mocha', '~> 0.13.3', require: 'mocha/setup'
   gem 'factory_girl_rails'
 end
+
+group :development, :test do
+  gem 'pry-rails'
+end
