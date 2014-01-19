@@ -13,3 +13,4 @@ Feature: Password Reset
     Given I have a reset URL
     When I set a new password
     Then I should have a new password
+    And I should have a "was reset" email

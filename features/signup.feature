@@ -6,21 +6,18 @@ Feature: Signup
 Scenario: Signup
   Given I am on the homepage
   When I visit the new user page
-  And I complete the user form
+  And I complete the new user form
   Then I should be logged in
-  And I should have a user creation confirmation email
+  And I should have a "Welcome" email
 
 Scenario: Team creation
   Given I am signed in
-  And I expect an email
   When I complete the team creation form
   Then I should own a team
-  And I should have a team creation confirmation email
+  And I should have a "Registered a team" email
 
 Scenario: Team joining
   Given I am signed in
-  And I expect an email
   When I complete the team join form
   Then I should be on a team
-  And I should have a team joining confirmation email
-  And the owner should have a team joining notification email
+  And I should have a "Joined a team" email

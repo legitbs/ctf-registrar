@@ -4,17 +4,19 @@ end
 
 Given /^I have an existing account$/ do
   @user = FactoryGirl.create :user
+  @user_attrs = @user.attributes
 end
 
-When /^I complete the initial user form$/ do
+When /^I visit the new user page$/ do
+  visit '/'
+  click_on 'Sign Up'
+end
+
+When /^I complete the new user form$/ do
   @user_attrs = FactoryGirl.attributes_for :user
 
   fill_in 'user_username', with: @user_attrs[:username]
   fill_in 'user_password', with: @user_attrs[:password]
-  click_on 'Create Account'
-end
-
-When /^I complete the secondary user form$/ do
   fill_in 'user_password_confirmation', with: @user_attrs[:password]
   fill_in 'user_email', with: @user_attrs[:email]
   fill_in 'user_email_confirmation', with: @user_attrs[:email]
@@ -22,14 +24,21 @@ When /^I complete the secondary user form$/ do
   click_on 'Create Account'
 end
 
+When /^I complete the login form$/ do
+  fill_in 'username', with: @user.username
+  fill_in 'password', with: @user.password
+
+  click_on 'Log In'
+end
+
 Then /^I should be logged in$/ do
   login_expectation = "Logged in as #{@user_attrs[:email]}"
   assert page.has_content?(login_expectation), "Couldn't find #{login_expectation.inspect}"
 end
 
-Then /^.+ should have an? "$subject" email$/ do
+Then /^.+ should have an? "(.*)" email$/ do |subject|
   assert ActionMailer::Base.deliveries.any? do |m|
-    m.subject.downcase.include? $subject.downcase
+    m.subject.downcase.include? subject.downcase
   end
 end
 
