@@ -2,8 +2,8 @@ Given /^I am on the homepage$/ do
   visit '/'
 end
 
-Given /^I expect an email$/ do
-  @mail_expectation = Mail::Message.any_instance.expects(:deliver)
+Given /^I have an existing account$/ do
+  @user = FactoryGirl.create :user
 end
 
 When /^I complete the initial user form$/ do
@@ -27,9 +27,10 @@ Then /^I should be logged in$/ do
   assert page.has_content?(login_expectation), "Couldn't find #{login_expectation.inspect}"
 end
 
-Then /^.+ should have a .+ email$/ do
-  invocation_count = @mail_expectation.instance_variable_get(:@invocation_count)
-  assert invocation_count > 0, "Expected #{invocation_count} to be greater than zero."
+Then /^.+ should have an? "$subject" email$/ do
+  assert ActionMailer::Base.deliveries.any? do |m|
+    m.subject.downcase.include? $subject.downcase
+  end
 end
 
 Given /^I am signed in$/ do
@@ -46,6 +47,12 @@ When /^I complete the team creation form$/ do
   fill_in 'team_password', with: @team_attrs[:password]
   fill_in 'team_password_confirmation', with: @team_attrs[:password]
   click_on 'Create Team'
+end
+
+When /^I fill out the lost password form$/ do
+  click_on 'Reset Password'
+  fill_in 'email', with: @user.email
+  click_on 'Reset Password'
 end
 
 Then /^I should own a team$/ do

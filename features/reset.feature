@@ -7,7 +7,7 @@ Feature: Password Reset
     Given I am on the homepage
     And I have an existing account
     When I fill out the lost password form
-    Then I should have a lost password email
+    Then I should have an "Attempting to reset" email
 
   Scenario: Use reset code
     Given I have a reset URL
