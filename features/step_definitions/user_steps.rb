@@ -7,6 +7,11 @@ Given /^I have an existing account$/ do
   @user_attrs = @user.attributes
 end
 
+Given /^I have a reset URL$/ do
+  @reset = FactoryGirl.create :reset
+  @user = @reset.user
+end
+
 When /^I visit the new user page$/ do
   visit '/'
   click_on 'Sign Up'
@@ -79,4 +84,20 @@ end
 Then /^I should be on a team$/ do
   team_expectation = "member of #{@team.name}."
   assert page.has_content?(team_expectation), "Couldn't find #{team_expectation.inspect}"
+end
+
+When /^I set a new password$/ do
+  visit reset_path @reset.token
+  fill_in 'password', with: 'farts'
+  fill_in 'password_confirmation', with: 'farts'
+  click_on 'Change Password'
+end
+
+Then /^I should have a new password$/ do
+  visit '/'
+  fill_in 'username', with: @user.username
+  fill_in 'password', with: 'farts'
+  click_on 'Log In'
+  login_expectation = "Logged in as #{@user.email}"
+  assert page.has_content?(login_expectation), "Couldn't find #{login_expectation.inspect}"
 end

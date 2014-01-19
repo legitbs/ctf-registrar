@@ -1,0 +1,12 @@
+.content
+  %p Enter your new password.
+  = form_tag(reset_path, method: 'put') do
+    %div
+      = label_tag :password
+      = password_field_tag :password
+    %div
+      = label_tag :password_confirmation
+      = password_field_tag :password_confirmation
+    %div
+      %label &nbsp;
+      = submit_tag 'Change Password'
