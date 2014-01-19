@@ -5,13 +5,15 @@ class ResetMailer < ActionMailer::Base
     @reset = reset
     @user = @reset.user
 
-    mail to: user.email, subject: 'Attempting to reset your DEF CON CTF password'
+    @url = reset_url @reset.token
+
+    mail to: @user.email, subject: 'Attempting to reset your DEF CON CTF password'
   end
 
   def did_reset_email(reset)
     @reset = reset
     @user = @reset.user
 
-    mail to: user.email, subject: 'Your DEF CON CTF password was reset'
+    mail to: @user.email, subject: 'Your DEF CON CTF password was reset'
   end
 end
