@@ -1,7 +1,7 @@
 class ResetsController < ApplicationController
   before_filter :require_logged_in, only: %i{ index destroy }
-  before_filter :require_logged_out, only: %i{ new create edit update }
-  before_filter :require_valid_token, only: %i{ edit update }
+  before_filter :require_logged_out, only: %i{ new create show update }
+  before_filter :require_valid_token, only: %i{ show update }
   def index
     @resets = current_user.resets
   end
@@ -17,10 +17,34 @@ class ResetsController < ApplicationController
       return redirect_to new_reset_path
     end
 
-    reset = user.resets
+    @reset = user.resets.create
+    ResetMailer.reset_email(@reset).deliver
+    flash[:success] = "Reset email sent."
+    return redirect_to root_path
   end
 
-  def edit
+  def show
+  end
+
+  def update
+    @user = @reset.user
+    @user.password = params[:password]
+    @user.password_confirmation = params[:password_confirmation]
+
+    success = false
+
+    @user.transaction do |u|
+      success = @reset.consume! && @user.save!
+    end
+
+    if success
+      ResetMailer.did_reset_email(@reset).deliver
+      flash[:success] = "Password reset successfully."
+      return redirect_to dashboard_path
+    end
+
+    flash[:error] = "Failed to reset password."
+    
   end
 
   private

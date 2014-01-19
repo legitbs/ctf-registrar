@@ -21,7 +21,7 @@
 
   .new
     %h1 Register
-    = link_to 'Sign Up', new_user_path, class: 'button'
+    = link_to 'Sign Up', new_user_path, class: 'btn'
   .login
     %h1 Log In
     = form_tag session_path do
@@ -36,4 +36,4 @@
         = submit_tag 'Log In'
   .forgot
     %h1 Forgot Password
-    forgot password link
+    = link_to 'Reset Password', new_reset_path, class: 'btn'

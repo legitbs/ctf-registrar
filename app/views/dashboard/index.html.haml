@@ -13,7 +13,7 @@
             = link_to 'Not exact enough?', "http://www.timeanddate.com/worldclock/fixedtime.html?iso=#{game_window.last.iso8601}"
         - elsif before_game?
           %p
-            The game starts in about #{time_ago_in_words game_window.first, true}.
+            The game starts in about #{time_ago_in_words game_window.first, include_seconds: true}.
             = link_to 'Too vague?', "http://www.timeanddate.com/worldclock/fixedtime.html?iso=#{game_window.first.iso8601}"
         %h2 Rules and Other Information
         :markdown
