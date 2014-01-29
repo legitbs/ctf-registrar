@@ -2,7 +2,6 @@ jQuery ($) ->
   canvas = $('canvas#ziggurat').get(0)
   return unless canvas
 
-  
   drawZigguratLevel = (ctx, width) ->
     shadow = '#B0A389'
     base = '#C0B7A3'

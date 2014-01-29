@@ -1,19 +1,18 @@
 require 'test_helper'
 
 class ResetsControllerTest < ActionController::TestCase
-  test "should get index" do
-    get :index
-    assert_response :success
+  context 'when logged out' do
+    context 'without a reset url' do
+      should 'show the start reset form'
+      should 'send a reset url'
+    end
+    context 'with a reset url' do
+      should 'show the reset password form'
+      should 'reset the password'
+    end
   end
-
-  test "should get new" do
-    get :new
-    assert_response :success
+  context 'when logged in' do
+    should 'list tokens'
+    should 'disavow tokens'
   end
-
-  test "should get edit" do
-    get :edit
-    assert_response :success
-  end
-
 end

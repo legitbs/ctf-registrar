@@ -19,42 +19,67 @@ jQuery ($) ->
 
     "rgb(#{arr[0]}, #{arr[1]}, #{arr[2]})"
 
+  jeansColor = ->
+    # random brightness
+    brightness = (0.75 * Math.random())
+
+    hue = (0.50 + (0.10 * Math.random())) * 3.6
+
+    saturation = (-2.8683 * brightness * brightness * brightness) +
+                 ( -.5202 * brightness * brightness) +
+                 ( 1.4118 * brightness) +
+                   0.0032
+
+    arr = hsvToRgb(hue, saturation, brightness)
+
+    c = "rgb(#{arr[0]}, #{arr[1]}, #{arr[2]})"
+    jeans =
+      thigh: c
+      calf: c
+
+  randomPants = ->
+    if Math.random() > 0.5
+      return jeansColor()
+    else
+      return {thigh: shirtColor()}
+
+  randomComputer = ->
+    r = Math.random()
+    if r > 0.5
+      return macbook
+    else if r > 0.25
+      return thinkpad
+    else
+      return dell
+
+  shirtColor = ->
+    brightness = Math.random()
+    hue = Math.random()
+    saturation = 0.5 + (0.5 * Math.random())
+
+    arr = hsvToRgb(hue, saturation, brightness)
+
+    "rgb(#{arr[0]}, #{arr[1]}, #{arr[2]})"
+
   macbook =
     base: '#898989'
     logo: '#FFFFFF'
 
-  jeans =
-    thigh: '#163685'
-    calf: '#163685'
+  thinkpad =
+    base: '#444444'
+    logo: '#f04444'
 
-  dadjeans =
-    thigh: '#3646aa'
-    calf: '#3646aa'
+  dell =
+    base: '#888888'
+    logo: '#aaaaaa'
 
-  cargoShorts =
-    thigh: '#BCA987'
-
-  vito =
+  vito = ->
     skin: skinColor()
-    shirt: '#384945'
-    pants: cargoShorts
-    computer: macbook
-    shoes: '#E28C05'
+    shirt: shirtColor()
+    pants: randomPants()
+    computer: randomComputer()
+    shoes: shirtColor()
 
-  sc =
-    skin: skinColor()
-    shirt: '#880088'
-    pants: jeans
-    computer: macbook
-    shoes: '#2B2D41'
-
-  da =
-    skin: skinColor()
-    shirt: '#2B2D41'
-    pants: dadjeans
-    computer: macbook
-    shoes: '#A2826E'
-    
   drawHacker = (ctx, hackerColors) ->
     c = (color) ->
       ctx.fillStyle = color
@@ -100,13 +125,13 @@ jQuery ($) ->
     canvas = zone.children('canvas').get(0)
     context = canvas.getContext '2d'
     context.scale 16, 16
-    drawHacker context, vito
+    drawHacker context, vito()
   
     context.translate 10, 0
-    drawHacker context, sc
+    drawHacker context, vito()
   
     context.translate 10, 0
-    drawHacker context, da
+    drawHacker context, vito()
 
 
   drawHackers()
