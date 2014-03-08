@@ -13,6 +13,10 @@ module ApplicationHelper
     ["con-#{controller.controller_name}", "act-#{controller.action_name}"].join ' '
   end
   
+  def display_flash
+    flash.reject{|k,v| k == :analytics}
+  end
+
   def analytics_data
     accum = []
     accum += flash[:analytics] unless flash[:analytics].nil?

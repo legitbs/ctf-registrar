@@ -8,20 +8,26 @@
       We're back for 2014, with the hard-won lessons of 2013
       behind us, and an all-new and all-exciting game ahead
       of you.
-    %p.note
-      All dates are from midnight UTC.
-    %dl#timetable
-      %dt Registration opens
-      %dd April 1
-      %dt Qualifications begin
-      %dd May 17
-      %dt Qualifications end
-      %dd May 19
+    %table#timetable
+      %tbody
+        %tr
+          %th Registration opens
+          %td April 1
+          %td.time_t 1396310400
+        %tr
+          %th Qualifications begin
+          %td May 17
+          %td.time_t 1400284800
+        %tr
+          %th Qualifications end 
+          %td May 19
+          %td.time_t 1400457600
   .clear
 
   .new
     %h1 Register
-    = link_to 'Sign Up', new_user_path, class: 'btn'
+    %div
+      = link_to 'Sign Up', new_user_path, class: 'btn'
   .login
     %h1 Log In
     = form_tag session_path do
@@ -36,4 +42,5 @@
         = submit_tag 'Log In'
   .forgot
     %h1 Forgot Password
-    = link_to 'Reset Password', new_reset_path, class: 'btn'
+    %div
+      = link_to 'Reset Password', new_reset_path, class: 'btn'

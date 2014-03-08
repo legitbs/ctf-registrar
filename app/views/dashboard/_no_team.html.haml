@@ -3,19 +3,19 @@
   .join_team
     %h2 Join a team
     = form_for @new_membership, url: membership_path do |f|
-      %label
-        %div Team Name
+      %div
+        %label Team Name
         = f.text_field :name
-      %label
-        %div Password
+      %div
+        %label Password
         = f.text_field :password
-      %label
-        %div &nbsp;
-        %button Join
+      %div
+        %label &nbsp;
+        = f.submit 'Join'
   .create_team
     %h2 Create a team
     = form_for @new_team, url: team_path do |f|
       = render partial: 'teams/form', locals: {f: f}
-      %label
-        %div &nbsp;
-        %button Create Team
+      %div 
+        %label &nbsp;
+        = f.submit 'Create Team'

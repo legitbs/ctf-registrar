@@ -13,9 +13,9 @@
         %canvas#ziggurat{width: 2048, height: 2048}
         %canvas#hacker{width: 64, height: 64}
     #container
-      - unless flash.empty?
+      - unless display_flash.empty?
         #flashes
-          - flash.each do |k,v|
+          - display_flash.each do |k,v|
             %p{class: "flash #{k}"}= v
       #content
         = yield
