@@ -2,52 +2,17 @@
   #who
     Logged in as #{current_user.email}.
     = link_to 'Log out?', session_path, method: :delete
+  .account
+    %h1 Account Options
+    %ul.account_options
+      - if current_user.auth_secret.blank?
+        %li
+          = link_to 'Set up Two Factor Authentication', new_token_path
+      %li
+        = link_to 'View password resets', resets_path
   .team
     - if current_user.participant?
-      .countdown
-        %h1 Countdown
-        - if during_game?
-          %p
-            = link_to 'Play now!', scoreboard_path
-            The game ends in about #{time_ago_in_words game_window.last, true}.
-            = link_to 'Not exact enough?', "http://www.timeanddate.com/worldclock/fixedtime.html?iso=#{game_window.last.iso8601}"
-        - elsif before_game?
-          %p
-            The game starts in about #{time_ago_in_words game_window.first, include_seconds: true}.
-            = link_to 'Too vague?', "http://www.timeanddate.com/worldclock/fixedtime.html?iso=#{game_window.first.iso8601}"
-        %h2 Rules and Other Information
-        :markdown
-          We're hosting CTF chat in #defconctf on the "Hackint" 
-          network. See [http://www.hackint.org/](http://www.hackint.org/) for connection 
-          information. Any judgements or 
-          changes will also be broadcast on our Twitter account at 
-          [https://twitter.com/legitbs_ctf](https://twitter.com/legitbs_ctf), and displayed 
-          on the scoreboard as well.
-
-          The game will start with several questions unlocked. When a question is
-          answered for the first time, it'll unlock the next question in its category.
-          If it was the last in its category, it doesn't unlock anything.
-
-          All answers will be preceded by “The key is: “. If you see “The key is: asdf 12345” 
-          submit “asdf 12345” without the quotation marks. Keys are case sensitive.
-
-          **DO NOT SUBMIT "The key is: " AS PART OF YOUR ANSWER.**
-
-          There is no point penalty for wrong answers. However, excessive wrong guesses may 
-          be penalized with per-question or per-team timeouts. Since all answers will be 
-          clearly marked, we trust this won’t be a problem.
-
-          Don’t share answers.
-
-          All challenges will be hosted at \*.shallweplayaga.me . Do not attack machines 
-          outside of this subdomain.
-
-          The scoreboard is at https://2014.legitbs.net; you're in the right place.
-
-          Do not attack machines inside of legitbs.net.
-
-          All judges’ decisions during the game are final.
-
+      = render partial: 'participant' 
       = render partial: 'yes_team'
     - else
       = render partial: 'no_team'
