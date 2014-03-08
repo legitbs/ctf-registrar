@@ -18,7 +18,7 @@ CtfRegistrar::Application.routes.draw do
   resource :session do
     post 'token', on: :new
   end
-  resource :tokens
+  resource :token
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -23,7 +23,10 @@ class ResetsController < ApplicationController
     return redirect_to root_path
   end
 
-  def show
+  def destroy
+    @reset = current_user.resets.find params[:id]
+    @reset.disavow!
+    return redirect_to resets_path
   end
 
   def update

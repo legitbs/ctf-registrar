@@ -1,2 +1,28 @@
-%h1 Resets#index
-%p Find me in app/views/resets/index.html.haml
+%h1 Password Resets
+- if @resets.empty?
+  %p
+    Nobody has tried to reset your password.
+- else
+  %table
+    %thead
+      %tr
+        %th Created at
+        %th Current state
+        %th Actions
+    %tbody
+      - @resets.each do |r|
+        %tr
+          %td= r.created_at
+          - if r.disavowed_at
+            %td Disavowed
+            %td &nbsp;
+          - elsif r.consumed_at
+            %td Used
+            %td &nbsp;
+          - elsif r.expired?
+            %td Expired
+            %td &nbsp;
+          - else
+            %td Available
+            %td
+              = link_to 'Disavow', reset_path(r.id), method: 'delete'
