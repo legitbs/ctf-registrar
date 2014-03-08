@@ -1,4 +1,8 @@
 module ApplicationHelper
+  def hacker_count
+    (Math::log(User.count) * 4).round + rand(4)
+  end
+
   def teaminfo(team)
     content_tag :div, class: "teaminfo team_#{team.id}" do
       content_tag(:span, team.name, class: 'teamname')

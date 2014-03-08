@@ -1,7 +1,4 @@
 jQuery ($) ->
-  zone = $('#hacker_zone')
-  return unless zone.size() == 1
-
   skinColor = ->
     # random brightness
     brightness = 0.25 + (0.75 * Math.random())
@@ -53,6 +50,10 @@ jQuery ($) ->
       return dell
 
   shirtColor = ->
+    black = Math.random() > 0.75
+    if black
+      return "rgb(0,0,0)"
+      
     brightness = Math.random()
     hue = Math.random()
     saturation = 0.5 + (0.5 * Math.random())
@@ -121,17 +122,25 @@ jQuery ($) ->
     n 'logo'
     f 1, 5, 1, 1
 
+  placeHacker = (canvas)->
+    url = canvas.toDataURL()
+    zig = $('#layer-ziggurat')
+    row = Math.round(Math.random() * 20)
+    y = (row * 24) + 428
+    leftBound = 600 - (row * 30)
+    rightBound = 1100 + (row * 30)
+    range = rightBound - leftBound
+    x = Math.round(Math.random() * range) + leftBound
+    s = "position: absolute; top: #{y}px; left: #{x}px"
+    img = "<img src='#{url}' class='hacker' style='#{s}' />"
+    zig.append img
+
   drawHackers = ->
-    canvas = zone.children('canvas').get(0)
+    canvas = $('canvas#hacker').get(0)
     context = canvas.getContext '2d'
-    context.scale 16, 16
-    drawHacker context, vito()
-  
-    context.translate 10, 0
-    drawHacker context, vito()
-  
-    context.translate 10, 0
-    drawHacker context, vito()
-
-
+    context.scale 4, 4
+    for _ in [1..10]
+      drawHacker context, vito()
+      placeHacker(canvas)
+      
   drawHackers()
