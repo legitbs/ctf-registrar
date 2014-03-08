@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.0.0'
+ruby '2.1.1'
 
 gem 'rails', '~> 4.0.0'
 gem 'unicorn'
@@ -43,6 +43,7 @@ gem 'mini_magick'
 gem 'rails_12factor'
 
 group :development do
+  gem 'rails-erd'
   gem 'sass-rails-source-maps'
 end
 
