@@ -1,31 +1,33 @@
-%h1 Two-Factor Authentication
-:markdown
-  Two-factor authentication makes your account even more secure. It requires
-  you to enter your username, your existing password, and a code from a 
-  TOTP-compatible app when logging in.
+.content#tokens
+  = render partial: 'shared/who'
+  %h1 Two-Factor Authentication
+  :markdown
+    Two-factor authentication makes your account even more secure. It requires
+    you to enter your username, your existing password, and a code from a 
+    TOTP-compatible app when logging in.
 
-  ## Getting Started
-  1. Install [Authy for iOS and Android](https://www.authy.com/thefuture#install-now) or
-  [Google Authenticator for iOS, Android, and BlackBerry](https://support.google.com/accounts/answer/1066447?hl=en).
-  2. Scan the QR code below into the app.
-  3. Complete the form below.
-  4. Print out the next screen and keep in a safe place.
+    ## Getting Started
+    1. Install [Authy for iOS and Android](https://www.authy.com/thefuture#install-now) or
+    [Google Authenticator for iOS, Android, and BlackBerry](https://support.google.com/accounts/answer/1066447?hl=en).
+    2. Scan the QR code below into the app.
+    3. Complete the form below.
+    4. Print out the next screen and keep in a safe place.
 
-.qr
-  %img{src: url_for(action: 'show', id: @temporary_secret, format: 'png'), width: 319, height: 319}
+  .qr
+    %img{src: url_for(action: 'show', id: @temporary_secret, format: 'png'), width: 319, height: 319}
 
-%h2 Enable Two-Factor Authentication
+  %h2 Enable Two-Factor Authentication
 
-= form_tag tokens_path do
-  %input{type: 'hidden', name: 'temporary_secret', value: @temporary_secret}
-  %div.checkbox
-    %label{for: 'i-promise'}
-      By enabling two-factor authentication I promise I won't forget my password,
-      lose my token, or fail to keep my recovery tokens.
-    %input#i-promise{type: 'checkbox', name: 'i-promise'}
-  %div
-    %label{for: 'first-code'} Code from application
-    %input#first-code{type: 'text', name: 'first-code', value: ''}
-  %div
-    %label
-    %input{type: 'submit', value: 'Enable Two-Factor'}
+  = form_tag token_path do
+    %input{type: 'hidden', name: 'temporary_secret', value: @temporary_secret}
+    %div.checkbox
+      %label{for: 'i-promise'}
+        By enabling two-factor authentication I promise I won't forget my password,
+        lose my token, or fail to keep my recovery tokens.
+      %input#i-promise{type: 'checkbox', name: 'i-promise'}
+    %div
+      %label{for: 'first-code'} Code from application
+      %input#first-code{type: 'text', name: 'first-code', value: ''}
+    %div
+      %label
+      %input{type: 'submit', value: 'Enable Two-Factor'}
