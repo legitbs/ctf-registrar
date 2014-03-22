@@ -53,6 +53,11 @@ CtfRegistrar::Application.configure do
 
   config.action_mailer.delivery_method = :smtp
 
+  config.action_mailer.default_url_options = { 
+    host: '2014.legitbs.net',
+    protocol: 'https'
+  }
+
   # Enable threaded mode
   # config.threadsafe!
 
