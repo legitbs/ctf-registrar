@@ -26,6 +26,9 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
     arel (4.0.2)
+    asset_sync (1.0.0)
+      activemodel
+      fog (>= 1.8.0)
     atomic (1.1.15)
     bcrypt (3.1.7)
     bcrypt-ruby (3.1.5)
@@ -64,14 +67,25 @@ GEM
     diff-lcs (1.2.5)
     dynamic_form (1.1.4)
     erubis (2.7.0)
+    excon (0.31.0)
     execjs (2.0.2)
     factory_girl (4.4.0)
       activesupport (>= 3.0.0)
     factory_girl_rails (4.4.1)
       factory_girl (~> 4.4.0)
       railties (>= 3.0.0)
+    fog (1.20.0)
+      builder
+      excon (~> 0.31.0)
+      formatador (~> 0.2.0)
+      mime-types
+      multi_json (~> 1.0)
+      net-scp (~> 1.1)
+      net-ssh (>= 2.1.3)
+      nokogiri (>= 1.5.11)
     foreigner (1.6.1)
       activerecord (>= 3.0.0)
+    formatador (0.2.4)
     gherkin (2.12.2)
       multi_json (~> 1.3)
     haml (4.0.5)
@@ -104,8 +118,11 @@ GEM
     minitest (4.7.5)
     mocha (0.13.3)
       metaclass (~> 0.0.1)
-    multi_json (1.8.4)
+    multi_json (1.9.0)
     multi_test (0.0.3)
+    net-scp (1.1.2)
+      net-ssh (>= 2.6.5)
+    net-ssh (2.8.0)
     newrelic_rpm (3.7.2.195)
     nokogiri (1.6.1)
       mini_portile (~> 0.5.0)
@@ -188,10 +205,13 @@ GEM
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
-    tzinfo (0.3.38)
+    tzinfo (0.3.39)
     uglifier (2.4.0)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    unf (0.1.3)
+      unf_ext
+    unf_ext (0.0.6)
     unicorn (4.8.2)
       kgio (~> 2.6)
       rack
@@ -204,6 +224,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  asset_sync
   bcrypt-ruby
   bourbon
   coffee-rails (~> 4.0.0)
@@ -233,5 +254,6 @@ DEPENDENCIES
   sass-rails-source-maps
   shoulda
   uglifier (>= 1.0.3)
+  unf
   unicorn
   validates_email_format_of
