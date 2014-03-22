@@ -22,7 +22,7 @@ gem "recaptcha", "~> 0.3.6"
 
 gem 'validates_email_format_of'
 
-gem 'sass-rails',   '~> 4.0.0'
+gem 'sass-rails',   '~> 4.0.2'
 gem 'coffee-rails', '~> 4.0.0'
 
 gem 'bourbon'
@@ -45,7 +45,6 @@ gem 'rails_12factor'
 
 group :development do
   gem 'rails-erd'
-  gem 'sass-rails-source-maps'
 end
 
 group :test do
