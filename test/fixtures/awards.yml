@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  achievement_id: 
+  team_id: 
+  comment: MyString
+
+two:
+  achievement_id: 
+  team_id: 
+  comment: MyString
