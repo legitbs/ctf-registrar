@@ -11,10 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140113020107) do
+ActiveRecord::Schema.define(version: 20140324230946) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "achievments", force: true do |t|
+    t.string   "name"
+    t.string   "condition"
+    t.string   "description"
+    t.string   "image"
+    t.integer  "trophy_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "achievments", ["trophy_id"], name: "index_achievments_on_trophy_id", using: :btree
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -96,6 +108,12 @@ ActiveRecord::Schema.define(version: 20140113020107) do
 
   add_index "teams", ["name"], name: "index_teams_on_name", using: :btree
   add_index "teams", ["user_id"], name: "index_teams_on_user_id", using: :btree
+
+  create_table "trophies", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "username"
