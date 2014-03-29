@@ -1,7 +1,7 @@
 Phase,Name,Condition,Flavor text,Thumbnail?,Trophy
-Quals,syn,Registered a team,Welcome to DEF CON CTF 2014.,Left hand reaching out,Basics
-Quals,syn-ack,Second team member,Your team has more than one member. Plainly you're not Tom Cr00se.,Right hand reaching out,Basics
-Quals,ack,Viewed any challenge,Congratulations on looking at a challenge. Good luck!,Predator handshake,Basics
+Quals,syn,Registered a team,Welcome to DEF CON CTF 2014.,syn,Basics
+Quals,syn-ack,Second team member,Your team has more than one member. Plainly you're not Tom Cr00se.,syn-ack,Basics
+Quals,ack,Viewed any challenge,Congratulations on looking at a challenge. Good luck!,ack,Basics
 Quals,FIRST BLOOD,First score,"First solution, great job!","Baseball scoreboard, 1-0",Heroic
 Quals,Baby's First,Solved any Baby's First challenge,You know how to computer! Neat!,ABC blocks,Basics
 Quals,Baby's Last,Solved all Baby's First challenges,Welcome to the big leagues.,JMP blocks,Basics
