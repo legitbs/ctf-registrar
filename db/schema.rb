@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20140324231823) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "achievments", force: true do |t|
+  create_table "achievements", force: true do |t|
     t.string   "name"
     t.string   "condition"
     t.string   "description"
@@ -26,18 +26,21 @@ ActiveRecord::Schema.define(version: 20140324231823) do
     t.datetime "updated_at"
   end
 
-  add_index "achievments", ["trophy_id"], name: "index_achievments_on_trophy_id", using: :btree
+  add_index "achievements", ["trophy_id"], name: "index_achievements_on_trophy_id", using: :btree
 
   create_table "awards", force: true do |t|
     t.integer  "achievement_id"
     t.integer  "team_id"
+    t.integer  "user_id"
     t.string   "comment"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "awards", ["achievement_id"], name: "index_awards_on_achievement_id", using: :btree
+  add_index "awards", ["team_id", "achievement_id"], name: "index_awards_on_team_id_and_achievement_id", using: :btree
   add_index "awards", ["team_id"], name: "index_awards_on_team_id", using: :btree
+  add_index "awards", ["user_id"], name: "index_awards_on_user_id", using: :btree
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -142,6 +145,12 @@ ActiveRecord::Schema.define(version: 20140324231823) do
   add_index "users", ["email"], name: "index_users_on_email", using: :btree
   add_index "users", ["team_id"], name: "index_users_on_team_id", using: :btree
   add_index "users", ["username"], name: "index_users_on_username", using: :btree
+
+  add_foreign_key "achievements", "trophies", name: "achievements_trophy_id_fk"
+
+  add_foreign_key "awards", "achievements", name: "awards_achievement_id_fk"
+  add_foreign_key "awards", "teams", name: "awards_team_id_fk"
+  add_foreign_key "awards", "users", name: "awards_user_id_fk"
 
   add_foreign_key "challenges", "categories", name: "challenges_category_id_fk"
 

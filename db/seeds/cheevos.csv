@@ -1,0 +1,37 @@
+Phase,Name,Condition,Flavor text,Thumbnail?,Trophy
+Quals,syn,Registered a team,Welcome to DEF CON CTF 2014.,Left hand reaching out,Basics
+Quals,syn-ack,Second team member,Your team has more than one member. Plainly you're not Tom Cr00se.,Right hand reaching out,Basics
+Quals,ack,Viewed any challenge,Congratulations on looking at a challenge. Good luck!,Predator handshake,Basics
+Quals,FIRST BLOOD,First score,"First solution, great job!","Baseball scoreboard, 1-0",Heroic
+Quals,Baby's First,Solved any Baby's First challenge,You know how to computer! Neat!,ABC blocks,Basics
+Quals,Baby's Last,Solved all Baby's First challenges,Welcome to the big leagues.,JMP blocks,Basics
+Quals,Associate,Solved all the Vito challenges,You'll be running protection in no time.,Tommy gun,Categories
+Quals,To Devour,Solved all the Gynophage challenges,Spread the infection.,Virus,Categories
+Quals,Dragon Warrior,Solved all the Selir challenges,"""with his sore and great and strong sword shall punish leviathan the piercing serpent.""",Dragon rider,Categories
+Quals,Up in the woods,Solved all the HJ challenges,I'm down on my mind.,Trees,Categories
+Quals,Codename: Duchess,Solved all the Duchess challenges,Call Kenny Loggins.,Scotch & gummi bears,Categories
+Quals,Strikes Twice,Solves all the Lightning challenges,Ben Franklin got nothing on you,Kite & key,Categories
+Quals,Knighthood,Solved all the Sirgoon challenges,You can be his squire!,Knight with sword,Categories
+Quals,Pop it & unlock it,Solve any challenge first,"Keep tickin' and tockin', hack it all around the clock.",Balloon popping,Heroic
+Quals,Drought,Let eight hours pass between solutions,Did you have a nice little nap?,Cactus,Teamwork
+Quals,Multithreading,Solve two challenges within 30 seconds of each other,Great job splitting up the work.,Threads,Teamwork
+Quals,Race Condition,Submit the same correct answer within 5 seconds,We fixed the race condition this time.,Crashing car,Villainous
+Quals,Finish Line,Solve all the challenges,"That's all, folks!",Finish line,Heroic
+Quals,Hashtag Winning,Solved all the challenges first,Simply amazing.,#1,Legendary
+Quals,Top Ten,End quals in the top ten places,Fantastic performance!,Top 10,Heroic
+Quals,Doing It Wrong,Locked out of answering a question for over an hour,It's not even that hard,Hourglass,Villainous
+Quals,No,Attempted a SQLi in the answer submission,....just no.,Facepalm,Villainous
+Quals,O'day Illuminati,Found and reported a bug in our infrastructure,These are not the bugs you are looking for...,All-seeing eye,Legendary
+Quals,Forgetful,Reset a password during competition,Have you tried sticky notes?,Question mark,Scrubby
+Quals,Thor's Hammer,Banned,"You're an asshole, congratulations.",Mjolner,Villainous
+Quals,Still Got It,Qualified through 2013 AND 2014 Quals,"Yeah, you've still got it.",Flexing in the mirror,Legendary
+Quals,Consigliere,First team to solve Vito's capstone,A trusted advisor.,Horse head,Categories
+Quals,Patient Zero,First team to solve Gynophage's capstone,Start the epidemic...,Biohazard,Categories
+Quals,Be Aggressive,First team to solve Selir's capstone,In the valley of the shadow a Boo Berry attacked.,Barbarian,Categories
+Quals,Building a Still,First team to solve HJ's capstone,To slow down the time.,Still,Categories
+Quals,Eggs 101,First team to solve Duchess' capstone,Because how hard is it to poach a goddamn egg properly?,Eggs,Categories
+Quals,Air War,First team to solve Lightning's capstone,Fork-tailed devil.,P-38 Lightning,Categories
+Quals,Goonhood,First team to solve Sirgoon's capstone,At least you've got the smell down.,Liquor and walkie talkie,Categories
+Finals,FIRST BLOOD,First Score,"First solution, great job!","Baseball scoreboard, 1-0",
+Finals,Radio Free Defcon,Scored against the badge,,,
+Finals,Zero Hour,Score in the first hour,You're fast!,,

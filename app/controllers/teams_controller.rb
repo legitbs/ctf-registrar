@@ -23,6 +23,8 @@ class TeamsController < ApplicationController
       current_user.team_id = @team.id
       current_user.save!
 
+      cheevo('syn')
+
       analytics_flash '_trackEvent', 'Teams', 'create'
       redirect_to dashboard_path
     else

@@ -81,4 +81,21 @@ class ApplicationController < ActionController::Base
     flash[:analytics] ||= []
     flash[:analytics] << args
   end
+
+  def cheevo(name)
+    achievement = Achievement.where(name: name).first
+    award = current_team.awards.create(
+                                       achievement: achievement,
+                                       comment: "Unlocked by",
+                                       user: current_user
+                                       )
+
+    
+    if award.persisted?
+      flash[:cheevo] = award.id
+    end
+  rescue => e
+    Rails.logger.warn "Lost cheevo #{name.inspect} for user #{current_user.id} on team #{current_team.id} :( #{e.inspect}"
+    return
+  end
 end

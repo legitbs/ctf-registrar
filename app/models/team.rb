@@ -7,6 +7,8 @@ class Team < ActiveRecord::Base
   validates :name, presence: true, uniqueness: true, length: {minimum: 4, maximum: 60}
 
   has_many :solutions
+  has_many :awards
+  has_many :achievements, through: :awards
 
   def score
     solutions.joins(:challenge).sum('challenges.points')

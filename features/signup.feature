@@ -15,9 +15,11 @@ Scenario: Team creation
   When I complete the team creation form
   Then I should own a team
   And I should have a "Registered a team" email
+  And my team should have the "syn" achievement
 
 Scenario: Team joining
   Given I am signed in
   When I complete the team join form
   Then I should be on a team
   And I should have a "Joined a team" email
+  And my team should have the "syn-ack" achievement

@@ -1,6 +1,6 @@
 module ApplicationHelper
   def hacker_count
-    (Math::log(User.count) * 4).round + rand(4)
+    (Math::log(User.count.abs + 1) * 4).round + rand(4)
   end
 
   def teaminfo(team)
