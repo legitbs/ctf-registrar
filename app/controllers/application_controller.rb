@@ -92,7 +92,8 @@ class ApplicationController < ActionController::Base
 
     
     if award.persisted?
-      flash[:cheevo] = award.id
+      flash[:cheevo] ||= []
+      flash[:cheevo] << award.id
     end
   rescue => e
     Rails.logger.warn "Lost cheevo #{name.inspect} for user #{current_user.id} on team #{current_team.id} :( #{e.inspect}"

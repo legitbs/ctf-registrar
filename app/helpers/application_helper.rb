@@ -13,8 +13,10 @@ module ApplicationHelper
     ["con-#{controller.controller_name}", "act-#{controller.action_name}"].join ' '
   end
   
+  REJECT_FLASHES = %i{ analytics cheevo }
+
   def display_flash
-    flash.reject{|k,v| k == :analytics}
+    flash.reject{|k,v| REJECT_FLASHES.include? k }
   end
 
   def analytics_data
@@ -29,5 +31,22 @@ module ApplicationHelper
     accum.map do |i|
       "_gaq.push(#{i.to_json});"  
     end.join("\n")
+  end
+
+  def cheevos
+    return unless flash[:cheevo] && flash[:cheevo].first
+    
+    award = Award.find(flash[:cheevo].first)
+
+    image = award.achievement.image
+    name = award.achievement.name
+    
+    if flash[:cheevo].length > 1
+      image = 'multi'
+      name = "#{flash[:cheevo].length} different cheevos."
+    end
+
+    render(partial: 'shared/cheevo', 
+           locals: { image: image, name: name })
   end
 end
