@@ -48,5 +48,7 @@ module ApplicationHelper
 
     render(partial: 'shared/cheevo', 
            locals: { image: image, name: name })
+  rescue
+    ''
   end
 end
