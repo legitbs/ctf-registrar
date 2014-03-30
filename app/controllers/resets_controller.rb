@@ -37,7 +37,7 @@ class ResetsController < ApplicationController
     success = false
 
     @user.transaction do |u|
-      success = @reset.consume! && @user.save!
+      success = @reset.consume! && @user.save
     end
 
     if success
@@ -47,7 +47,7 @@ class ResetsController < ApplicationController
     end
 
     flash[:error] = "Failed to reset password."
-    
+    redirect_to root_path
   end
 
   private
