@@ -21,7 +21,7 @@ jQuery ($) ->
     context.scale 4, 4
     
     context.translate 222, 108
-    for width in [140..345] by 15
+    for width in [140..495] by 15
       context.translate (-width / 2), 6
       drawZigguratLevel context, width
       context.translate (width / 2), 0
