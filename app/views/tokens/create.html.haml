@@ -9,7 +9,9 @@
     time each in case you don't have your phone temporarily.
 
   %h2 Secret
-  .qr= image_tag url_for(action: 'show', id: @temporary_secret, format: 'png'), width: 319, height: 319
+  .qr
+    %img{src: url_for(action: 'show', id: @temporary_secret, format: 'png'), width: 319, height: 319}
+
 
   %h2 Fallback Codes
   %ol
