@@ -16,12 +16,11 @@ namespace :assets do
 end
 
 namespace :deploy do
-  task :staging => 'assets:precompile' do
+  task :staging do
     sh "git push heroku master"
-    sh "rm -rf public/assets"
   end
 
-  task :prod => 'assets:precompile' do
+  task :prod do
     sh "git push heroku-prod master"
   end
 end
