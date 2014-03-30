@@ -44,7 +44,7 @@ class TokensController < ApplicationController
           return render qrcode: 'lol', status: 400
         end
         payload = "otpauth://totp/legitbs%202014?secret=#{secret}"
-        render qrcode: payload
+        send_data Pngqr.encode(payload, scale: 9), disposition: :inline, type: 'image/png'
       end
     end
   end

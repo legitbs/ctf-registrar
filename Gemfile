@@ -38,7 +38,7 @@ gem 'jquery-rails'
 gem 'bcrypt-ruby', require: 'bcrypt'
 
 gem 'rotp'
-gem 'rqrcode-rails3'
+gem 'pngqr'
 gem 'mini_magick'
 
 gem 'rails_12factor'
