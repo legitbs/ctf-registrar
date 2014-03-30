@@ -24,7 +24,7 @@ class FallbackToken < ActiveRecord::Base
     self.key = slug
     @secret = slug
 
-    self.secret_digest = BCrypt::Password.create @secret
+    self.secret_digest = BCrypt::Password.create @secret, cost: 7
   end
 
   def slug
