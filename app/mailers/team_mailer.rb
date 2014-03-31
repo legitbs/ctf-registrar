@@ -4,7 +4,7 @@ class TeamMailer < ActionMailer::Base
   def new_team_email(team)
     @team = team
     @user = team.user
-    mail to: @user.email, subject: 'You registered a team for the 2013 CTF Quals'
+    mail to: @user.email, subject: 'You registered a team for the 2014 DEF CON CTF Quals'
   end
 
   def new_member_email(new_member)
@@ -12,6 +12,6 @@ class TeamMailer < ActionMailer::Base
     @team = @newbie.team
     @user = @team.user
 
-    mail to: @newbie.email, bcc: @user.email, subject: 'You joined a team for the 2013 CTF Quals'
+    mail to: @newbie.email, bcc: @user.email, subject: 'You joined a team for the 2014 DEF CON CTF Quals'
   end
 end
