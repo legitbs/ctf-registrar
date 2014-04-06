@@ -33,7 +33,8 @@ class Team < ActiveRecord::Base
       GROUP BY t.id
       ORDER BY 
         score DESC,
-        team_id ASC
+        MAX(s.created_at) DESC,
+        MAX(s.id) ASC
       LIMIT 25
     SQL
 
