@@ -94,8 +94,8 @@ ActiveRecord::Schema.define(version: 20140324231823) do
     t.datetime "updated_at"
   end
 
-  add_index "resets", ["key", "disavowed_at"], name: "index_resets_on_key_and_disavowed_at", using: :btree
-  add_index "resets", ["key"], name: "index_resets_on_key", using: :btree
+  add_index "resets", ["key", "disavowed_at", "consumed_at"], name: "index_resets_on_key_and_disavowed_at_and_consumed_at", using: :btree
+  add_index "resets", ["key"], name: "index_resets_on_key", unique: true, using: :btree
   add_index "resets", ["user_id"], name: "index_resets_on_user_id", using: :btree
 
   create_table "solutions", force: true do |t|

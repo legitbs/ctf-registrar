@@ -20,6 +20,12 @@ CtfRegistrar::Application.routes.draw do
   end
   resource :token
 
+  namespace :jarmandy do
+    root to: 'root#index'
+    resources :users
+    resources :teams
+  end
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

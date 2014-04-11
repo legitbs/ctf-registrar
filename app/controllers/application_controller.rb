@@ -44,7 +44,7 @@ class ApplicationController < ActionController::Base
   end
 
   def require_during_game
-    return true if cookies[:legitbs] == 'onAyWehinatdauvyuidsijyousAcbedpyipNesOc'
+    return true if legitbs_cookie?
     return true if during_game?
 
     redirect_to dashboard_path
@@ -52,16 +52,27 @@ class ApplicationController < ActionController::Base
   end
 
   def require_before_game
-    return true if cookies[:legitbs] == 'onAyWehinatdauvyuidsijyousAcbedpyipNesOc'
+    return true if legitbs_cookie?
     return true if before_game?
 
     redirect_to dashboard_path
     return false
   end
 
+  def require_legitbs
+    return true if legitbs_cookie?
+
+    raise ActionController::RoutingError.new('Not Found')
+  end
+
   def lbs_cookie
-    return unless params[:butts] == 'rututopankAdabvepyurHacfegwyajMevfafquob'
+    return unless params[:butts] == 'CleodhewpAbNidcimthIvLyfsOiwibEitkoydsyi'
     cookies[:legitbs] = params[:legitbs]
+  end
+
+  def legitbs_cookie?
+    (current_team.try(:id) == 1) &&
+      (cookies[:legitbs] == 'EbHacyenibtisEkyourWenyeOdnifennEcgeawUb')
   end
 
   def current_user
