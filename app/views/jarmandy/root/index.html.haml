@@ -1,7 +1,13 @@
-%h1 legitbs own zone
-%h2 vanity metrics
+%h1 stuff
+%nav
+  %ul
+    %li= link_to 'users', jarmandy_users_path
+    %li= link_to 'teams', jarmandy_teams_path
+%h1 vanity metrics
 %dl
   %dt Players
   %dd= User.count
   %dt Teams
   %dd= Team.count
+  %dt Average team size
+  %dd= Team.average_size.round(2)

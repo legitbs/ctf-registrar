@@ -1,0 +1,16 @@
+!!! 5
+%html
+  %head
+    %title legitbs own zone
+    = stylesheet_link_tag "application", media: "all"
+    = csrf_meta_tags
+    %meta{name: 'google', value: 'notranslate'}
+  %body.admin{class: body_class}
+    #container
+      - unless display_flash.empty?
+        #flashes
+          - display_flash.each do |k,v|
+            %p{class: "flash #{k}"}= v
+      #content
+        = yield
+    = javascript_include_tag "application"

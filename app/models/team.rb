@@ -49,4 +49,19 @@ class Team < ActiveRecord::Base
 
     return scoreboard_rows
   end
+
+  def self.average_size
+    connection.select_all(<<-SQL).to_a.first.values.first.to_f
+      SELECT 
+        avg(count) 
+      FROM (
+        SELECT 
+          COUNT(team_id) AS count 
+        FROM users 
+        WHERE 
+          team_id IS NOT NULL
+        GROUP BY team_id) 
+      AS c
+    SQL
+  end
 end

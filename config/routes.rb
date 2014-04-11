@@ -23,6 +23,7 @@ CtfRegistrar::Application.routes.draw do
   namespace :jarmandy do
     root to: 'root#index'
     resources :users
+    resources :teams
   end
 
   # The priority is based upon order of creation:
