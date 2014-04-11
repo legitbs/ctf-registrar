@@ -62,8 +62,7 @@ class ApplicationController < ActionController::Base
   def require_legitbs
     return true if legitbs_cookie?
 
-    render status: :not_found
-    return false
+    raise ActionController::RoutingError.new('Not Found')
   end
 
   def lbs_cookie
@@ -72,7 +71,7 @@ class ApplicationController < ActionController::Base
   end
 
   def legitbs_cookie?
-    (current_team.id == 1) &&
+    (current_team.try(:id) == 1) &&
       (cookies[:legitbs] == 'EbHacyenibtisEkyourWenyeOdnifennEcgeawUb')
   end
 
