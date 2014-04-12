@@ -1,0 +1,41 @@
+%h1 notices 
+=render partial: 'shared/jarmandy_nav'
+%nav
+  %ul
+    %li= link_to 'POST A NOTICE', new_jarmandy_notice_path
+    %li= link_to 'all notices', jarmandy_notices_path(only: 'everyone')
+    %li= link_to 'global notices', jarmandy_notices_path
+    %li.explanation
+      want notices for a team? go through their team admin page
+= form_tag({}, method: 'get') do
+  %p
+    = text_field_tag :q
+    = submit_tag 'search'
+    %span.explanation
+      searches notice text for all teams
+
+%h2= @source
+%p
+  = c = @notices.count
+  matches; first 
+  = [c, 25].min
+  below
+%table
+  %thead
+    %th id
+    %th body
+    %th posted at
+    %th team
+    %th activities
+  %tbody
+    - @notices.limit(25).includes(:team).each do |n|
+      %tr
+        %td= n.id
+        %td= n.body
+        %td= n.created_at
+        %td
+          - if n.team
+            = n.team.name
+          - else
+            %em global
+        %td do a thing
