@@ -1,2 +1,41 @@
-%pre=cookies.pretty_inspect
-%pre=session.pretty_inspect
+%h1 users
+=render partial: 'shared/jarmandy_nav'
+%p
+  = link_to 'recent signups', jarmandy_users_path
+  = link_to 'users not on teams', jarmandy_users_path(only: 'orphans')
+= form_tag({}, method: 'get') do
+  %p
+    = text_field_tag :q
+    = submit_tag 'search'
+    %span.explanation
+      searches user names and email
+%h2= @source
+%p
+  = c = @users.count
+  matches; first 
+  = [c, 25].min
+  below
+%table
+  %thead
+    %th id
+    %th username
+    %th email
+    %th
+      team
+    %th activities
+  %tbody
+    - @users.limit(25).includes(:team).each do |u|
+      %tr
+        %td= u.id
+        %td
+          = link_to u.username, jarmandy_user_path(u)
+        %td
+          = mail_to u.email, u.email, cc: 'team@legitbs.net', body: "legitimate business syndicate will never ask for your password, seriously don't ever put your password in an email"
+        %td
+          - if u.team
+            = link_to u.team.name, jarmandy_team_path(u.team)
+            %em (#{u.team_id})
+          - else
+            %em not on a team
+        %td
+          = link_to 'show user', jarmandy_user_path(u)

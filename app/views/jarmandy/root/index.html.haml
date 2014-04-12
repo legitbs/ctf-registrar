@@ -1,13 +1,14 @@
 %h1 stuff
-%nav
-  %ul
-    %li= link_to 'users', jarmandy_users_path
-    %li= link_to 'teams', jarmandy_teams_path
+=render partial: 'shared/jarmandy_nav'
 %h1 vanity metrics
-%dl
-  %dt Players
-  %dd= User.count
-  %dt Teams
-  %dd= Team.count
-  %dt Average team size
-  %dd= Team.average_size.round(2)
+%table
+  %tbody
+    %tr
+      %th Players
+      %td= User.count
+    %tr
+      %th Teams
+      %td= Team.count
+    %tr
+      %th Average team size
+      %td= Team.average_size.round(2)

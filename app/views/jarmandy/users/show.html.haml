@@ -1,0 +1,70 @@
+%h1
+  = @user.username
+  %em (#{@user.id})
+
+=render partial: 'shared/jarmandy_nav'
+
+%table.deflist
+  %tbody
+    %tr
+      %th email
+      %td= mail_to @user.email, @user.email, cc: 'team@legitbs.net', body: "legitimate business syndicate will never ask for your password, seriously don't ever put your password in an email"
+    %tr
+      %th team
+      %td
+        - if @user.team_id
+          = link_to @user.team.name, jarmandy_team_path(@user.team)
+          %em (#{@user.team_id})
+        - else
+          %em not on a team
+  
+    %tr
+      %th created at
+      %td= @user.created_at
+    %tr
+      %th updated at
+      %td= @user.updated_at
+
+    %tr
+      %th uses otp?
+      %td= !!@user.auth_secret
+    %tr
+      %th fallback tokens left
+      %td= @user.fallback_tokens.count
+
+    %tr
+      %th think they need a visa?
+      %td= !!@user.visa
+
+%h2 password resets
+%table
+  %thead
+    %tr
+      %th Created at
+      %th Current state
+  %tbody
+    - @user.resets.each do |r|
+      %tr
+        %td= r.created_at
+        - if r.disavowed_at
+          %td Disavowed
+        - elsif r.consumed_at
+          %td Used
+        - elsif r.expired?
+          %td Expired
+        - else
+          %td Available
+
+%h2 awards
+%table
+  %thead
+    %tr
+      %th name
+      %th description
+      %th awarded at
+  %tbody
+    - @user.awards.includes(:achievement).each do |a|
+      %tr
+        %td= a.achievement.name
+        %td= a.achievement.description
+        %td= a.created_at

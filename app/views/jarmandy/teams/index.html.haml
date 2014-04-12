@@ -1,0 +1,33 @@
+%h1 teams
+=render partial: 'shared/jarmandy_nav'
+%p
+  = link_to 'new teams', jarmandy_teams_path
+= form_tag({}, method: 'get') do
+  %p
+    = text_field_tag :q, params[:q]
+    = submit_tag 'search'
+    %span.explanation
+      searches team names
+
+%h2= @source
+%p
+  = c = @teams.count
+  matches; first
+  = [c, 25].min
+  below
+%table
+  %thead
+    %th id
+    %th name
+    %th owner
+    %th members
+    %th activities
+  %tbody
+    - @teams.limit(25).includes(:user).each do |t|
+      %tr
+        %td= t.id
+        %td= link_to t.name, jarmandy_team_path(t)
+        %td= link_to t.user.username, jarmandy_user_path(t.user)
+        %td= t.members.count
+        %td
+          = link_to 'show team', jarmandy_team_path(t)
