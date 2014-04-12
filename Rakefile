@@ -18,9 +18,11 @@ end
 namespace :deploy do
   task :staging do
     sh "git push heroku master"
+    sh "heroku run rake db:migrate --app ctf-registrar"
   end
 
   task :prod do
     sh "git push heroku-prod master"
+    sh "heroku run rake db:migrate --app ctf-registrar-2014-prod"
   end
 end
