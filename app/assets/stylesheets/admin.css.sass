@@ -3,3 +3,17 @@ body.admin
     width: 800px
     margin-left: auto
     margin-right: auto
+    th
+      @include exo
+      font-weight: 100
+      text-align: left
+      padding-right: 12px
+    nav ul
+      list-style-type: none
+      padding-left: 0
+      li
+        display: inline-block
+        a:link, a:visited
+          padding: 0 12px
+          text-decoration: none
+          border: 1px solid $light_purple
