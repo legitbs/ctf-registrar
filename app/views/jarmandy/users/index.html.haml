@@ -7,8 +7,13 @@
   %p
     = text_field_tag :q, params[:q]
     = submit_tag 'search'
-    %span.explanation
-      searches user names and email
+    %span.explanation.small
+      Searches user names and email. Use 
+      = link_to "vit:*", q: 'vit:*'
+      to do a prefix match.
+      = link_to 'Docs', 'http://www.postgresql.org/docs/9.3/interactive/datatype-textsearch.html#DATATYPE-TSQUERY'
+      or just nag Vito <3
+
 %h2= @source
 %p
   = c = @users.count
