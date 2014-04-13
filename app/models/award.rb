@@ -4,4 +4,6 @@ class Award < ActiveRecord::Base
   belongs_to :user
 
   attr_accessible *%i{ achievement team user comment }
+
+  validates :achievement, uniqueness: { scope: :team }
 end

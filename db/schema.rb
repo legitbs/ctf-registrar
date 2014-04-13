@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140413023157) do
+ActiveRecord::Schema.define(version: 20140413202849) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 20140413023157) do
   end
 
   add_index "awards", ["achievement_id"], name: "index_awards_on_achievement_id", using: :btree
-  add_index "awards", ["team_id", "achievement_id"], name: "index_awards_on_team_id_and_achievement_id", using: :btree
+  add_index "awards", ["team_id", "achievement_id"], name: "index_awards_on_team_id_and_achievement_id", unique: true, using: :btree
   add_index "awards", ["team_id"], name: "index_awards_on_team_id", using: :btree
   add_index "awards", ["user_id"], name: "index_awards_on_user_id", using: :btree
 
