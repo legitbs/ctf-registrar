@@ -10,6 +10,7 @@ class Team < ActiveRecord::Base
   has_many :awards
   has_many :achievements, through: :awards
   has_many :members, class_name: 'User'
+  has_many :notices
 
   def score
     solutions.joins(:challenge).sum('challenges.points')

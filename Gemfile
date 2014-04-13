@@ -18,6 +18,8 @@ gem 'high_voltage'
 gem 'rdiscount'
 gem 'dynamic_form'
 
+gem 'twitter'
+
 gem "recaptcha", "~> 0.3.6"
 
 gem 'validates_email_format_of'

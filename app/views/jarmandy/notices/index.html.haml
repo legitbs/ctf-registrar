@@ -3,13 +3,13 @@
 %nav
   %ul
     %li= link_to 'POST A NOTICE', new_jarmandy_notice_path
-    %li= link_to 'all notices', jarmandy_notices_path(only: 'everyone')
-    %li= link_to 'global notices', jarmandy_notices_path
+    %li= link_to 'all notices', jarmandy_notices_path
+    %li= link_to 'global notices', jarmandy_notices_path(only: 'everyone')
     %li.explanation
       want notices for a team? go through their team admin page
 = form_tag({}, method: 'get') do
   %p
-    = text_field_tag :q
+    = text_field_tag :q, params[:q]
     = submit_tag 'search'
     %span.explanation
       searches notice text for all teams
@@ -35,7 +35,8 @@
         %td= n.created_at
         %td
           - if n.team
-            = n.team.name
+            = link_to n.team.name, jarmandy_team_path(n.team)
           - else
             %em global
-        %td do a thing
+        %td
+          = link_to 'twitter', n.twitter if n.twitter

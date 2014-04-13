@@ -1,6 +1,6 @@
 class Notice < ActiveRecord::Base
   belongs_to :team
-  attr_accessible :body
+  attr_accessible :body, :team, :team_id, :twitter
 
   def self.for(team, since=nil)
     since ||= 0
@@ -16,5 +16,13 @@ class Notice < ActiveRecord::Base
 
   def as_json(*args)
     super only: %i{body created_at team_id}
+  end
+
+  def tweet
+    true
+  end
+
+  def post
+    true
   end
 end

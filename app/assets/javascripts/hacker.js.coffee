@@ -1,4 +1,6 @@
 jQuery ($) ->
+  return unless $('#layer-ziggurat').length > 0
+
   skinColor = ->
     # random brightness
     brightness = 0.25 + (0.75 * Math.random())

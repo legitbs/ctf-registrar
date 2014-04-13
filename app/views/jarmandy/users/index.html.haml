@@ -5,7 +5,7 @@
   = link_to 'users not on teams', jarmandy_users_path(only: 'orphans')
 = form_tag({}, method: 'get') do
   %p
-    = text_field_tag :q
+    = text_field_tag :q, params[:q]
     = submit_tag 'search'
     %span.explanation
       searches user names and email
