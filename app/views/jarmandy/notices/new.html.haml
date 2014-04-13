@@ -1,0 +1,44 @@
+%h1 
+  post a notice
+  - if team
+    to
+    %em= team.name
+  - else
+    to everyone
+
+= form_for @notice, url: jarmandy_notices_path do |f|
+  - if @notice.errors.any?
+    #error_explanation
+      %ul
+        %li
+          Errors prevented this from being saved. It wasn't tweeted
+          either.
+        - @notice.errors.full_messages.each do |msg|
+          %li= msg
+  #notice_body_carrier
+    = f.text_area :body, placeholder: 'notice text', id: 'notice_body'
+  - unless team
+    .checkbox#tweet
+      = f.check_box :tweet
+      = f.label :tweet
+      %span.explanation
+        %span#tweet_length> 0
+        \/140 characters
+  - else
+    .explanation
+      You can't send a notice to a team and also tweet it.
+      = f.hidden_field :team_id
+  .checkbox
+    = f.check_box :post
+    = f.label :post
+    - if team
+      only to
+      %em= team.name
+    - else
+      for everyone
+    %span.explanation
+      To change who you're posting to, just hack the URL, go through
+      a team's page (to post to them), or go through the notice list
+      (to post to everyone).
+  .submit
+    = f.submit 'Post'

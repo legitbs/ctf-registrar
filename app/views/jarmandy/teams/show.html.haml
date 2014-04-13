@@ -1,0 +1,60 @@
+%h1
+  = @team.name
+  %em (#{@team.id})
+
+=render partial: 'shared/jarmandy_nav'
+
+%table.deflist
+  %tbody
+    %tr
+      %th owner
+      %td= link_to @team.user.username, jarmandy_user_path(@team.user)
+
+    %tr
+      %th created at
+      %td= @team.created_at
+    %tr
+      %th updated at
+      %td= @team.updated_at
+
+    %tr
+      %th prequalified?
+      %td= !!@team.prequalified
+    %tr
+      %th playing for fun?
+      %td= !!@team.fun
+
+    %tr
+      %th notices
+      %td
+        = link_to @team.notices.count, jarmandy_notices_path(team_id: @team.id)
+        = link_to 'Post one', new_jarmandy_notice_path(team_id: @team.id)
+
+%h2
+  members
+  %em (#{@team.members.length})
+%table
+  %thead
+    %tr
+      %th username
+      %th activities
+  %tbody
+    - @team.members.each do |m|
+      %tr
+        %td= link_to m.username, jarmandy_user_path(m)
+        %td fart
+
+
+%h2 awards
+%table
+  %thead
+    %tr
+      %th name
+      %th description
+      %th awarded at
+  %tbody
+    - @team.awards.includes(:achievement).each do |a|
+      %tr
+        %td= a.achievement.name
+        %td= a.achievement.description
+        %td= a.created_at

@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   has_one :owned_team, class_name: 'Team'
   has_many :fallback_tokens
   has_many :resets
+  has_many :awards
   attr_accessible :username, :email, :email_confirmation
   attr_accessible :password, :password_confirmation
   attr_accessible :visa
@@ -21,7 +22,11 @@ class User < ActiveRecord::Base
   def participant?
     team && team.is_a?(Team) && team.persisted?
   end
-  
+
+  def self.search(text)
+    where  "to_tsvector('english', username || ' ' || email) @@ to_tsquery('english', ?)", text
+  end
+    
   private
   def owned_team_and_team_must_match
     return unless owner?

@@ -6,10 +6,7 @@ form
       display: inline-block
       font-weight: 400
       width: 12em
-    .explanation
-      font-size: 0.8em
-      color: $deemphasized
-    input
+    input, textarea
       width: 10em
       background-color: transparent
       border: 1px solid $light_purple
@@ -22,6 +19,10 @@ form
       &:active
         border: 1px solid white
         box-shadow: 0 1px 2px $light_purple
+    textarea
+      height: 8em
+      width: 22em
+      font-size: 0.75em
     &.checkbox
       label
         display: inline
@@ -44,6 +45,15 @@ form
           position: relative
           bottom: 4px
           left: 2px
+        &:disabled
+          border-color: $light_purple
+          background-color: $purple
+          &:after
+            content: '\2718'
+            color: red
+            position: relative
+            bottom: 4px
+            left: 2px
     .field_with_errors
       display: inline-block
       background-color: $error

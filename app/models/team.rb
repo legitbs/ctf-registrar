@@ -9,6 +9,8 @@ class Team < ActiveRecord::Base
   has_many :solutions
   has_many :awards
   has_many :achievements, through: :awards
+  has_many :members, class_name: 'User'
+  has_many :notices
 
   def score
     solutions.joins(:challenge).sum('challenges.points')
@@ -64,5 +66,9 @@ class Team < ActiveRecord::Base
         GROUP BY team_id) 
       AS c
     SQL
+  end
+
+  def self.search(text)
+    where "to_tsvector('english', name) @@ to_tsquery('english', ?)", text
   end
 end
