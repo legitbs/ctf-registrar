@@ -7,6 +7,7 @@ require File.expand_path('../config/application', __FILE__)
 CtfRegistrar::Application.load_tasks
 
 namespace :assets do
+  desc 'set thumbnails for cheevos'
   task :cheevos do
     FileList['app/assets/images/cheevos/*-32.png'].each do |f|
       bigger = f.gsub(/-32.png$/, '-64.png')
