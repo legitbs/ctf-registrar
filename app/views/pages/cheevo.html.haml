@@ -1,1 +1,4 @@
-- flash[:cheevo] = [1]
+- Dir.glob('app/assets/images/cheevos/*-64.png').map{|f| File.basename f}.each do |f|
+  %p
+    = image_tag "cheevos/#{f}"
+    = f
