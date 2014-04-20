@@ -1,8 +1,10 @@
 class ScoreboardController < ApplicationController
-  before_filter :require_on_team
+  before_filter :require_on_team, only: :answer
   before_filter :require_during_game, except: :index
 
   def index
+    return anonymous_index unless current_team
+
     @leaderboard = Team.for_scoreboard current_team
     @categories = Category.for_scoreboard
     @challenges = Challenge.for_scoreboard current_team
@@ -103,7 +105,19 @@ class ScoreboardController < ApplicationController
   end
 
   private
-  def solution
-    current_team
+  def anonymous_index
+    @leaderboard = Team.anonymous_scoreboard
+    @categories = Category.for_scoreboard
+    @challenges = Challenge.for_scoreboard Team.find 1
+
+    respond_to do |f|
+      f.html
+      f.json {
+        render json: {
+          leaderboard: @leaderboard,
+          challenges: @challenges
+        }
+      }
+    end
   end
 end

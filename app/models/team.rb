@@ -20,8 +20,8 @@ class Team < ActiveRecord::Base
     solutions.where(challenge_id: challenge.id).first_or_initialize
   end
 
-  def self.for_scoreboard(current_team)
-    scoreboard_rows = connection.select_all(<<-SQL).to_a
+  def self.anonymous_scoreboard
+    connection.select_all(<<-SQL).to_a
       SELECT
         t.id AS team_id,
         t.name AS team_name, 
@@ -39,6 +39,10 @@ class Team < ActiveRecord::Base
         MAX(s.id) ASC
       LIMIT 25
     SQL
+  end
+
+  def self.for_scoreboard(current_team)
+    scoreboard_rows = anonymous_scoreboard
 
     if (found = scoreboard_rows.detect { |r| r['team_id'] == current_team.id.to_s })
       found['current'] = true
