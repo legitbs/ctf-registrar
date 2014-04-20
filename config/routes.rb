@@ -25,6 +25,8 @@ CtfRegistrar::Application.routes.draw do
     resources :users
     resources :teams
     resources :notices
+    resources :challenges
+    resources :categories
   end
 
   # The priority is based upon order of creation:

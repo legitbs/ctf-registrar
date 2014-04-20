@@ -1,0 +1,25 @@
+%h1 challenges
+=render partial: 'shared/jarmandy_nav'
+%nav
+  %ul
+    %li= link_to 'add challenge', new_jarmandy_challenge_path
+
+%table
+  %thead
+    %th name
+    %th category
+    %th points
+    %th unlocked
+    %th solved
+    %th activities
+  %tbody
+    - @challenges.each do |c|
+      %tr
+        %td= c.name
+        %td= c.category.name
+        %td= c.points
+        %td= c.unlocked_at
+        %td= c.solved_at
+        %td
+          = link_to 'show', jarmandy_challenge_path(c)
+          = link_to 'edit', edit_jarmandy_challenge_path(c)

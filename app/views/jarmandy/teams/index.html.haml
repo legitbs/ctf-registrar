@@ -1,7 +1,8 @@
 %h1 teams
 =render partial: 'shared/jarmandy_nav'
-%p
-  = link_to 'new teams', jarmandy_teams_path
+%nav
+  %ul
+    %li= link_to 'new teams', jarmandy_teams_path
 = form_tag({}, method: 'get') do
   %p
     = text_field_tag :q, params[:q]

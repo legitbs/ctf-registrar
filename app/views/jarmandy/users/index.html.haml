@@ -1,8 +1,9 @@
 %h1 users
 =render partial: 'shared/jarmandy_nav'
-%p
-  = link_to 'recent signups', jarmandy_users_path
-  = link_to 'users not on teams', jarmandy_users_path(only: 'orphans')
+%nav
+  %ul
+    %li= link_to 'recent signups', jarmandy_users_path
+    %li= link_to 'users not on teams', jarmandy_users_path(only: 'orphans')
 = form_tag({}, method: 'get') do
   %p
     = text_field_tag :q, params[:q]

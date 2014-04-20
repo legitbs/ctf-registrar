@@ -62,11 +62,16 @@ class Challenge < ActiveRecord::Base
   end
 
   def answer
-    BCrypt::Password.new answer_digest
+    ''
+  end
+
+  def answer=(val)
+    return if val.blank?
+    self.answer_digest = BCrypt::Password.create val
   end
 
   def correct_answer?(candidate)
-    answer == candidate
+        BCrypt::Password.new(answer_digest) == candidate
   end
 
   def solve!

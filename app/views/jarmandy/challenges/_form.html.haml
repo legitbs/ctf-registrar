@@ -1,0 +1,35 @@
+- if challenge.errors.any?
+  #error_explanation
+    %ul
+      %li
+        Errors prevented this from being saved.
+      - challenge.errors.full_messages.each do |msg|
+        %li= msg
+%div
+  = f.label :name
+  = f.text_field :name
+%div#category_picker{data: {path: jarmandy_category_path('_.json')}}
+  = f.label :category_id, 'Category'
+  = f.select :category_id, @categories.map{|c| [c.name, c.id]}
+  %table{style: 'display: none'}
+    %thead
+      %tr
+        %th name
+        %th points
+    %tbody
+      %tr
+        %td {{name}}
+        %td {{points}}
+%div
+  = f.label :points
+  = f.text_field :points
+%div
+  = f.label :clue
+  = f.text_area :clue
+%div
+  = f.label :answer
+  = f.text_field :answer
+  %span.explanation
+    Don't want to change it? Leave it blank.
+%div
+  = f.submit

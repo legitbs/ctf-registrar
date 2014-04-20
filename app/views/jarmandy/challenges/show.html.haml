@@ -1,0 +1,47 @@
+%h1
+  = @challenge.name
+
+=render partial: 'shared/jarmandy_nav'
+
+%table.deflist
+  %tbody
+    %tr
+      %th category
+      %td= @challenge.category.name
+    %tr
+      %th points
+      %td= @challenge.points
+    %tr
+      %th clue
+      %td= @challenge.clue
+
+%h2 try to answer
+= form_tag({}, method: 'get') do
+  %p
+    = text_field_tag :try, params[:try]
+    = submit_tag 'try'
+    - if params[:try]
+      %span.explanation
+        = params[:try]
+        is
+        - if BCrypt::Password.new(@challenge.answer_digest) == params[:try]
+          correct
+        - else
+          not correct
+
+%h2 solutions
+%p
+  = c = @challenge.solutions.count
+  solutions; most recent
+  = [c, 25].min
+  below
+%table
+  %thead
+    %tr
+      %th team
+      %th time
+  %tbody
+    - @challenge.solutions.order(created_at: :desc).limit(25).each do |s|
+      %tr
+        %td= s.team.name
+        %td= s.created_at
