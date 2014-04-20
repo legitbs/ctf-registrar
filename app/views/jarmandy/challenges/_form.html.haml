@@ -10,7 +10,7 @@
   = f.text_field :name
 %div#category_picker{data: {path: jarmandy_category_path('_.json')}}
   = f.label :category_id, 'Category'
-  = f.select :category_id, @categories.map{|c| [c.name, c.id]}
+  = f.select :category_id, categories.map{|c| [c.name, c.id]}
   %table{style: 'display: none'}
     %thead
       %tr

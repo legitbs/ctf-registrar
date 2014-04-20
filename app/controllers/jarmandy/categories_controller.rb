@@ -1,6 +1,6 @@
 class Jarmandy::CategoriesController < Jarmandy::BaseController
   def index
-    @categories = Category.all
+    @categories = Category.all.order(order: :asc)
   end
 
   def show

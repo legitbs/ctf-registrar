@@ -61,6 +61,10 @@ class Challenge < ActiveRecord::Base
     self.class.where(id: id, unlocked_at: nil).update_all(unlocked_at: Time.now)
   end
 
+  def lock!
+    update_attribute :unlocked_at, nil
+  end
+
   def answer
     ''
   end

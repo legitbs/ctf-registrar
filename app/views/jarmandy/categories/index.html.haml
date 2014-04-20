@@ -1,0 +1,14 @@
+%h1 categories
+=render partial: 'shared/jarmandy_nav'
+
+%table
+  %thead
+    %th name
+    %th order
+    %th challenges
+  %tbody
+    - @categories.each do |c|
+      %tr
+        %td= c.name
+        %td= c.order
+        %td= c.challenges.count

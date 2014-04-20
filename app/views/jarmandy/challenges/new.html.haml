@@ -1,5 +1,5 @@
 %h1
   add a challenge
 
-= form_for @challenge, url: jarmandy_challenges_path do |f|
-  = render partial: 'form', locals: {f: f, challenge: @challenge}
+= form_for challenge, url: jarmandy_challenges_path do |f|
+  = render partial: 'form', locals: {f: f, challenge: challenge}

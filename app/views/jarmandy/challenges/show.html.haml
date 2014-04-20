@@ -1,19 +1,34 @@
 %h1
-  = @challenge.name
+  = challenge.name
 
 =render partial: 'shared/jarmandy_nav'
+
+%nav
+  %ul
+    %li= link_to 'edit', edit_jarmandy_challenge_path(challenge)
+    %li= link_to 'unlock', unlock_jarmandy_challenge_path(challenge), method: :post
+    %li= link_to 'lock', lock_jarmandy_challenge_path(challenge), method: :post
 
 %table.deflist
   %tbody
     %tr
       %th category
-      %td= @challenge.category.name
+      %td= challenge.category.name
     %tr
       %th points
-      %td= @challenge.points
+      %td= challenge.points
     %tr
       %th clue
-      %td= @challenge.clue
+      %td= challenge.clue
+    %tr
+      %th unlocked
+      %td= challenge.unlocked_at
+    %tr
+      %th first solved
+      %td= challenge.solved_at
+    %tr
+      %th bcrypt'd answer
+      %td= challenge.answer_digest
 
 %h2 try to answer
 = form_tag({}, method: 'get') do
@@ -24,14 +39,14 @@
       %span.explanation
         = params[:try]
         is
-        - if BCrypt::Password.new(@challenge.answer_digest) == params[:try]
+        - if BCrypt::Password.new(challenge.answer_digest) == params[:try]
           correct
         - else
           not correct
 
 %h2 solutions
 %p
-  = c = @challenge.solutions.count
+  = c = challenge.solutions.count
   solutions; most recent
   = [c, 25].min
   below
@@ -41,7 +56,7 @@
       %th team
       %th time
   %tbody
-    - @challenge.solutions.order(created_at: :desc).limit(25).each do |s|
+    - challenge.solutions.order(created_at: :desc).limit(25).each do |s|
       %tr
         %td= s.team.name
         %td= s.created_at

@@ -1,0 +1,5 @@
+%h1
+  edit challenge "#{challenge.name}"
+
+= form_for challenge, url: jarmandy_challenge_path(challenge) do |f|
+  = render partial: 'form', locals: {f: f, challenge: challenge}
