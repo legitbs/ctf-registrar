@@ -3,6 +3,7 @@
 %nav
   %ul
     %li= link_to 'new teams', jarmandy_teams_path
+    %li= link_to 'effed up teams', jarmandy_teams_path(only: 'weird')
 = form_tag({}, method: 'get') do
   %p
     = text_field_tag :q, params[:q]
@@ -28,7 +29,11 @@
       %tr
         %td= t.id
         %td= link_to t.name, jarmandy_team_path(t)
-        %td= link_to t.user.username, jarmandy_user_path(t.user)
+        %td
+          - if t.user.nil?
+            %em nobody, omg tell vito
+          - else
+            = link_to t.user.username, jarmandy_user_path(t.user)
         %td= t.members.count
         %td
           = link_to 'show team', jarmandy_team_path(t)
