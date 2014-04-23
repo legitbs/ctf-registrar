@@ -18,10 +18,15 @@ class TeamsController < ApplicationController
   def create
     @team = current_user.build_owned_team(team_params)
 
-    if @team.save
-      TeamMailer.new_team_email(@team).deliver
+    @team.transaction do
+      @team.save!
       current_user.team_id = @team.id
-      current_user.save!
+      current_user.save!      
+    end
+
+    if @team.persisted?
+      # email them or don't
+      TeamMailer.new_team_email(@team).deliver rescue nil
 
       cheevo('syn')
 
