@@ -59,4 +59,5 @@ end
 
 group :development, :test do
   gem 'pry-rails'
+  gem 'jazz_hands'
 end
