@@ -71,6 +71,9 @@ class ScoreboardController < ApplicationController
     @solution.transaction do
       hot = @challenge.solve!
       @solution.save
+
+      ChallengeCheevo.new(@solution, self).process!
+
       if hot
         logbuf << "OMG HOT"
         current_team.hot = true
@@ -101,7 +104,7 @@ class ScoreboardController < ApplicationController
       }
     end
 
-      Rails.logger.info logbuf.join(' ')
+    Rails.logger.info logbuf.join(' ')
   end
 
   private
