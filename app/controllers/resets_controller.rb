@@ -41,6 +41,7 @@ class ResetsController < ApplicationController
     end
 
     if success
+      cheevo 'Forgetful' if during_game?
       ResetMailer.did_reset_email(@reset).deliver
       flash[:success] = "Password reset successfully."
       return redirect_to dashboard_path
