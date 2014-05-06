@@ -26,6 +26,8 @@ class ScoreboardController < ApplicationController
 
     return redirect_to scoreboard_path if @challenge.locked?
 
+    cheevo "ack"
+
     respond_to do |f|
       f.html
       f.json { render json: {category: @challenge.category, challenge: @challenge, solution: @solution} }
