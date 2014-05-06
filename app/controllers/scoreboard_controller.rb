@@ -75,6 +75,7 @@ class ScoreboardController < ApplicationController
       ChallengeCheevo.new(@solution, self).process!
 
       if hot
+        cheevo "Pop it & unlock it"
         logbuf << "OMG HOT"
         current_team.hot = true
         current_team.save

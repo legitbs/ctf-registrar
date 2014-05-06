@@ -10,6 +10,9 @@ class ChallengeCheevo
     award_first_blood
     check_category_starting
     check_category_clearing
+    check_finish_line
+
+    check_elapsed_time
   end
 
   private
@@ -75,6 +78,34 @@ class ChallengeCheevo
            when "Sirgoon"
              "Goonhood"
            end
+  end
+
+  def check_finish_line
+    all_chals = Challenge.all
+    all_solns = team.solutions.all
+
+    all_solved = all_chals.length == all_solns.length
+
+    return unless all_solved
+
+    cheevo "Finish Line" if all_solved
+
+    ach = Achievement.where(name: 'Finish Line').first
+    return if ach.awards > 1
+
+    cheevo "Hashtag Winning"
+  end
+
+  def check_elapsed_time
+    previous = team.solutions.order(created_at: :desc).all[1]
+
+    delta = @solution.created_at - previous.created_at
+
+    if delta > 8.hours
+      cheevo "Drought"
+    elsif delta < 30.seconds
+      cheevo "Multithreading"
+    end
   end
 
   def user
