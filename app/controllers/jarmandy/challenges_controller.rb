@@ -5,6 +5,7 @@ class Jarmandy::ChallengesController < Jarmandy::BaseController
   end
 
   def new
+    @challenge = Challenge.new
   end
 
   def create
