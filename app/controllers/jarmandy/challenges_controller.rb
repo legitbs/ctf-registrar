@@ -10,6 +10,7 @@ class Jarmandy::ChallengesController < Jarmandy::BaseController
 
   def create
     p = params[:challenge]
+    @challenge = Challenge.new
     challenge.name = p[:name]
     challenge.category_id = p[:category_id]
     challenge.points = p[:points]
