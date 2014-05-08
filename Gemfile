@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 ruby '2.1.1'
 
-gem 'rails', '~> 4.0.0'
+gem 'rails', '~> 4.0.5'
 gem 'unicorn'
 gem 'protected_attributes'
 
