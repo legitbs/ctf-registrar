@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.1.1'
+ruby '2.1.2'
 
 gem 'rails', '~> 4.0.5'
 gem 'unicorn'
@@ -59,5 +59,5 @@ end
 
 group :development, :test do
   gem 'pry-rails'
-  gem 'jazz_hands'
+  # gem 'jazz_hands'
 end
