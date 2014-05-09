@@ -1,7 +1,10 @@
 class Jarmandy::ChallengesController < Jarmandy::BaseController
   helper_method :categories, :challenge
   def index
-    @challenges = Challenge.all.includes(:category)
+    @challenges = Challenge.
+      all.
+      joins(:category).
+      order('categories.order asc, challenges.points asc, challenges.name asc')
   end
 
   def new
