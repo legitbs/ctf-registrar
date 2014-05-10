@@ -1,6 +1,8 @@
 jQuery ($)->
   return unless $('.content#scoreboard').length == 1
 
+  $('#gameboard .tooltip').tooltipster()
+
   blink = (el)->
     el.animate
       'background-color': $.Color 'red'

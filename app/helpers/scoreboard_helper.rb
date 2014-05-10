@@ -11,6 +11,6 @@ module ScoreboardHelper
   end
 
   def challenge_id_for(single_challenge_row)
-    "#{single_challenge_row['category_name'].parameterize}-#{single_challenge_row['points']}"
+    "#{single_challenge_row['category_name'].parameterize}-#{single_challenge_row['id']}"
   end
 end

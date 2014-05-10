@@ -21,7 +21,8 @@ class Challenge < ActiveRecord::Base
           ON c.id = s.challenge_id and s.team_id=#{team.id.to_i}
       ORDER BY
         a.order ASC,
-        c.points ASC
+        c.points ASC,
+        c.name ASC
     SQL
 
     challenge_rows.group_by{|r| r['category_name']}.values
@@ -75,7 +76,7 @@ class Challenge < ActiveRecord::Base
   end
 
   def correct_answer?(candidate)
-        BCrypt::Password.new(answer_digest) == candidate
+    BCrypt::Password.new(answer_digest) == candidate
   end
 
   def solve!
