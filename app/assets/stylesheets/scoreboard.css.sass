@@ -156,3 +156,12 @@ body.con-scoreboard
               width: 15px
       #gameboard
         font-size: 0.8em
+
+  @media screen and (max-width: 24px) and (max-height: 32px)
+    .content#scoreboard
+      background-image: asset-url("flipoff.png")
+      position: absolute
+      top: 0
+      left: 0
+      > *
+        display: none
