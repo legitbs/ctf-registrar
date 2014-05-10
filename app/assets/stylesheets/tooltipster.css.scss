@@ -1,16 +1,16 @@
 /* This is the default Tooltipster theme (feel free to modify or duplicate and create multiple themes!): */
 .tooltipster-default {
 	border-radius: 5px; 
-	border: 2px solid #000;
-	background: #4c4c4c;
+	border: 2px solid $light_purple;
+	background: $purple;
 	color: #fff;
 }
 
 /* Use this next selector to style things like font-size and line-height: */
 .tooltipster-default .tooltipster-content {
-	font-family: Arial, sans-serif;
-	font-size: 14px;
-	line-height: 16px;
+	@include exo;
+	font-size: 18px;
+	line-height: 24px;
 	padding: 8px 10px;
 	overflow: hidden;
 }

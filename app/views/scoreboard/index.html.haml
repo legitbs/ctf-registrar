@@ -27,15 +27,15 @@
         %ul.challenges
           - row.each do |single|
             %li{:class => challenge_class_for(single), id: challenge_id_for(single)}
-              - if single['created_at']
-                %a= single['points']
-              - elsif single['unlocked_at']
+              - if single['created_at'] # solved
+                %a.tooltip{title: "#{single['challenge_name']}: #{challenge_class_for(single)}"}= single['points']
+              - elsif single['unlocked_at'] # unsolved
                 = link_to(single['points'], 
                   challenge_path(single['challenge_id']),
                   class: 'live_challenge tooltip',
                   :'data-challenge-id' => single['challenge_id'],
                   title: "#{single['challenge_name']}: #{challenge_class_for(single)}")
-              - else
+              - else # locked
                 %a= single['points']
     #challenge{style: 'display: none'}
       .bar

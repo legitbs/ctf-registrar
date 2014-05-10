@@ -1,7 +1,9 @@
 jQuery ($)->
   return unless $('.content#scoreboard').length == 1
 
-  $('#gameboard .tooltip').tooltipster()
+  $('#gameboard .tooltip').tooltipster
+    delay: 50
+    speed: 250
 
   blink = (el)->
     el.animate
