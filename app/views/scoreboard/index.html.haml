@@ -7,8 +7,8 @@
           %span.sender {{ sender }}
         %p.message {{ message }}
   #scorelist
-    #timer{:'data-remain' => (Time.at(game_window.last) - Time.now)}
-      {{ hours }}:{{ minutes }}:{{ seconds }} left
+    #timer{:'data-remain' => (Time.at(game_window.last) - Time.now), style: 'display: none'}
+      {{ hours }}:{{ minutes }}:{{ seconds }}
     #scoreboard_template{style: 'display: none'}
       {{#teams}}
       %li{class: '{{classname}}'}
@@ -36,7 +36,7 @@
                   :'data-challenge-id' => single['challenge_id'],
                   title: "#{single['challenge_name']}: #{challenge_class_for(single)}")
               - else # locked
-                %a= single['points']
+                %a.tooltip{title: 'locked'}= single['points']
     #challenge{style: 'display: none'}
       .bar
         %a#close_button{href: '#'} close

@@ -12,13 +12,28 @@ body.con-scoreboard
     #messages
       float: left
       width: 640px
-      height: 200px
+      height: 150px
       overflow: scroll
+      border-bottom: 1px solid $light_purple
+      ol
+        list-style-type: none
+        padding-left: 0
+        li
+          @include exo
+          font-weight: 100
+          margin-bottom: 4px
+          .metadata
+            font-weight: 500
+          p
+            margin: 0
     #scorelist
       float: right
       width: 280px
+      @include exo
       #timer
         text-align: right
+        font-weight: 100
+        font-size: 24px
       ul
         list-style-type: none
         padding-left: 0
@@ -27,6 +42,7 @@ body.con-scoreboard
           width: 280px
           padding: 0
           box-sizing: content-box
+          font-weight: 300
           span
             box-sizing: border-box
             display: inline-block
@@ -34,11 +50,15 @@ body.con-scoreboard
             padding: 0
             &.teamname
               width: 230px
-              font-weight: 300
-              font-size: smaller
             &.score
-              width: 40px
+              width: 46px
               text-align: right
+          &.current
+            background-color: $light_purple
+            color: $dark_purple
+            font-weight: 900
+            margin: 0 -10px
+            padding: 0 10px
     #gameboard
       float: left
       .category
@@ -89,3 +109,50 @@ body.con-scoreboard
         padding: 12px
         top: 220px
         box-shadow: black 0 1px 5px
+
+  @media screen and (min-width: 1200px)
+    #scene
+      display: block
+      #layer-altar, #layer-ziggurat
+        display: none
+    #content
+      width: 1200px
+    .content#scoreboard
+      #messages
+        width: 800px
+        height: 200px
+      #scorelist
+        width: 320px
+        #timer
+          width: 330px
+          font-size: 64px
+        ul li
+          width: 330px
+          span
+            font-size: 18px
+            &.teamname
+              width: 280px
+      #gameboard
+        font-size: 1.4em
+
+  @media screen and (max-width: 1000px)
+    #content
+      width: 800px
+    .content#scoreboard
+      #messages
+        width: 500px
+      #scorelist
+        width: 200px
+        font-size: 12px
+        ul li
+          width: auto
+          &.current
+            margin: 0
+            padding: 0
+          span
+            &.teamname
+              width: 180px
+            &.score
+              width: 15px
+      #gameboard
+        font-size: 0.8em

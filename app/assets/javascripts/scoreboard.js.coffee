@@ -22,6 +22,7 @@ jQuery ($)->
       @timer.html('')
       @update(@timer.data 'remain')
       @startPoll()
+      @timer.show()
     startPoll: ->
       window.setTimeout(@poll(), 0)
     update: (@remain)->
