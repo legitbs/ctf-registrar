@@ -10,22 +10,15 @@
       Good job getting that challenge before everyone else. 
       Pick a new hot challenge!
   #gameboard
-    %table
-      - @categories.each do
-        %col
-      %thead
-        %tr
-          - @categories.each do |cat|
-            %th{id: "category_#{cat[0]}"}= cat[1]
-      %tbody
-        - @challenges.each do |row|
-          %tr
-            - row.each do |single|
-              %td{:class => choice_class_for(single), id: challenge_id_for(single)}
-                - if single['class'] == 'burning'
-                  = link_to(single['points'], 
-                    pick_path(single['challenge_id']),
-                    method: 'post',
-                    title: "#{single['challenge_name']}: #{challenge_class_for(single)}")
-                - else
-                  %a= single['points']
+    - @challenges.each do |row|
+      .category
+        %h1= row.first['category_name']
+        %ul.challenges
+          - row.each do |single|
+            %li{:class => choice_class_for(single), id: challenge_id_for(single)}
+              - if single['class'] == 'burning'
+                = link_to(single['points'], 
+                  pick_path(single['challenge_id']),
+                  method: 'post')
+              - else
+                %a= single['points']
