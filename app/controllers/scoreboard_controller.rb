@@ -79,8 +79,7 @@ class ScoreboardController < ApplicationController
       if hot
         cheevo "Pop it & unlock it"
         logbuf << "OMG HOT"
-        current_team.hot = true
-        current_team.save
+        current_team.reload.update_attribute :hot, true
 
         n = Notice.new
         n.body = "#{current_team.name} solved #{@challenge.name} [#{@challenge.category.name}] for #{@challenge.points} points."
