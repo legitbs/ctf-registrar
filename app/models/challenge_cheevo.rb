@@ -99,6 +99,8 @@ class ChallengeCheevo
   def check_elapsed_time
     previous = team.solutions.order(created_at: :desc).all[1]
 
+    return if previous.nil?
+
     delta = @solution.created_at - previous.created_at
 
     if delta > 8.hours
