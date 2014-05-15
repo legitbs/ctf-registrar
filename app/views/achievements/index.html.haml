@@ -1,0 +1,9 @@
+%h1 Achievements
+
+%table
+  %tbody
+    - @awards.each do |a|
+      %tr
+        %th= image_tag "cheevos/#{a.achievement.image}-64.png"
+        %th= a.achievement.name
+        %td= a.achievement.description

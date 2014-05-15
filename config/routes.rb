@@ -19,6 +19,7 @@ CtfRegistrar::Application.routes.draw do
     post 'token', on: :new
   end
   resource :token
+  resources :achievements
 
   namespace :jarmandy do
     root to: 'root#index'
