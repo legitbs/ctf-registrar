@@ -1,6 +1,6 @@
 class ScoreboardController < ApplicationController
-  before_filter :require_on_team, only: :answer
-  before_filter :require_during_game, except: :index
+  before_filter :require_on_team, except: :index
+  before_filter :require_during_or_after_game
 
   def index
     return anonymous_index unless current_team
@@ -13,8 +13,7 @@ class ScoreboardController < ApplicationController
       f.html
       f.json {
         render json: {
-          leaderboard: @leaderboard,
-          challenges: @challenges
+          leaderboard: @leaderboard
         }
       }
     end
@@ -119,8 +118,7 @@ class ScoreboardController < ApplicationController
       f.html
       f.json {
         render json: {
-          leaderboard: @leaderboard,
-          challenges: @challenges
+          leaderboard: @leaderboard
         }
       }
     end

@@ -51,6 +51,14 @@ class ApplicationController < ActionController::Base
     return false
   end
 
+  def require_during_or_after_game
+    return true if legitbs_cookie?
+    return false unless before_game?
+
+    redirect_to dashboard_path
+    return false
+  end
+
   def require_before_game
     return true if legitbs_cookie?
     return true if before_game?
