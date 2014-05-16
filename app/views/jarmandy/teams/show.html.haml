@@ -42,7 +42,12 @@
     - @team.members.each do |m|
       %tr
         %td= link_to m.username, jarmandy_user_path(m)
-        %td fart
+        %td
+          = link_to 'show', jarmandy_user_path(m)
+          - if m != @team.user
+            = link_to 'kick', kick_jarmandy_team_path(player_id: m.id), method: :post
+          - else
+            %s{title: "can't kick the captain"} kick
 
 
 %h2 awards

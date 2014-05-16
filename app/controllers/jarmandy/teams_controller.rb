@@ -15,4 +15,23 @@ class Jarmandy::TeamsController < Jarmandy::BaseController
   def show
     @team = Team.find params[:id]
   end
+
+  def kick
+    @team = Team.find params[:id]
+    @player = @team.members.find params[:player_id]
+    if @player.nil?
+      flash[:error] = "that player isn't on this team"
+      return redirect_to jarmandy_team_path @team.id
+    end
+
+    if @player == @team.user
+      flash[:error] = "don't kick th ecaptain, ass"
+      return redirect_to jarmandy_team_path @team.id
+    end
+
+    @player.update_attribute :team_id, nil
+    
+    flash[:success] = "gone"
+    redirect_to jarmandy_team_path @team.id
+  end
 end

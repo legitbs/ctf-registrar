@@ -27,7 +27,11 @@ CtfRegistrar::Application.routes.draw do
   namespace :jarmandy do
     root to: 'root#index'
     resources :users
-    resources :teams
+    resources :teams do
+      member do
+        post :kick
+      end
+    end
     resources :notices
     resources :challenges do
       member do
