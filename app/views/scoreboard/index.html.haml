@@ -44,7 +44,7 @@
           {{ category.name }}: {{ challenge.points }} points
       .content
         %h1.name {{ challenge.name }}
-        %p.clue {{ challenge.clue }}
+        %p.clue {{{ challenge.clue }}}
         =form_tag(challenge_path(":challenge_id"), method: :post, id: 'challenge_form') do
           %input#answer{type: 'text', placeholder: 'answer', name: 'answer'}
           %input{type: 'submit'}

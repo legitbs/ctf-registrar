@@ -2,7 +2,7 @@
   .challenge
     %h1.name= @challenge.name
     - unless @challenge.locked?
-      %p.clue= @challenge.clue
+      %p.clue= simple_format @challenge.clue
       = form_for @solution, url: challenge_path(@challenge.id), method: :post do |f|
         = f.text_field :answer, placeholder: 'answer'
         = f.submit 'Solve it'
