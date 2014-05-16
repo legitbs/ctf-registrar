@@ -33,6 +33,8 @@ class Team < ActiveRecord::Base
           ON s.team_id = t.id
         INNER JOIN challenges AS c 
           ON s.challenge_id = c.id
+      WHERE
+        team_id != 1
       GROUP BY t.id
       ORDER BY 
         score DESC,
