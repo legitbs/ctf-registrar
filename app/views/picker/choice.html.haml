@@ -9,6 +9,7 @@
     %p
       Good job getting that challenge before everyone else. 
       Pick a new hot challenge!
+    %p= link_to 'Category info', categories_path
   #gameboard
     - @challenges.each do |row|
       .category
