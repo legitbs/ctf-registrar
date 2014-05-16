@@ -57,7 +57,10 @@ class ScoreboardController < ApplicationController
     if sticky_situation || !correct
       Rails.logger.info logbuf.join(' ')
       return respond_to do |f|
-        f.html { redirect_to challenge_path(@challenge.id) }
+        f.html do
+          flash[:error] = "Wrong answer."
+          redirect_to challenge_path(@challenge.id)
+        end
         f.json { render status: 400, json: {
           error: "Now that's what I call a sticky situation.",
           wrong: !correct,
