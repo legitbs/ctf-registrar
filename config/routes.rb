@@ -7,6 +7,8 @@ CtfRegistrar::Application.routes.draw do
 
   get "notices", to: 'notices#index', as: :notices, format: :json
 
+  get "notices/tyaHaumBeidOlNasvephAnsayWraryucBiegcov5", to: 'notices#streamer', format: :json
+
   get 'dashboard', to: 'dashboard#index', as: :dashboard
 
   root to: 'homepage#index', id: 'home'
