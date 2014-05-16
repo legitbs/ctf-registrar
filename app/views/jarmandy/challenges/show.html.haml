@@ -8,6 +8,10 @@
     %li= link_to 'edit', edit_jarmandy_challenge_path(challenge)
     %li= link_to 'unlock', unlock_jarmandy_challenge_path(challenge), method: :post
     %li= link_to 'lock', lock_jarmandy_challenge_path(challenge), method: :post
+    - if challenge.solved_at.nil?
+      %li= link_to 'solve', solve_jarmandy_challenge_path(challenge), method: :post
+    - else
+      %li= link_to 'un-solve', unsolve_jarmandy_challenge_path(challenge), method: :post
 
 %table.deflist
   %tbody

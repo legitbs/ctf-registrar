@@ -61,6 +61,16 @@ class Jarmandy::ChallengesController < Jarmandy::BaseController
     redirect_to jarmandy_challenge_path challenge
   end
 
+  def solve
+    challenge.solve!
+    redirect_to jarmandy_challenge_path challenge
+  end
+
+  def unsolve
+    challenge.update_attribute(solved_at: nil)
+    redirect_to jarmandy_challenge_path challenge
+  end
+
   private
   def categories
     @categories ||= Category.all.order(order: :asc)

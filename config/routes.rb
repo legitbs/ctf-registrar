@@ -30,6 +30,8 @@ CtfRegistrar::Application.routes.draw do
       member do
         post :unlock
         post :lock
+        post :solve
+        post :unsolve
       end
     end
     resources :categories
