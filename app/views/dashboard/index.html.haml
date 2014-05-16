@@ -8,6 +8,9 @@
           = link_to 'Set up Two Factor Authentication', new_token_path
       %li
         = link_to 'View password resets', resets_path
+      - if current_user.participant?
+        %li
+          = link_to 'Achievements', achievements_path
   .team
     - if current_user.participant?
       = render partial: 'participant' 

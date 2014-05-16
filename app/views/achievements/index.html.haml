@@ -1,8 +1,8 @@
-%h1 Achievements
+%h1 Achievements for #{@team.name}
 
 %table
   %tbody
-    - @awards.each do |a|
+    - awards.each do |a|
       %tr
         %th= image_tag "cheevos/#{a.achievement.image}-64.png"
         %th= a.achievement.name
