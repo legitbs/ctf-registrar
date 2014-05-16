@@ -50,6 +50,11 @@ body.con-scoreboard, body.con-picker
             padding: 0
             &.teamname
               width: 230px
+              a:link, a:visited
+                color: $light_purple
+                text-decoration: none
+              a:hover
+                color: white
             &.score
               width: 46px
               text-align: right
@@ -59,6 +64,11 @@ body.con-scoreboard, body.con-picker
             font-weight: 900
             margin: 0 -10px
             padding: 0 10px
+            span.teamname
+              a:link, a:visited
+                color: $dark_purple
+              a:hover
+                color: black
     #gameboard
       float: left
       .category
