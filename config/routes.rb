@@ -4,7 +4,7 @@ CtfRegistrar::Application.routes.draw do
   post "scoreboard/challenge/:id", to: 'scoreboard#answer'
   get "scoreboard/choice", to: 'picker#choice', as: :choice
   post "scoreboard/choice/:id", to: 'picker#pick', as: :pick
-  get "scoreboard/categories", to: 'high_voltage/pages#show', id: 'categories'
+  get "scoreboard/categories", to: 'high_voltage/pages#show', id: 'categories', as: :categories
 
   get "notices", to: 'notices#index', as: :notices, format: :json
 
