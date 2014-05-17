@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_filter :require_logged_out
-  before_filter :require_before_game
+  before_filter :require_before_or_during_game
   
   def new
     @user = User.new
