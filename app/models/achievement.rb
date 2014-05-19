@@ -2,6 +2,7 @@ require 'csv'
 
 class Achievement < ActiveRecord::Base
   belongs_to :trophy
+  has_many :awards
 
   attr_accessible *%i{ name condition description image trophy }
 
