@@ -1,6 +1,7 @@
 class TeamsController < ApplicationController
   before_filter :require_logged_in
   before_filter :require_team, except: [:new, :create]
+  before_filter :require_before_or_during_game
 
   # GET /teams/new
   # GET /teams/new.json
