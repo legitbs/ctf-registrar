@@ -1,7 +1,7 @@
 %h1= name
 %p Score: #{score}
 %p Captain: #{user.username}
-%h2 challenges solved
+%h2 Challenges solved
 %table
   %thead
     %tr
@@ -9,16 +9,34 @@
       %th name
       %th solved at
   %tbody
-  - solutions.order(created_at: :asc).joins(:challenge).each do |s|
+    - solutions.order(created_at: :asc).joins(:challenge).each do |s|
+      %tr
+        %td
+          = s.challenge.category.name
+          = s.challenge.points
+        %td
+          %a{href: "../challenges/#{s.challenge.id}.html"}
+            = s.challenge.name
+        %td= s.created_at
+%h2 Achievements
+%table
+  %thead
     %tr
-      %td
-        = s.challenge.category.name
-        = s.challenge.points
-      %td
-        %a{href: "../challenges/#{s.challenge.id}.html"}
-          = s.challenge.name
-      %td= s.created_at
-%h2 members
+      %th name
+      %th description
+      %th condition
+      %th unlocked at
+      %th unlocked by
+  %tbody
+    - awards.order(created_at: :asc).joins(:achievement).each do |a|
+      %tr
+        %td
+          %a{href: "../achievements/#{a.achievement.id}.html"}= a.achievement.name
+        %td= a.achievement.description
+        %td= a.achievement.condition
+        %td= a.created_at
+        %td= a.user.username rescue ''
+%h2 Members
 %ol
   - members.order(created_at: :asc).each do |m|
     %li= m.username

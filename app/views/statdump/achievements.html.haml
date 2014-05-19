@@ -1,0 +1,13 @@
+%h1 Achievements
+%table
+  %thead
+    %tr
+      %th name
+      %th number awarded
+  %tbody
+    - find_each do |a|
+      - next if a.awards.count == 0
+      %tr
+        %td
+          %a{href: "achievements/#{a.id}.html"}= a.name
+        %td= a.awards.count

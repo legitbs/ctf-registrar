@@ -1,0 +1,21 @@
+%h1= name
+%p
+  Awarded to #{awards.count} teams, 
+  or #{(100 * awards.count.to_f / Team.count.to_f).round(2)}% of registered teams. 
+  Part of the #{trophy.name} trophy.
+  
+%p= description
+%p= condition
+
+%h2 Teams
+%table
+  %thead
+    %tr
+      %th team name
+      %th unlocked at
+  %tbody
+    - awards.order(created_at: :asc).joins(:team).each do |a|
+      %tr
+        %td
+          %a{href: "../teams/#{a.team.id}.html"}= a.team.name
+        %td= a.created_at

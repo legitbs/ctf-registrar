@@ -1,5 +1,5 @@
 %h1 all challenges
-- Category.order(order: :asc).each do |cat|
+- Category.order(order: :asc).find_each do |cat|
   %h2= cat.name
   %ul
     - cat.challenges.order(points: :asc, name: :asc).each do |ch|
