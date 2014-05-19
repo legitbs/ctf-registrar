@@ -31,6 +31,9 @@ jQuery ($)->
       f = ->
         now = new Date()
         diff = (now - @remainPeg) / 1000
+        if diff > @remain
+          @timer.html "Game Over"
+          return
         seconds = @remain - diff
         minutes = seconds / 60
         hours = minutes / 60
