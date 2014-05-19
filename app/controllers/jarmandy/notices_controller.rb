@@ -10,7 +10,7 @@ class Jarmandy::NoticesController < Jarmandy::BaseController
       @source = 'Global notices'
     elsif team
       @notices = scope.where(team_id: params[:team_id])
-      @source = "Notices for #{team}"
+      @source = "Notices for #{team.name}"
     else
       @source = 'Notices for anyone and everyone'
       @notices = scope
