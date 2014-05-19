@@ -1,0 +1,24 @@
+%h1= name
+%p Score: #{score}
+%p Captain: #{user.username}
+%h2 challenges solved
+%table
+  %thead
+    %tr
+      %th category & points
+      %th name
+      %th solved at
+  %tbody
+  - solutions.order(created_at: :asc).joins(:challenge).each do |s|
+    %tr
+      %td
+        = s.challenge.category.name
+        = s.challenge.points
+      %td
+        %a{href: "../challenges/#{s.challenge.id}.html"}
+          = s.challenge.name
+      %td= s.created_at
+%h2 members
+%ol
+  - members.order(created_at: :asc).each do |m|
+    %li= m.username

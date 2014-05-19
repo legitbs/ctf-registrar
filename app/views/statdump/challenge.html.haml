@@ -1,0 +1,14 @@
+%h1= name
+%p
+  = category.name
+  = points
+%p= clue
+%p
+  bcrypted answer:
+  = answer_digest
+%h2 solving teams:
+%p solved by #{solutions.count} teams
+%ol
+  - solutions.order(created_at: :asc).joins(:team).each do |s|
+    %li
+      %a{href: "../teams/#{s.team.id}.html"}= s.team.name
