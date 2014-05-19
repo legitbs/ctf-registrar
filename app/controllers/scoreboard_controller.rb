@@ -1,6 +1,7 @@
 class ScoreboardController < ApplicationController
   before_filter :require_on_team, except: :index
-  before_filter :require_during_or_after_game
+  before_filter :require_during_game, except: :index
+  before_filter :require_during_or_after_game, only: :index
 
   def index
     return anonymous_index unless current_team
