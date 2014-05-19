@@ -1,5 +1,5 @@
 class AchievementsController < ApplicationController
-  before_filter :require_on_team
+  before_filter :require_on_team, only: :index
   helper_method :awards
 
   def index
