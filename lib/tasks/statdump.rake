@@ -20,8 +20,13 @@ namespace :statdump do
       end
       print "\r"
     end
+
     File.open("tmp/statdump/teams.html", 'w') do |f|
       f.write Statdump.instance.render 'teams', tn
+    end
+
+    File.open("tmp/statdump/scoreboard.html", 'w') do |f|
+      f.write Statdump.instance.render 'scoreboard', Team.entire_scoreboard
     end
   end
 

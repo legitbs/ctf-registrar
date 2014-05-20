@@ -1,0 +1,16 @@
+%h1 Final Scoreboard
+%p 
+  Only the #{length} teams that scored. Can't find your team? Do better :P
+%table
+  %thead
+    %tr
+      %th Team name
+      %th Score
+      %th Time of Last Solution
+  %tbody
+    - each do |r|
+      %tr
+        %td
+          %a{href: "teams/#{r['team_id']}.html"}= r['team_name']
+        %td= r['score']
+        %td= r['last_solution_time']
