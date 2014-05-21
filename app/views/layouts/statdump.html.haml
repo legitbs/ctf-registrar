@@ -2,8 +2,7 @@
 %html
   %head
     %title def con quals data dump
-    %meta{name: 'google', value: 'notranslate'}
-  %body.admin
-    #container
-      #content
-        = yield
+    %link{rel: 'stylesheet', href: 'statdump.css', media: 'all'}
+  %body
+    #content
+      = yield
