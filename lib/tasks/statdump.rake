@@ -1,9 +1,9 @@
 namespace :statdump do
   require 'statdump'
 
-  SUBDIRS = %w{teams challenges achievements}
+  SUBDIRS = %w{teams challenges achievements images}
 
-  task :all => %i{ index stylesheet } + SUBDIRS
+  task :all => %i{ index stylesheet json } + SUBDIRS
 
   task :subdirs => SUBDIRS.map{ |d| "tmp/statdump/#{d}" }
 
@@ -20,6 +20,39 @@ namespace :statdump do
 
     SUBDIRS.each do |sd|
       FileUtils.cp 'tmp/statdump/statdump.css', "tmp/statdump/#{sd}/statdump.css"
+    end
+  end
+
+  task :images => [:env, :subdirs] do
+    FileUtils.cp Dir.glob(Rails.root.join "app/assets/images/cheevos/*-64.png"), "tmp/statdump/images/"
+  end
+
+  task :json => [:env] do
+    File.open("tmp/statdump/teams.json", 'w') do |f|
+      f.write Team.all.to_json
+    end
+    File.open("tmp/statdump/users.json", 'w') do |f|
+      f.write User.all.to_json only: %i{ id username team_id created_at }
+    end
+    File.open("tmp/statdump/challenges.json", 'w') do |f|
+      f.write Challenge.all.to_json
+    end
+    File.open("tmp/statdump/categories.json", 'w') do |f|
+      f.write Category.all.to_json except: %i{ updated_at }
+    end
+    File.open("tmp/statdump/solutions.json", 'w') do |f|
+      f.write Solution.all.to_json except: %i{ updated_at }
+    end
+    File.open("tmp/statdump/achievements.json", 'w') do |f|
+      f.write Achievement.all.to_json except: :trophy_id, include: { 
+        trophy: { only: :name }
+      }
+    end
+    File.open("tmp/statdump/awards.json", 'w') do |f|
+      f.write Award.all.to_json except: %i{ comment updated_at }
+    end
+    File.open("tmp/statdump/notices.json", 'w') do |f|
+      f.write Notice.all.to_json except: %i{ updated_at }
     end
   end
 
@@ -57,6 +90,7 @@ namespace :statdump do
 
   task :achievements => :env do
     Achievement.find_each do |a|
+      next if a.awards.count == 0
       File.open("tmp/statdump/achievements/#{a.id}.html", 'w') do |f|
         f.write Statdump.instance.render 'achievement', a
       end
