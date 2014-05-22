@@ -3,6 +3,10 @@ namespace :statdump do
 
   SUBDIRS = %w{teams challenges achievements images}
 
+  task :package => :all do
+    sh "tar jcf tmp/statdump_2014.tar.bz2 tmp/statdump"
+  end
+
   task :all => %i{ index stylesheet json } + SUBDIRS
 
   task :subdirs => SUBDIRS.map{ |d| "tmp/statdump/#{d}" }
