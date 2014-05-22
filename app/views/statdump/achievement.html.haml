@@ -1,4 +1,6 @@
 %h1= name
+%img{src: "../images/#{image}-64.png"}
+
 %p
   Awarded to #{awards.count} teams, 
   or #{(100 * awards.count.to_f / Team.count.to_f).round(2)}% of registered teams. 

@@ -10,3 +10,10 @@
       %a{href: 'scoreboard.html'} Scoreboard
     %li
       %a{href: 'teams.html'} Teams
+%h2 But that's not all!
+%p
+  We have JSON dumps of most of our tables for your processing pleasure.
+%ul
+  - %w{achievements awards categories challenges notices teams users}.sort.each do |j|
+    %li
+      %a{href: "#{j}.json"}= j

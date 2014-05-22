@@ -2,12 +2,17 @@
 %table
   %thead
     %tr
+      %th icon
       %th name
+      %th trophy
       %th number awarded
   %tbody
     - find_each do |a|
       - next if a.awards.count == 0
       %tr
         %td
+          %img{src: "images/#{a.image}-64.png"}
+        %td
           %a{href: "achievements/#{a.id}.html"}= a.name
+        %td= a.trophy.name
         %td= a.awards.count
