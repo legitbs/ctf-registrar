@@ -33,7 +33,7 @@ namespace :statdump do
 
   task :json => [:env] do
     File.open("tmp/statdump/teams.json", 'w') do |f|
-      f.write Team.all.to_json
+      f.write Team.all.to_json except: %i{ password_digest prequalified }
     end
     File.open("tmp/statdump/users.json", 'w') do |f|
       f.write User.all.to_json only: %i{ id username team_id created_at }
