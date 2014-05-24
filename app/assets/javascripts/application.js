@@ -11,6 +11,6 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
+//= require marked
 //= require jquery_ujs
 //= require_tree .
-

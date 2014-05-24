@@ -36,7 +36,8 @@ class ApplicationController < ActionController::Base
   end
 
   def during_game?
-    game_window.cover? Time.now
+	true	
+#    game_window.cover? Time.now
   end
 
   def before_game?
