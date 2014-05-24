@@ -151,7 +151,7 @@ jQuery ($)->
       dataType: 'json'
       method: 'get'
       success: (data)->
-        data.challenge.clue = data.challenge.clue.replace /\n/g, '<br />'
+        data.challenge.clue = marked(data.challenge.clue)
         new_data = Mustache.render(template, data)
         challengeWindow.html(new_data)
         $('#challenge_form').attr('action', url)

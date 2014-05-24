@@ -45,6 +45,8 @@ gem 'mini_magick'
 
 gem 'rails_12factor'
 
+gem 'marked-rails'
+
 group :development do
   gem 'rails-erd'
   gem 'binding_of_caller'

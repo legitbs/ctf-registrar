@@ -128,6 +128,7 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    marked-rails (0.2.10.1)
     memoizable (0.4.2)
       thread_safe (~> 0.3, >= 0.3.1)
     metaclass (0.0.4)
@@ -269,6 +270,7 @@ DEPENDENCIES
   high_voltage
   immigrant
   jquery-rails
+  marked-rails
   mini_magick
   mocha (~> 0.13.3)
   newrelic_rpm
