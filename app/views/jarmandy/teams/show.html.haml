@@ -37,11 +37,13 @@
   %thead
     %tr
       %th username
+      %th visa?
       %th activities
   %tbody
     - @team.members.each do |m|
       %tr
         %td= link_to m.username, jarmandy_user_path(m)
+        %td= m.visa
         %td
           = link_to 'show', jarmandy_user_path(m)
           - if m != @team.user

@@ -6,6 +6,9 @@ class Jarmandy::TeamsController < Jarmandy::BaseController
     elsif params[:only] == 'weird'
       @source = 'Weird teams'
       @teams = Team.where(user_id: nil).order(created_at: :desc)
+    elsif params[:only] == 'scoreboard'
+      @source = 'Good teams, no particular order'
+      @teams = Team.where(id: Team.anonymous_scoreboard.map{ |row| row['team_id'] })
     else
       @source = 'New teams'
       @teams = Team.order(created_at: :desc)

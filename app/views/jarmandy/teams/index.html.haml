@@ -4,6 +4,7 @@
   %ul
     %li= link_to 'new teams', jarmandy_teams_path
     %li= link_to 'effed up teams', jarmandy_teams_path(only: 'weird')
+    %li= link_to 'top 25 teams', jarmandy_teams_path(only: 'scoreboard')
 = form_tag({}, method: 'get') do
   %p
     = text_field_tag :q, params[:q]
