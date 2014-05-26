@@ -7,12 +7,20 @@
       %th trophy
       %th number awarded
   %tbody
-    - find_each do |a|
-      - next if a.awards.count == 0
-      %tr
-        %td
-          %img{src: "images/#{a.image}-64.png"}
-        %td
-          %a{href: "achievements/#{a.id}.html"}= a.name
-        %td= a.trophy.name
-        %td= a.awards.count
+    - Trophy.all.map(&:achievements).flatten.each do |a|
+      - if a.awards.count == 0
+        %tr
+          %td
+            %img{src: "images/xbox-64.png"}
+          %td
+            %em secret
+          %td= a.trophy.name
+          %td= a.awards.count
+      - else
+        %tr
+          %td
+            %img{src: "images/#{a.image}-64.png"}
+          %td
+            %a{href: "achievements/#{a.id}.html"}= a.name
+          %td= a.trophy.name
+          %td= a.awards.count
