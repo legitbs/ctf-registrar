@@ -3,10 +3,14 @@ namespace :statdump do
 
   SUBDIRS = %w{teams challenges achievements images}
 
+  desc 'Package statdump in a bz2ball'
   task :package => :all do
     sh "tar jcf tmp/statdump_2014.tar.bz2 tmp/statdump"
+    puts "HEY YO sign it with:"
+    puts "gpg -u vito@legitbs.net -b tmp/statdump_2014.tar.bz2"
   end
 
+  desc 'Dump all the public stats'
   task :all => %i{ index stylesheet json } + SUBDIRS
 
   task :subdirs => SUBDIRS.map{ |d| "tmp/statdump/#{d}" }
@@ -15,6 +19,7 @@ namespace :statdump do
     File.open("tmp/statdump/index.html", 'w') do |f|
       f.write Statdump.instance.render 'index', nil
     end
+    FileUtils.cp 'app/views/statdump/README.txt', 'tmp/statdump/'
   end
 
   task :stylesheet => [:env, :subdirs] do
