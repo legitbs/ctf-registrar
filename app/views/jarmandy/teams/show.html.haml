@@ -7,9 +7,11 @@
 %table.deflist
   %tbody
     %tr
-      %th owner
-      %td= link_to @team.user.username, jarmandy_user_path(@team.user)
-
+      %th captain
+      %td
+        = link_to @team.user.username, jarmandy_user_path(@team.user)
+        \/
+        = mail_to @team.user.email, @team.user.email, cc: 'team@legitbs.net'
     %tr
       %th created at
       %td= @team.created_at
