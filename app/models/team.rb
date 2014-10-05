@@ -8,6 +8,7 @@ class Team < ActiveRecord::Base
   validates :user, presence: true
 
   has_many :solutions
+  has_many :challenges, through: :solutions
   has_many :awards
   has_many :achievements, through: :awards
   has_many :members, class_name: 'User'
