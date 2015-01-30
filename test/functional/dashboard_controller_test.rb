@@ -15,8 +15,8 @@ class DashboardControllerTest < ActionController::TestCase
 
         should respond_with :success
         should 'render team create and join forms' do
-          assert_tag tag: 'form', attributes: {id: 'new_team'}
-          assert_tag tag: 'form', attributes: {id: 'new_membership'}
+          assert_select 'form#new_team'
+          assert_select 'form#new_membership'
         end
       end
     end

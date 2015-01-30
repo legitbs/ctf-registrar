@@ -6,7 +6,7 @@ class MembershipsController < ApplicationController
 
     current_user.team = m.team
     if m.team && current_user.save
-      TeamMailer.new_member_email(current_user).deliver
+      TeamMailer.new_member_email(current_user).deliver_later
       cheevo 'syn-ack'
       analytics_flash '_trackEvent', 'Teams', 'join'
       flash[:notice] = "Joined the team \"#{m.team.name}\"."

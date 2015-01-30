@@ -10,7 +10,7 @@ class UsersControllerTest < ActionController::TestCase
       post :create, user: @user_attrs
 
       assert_template 'new'
-      assert_tag tag: 'form', attributes: {method: 'post'}
+      assert_select 'form[method=post]'
     end
 
     context 'on successful create' do
