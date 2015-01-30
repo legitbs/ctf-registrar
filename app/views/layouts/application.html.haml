@@ -6,12 +6,6 @@
     = csrf_meta_tags
     = yield :head
   %body{class: body_class, data: {hacker_count: hacker_count}}
-    #scene
-      #layer-vines.layer
-      #layer-altar.layer
-      #layer-ziggurat.layer
-        %canvas#ziggurat{width: 2048, height: 2048}
-        %canvas#hacker{width: 64, height: 64}
     #container
       - unless display_flash.empty?
         #flashes
