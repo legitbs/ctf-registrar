@@ -6,6 +6,7 @@
     = csrf_meta_tags
     = yield :head
   %body{class: body_class, data: {hacker_count: hacker_count}}
+    #canvas
     #container
       - unless display_flash.empty?
         #flashes
