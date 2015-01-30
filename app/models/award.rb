@@ -5,5 +5,5 @@ class Award < ActiveRecord::Base
 
   attr_accessible *%i{ achievement team user comment }
 
-  validates :achievement, uniqueness: { scope: :team }
+  validates :achievement, uniqueness: { scope: :team }, presence: true
 end

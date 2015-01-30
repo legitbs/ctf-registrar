@@ -112,6 +112,7 @@ class ApplicationController < ActionController::Base
 
   def cheevo(name)
     achievement = Achievement.where(name: name).first
+    return unless achievement
     award = current_team.awards.create(
                                        achievement: achievement,
                                        comment: "Unlocked by",
