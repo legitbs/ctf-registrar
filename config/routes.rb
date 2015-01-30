@@ -1,4 +1,4 @@
-CtfRegistrar::Application.routes.draw do
+Rails.application.routes.draw do
   get "scoreboard", to: 'scoreboard#index', as: :scoreboard
   get "scoreboard/challenge/:id", to: 'scoreboard#challenge', as: :challenge
   post "scoreboard/challenge/:id", to: 'scoreboard#answer'
@@ -8,7 +8,7 @@ CtfRegistrar::Application.routes.draw do
 
   get "notices", to: 'notices#index', as: :notices, format: :json
 
-  get "notices/tyaHaumBeidOlNasvephAnsayWraryucBiegcov5", to: 'notices#streamer', format: :json
+  get "notices/streamer", to: 'notices#streamer', format: :json
 
   get 'dashboard', to: 'dashboard#index', as: :dashboard
 
