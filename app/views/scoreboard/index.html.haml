@@ -37,7 +37,6 @@
                   title: "#{single['challenge_name']}: #{challenge_class_for(single)}")
               - else # locked
                 %a.tooltip{title: 'locked'}= single['points']
-    %p= link_to 'What are these categories?', categories_path
     #challenge{style: 'display: none'}
       .bar
         %a#close_button{href: '#'} close

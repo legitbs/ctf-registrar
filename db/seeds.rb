@@ -12,12 +12,10 @@ categories = {}
 
 [
  "Baby's First",
- "Gynophage",
- "Vito Genovese",
- "HJ",
- "Sirgoon",
- "Selir",
- "Jymbolya",
+ "Shellcode",
+ "Reversing",
+ "Exploitation",
+ "Programming"
 ].each_with_index do |name, order|
   categories[name] = Category.where(name: name, order: order).first_or_create
 end
@@ -26,14 +24,16 @@ p = proc{|a| BCrypt::Password.create a}
 
 fart = "$2a$10$/tcBNuCm5oCxpuzfUeq8luZFS/Rk.IoOVsyVzcdSX7.uXxcI4Dlj6"
 
-categories['Vito Genovese'].challenges.create(name: 'asdf',
-                                              points: 1,
-                                              clue: 'asdf',
-                                              answer_digest: fart)
-categories['Vito Genovese'].challenges.create(name: 'asdf2',
-                                              points: 2,
-                                              clue: 'asdf2',
-                                              answer_digest: fart)
+categories.each do |n, cat|
+  cat.challenges.create(name: cat.name+'1',
+                        points: 1,
+                        clue: 'asdf',
+                        answer_digest: fart)
+  cat.challenges.create(name: cat.name+'2',
+                        points: 2,
+                        clue: 'asdf',
+                        answer_digest: fart)
+end
 
 if Rails.env.development?
   [
@@ -52,4 +52,4 @@ if Rails.env.development?
   end
 end
 
-Notice.where(body: "Welcome to the 2014 DEF CON Capture the Flag Qualification round, brought to you by Legitimate Business Syndicate", created_at: ApplicationController.allocate.game_window).first_or_create
+Notice.where(body: "Welcome to the 2015 DEF CON Capture the Flag Qualification round, brought to you by Legitimate Business Syndicate", created_at: ApplicationController.allocate.game_window).first_or_create
