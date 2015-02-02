@@ -25,29 +25,21 @@ p = proc{|a| BCrypt::Password.create a}
 fart = "$2a$10$/tcBNuCm5oCxpuzfUeq8luZFS/Rk.IoOVsyVzcdSX7.uXxcI4Dlj6"
 
 categories.each do |n, cat|
-  cat.challenges.create(name: cat.name+'1',
-                        points: 1,
-                        clue: 'asdf',
-                        answer_digest: fart)
-  cat.challenges.create(name: cat.name+'2',
-                        points: 2,
-                        clue: 'asdf',
-                        answer_digest: fart)
+  cat.challenges.where(name: cat.name+' 1',
+                       points: 1,
+                       clue: 'asdf',
+                       answer_digest: fart).first_or_create
+  cat.challenges.where(name: cat.name+' 2',
+                       points: 2,
+                       clue: 'asdf',
+                       answer_digest: fart).first_or_create
 end
 
 if Rails.env.development?
-  [
-   "The Plaid Parliament of Pwning",
-   "The European Nopsled Team"
-  ].each do |t|
-    Team.where(name: t).first or Team.create(name: t, password: 'asdf', password_confirmation: 'asdf')
-  end
-  
   23.times do |t|
-    Team.where(name: "Team #[t}").first or Team.create(name: "Team #{t}", password: 'asdf', password_confirmation: 'asdf')
-  end
-  
-  Team.all.order('created_at asc').each do |t|
+    u = User.where(username: "User-#{t}").first || User.create(username: "User-#{t}", password: 'asdf', password_confirmation: 'asdf', email: "butt-#{t}@invalid.invalid")
+raise u.errors.inspect if u.id.nil?
+    t = Team.where(name: "Team #[t}").first || Team.create(name: "Team #{t}", password: 'asdf', password_confirmation: 'asdf', user: u)
     t.solutions.where(challenge: Challenge.first).first_or_create
   end
 end
