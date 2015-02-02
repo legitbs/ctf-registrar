@@ -44,8 +44,12 @@
           {{ category.name }}: {{ challenge.points }} points
       .content
         %h1.name {{ challenge.name }}
-        %p.clue {{{ challenge.clue }}}
+        .clue {{{ challenge.clue }}}
         =form_tag(challenge_path(":challenge_id"), method: :post, id: 'challenge_form') do
-          %input#answer{type: 'text', placeholder: 'answer', name: 'answer'}
-          %input{type: 'submit'}
+          %div
+            %label{for: 'answer'} The flag is:
+            %input#answer{type: 'text', name: 'answer'}
+          %div
+            %label
+            %input{type: 'submit'}
   %br.clear
