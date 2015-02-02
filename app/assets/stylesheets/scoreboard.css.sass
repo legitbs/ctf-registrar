@@ -14,23 +14,23 @@ body.con-scoreboard, body.con-picker
       width: 640px
       height: 150px
       overflow: scroll
-      border-bottom: 1px solid $light_purple
+      border-bottom: 1px solid $amber
       ol
         list-style-type: none
         padding-left: 0
         li
-          @include michroma
           font-weight: 100
           margin-bottom: 4px
           .metadata
+            @include michroma
             font-weight: 500
           p
             margin: 0
     #scorelist
       float: right
       width: 280px
-      @include michroma
       #timer
+        @include mono
         text-align: right
         font-weight: 100
         font-size: 24px
@@ -51,16 +51,17 @@ body.con-scoreboard, body.con-picker
             &.teamname
               width: 230px
               a:link, a:visited
-                color: $light_purple
+                color: $amber
                 text-decoration: none
               a:hover
-                color: white
+                color: $light_amber
             &.score
+              @include mono
               width: 46px
               text-align: right
           &.current
-            background-color: $light_purple
-            color: $dark_purple
+            background-color: $crimson
+            color: $darker_crimson
             font-weight: 900
             margin: 0 -10px
             padding: 0 10px
@@ -99,14 +100,14 @@ body.con-scoreboard, body.con-picker
               border: 1px solid white
               text-decoration: none
               text-shadow: black 0 1px 5px
-              @include block-color($purple, $light_purple)
+              @include block-color($darker_crimson, $crimson)
               &:link, &:visited
-                border-color: $light_purple
+                border-color: $crimson
                 background-color: black
             &.solved a
               @include block-color(green, lime)
             &.locked a
-              @include block-color($dark_purple, $purple)
+              @include block-color($darker_crimson, $dark_crimson)
             &.burning a
               @include block-color($dark_red, yellow)
               background-image: asset-url("burning-love.gif")
@@ -114,11 +115,11 @@ body.con-scoreboard, body.con-picker
               background-position: bottom center
       #challenge
         position: absolute
-        border: 1px solid $light_purple
-        background: $dark_purple
+        border: 1px solid $light_amber
+        background: $dark_crimson
         padding: 12px
         top: 220px
-        box-shadow: black 0 1px 5px
+        box-shadow: $darker_crimson 0 4px 100px 25px
       p 
         margin: 0
         padding: 0
