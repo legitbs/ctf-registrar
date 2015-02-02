@@ -1,6 +1,5 @@
 class Team < ActiveRecord::Base
   belongs_to :user
-  attr_accessible :name, :password, :fun, :password_confirmation
 
   has_secure_password
 

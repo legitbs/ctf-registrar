@@ -4,9 +4,6 @@ class User < ActiveRecord::Base
   has_many :fallback_tokens
   has_many :resets
   has_many :awards
-  attr_accessible :username, :email, :email_confirmation
-  attr_accessible :password, :password_confirmation
-  attr_accessible :visa
 
   has_secure_password
 

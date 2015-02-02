@@ -1,6 +1,5 @@
 class Notice < ActiveRecord::Base
   belongs_to :team
-  attr_accessible :body, :team, :team_id, :twitter
 
   def self.for(team, since=nil)
     since ||= 0
