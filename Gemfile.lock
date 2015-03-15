@@ -178,8 +178,6 @@ GEM
     fog-xml (0.1.1)
       fog-core
       nokogiri (~> 1.5, >= 1.5.11)
-    foreigner (1.7.2)
-      activerecord (>= 3.0.0)
     formatador (0.2.5)
     gherkin (2.12.2)
       multi_json (~> 1.3)
@@ -204,8 +202,6 @@ GEM
       http_parser.rb (~> 0.6.0)
     http_parser.rb (0.6.0)
     i18n (0.7.0)
-    immigrant (0.3.1)
-      activerecord (>= 3.0)
     inflecto (0.0.2)
     ipaddress (0.8.0)
     jquery-rails (4.0.3)
@@ -359,10 +355,8 @@ DEPENDENCIES
   database_cleaner
   dynamic_form
   factory_girl_rails
-  foreigner
   haml-rails
   high_voltage
-  immigrant
   jquery-rails
   marked-rails
   mini_magick
