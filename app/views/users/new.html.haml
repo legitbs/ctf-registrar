@@ -4,7 +4,7 @@
 
     Choose a unique username, pick a secure password,
     and give us an email address for official game communications.
-  
+
   = form_for @user, url: user_path do |f|
     .errors
       = f.error_messages
@@ -39,7 +39,7 @@
       .explanation
         We welcome competitors from all over the world, but acknowledge
         that a trip to the US might require extra paperwork.
-        = link_to 'http://travel.state.gov/visa/visa_1750.html' do
+        = link_to 'http://travel.state.gov/content/visas/english.html' do
           The US Department of State has more information about visa requirements.
     %div
       %label &nbsp;
