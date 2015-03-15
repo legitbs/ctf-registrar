@@ -22,6 +22,7 @@ class ScoreboardController < ApplicationController
 
   def challenge
     @challenge = Challenge.find params[:id]
+    @title = @challenge.name
     @solution = current_team.solution_for @challenge
 
     return redirect_to scoreboard_path if @challenge.locked?
@@ -30,7 +31,13 @@ class ScoreboardController < ApplicationController
 
     respond_to do |f|
       f.html
-      f.json { render json: {category: @challenge.category, challenge: @challenge, solution: @solution} }
+      f.json do
+        render json: {
+                 category: @challenge.category,
+                 challenge: @challenge,
+                 solution: @solution
+               }
+      end
     end
   end
 
@@ -42,8 +49,8 @@ class ScoreboardController < ApplicationController
     correct = @challenge.correct_answer?(params[:answer]) rescue false
 
     logbuf = [
-      "ANSWER ATTEMPT", 
-      current_team.inspect, 
+      "ANSWER ATTEMPT",
+      current_team.inspect,
       current_user.inspect,
       @challenge.inspect,
       params[:answer]
@@ -99,7 +106,7 @@ class ScoreboardController < ApplicationController
       f.html {
         return redirect_to choice_path if hot
         return redirect_to scoreboard_path
-      }  
+      }
 
       f.json {
         render status: 200, json: {

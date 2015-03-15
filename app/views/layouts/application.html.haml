@@ -1,7 +1,10 @@
 !!! 5
 %html
   %head
-    %title DEF CON CTF 2014
+    - if defined? @title
+      %title #{@title} | DEF CON CTF
+    - else
+      %title DEF CON CTF 2015
     = stylesheet_link_tag "application", media: "all"
     = csrf_meta_tags
     - %w{32x32 16x16}.each do |s|

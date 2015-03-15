@@ -1,6 +1,7 @@
 class DashboardController < ApplicationController
   before_filter :require_logged_in
   before_filter :lbs_cookie
+  before_filter { @title = 'Dashboard' }
 
   helper_method :team
 
