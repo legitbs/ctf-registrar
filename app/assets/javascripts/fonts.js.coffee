@@ -1,5 +1,5 @@
 jQuery ($)->
-  config =
+  window.WebFontConfig =
     google:
       families: [
         'Rambla:400,700,400italic,700italic:latin,latin-ext',
