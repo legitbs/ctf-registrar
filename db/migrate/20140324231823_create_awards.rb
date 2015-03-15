@@ -8,7 +8,7 @@ class CreateAwards < ActiveRecord::Migration
 
       t.timestamps
 
-      t.index %i{ team_id achievement_id }
+      t.index %i{ team_id achievement_id }, unique: true
       t.foreign_key :teams
       t.foreign_key :users
       t.foreign_key :achievements
