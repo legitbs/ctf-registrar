@@ -30,7 +30,7 @@
               - if single['created_at'] # solved
                 %a.tooltip{title: "#{single['challenge_name']}: #{challenge_class_for(single)}"}= single['points']
               - elsif single['unlocked_at'] # unsolved
-                = link_to(single['points'], 
+                = link_to(single['points'],
                   challenge_path(single['challenge_id']),
                   class: 'live_challenge tooltip',
                   :'data-challenge-id' => single['challenge_id'],
@@ -41,7 +41,10 @@
       .bar
         %a#close_button{href: '#'} close
         %h3.meta
-          {{ category.name }}: {{ challenge.points }} points
+          {{ category.name }}:
+          {{ challenge.points }}
+          {{#challenge.plural_points}} points {{/challenge.plural_points}}
+          {{^challenge.plural_points}} point {{/challenge.plural_points}}
       .content
         %h1.name {{ challenge.name }}
         .clue {{{ challenge.clue }}}

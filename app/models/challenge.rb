@@ -47,7 +47,14 @@ class Challenge < ActiveRecord::Base
   end
 
   def as_json(args)
-    super args.merge except: %i{answer_digest created_at updated_at}
+    super args.merge(
+            except: %i{answer_digest created_at updated_at},
+            methods: :plural_points
+          )
+  end
+
+  def plural_points
+    points > 1
   end
 
   def locked?
