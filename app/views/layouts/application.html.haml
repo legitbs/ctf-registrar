@@ -4,6 +4,8 @@
     %title DEF CON CTF 2014
     = stylesheet_link_tag "application", media: "all"
     = csrf_meta_tags
+    - %w{32x32 16x16}.each do |s|
+      = favicon_link_tag "favicon-#{s}.png", sizes: s
     = yield :head
   %body{class: body_class, data: {hacker_count: hacker_count}}
     #canvas
