@@ -12,6 +12,11 @@
     = yield :head
   %body{class: body_class, data: {hacker_count: hacker_count}}
     #canvas
+      %canvas#actualScene{width: 420, height: 672}
+      %canvas#countdown{width: 640, height: 480}
+      #timer{data:{remain: (Time.at(game_window.last) - Time.now)}, style: 'display: none'}
+      = image_tag '2015-canvas.png', id: 'canvas-template', width: 640, height: 480
+
     #container
       - unless display_flash.empty?
         #flashes
