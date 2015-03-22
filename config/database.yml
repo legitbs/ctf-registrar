@@ -17,9 +17,8 @@ test: &test
   encoding: unicode
 
 production:
-  adapter: postgresql
-  database: ctf_registrar_production
-  encoding: unicode
+  url: <%= ENV['DATABASE_URL'] %>
+  pool: <%= ENV['DB_POOL'] || ENV['MAX_THREADS'] + 2 || 7 %>
 
 cucumber:
   <<: *test
