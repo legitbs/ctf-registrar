@@ -1,2 +1,2 @@
-web: bundle exec puma -C ./config/unicorn.rb
+web: bundle exec puma -C ./config/puma.rb
 console: bundle exec rails console
