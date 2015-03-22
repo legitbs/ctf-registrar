@@ -32,9 +32,6 @@ jQuery ($)->
       @image = @imageJq[0]
     makeTexture: ->
       @texture = new TTT.Texture @canvas
-      @texture.anisotropy = 16
-      @texture.repeat.set 1, 1
-      @texture.mapFilter = @texture.magFilter = TTT.LinearFilter
     poll: ->
       f = ->
         @clear()
@@ -236,7 +233,7 @@ jQuery ($)->
       @screenTexture = window.canvasDown.texture
       @screenTexture.anisotropy = 16
       @screenTexture.repeat.set 1, 1
-      @screenTexture.mapFilter = @screenTexture.magFilter = TTT.LinearFilter
+      @screenTexture.minFilter = @screenTexture.mapFilter = @screenTexture.magFilter = TTT.LinearFilter
       @screenTexture.mapping = TTT.UVMapping
       @screenTexture.wrapS = @screenTexture.wrapT = TTT.ClampToEdgeWrapping
       mesh.material =
