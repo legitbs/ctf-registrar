@@ -36,7 +36,7 @@ gem 'unf'
 gem 'jquery-rails'
 
 # To use ActiveModel has_secure_password
-gem 'bcrypt-ruby', require: 'bcrypt'
+gem 'bcrypt'
 
 gem 'rotp'
 gem 'pngqr'
