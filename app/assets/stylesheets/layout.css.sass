@@ -5,14 +5,15 @@ body
   #container
     position: relative
     top: 0
-    left: 0
-    right: 0
     bottom: 0
+    width: 960px
+    margin: 1em auto
   #content
+    float: right
     width: $content-width
     @include background(linear-gradient($darker_amber 0%, $dark_amber 100%) fixed no-repeat)
     color: $light_amber
-    margin: 2em 2em 2em auto
+    margin: 0
     padding: 1em
     border: 1px solid $light_amber
     h1:first-child
@@ -25,7 +26,7 @@ body
     position: absolute
     width: 900px - $content-width
     height: 1024px * ((900px - $content-width) / 640px)
-    right: $content-width + 100px
+    float: left
   #flashes
     position: absolute
     top: 20px
@@ -46,3 +47,21 @@ body
         margin-bottom: 0
       &.alert, &.error
         background-color: $error
+
+  @media screen and (max-width: 960px)
+    #container
+      left: 0
+      right: 0
+      width: 100%
+      #canvas
+        display: none
+      #content
+        margin-right: 1em
+
+  @media screen and (max-width: 520px)
+    #container
+      #content
+        float: none
+        position: relative
+        left: 0
+        right: 0

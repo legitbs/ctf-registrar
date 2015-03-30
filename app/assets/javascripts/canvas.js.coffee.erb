@@ -107,7 +107,7 @@ jQuery ($)->
       @computer = new Computer @scene, @room.displayPanel()
     renderLoop: ()->
       return if @paused
-      @updater.render()
+      @updater.render() unless @canvas.clientWidth == 0
       requestAnimationFrame @renderLoop.bind(this)
     toggle: ()->
       if @paused
