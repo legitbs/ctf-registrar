@@ -11,13 +11,14 @@
       = favicon_link_tag "favicon-#{s}.png", sizes: s
     = yield :head
   %body{class: body_class, data: {hacker_count: hacker_count}}
-    #canvas
-      %canvas#actualScene{width: 420, height: 672}
-      %canvas#countdown{width: 160, height: 120}
-      #timer{data:{remain: (Time.at(game_window.last) - Time.now)}, style: 'display: none'}
-      = image_tag '2015-canvas-160x120.png', id: 'canvas-template', width: 160, height: 120
-
     #container
+      #canvas
+        %canvas#actualScene{width: 420, height: 672}
+        #stop-button stop animation
+        %canvas#countdown{width: 160, height: 120}
+        #timer{data:{remain: (Time.at(game_window.last) - Time.now)}, style: 'display: none'}
+        = image_tag '2015-canvas-160x120.png', id: 'canvas-template', width: 160, height: 120
+
       - unless display_flash.empty?
         #flashes
           - display_flash.each do |k,v|

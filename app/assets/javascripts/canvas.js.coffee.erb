@@ -1,6 +1,6 @@
 jQuery ($)->
   TTT = THREE
-  
+
   Assets =
     scene: <%= asset_path('registrar.dae').to_json %>
     idabook: <%= image_path('scene/uv-idabook.png').to_json %>
@@ -8,7 +8,7 @@ jQuery ($)->
     bottle: <%= image_path('scene/uv-bottle.png').to_json %>
     badge: <%= image_path('scene/badge-texture-diffuse-stretchy.png').to_json %>
     spartan: <%= image_path('scene/spartan-6-diffuse.png').to_json %>
-  
+
   class Canvasdown
     constructor: ->
       @loadRemainder()
@@ -36,10 +36,17 @@ jQuery ($)->
       f = ->
         @clear()
         @context.drawImage @image, 0, 0
-        @context.fillText(@remaining(), @canvas.width / 2, (1.5 * @canvas.height / 2))
+        @context.fillText(
+          @remaining(),
+          @canvas.width / 2,
+          (1.5 * @canvas.height / 2))
         @texture.needsUpdate = true
         window.setTimeout @poll(), 500
       f.bind(this)
+    pausingPoll: ->
+      @clear()
+      @context.drawImage @image, 0, 0
+      @texture.needsUpdate = true
     startTimer: ->
       window.setTimeout(@poll(), 0)
     clear: ->
@@ -73,6 +80,7 @@ jQuery ($)->
   class HackerRoom
     constructor: (@canvas)->
       @updater = new Updater
+      @paused = false
       @initializeLoader()
       @initializeScene()
       @initializeRoom()
@@ -98,7 +106,20 @@ jQuery ($)->
     initializeComputer: ()->
       @computer = new Computer @scene, @room.displayPanel()
     renderLoop: ()->
+      return if @paused
       @updater.render()
+      requestAnimationFrame @renderLoop.bind(this)
+    toggle: ()->
+      if @paused
+        @pause()
+      else
+        @resume()
+    pause: ()->
+      window.canvasDown.pausingPoll()
+      @updater.render()
+      @paused = true
+    resume: ()->
+      @paused = false
       requestAnimationFrame @renderLoop.bind(this)
 
   class Updater
@@ -311,4 +332,12 @@ jQuery ($)->
       @light.position.set(-21 + xCycle, 10 + yCycle, 25)
 
 
-  window.hackerRoom = new HackerRoom(document.getElementById 'actualScene')
+  hr = window.hackerRoom = new HackerRoom(document.getElementById 'actualScene')
+
+  $('#stop-button').click (e)->
+    if hr.paused
+      $(this).text "pause animation"
+      hr.resume()
+    else
+      $(this).text "resume animation"
+      hr.pause()
