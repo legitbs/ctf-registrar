@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  helper_method :current_user, :current_team 
+  helper_method :current_user, :current_team
   helper_method :during_game?, :before_game?, :game_window
 
   def require_logged_in
@@ -36,8 +36,7 @@ class ApplicationController < ActionController::Base
   end
 
   def during_game?
-	true	
-#    game_window.cover? Time.now
+    game_window.cover? Time.now
   end
 
   def before_game?
@@ -119,7 +118,7 @@ class ApplicationController < ActionController::Base
                                        user: current_user
                                        )
 
-    
+
     if award.persisted?
       flash[:cheevo] ||= []
       flash[:cheevo] << award.id
