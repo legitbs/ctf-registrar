@@ -15,7 +15,7 @@
       #canvas
         = image_tag 'scene-840x1344.jpg', width: 420, height: 672
         %canvas#actualScene.stealth{width: 420, height: 672}
-        #stop-button pause animation
+        #stop-button{style: 'display: none'} start animation
         %canvas#countdown{width: 160, height: 120}
         #timer{data:{remain: (Time.at(game_window.last) - Time.now)}, style: 'display: none'}
         = image_tag '2015-canvas-160x120.png', id: 'canvas-template', width: 160, height: 120

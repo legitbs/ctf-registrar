@@ -360,6 +360,10 @@ jQuery ($)->
   if document.cookie.match "hates_fun=true"
     stopButton.text "start animation"
     stopButton.click (e)->
+      stopButton.text "pause animation"
       startAnimation()
   else
+    stopButton.text "pause animation"
     startAnimation()
+
+  stopButton.show()
