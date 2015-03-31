@@ -257,7 +257,10 @@ jQuery ($)->
       @screenTexture = window.canvasDown.texture
       @screenTexture.anisotropy = 16
       @screenTexture.repeat.set 1, 1
-      @screenTexture.minFilter = @screenTexture.mapFilter = @screenTexture.magFilter = TTT.LinearFilter
+      @screenTexture.minFilter =
+        @screenTexture.mapFilter =
+        @screenTexture.magFilter =
+        TTT.LinearFilter
       @screenTexture.mapping = TTT.UVMapping
       @screenTexture.wrapS = @screenTexture.wrapT = TTT.ClampToEdgeWrapping
       mesh.material =
@@ -334,15 +337,29 @@ jQuery ($)->
       yCycle = 0.8 * Math.cos(Date.now() / 20000.0)
       @light.position.set(-21 + xCycle, 10 + yCycle, 25)
 
+  started = false
 
-  hr = window.hackerRoom = new HackerRoom(document.getElementById 'actualScene')
+  stopButton = $('#stop-button')
+  startAnimation = ()->
+    return if started
+    hr = window.hackerRoom = new HackerRoom(document.getElementById 'actualScene')
+    started = true
 
-  unStealth = ()->
+    stopButton.click (e)->
+      return unless started
+      if hr.paused
+        stopButton.text "pause animation"
+        document.cookie = "hates_fun=false"
+        hr.resume()
+      else
+        stopButton.text "resume animation"
+        document.cookie = "hates_fun=true"
+        hr.pause()
 
-  $('#stop-button').click (e)->
-    if hr.paused
-      $(this).text "pause animation"
-      hr.resume()
-    else
-      $(this).text "resume animation"
-      hr.pause()
+
+  if document.cookie.match "hates_fun=true"
+    stopButton.text "start animation"
+    stopButton.click (e)->
+      startAnimation()
+  else
+    startAnimation()
