@@ -85,7 +85,10 @@ jQuery ($)->
       @initializeScene()
       @initializeRoom()
     initializeLoader: ()->
-      @loader = new TTT.LoadingManager()
+      @loader = TTT.DefaultLoadingManager
+      @loader.onLoad = ->
+        $('canvas.stealth').removeClass 'stealth'
+        $('#canvas img').hide()
     initializeScene: ()->
       @scene = new TTT.Scene
     initializeCamera: ()->
@@ -333,6 +336,8 @@ jQuery ($)->
 
 
   hr = window.hackerRoom = new HackerRoom(document.getElementById 'actualScene')
+
+  unStealth = ()->
 
   $('#stop-button').click (e)->
     if hr.paused

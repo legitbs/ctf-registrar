@@ -13,7 +13,8 @@
   %body{class: body_class, data: {hacker_count: hacker_count}}
     #container
       #canvas
-        %canvas#actualScene{width: 420, height: 672}
+        = image_tag 'scene-840x1344.jpg', width: 420, height: 672
+        %canvas#actualScene.stealth{width: 420, height: 672}
         #stop-button pause animation
         %canvas#countdown{width: 160, height: 120}
         #timer{data:{remain: (Time.at(game_window.last) - Time.now)}, style: 'display: none'}
