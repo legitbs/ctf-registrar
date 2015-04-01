@@ -86,7 +86,7 @@ jQuery ($)->
       @initializeRoom()
     initializeLoader: ()->
       @loader = TTT.DefaultLoadingManager
-      TTT.ImageLoader.prototype.crossOrigin = "anonymous"
+      TTT.ImageUtils.crossOrigin = "anonymous"
       @loader.crossOrigin = "anonymous"
       @loader.onLoad = ->
         $('canvas.stealth').removeClass 'stealth'
