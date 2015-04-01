@@ -63,3 +63,7 @@ group :development, :test do
   gem 'pry-rails'
   # gem 'jazz_hands'
 end
+
+group :production do
+  gem 'raygun4ruby'
+end
