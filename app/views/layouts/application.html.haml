@@ -22,7 +22,7 @@
       - unless display_flash.empty?
         #flashes
           - display_flash.each do |k,v|
-            - next if k.to_s == 'analytics'
+            - next if k.to_s == 'analytics' || k.to_s == 'cheevo'
             %p{class: "flash #{k}"}= v
       #content
         = yield
