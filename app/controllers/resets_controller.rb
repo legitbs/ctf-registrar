@@ -54,5 +54,9 @@ class ResetsController < ApplicationController
   private
   def require_valid_token
     @reset = Reset.find_by_token params[:id]
+    return true if @reset
+
+    flash[:error] = "Couldn't find that reset token.'"
+    return redirect_to root_path
   end
 end
