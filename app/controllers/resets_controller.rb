@@ -38,6 +38,8 @@ class ResetsController < ApplicationController
 
     @user.transaction do |u|
       success = @reset.consume! && @user.save
+
+      fail ActiveRecord::Rollback unless success
     end
 
     if success
@@ -56,7 +58,7 @@ class ResetsController < ApplicationController
     @reset = Reset.find_by_token params[:id]
     return true if @reset
 
-    flash[:error] = "Couldn't find that reset token.'"
+    flash[:error] = "Couldn't find that reset token."
     return redirect_to root_path
   end
 end
