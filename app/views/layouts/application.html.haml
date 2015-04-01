@@ -18,7 +18,7 @@
         #stop-button{style: 'display: none'} start animation
         %canvas#countdown{width: 160, height: 120}
         #timer{data:{remain: (Time.at(game_window.last) - Time.now)}, style: 'display: none'}
-        = image_tag '2015-canvas-160x120.png', id: 'canvas-template', width: 160, height: 120
+        = image_tag '2015-canvas-160x120.png', id: 'canvas-template', width: 160, height: 120, crossorigin: 'anonymous'
       - unless display_flash.empty?
         #flashes
           - display_flash.each do |k,v|
