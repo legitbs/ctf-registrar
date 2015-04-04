@@ -14,6 +14,7 @@ gem 'rdiscount'
 gem 'dynamic_form'
 
 gem 'sucker_punch'
+gem 'http'
 
 gem 'twitter'
 

@@ -370,6 +370,7 @@ DEPENDENCIES
   factory_girl_rails
   haml-rails
   high_voltage
+  http
   jquery-rails
   marked-rails
   mini_magick
