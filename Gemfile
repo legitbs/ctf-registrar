@@ -1,13 +1,9 @@
 source 'https://rubygems.org'
 ruby '2.2.1'
 
-gem 'rails', '~> 4.2.0'
+gem 'rails', '~> 4.2.1'
 gem 'puma'
 
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
-
-# gem 'sqlite3'
 gem 'newrelic_rpm'
 gem 'pg'
 # gem 'foreigner'
@@ -16,6 +12,8 @@ gem 'haml-rails'
 gem 'high_voltage'
 gem 'rdiscount'
 gem 'dynamic_form'
+
+gem 'sucker_punch'
 
 gem 'twitter'
 
