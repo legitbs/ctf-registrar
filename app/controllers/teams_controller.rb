@@ -22,12 +22,14 @@ class TeamsController < ApplicationController
     @team.transaction do
       @team.save!
       current_user.team_id = @team.id
-      current_user.save!      
+      current_user.save!
     end
 
     if @team.persisted?
       # email them or don't
-      TeamMailer.new_team_email(@team).deliver rescue nil
+      TeamMailer.new_team_email(@team).deliver_later rescue nil
+      SlackbotJob.perform_later(kind: 'team_create',
+                                team: @team)
 
       cheevo('syn')
 

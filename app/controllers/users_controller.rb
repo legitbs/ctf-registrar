@@ -13,6 +13,8 @@ class UsersController < ApplicationController
       flash[:success] = "You've registered!"
       analytics_flash '_trackEvent', 'Users', 'signup'
       UserMailer.welcome_email(@user).deliver_later
+      SlackbotJob.perform_later(kind: 'user_create',
+                                user: @user)
       self.current_user = @user
       return redirect_to dashboard_path
     end
