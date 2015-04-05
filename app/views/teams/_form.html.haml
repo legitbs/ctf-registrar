@@ -10,7 +10,7 @@
   = f.label :password_confirmation
   = f.password_field :password_confirmation
   .explanation
-    Your teammates will need this to join your team. 
+    Your teammates will need this to join your team.
     Should be strong but not obnoxiously so.
 .field.checkbox
   = f.label :fun, "We're just playing for the fun of it"
@@ -19,3 +19,9 @@
     If you've already qualified or can't come to Las Vegas in August,
     this'll save us some time contacting you. If you're not sure,
     leave this unchecked.
+.field
+  = f.label :logo
+  = f.file_field :logo
+  .explanation
+    A logo so you can identify your team easily. Must be GIF, JPEG, or PNG.
+    Must be 128kb or less. Square is cool, 4:3 aspect ratio also works.

@@ -1,12 +1,13 @@
 #yes_team
+  .team_logo= image_tag team.logo.url :medium
   %h1= teaminfo team
   - if current_user.owner?
     .owner
       :markdown
         You're the registered owner of #{h team.name}.
 
-        Give your teammates the name (it's "#{h team.name}" without quotes) 
-        and the team password you entered when you created the team. Don't 
+        Give your teammates the name (it's "#{h team.name}" without quotes)
+        and the team password you entered when you created the team. Don't
         give them your personal account password.
 
         Until the game starts, that's about all you can do. Thanks and
@@ -21,7 +22,7 @@
       :markdown
         You're a member of #{h team.name}.
 
-        When the game starts, you'll be able to read, answer, and pick 
+        When the game starts, you'll be able to read, answer, and pick
         questions.
 
         Until the game starts, practice, stock up on caffeinated beverages,

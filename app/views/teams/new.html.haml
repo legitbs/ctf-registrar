@@ -1,6 +1,6 @@
 .content
   %h1 Create Team
-  = form_for @team, url: team_path do |f|
+  = form_for @team, url: team_path, html: {multipart: true} do |f|
     - if @team.errors.any?
       #error_explanation
         %ul
@@ -12,4 +12,3 @@
     .actions
       = f.submit 'Save'
       = link_to "Don't save", dashboard_path
-        
