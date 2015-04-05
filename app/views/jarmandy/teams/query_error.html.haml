@@ -14,7 +14,5 @@
 
 %h1 Query Error
 %p&= @error.message
-%h2 Result
-%pre&= @error.result.pretty_inspect
 %h2 Backtrace
-%pre&= @error.backtrace.pretty_inspect
+%pre.backtrace&= @error.backtrace.pretty_inspect

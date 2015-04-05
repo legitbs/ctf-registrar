@@ -11,8 +11,8 @@ class Jarmandy::UsersController < Jarmandy::BaseController
       @users = User.order(created_at: :desc)
     end
     @users.count
-  rescue PG::SyntaxError, PG::Error => @error
-    render view: 'query_error'
+  rescue ActiveRecord::StatementInvalid => @error
+    render 'query_error'
   end
 
   def show

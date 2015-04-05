@@ -14,8 +14,8 @@ class Jarmandy::TeamsController < Jarmandy::BaseController
       @teams = Team.order(created_at: :desc)
     end
     @teams.count
-  rescue PG::SyntaxError, PG::Error => @error
-    render view: 'query_error'
+  rescue ActiveRecord::StatementInvalid => @error
+    return render 'query_error'
   end
 
   def show
