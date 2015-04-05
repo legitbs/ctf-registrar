@@ -13,6 +13,12 @@ class Team < ActiveRecord::Base
   has_many :members, class_name: 'User'
   has_many :notices
 
+  has_attached_file :logo
+  validates_attachment(:logo,
+                       content_type: { content_type: /\Aimage/ },
+                       size: { in: 0..128.kilobytes }
+                      )
+
   def score
     solutions.joins(:challenge).sum('challenges.points')
   end
@@ -25,19 +31,19 @@ class Team < ActiveRecord::Base
     connection.select_all(<<-SQL).to_a
       SELECT
         t.id AS team_id,
-        t.name AS team_name, 
+        t.name AS team_name,
         SUM(c.points) AS score,
-        MAX(s.created_at) AS last_solution_time 
+        MAX(s.created_at) AS last_solution_time
       FROM
         teams AS t
-        INNER JOIN solutions AS s 
+        INNER JOIN solutions AS s
           ON s.team_id = t.id
-        INNER JOIN challenges AS c 
+        INNER JOIN challenges AS c
           ON s.challenge_id = c.id
       WHERE
         team_id != 1
       GROUP BY t.id
-      ORDER BY 
+      ORDER BY
         score DESC,
         MAX(s.created_at) ASC,
         MAX(s.id) ASC
@@ -48,18 +54,18 @@ class Team < ActiveRecord::Base
     connection.select_all(<<-SQL).to_a
       SELECT
         t.id AS team_id,
-        t.name AS team_name, 
-        SUM(c.points) AS score 
+        t.name AS team_name,
+        SUM(c.points) AS score
       FROM
         teams AS t
-        INNER JOIN solutions AS s 
+        INNER JOIN solutions AS s
           ON s.team_id = t.id
-        INNER JOIN challenges AS c 
+        INNER JOIN challenges AS c
           ON s.challenge_id = c.id
       WHERE
         team_id != 1
       GROUP BY t.id
-      ORDER BY 
+      ORDER BY
         score DESC,
         MAX(s.created_at) ASC,
         MAX(s.id) ASC
@@ -74,8 +80,8 @@ class Team < ActiveRecord::Base
       found['current'] = true
     else
       scoreboard_rows << {
-        'team_id' => current_team.id, 
-        'team_name' => current_team.name, 
+        'team_id' => current_team.id,
+        'team_name' => current_team.name,
         'score' => current_team.score,
         'current' => true}
     end
@@ -85,15 +91,15 @@ class Team < ActiveRecord::Base
 
   def self.average_size
     connection.select_all(<<-SQL).to_a.first.values.first.to_f
-      SELECT 
-        avg(count) 
+      SELECT
+        avg(count)
       FROM (
-        SELECT 
-          COUNT(team_id) AS count 
-        FROM users 
-        WHERE 
+        SELECT
+          COUNT(team_id) AS count
+        FROM users
+        WHERE
           team_id IS NOT NULL
-        GROUP BY team_id) 
+        GROUP BY team_id)
       AS c
     SQL
   end
