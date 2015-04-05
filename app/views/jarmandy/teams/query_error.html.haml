@@ -1,0 +1,20 @@
+%h1 teams
+=render partial: 'shared/jarmandy_nav'
+%nav
+  %ul
+    %li= link_to 'new teams', jarmandy_teams_path
+    %li= link_to 'effed up teams', jarmandy_teams_path(only: 'weird')
+    %li= link_to 'top 25 teams', jarmandy_teams_path(only: 'scoreboard')
+= form_tag({}, method: 'get') do
+  %p
+    = text_field_tag :q, params[:q]
+    = submit_tag 'search'
+    %span.explanation
+      searches team names
+
+%h1 Query Error
+%p&= @error.message
+%h2 Result
+%pre&= @error.result.pretty_inspect
+%h2 Backtrace
+%pre&= @error.backtrace.pretty_inspect

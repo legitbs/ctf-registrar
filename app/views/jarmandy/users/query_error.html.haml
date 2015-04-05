@@ -1,0 +1,23 @@
+%h1 users
+=render partial: 'shared/jarmandy_nav'
+%nav
+  %ul
+    %li= link_to 'recent signups', jarmandy_users_path
+    %li= link_to 'users not on teams', jarmandy_users_path(only: 'orphans')
+= form_tag({}, method: 'get') do
+  %p
+    = text_field_tag :q, params[:q]
+    = submit_tag 'search'
+    %span.explanation.small
+      Searches user names and email. Use 
+      = link_to "vit:*", q: 'vit:*'
+      to do a prefix match.
+      = link_to 'Docs', 'http://www.postgresql.org/docs/9.3/interactive/datatype-textsearch.html#DATATYPE-TSQUERY'
+      or just nag Vito <3
+
+%h1 Query Error
+%p&= @error.message
+%h2 Result
+%pre&= @error.result.pretty_inspect
+%h2 Backtrace
+%pre&= @error.backtrace.pretty_inspect

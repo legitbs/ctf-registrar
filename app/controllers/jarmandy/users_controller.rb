@@ -10,6 +10,8 @@ class Jarmandy::UsersController < Jarmandy::BaseController
       @source = 'Recent signups'
       @users = User.order(created_at: :desc)
     end
+  rescue PG::Error
+    render view: 'query_error'
   end
 
   def show

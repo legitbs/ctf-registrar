@@ -13,6 +13,8 @@ class Jarmandy::TeamsController < Jarmandy::BaseController
       @source = 'New teams'
       @teams = Team.order(created_at: :desc)
     end
+  rescue PG::Error => @error
+    render view: 'query_error'
   end
 
   def show
