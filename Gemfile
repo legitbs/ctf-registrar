@@ -4,6 +4,8 @@ ruby '2.2.1'
 gem 'rails', '~> 4.2.1'
 gem 'puma'
 
+gem 'delayed_paperclip'
+
 gem 'newrelic_rpm'
 gem 'pg'
 # gem 'foreigner'
