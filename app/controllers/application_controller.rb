@@ -17,6 +17,14 @@ class ApplicationController < ActionController::Base
     redirect_to dashboard_path
   end
 
+  def require_no_team
+    return requre_logged_in unless current_user
+    return true unless current_team
+
+    flash[:error] = "You're on a team."
+    redirect_to dashboard_path
+  end
+
   def require_on_team
     return true if current_user && current_team
 

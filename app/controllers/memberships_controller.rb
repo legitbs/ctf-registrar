@@ -18,11 +18,4 @@ class MembershipsController < ApplicationController
     end
     redirect_to dashboard_path
   end
-
-  private
-  def require_no_team
-    return true unless current_user.team
-    flash[:error] = "You're already on a team."
-    redirect_to dashboard_path
-  end
 end
