@@ -12,7 +12,7 @@ class Jarmandy::UsersController < Jarmandy::BaseController
     end
     @users.count
   rescue ActiveRecord::StatementInvalid => @error
-    render 'query_error'
+    return render 'query_error'
   end
 
   def show
