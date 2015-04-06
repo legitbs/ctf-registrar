@@ -1,13 +1,13 @@
 .content
   %h1 Editing team
-  = form_for @team, url: team_path, html: {multipart: true} do |f|
-    - if @team.errors.any?
+  = form_for team, url: team_path, html: {multipart: true} do |f|
+    - if team.errors.any?
       #error_explanation
         %ul
-          - @team.errors.full_messages.each do |msg|
+          - team.errors.full_messages.each do |msg|
             %li= msg
 
-      = render partial: 'form', locals: {f: f}
+    = render partial: 'form', locals: {f: f}
 
     .actions
       = f.submit 'Save'

@@ -4,6 +4,8 @@ class TeamsController < ApplicationController
   before_filter :require_no_team, only: %i{new create}
   before_filter :require_before_or_during_game
 
+  helper_method :team
+
   # GET /teams/new
   # GET /teams/new.json
   def new
@@ -41,9 +43,18 @@ class TeamsController < ApplicationController
     end
   end
 
+  def update
+    if team.update_attributes team_params
+      flash[:success] = "Updated team"
+      return redirect_to dashboard_path
+    end
+
+    render action: 'edit'
+  end
+
   private
   def team
-    current_user.owned_team
+    @team ||= current_user.owned_team
   end
 
   def require_team
@@ -53,6 +64,8 @@ class TeamsController < ApplicationController
   end
 
   def team_params
-    params.require(:team).permit(:name, :password, :password_confirmation, :fun)
+    params.
+      require(:team).
+      permit(:name, :password, :password_confirmation, :fun, :logo)
   end
 end
