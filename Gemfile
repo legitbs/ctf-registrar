@@ -50,6 +50,8 @@ gem 'marked-rails'
 group :development do
   gem 'rails-erd'
   gem 'binding_of_caller'
+  gem 'web-console'
+  gem 'better_errors'
 end
 
 group :test do
