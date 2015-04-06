@@ -1,10 +1,10 @@
-Paperclip::Attachment.default_options.merge(
+opts = (
   {
     # storage / fog / s3
     storage: :fog,
     fog_credentials: {
       provider: 'AWS',
-      aws_secret_key_id: ENV['AWS_ACCESS_KEY_ID'],
+      aws_access_key_id: ENV['AWS_ACCESS_KEY_ID'],
       aws_secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'],
       path_style: true,
     },
@@ -13,7 +13,6 @@ Paperclip::Attachment.default_options.merge(
     # image format
     # see http://www.imagemagick.org/script/command-line-processing.php#geometry
     styles: {
-      flake: '8x8#',
       thumb: '64x64#',
       badge: '160x120',
       medium: '256x256',
@@ -24,5 +23,19 @@ Paperclip::Attachment.default_options.merge(
     hash_secret: 'spewing torrents of bees from my mouth',
     hash_data: ":rails_env/:class/:attachment/:id/:style/:updated_at",
     url: 'https://teams-2015.legitbs.net/t/:hash.:extension',
-    path: '/t/:hash.:extension',
+    path: 't/:hash.:extension',
   })
+
+opts.each do |k, v|
+  Paperclip::Attachment.default_options[k] = v
+end
+
+module Paperclip
+  module Storage
+    module Fog
+      def self.extended base
+        require 'fog'
+      end
+    end
+  end
+end
