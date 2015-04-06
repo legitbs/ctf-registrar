@@ -14,6 +14,7 @@ class Team < ActiveRecord::Base
   has_many :notices
 
   has_attached_file :logo
+  process_in_background :logo
   validates_attachment(:logo,
                        content_type: { content_type: /\Aimage/ },
                        size: { in: 0..128.kilobytes }
