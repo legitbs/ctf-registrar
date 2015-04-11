@@ -3,13 +3,14 @@
 %nav
   %ul
     %li= link_to 'recent signups', jarmandy_users_path
+    %li= link_to 'old users', jarmandy_users_path(only: 'olde')
     %li= link_to 'users not on teams', jarmandy_users_path(only: 'orphans')
 = form_tag({}, method: 'get') do
   %p
     = text_field_tag :q, params[:q]
     = submit_tag 'search'
     %span.explanation.small
-      Searches user names and email. Use 
+      Searches user names and email. Use
       = link_to "vit:*", q: 'vit:*'
       to do a prefix match.
       = link_to 'Docs', 'http://www.postgresql.org/docs/9.3/interactive/datatype-textsearch.html#DATATYPE-TSQUERY'
@@ -18,9 +19,12 @@
 %h2= @source
 %p
   = c = @users.count
-  matches; first 
+  matches; first
   = [c, 25].min
   below
+
+= pagination_controls
+
 %table
   %thead
     %th id
@@ -30,7 +34,7 @@
       team
     %th activities
   %tbody
-    - @users.limit(25).includes(:team).each do |u|
+    - @paginated_users.limit(25).includes(:team).each do |u|
       %tr
         %td= u.id
         %td
@@ -45,3 +49,5 @@
             %em not on a team
         %td
           = link_to 'show user', jarmandy_user_path(u)
+
+= pagination_controls

@@ -9,11 +9,26 @@ class Jarmandy::TeamsController < Jarmandy::BaseController
     elsif params[:only] == 'scoreboard'
       @source = 'Good teams, no particular order'
       @teams = Team.where(id: Team.anonymous_scoreboard.map{ |row| row['team_id'] })
+    elsif params[:only] == 'olde'
+      @source = 'All teams, oldest first'
+      @teams = Team.order(created_at: :asc)
     else
       @source = 'New teams'
       @teams = Team.order(created_at: :desc)
     end
-    @teams.count
+
+    if @teams.count > PER_PAGE
+      page = (params[:page] || 1).to_i
+      offset = (page - 1) * PER_PAGE
+      @paginated_teams = @teams.offset(offset).limit(PER_PAGE)
+      @show_pagination = true
+      @current_page = page
+      @pages = (@teams.count / PER_PAGE) + 1
+    else
+      @paginated_teams = @teams
+      @show_pagination = false
+    end
+
   rescue ActiveRecord::StatementInvalid => @error
     return render 'query_error'
   end
@@ -36,7 +51,7 @@ class Jarmandy::TeamsController < Jarmandy::BaseController
     end
 
     @player.update_attribute :team_id, nil
-    
+
     flash[:success] = "gone"
     redirect_to jarmandy_team_path @team.id
   end
