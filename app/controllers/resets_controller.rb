@@ -18,7 +18,7 @@ class ResetsController < ApplicationController
     end
 
     @reset = user.resets.create
-    ResetMailer.reset_email(@reset).deliver
+    ResetMailer.reset_email(@reset).deliver_later
     flash[:success] = "Reset email sent."
     return redirect_to root_path
   end
