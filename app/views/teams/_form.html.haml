@@ -25,5 +25,10 @@
   = f.label :logo
   = f.file_field :logo
   .explanation
-    A logo so you can identify your team easily. Must be GIF, JPEG, or PNG.
-    Must be 128kb or less. Square is cool, 4:3 aspect ratio also works.
+    A logo so you can identify your team easily.
+    %ul
+      %li MUST be GIF, JPEG, or PNG.
+      %li MUST be 128kb or less.
+      %li SHOULD be 512x512 or larger
+      %li MAY be cropped to square or 4:3 ratio
+      %li WILL be placed over a dark background
