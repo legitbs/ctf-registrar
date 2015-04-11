@@ -22,11 +22,11 @@ class Jarmandy::NoticesController < Jarmandy::BaseController
   end
 
   def create
-    notice_params = params[:notice].dup
-    do_tweet = notice_params.delete :tweet
-    do_post = notice_params.delete :post
+    notice_attrs = notice_params
+    do_tweet = notice_attrs.delete :tweet
+    do_post = notice_attrs.delete :post
 
-    @notice = Notice.new notice_params
+    @notice = Notice.new notice_attrs
 
     if do_post
       saved = @notice.save
@@ -46,6 +46,12 @@ class Jarmandy::NoticesController < Jarmandy::BaseController
   end
 
   private
+  def notice_params
+    params.
+      require(:notice).
+      permit(:body, :tweet, :team_id, :post)
+  end
+
   def team
     @team ||= Team.where(id: params[:team_id]).first
   end
