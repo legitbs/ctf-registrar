@@ -27,6 +27,7 @@ class User < ActiveRecord::Base
   private
   def owned_team_and_team_must_match
     return unless participant?
+    return if owned_team.nil?
     return if owned_team == team
     errors.add :owned_team, "must be the same as the participant team"
   end
