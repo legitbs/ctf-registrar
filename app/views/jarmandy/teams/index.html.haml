@@ -34,7 +34,9 @@
     - @paginated_teams.includes(:user).each do |t|
       %tr
         %td= t.id
-        %td= image_tag t.logo.url(:thumb), width: '16px', height: '16px'
+        %td
+          = link_to jarmandy_team_path(t, anchor: 'logo') do
+            = image_tag(t.logo.url(:thumb), width: '16px', height: '16px')
         %td= link_to t.name, jarmandy_team_path(t)
         %td
           - if t.user.nil?

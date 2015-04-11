@@ -70,7 +70,8 @@
         %td= a.achievement.description
         %td= a.created_at
 
-%h2 logo
+%h2
+  %a{name: 'logo'} logo
 - if @team.logo.present?
   = link_to 'wipe logo', wipe_jarmandy_team_path, method: :post
 %table.deflist
