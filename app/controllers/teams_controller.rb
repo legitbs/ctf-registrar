@@ -22,10 +22,13 @@ class TeamsController < ApplicationController
   def create
     @team = current_user.build_owned_team(team_params)
 
-    @team.transaction do
-      @team.save!
-      current_user.team_id = @team.id
-      current_user.save!
+    begin
+      @team.transaction do
+        @team.save!
+        current_user.team_id = @team.id
+        current_user.save!
+      end
+    rescue ActiveRecord::RecordInvalid
     end
 
     if @team.persisted?
