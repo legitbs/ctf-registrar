@@ -1,3 +1,5 @@
+- if @team.logo.present?
+  .team_logo= image_tag @team.logo.url :medium
 %h1
   = @team.name
   %em (#{@team.id})
@@ -67,3 +69,20 @@
         %td= a.achievement.name
         %td= a.achievement.description
         %td= a.created_at
+
+%h2 logo
+- if @team.logo.present?
+  = link_to 'wipe logo', wipe_jarmandy_team_path, method: :post
+%table.deflist
+  %tbody
+    - %w{file_name content_type size fingerprint updated_at}.each do |k|
+      %tr
+        %th= k
+        %td= @team["logo_#{k}"]
+    - @team.logo.styles.keys.each do |k|
+      %tr
+        %td= k
+        %td= image_tag @team.logo.url k
+    %tr
+      %td original
+      %td= image_tag @team.logo.url
