@@ -10,9 +10,10 @@ module ApplicationHelper
   end
 
   def body_class
-    ["con-#{controller.controller_name}", "act-#{controller.action_name}"].join ' '
+    ["con-#{controller.controller_name}",
+     "act-#{controller.action_name}"].join ' '
   end
-  
+
   REJECT_FLASHES = %i{ analytics cheevo }
 
   def display_flash
@@ -29,24 +30,24 @@ module ApplicationHelper
       accum << ['_setCustomVar', 3, 'Team', h(current_user.team.name)]
     end
     accum.map do |i|
-      "_gaq.push(#{i.to_json});"  
+      "_gaq.push(#{i.to_json});"
     end.join("\n")
   end
 
   def cheevos
     return unless flash[:cheevo] && flash[:cheevo].first
-    
+
     award = Award.find(flash[:cheevo].first)
 
     image = award.achievement.image
     name = award.achievement.name
-    
+
     if flash[:cheevo].length > 1
       image = 'multi'
       name = "#{flash[:cheevo].length} different cheevos."
     end
 
-    render(partial: 'shared/cheevo', 
+    render(partial: 'shared/cheevo',
            locals: { image: image, name: name })
   rescue
     ''
