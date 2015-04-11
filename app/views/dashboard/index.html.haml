@@ -1,7 +1,7 @@
 .content#dashboard
-  = render partial: 'shared/who'
   .account
     %h1 Account Options
+    = render partial: 'shared/who'
     %ul.account_options
       - if current_user.auth_secret.blank?
         %li
@@ -16,6 +16,8 @@
           = link_to 'Modify team', edit_team_path
           - unless current_team.logo.present?
             New! Add a logo!
+      %li= link_to 'Log out', session_path, method: :delete
+
   .team
     - if current_user.participant?
       = render partial: 'participant'

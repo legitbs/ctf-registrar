@@ -4,9 +4,8 @@
   %h1= teaminfo team
   - if current_user.owner?
     .owner
-      %h2 You're the captain of #{h team.name}
       :markdown
-        #{link_to 'Modify team settings', edit_team_path}
+        You're the captain of "#{h team.name}".
 
         Give your teammates the name (it's "#{h team.name}" without quotes)
         and the team password you entered when you created the team. Don't
