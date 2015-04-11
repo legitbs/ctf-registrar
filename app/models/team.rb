@@ -3,7 +3,10 @@ class Team < ActiveRecord::Base
 
   has_secure_password
 
-  validates :name, presence: true, uniqueness: true, length: {minimum: 3, maximum: 60}
+  validates :name,
+            presence: true,
+            uniqueness: true,
+            length: {minimum: 3, maximum: 60}
   validates :user, presence: true
 
   has_many :solutions
