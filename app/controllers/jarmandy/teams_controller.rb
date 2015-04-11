@@ -55,4 +55,12 @@ class Jarmandy::TeamsController < Jarmandy::BaseController
     flash[:success] = "gone"
     redirect_to jarmandy_team_path @team.id
   end
+
+  def wipe
+    @team = Team.find params[:id]
+    @team.logo = nil
+    @team.save
+    flash[:success] = "wiped logo"
+    redirect_to jarmandy_team_path @team.id
+  end
 end

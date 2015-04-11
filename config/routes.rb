@@ -30,6 +30,7 @@ Rails.application.routes.draw do
     resources :teams do
       member do
         post :kick
+        post :wipe
       end
     end
     resources :notices
