@@ -49,7 +49,7 @@ body
       &.alert, &.error
         background-color: $error
 
-  @media screen and (max-width: 960px)
+  @media screen and (max-width: 961px)
     #container
       left: 0
       right: 0
@@ -59,10 +59,18 @@ body
       #content
         margin-right: 1em
 
-  @media screen and (max-width: 520px)
+  @media screen and (max-width: 640px)
     #container
+      margin: 0
+      position: absolute
+      top: 0
+      left: 0
+      right: 0
+      width: 100%
       #content
         float: none
         position: relative
         left: 0
         right: 0
+        margin: 0
+        width: auto
