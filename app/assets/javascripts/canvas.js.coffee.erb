@@ -1,6 +1,8 @@
 jQuery ($)->
   TTT = THREE
 
+  return unless $('#countdown').length == 1
+
   Assets =
     scene: <%= asset_path('registrar.dae').to_json %>
     idabook: <%= image_path('scene/uv-idabook.png').to_json %>
