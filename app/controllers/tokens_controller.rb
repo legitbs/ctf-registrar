@@ -47,6 +47,8 @@ class TokensController < ApplicationController
         send_data Pngqr.encode(payload, scale: 9), disposition: :inline, type: 'image/png'
       end
     end
+  rescue ActionController::UnknownFormat
+    return render qrcode: 'lol', status: 400
   end
 
   private
