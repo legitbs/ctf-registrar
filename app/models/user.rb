@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   has_secure_password
 
   validates :username, :email, presence: true, uniqueness: true
-  validates(:email, confirmation: true, 
+  validates(:email, confirmation: true,
     email_format: { message: "should look like an email address" })
   validate :owned_team_and_team_must_match
 
@@ -23,12 +23,11 @@ class User < ActiveRecord::Base
   def self.search(text)
     where  "to_tsvector('english', username || ' ' || email) @@ to_tsquery('english', ?)", text
   end
-    
+
   private
   def owned_team_and_team_must_match
-    return unless owner?
+    return unless participant?
     return if owned_team == team
     errors.add :owned_team, "must be the same as the participant team"
   end
 end
-
