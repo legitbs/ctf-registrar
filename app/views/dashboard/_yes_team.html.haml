@@ -1,5 +1,6 @@
 #yes_team
-  .team_logo= image_tag team.logo.url :thumb
+  - if team.logo.present?
+    .team_logo= image_tag team.logo.url :thumb
   %h1= teaminfo team
   - if current_user.owner?
     .owner
