@@ -12,7 +12,7 @@
   .explanation
     Your teammates will need this to join your team.
     Should be strong but not obnoxiously so.
-    - if @team.persisted?
+    - if @team && @team.persisted?
       %strong If you leave this blank while editing your team, it won't change.
 .field.checkbox
   = f.label :fun, "We're just playing for the fun of it"
