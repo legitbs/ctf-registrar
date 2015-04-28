@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150405204455) do
+ActiveRecord::Schema.define(version: 20150428023637) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -127,8 +127,8 @@ ActiveRecord::Schema.define(version: 20150405204455) do
     t.string   "logo_fingerprint"
   end
 
-  add_index "teams", ["name"], name: "index_teams_on_name", using: :btree
-  add_index "teams", ["user_id"], name: "index_teams_on_user_id", using: :btree
+  add_index "teams", ["name"], name: "index_teams_on_name", unique: true, using: :btree
+  add_index "teams", ["user_id"], name: "index_teams_on_user_id", unique: true, using: :btree
 
   create_table "trophies", force: :cascade do |t|
     t.string   "name"
@@ -149,9 +149,9 @@ ActiveRecord::Schema.define(version: 20150405204455) do
     t.string   "auth_secret"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", using: :btree
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["team_id"], name: "index_users_on_team_id", using: :btree
-  add_index "users", ["username"], name: "index_users_on_username", using: :btree
+  add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
   add_foreign_key "achievements", "trophies", name: "achievements_trophy_id_fk"
   add_foreign_key "awards", "achievements", name: "awards_achievement_id_fk"
