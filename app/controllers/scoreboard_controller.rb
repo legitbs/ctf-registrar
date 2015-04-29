@@ -91,6 +91,14 @@ class ScoreboardController < ApplicationController
         logbuf << "OMG HOT"
         current_team.reload.update_attribute :hot, true
 
+        message = { kind: :popped,
+                    user: current_user,
+                    team: current_team,
+                    challenge: @challenge
+                  }
+        SlackbotJob.perform_later message
+        ProwlJob.perform_later message
+
         n = Notice.new
         n.body = "#{current_team.name} solved #{@challenge.name} [#{@challenge.category.name}] for #{@challenge.points} points."
         n.save
