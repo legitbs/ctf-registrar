@@ -9,19 +9,24 @@ class UsersController < ApplicationController
   def create
     @user = User.new user_params
 
-    if @user.save
-      flash[:success] = "You've registered!"
-      analytics_flash '_trackEvent', 'Users', 'signup'
-      UserMailer.welcome_email(@user).deliver_later
-      SlackbotJob.perform_later(kind: 'user_create',
-                                user: @user)
-      self.current_user = @user
-      return redirect_to dashboard_path
+    begin
+      @user.save
+    rescue ActiveRecord::RecordNotUnique
     end
 
-    @password_stash = user_params[:password]
+    unless @user.persisted?
+      @password_stash = user_params[:password]
 
-    render action: 'new'
+      return render action: 'new'
+    end
+
+    flash[:success] = "You've registered!"
+    analytics_flash '_trackEvent', 'Users', 'signup'
+    UserMailer.welcome_email(@user).deliver_later
+    SlackbotJob.perform_later(kind: 'user_create',
+                              user: @user)
+    self.current_user = @user
+    redirect_to dashboard_path
   end
 
   private
