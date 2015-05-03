@@ -86,4 +86,37 @@ MESG
 User <#{ member_url}|#{ member.username}> joined team <#{ team_url }|#{team.name}>.
 MESG
   end
+
+  def popped(message)
+    user = message[:user]
+    user_url = jarmandy_user_url user
+
+    team = message[:team]
+    team_url = jarmandy_team_url team
+
+    challenge = message[:challenge]
+    challenge_url = jarmandy_challenge_url challenge
+    category = challenge.category
+
+    payload = {
+      text: 'Challenge popped',
+      color: 'warning',
+      fields: [
+        { title: 'Challenge',
+          value: <<-MESG,
+<#{challenge_url}|#{challenge.name}> (#{category.name} #{challenge.points})
+MESG
+          short: false },
+        { title: 'Team',
+          value: "<#{team_url}|#{team.name}>",
+          short: true },
+        { title: 'Solver',
+          value: "<#{user_url}}|#{user.username}>",
+          short: true},
+      ],
+      fallback: <<-MESG }
+<#{challenge_url}|#{challenge.name}> (#{category.name} #{challenge.points})
+popped by <#{team_url}|#{team.name}>.
+MESG
+  end
 end

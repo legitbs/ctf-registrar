@@ -1,0 +1,1 @@
+PROWL_KEY = ENV['PROWL_KEY']
