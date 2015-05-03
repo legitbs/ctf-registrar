@@ -28,7 +28,7 @@ class TeamsController < ApplicationController
         current_user.team_id = @team.id
         current_user.save!
       end
-    rescue ActiveRecord::RecordInvalid
+    rescue ActiveRecord::RecordInvalid, ActiveRecord::RecordNotUnique
     end
 
     if @team.persisted?
