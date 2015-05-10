@@ -1,0 +1,26 @@
+%h1
+  #{@category.name}
+
+%table.deflist
+  %tbody
+    %tr
+      %th name
+      %td= @category.name
+    %tr
+      %th description
+      %td= @categpry.description
+
+%h2 challenges
+%table
+  %thead
+    %tr
+      %th id
+      %th name
+      %th activities
+  %tbody
+    - @category.challenges.each do |ch|
+      %tr
+        %td= ch.id
+        %td= ch.name
+        %td
+          = link_to 'show', jarmandy_challenge_path(ch)
