@@ -11,11 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150428023637) do
+ActiveRecord::Schema.define(version: 20150510162044) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-  enable_extension "pg_stat_statements"
 
   create_table "achievements", force: :cascade do |t|
     t.string   "name"
@@ -49,6 +48,7 @@ ActiveRecord::Schema.define(version: 20150428023637) do
     t.integer  "order"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "description"
   end
 
   create_table "challenges", force: :cascade do |t|
