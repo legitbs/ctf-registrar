@@ -1,5 +1,6 @@
 class Category < ActiveRecord::Base
   has_many :challenges
+  validates :name, uniqueness: true
 
   def self.for_scoreboard
     connection.select_rows <<-SQL
@@ -11,14 +12,14 @@ class Category < ActiveRecord::Base
 
   def self.for_picker
     rows = connection.select_all <<-SQL
-      SELECT 
-        c.id AS category_id, 
-        c.name, 
+      SELECT
+        c.id AS category_id,
+        c.name,
         a.points,
         a.id as challenge_id
       FROM categories AS c
       RIGHT JOIN challenges AS a ON a.category_id = c.id
-      WHERE 
+      WHERE
         a.solved_at IS NULL
       ORDER BY
         a.points ASC,

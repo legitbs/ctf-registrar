@@ -51,6 +51,8 @@ ActiveRecord::Schema.define(version: 20150510162044) do
     t.text     "description"
   end
 
+  add_index "categories", ["name"], name: "index_categories_on_name", unique: true, using: :btree
+
   create_table "challenges", force: :cascade do |t|
     t.string   "name"
     t.string   "clue"
