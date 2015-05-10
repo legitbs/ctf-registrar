@@ -5,10 +5,12 @@
   %thead
     %th name
     %th order
+    %th description
     %th challenges
   %tbody
     - @categories.each do |c|
       %tr
         %td= c.name
         %td= c.order
+        %td= c.description
         %td= c.challenges.count

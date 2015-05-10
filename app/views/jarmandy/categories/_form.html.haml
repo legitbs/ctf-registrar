@@ -1,0 +1,19 @@
+- if category.errors.any?
+  #error_explanation
+    %ul
+      %li
+        Errors prevented this category from being saved.
+      - category.errors.full_messages.each do |msg|
+        %li= msg
+%div
+  = f.label :name
+  = f.text_field :name
+%div
+  = f.label :order
+  = f.number_field :order
+%div
+  = f.label :description
+  = f.text_area :description
+%div
+  = f.submit
+  = link_to "cancel and return to category list", jarmandy_categories_path

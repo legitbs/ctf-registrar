@@ -1,0 +1,5 @@
+%h1
+  add a category
+
+= form_for @category, url: jarmandy_categories_path do |f|
+  = render partial: 'form', locals: {f: f, category: @category}
