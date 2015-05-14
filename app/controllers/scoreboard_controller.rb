@@ -1,7 +1,7 @@
 class ScoreboardController < ApplicationController
   before_filter :require_on_team, except: :index
-  before_filter :require_during_game, except: :index
-  before_filter :require_during_or_after_game, only: :index
+  before_filter :require_during_game, except: %i(index ctftime)
+  before_filter :require_during_or_after_game, only: %i(index)
 
   def index
     return anonymous_index unless current_team
@@ -18,6 +18,10 @@ class ScoreboardController < ApplicationController
         }
       }
     end
+  end
+
+  def ctftime
+    @leaderboard = Team.anonymous_scoreboard
   end
 
   def challenge
