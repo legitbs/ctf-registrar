@@ -51,6 +51,10 @@ class ApplicationController < ActionController::Base
     game_window.first > Time.now
   end
 
+  def after_game?
+    game_window.last < Time.now
+  end
+
   def require_during_game
     return true if legitbs_cookie?
     return true if during_game?
@@ -61,7 +65,7 @@ class ApplicationController < ActionController::Base
 
   def require_during_or_after_game
     return true if legitbs_cookie?
-    return false if before_game?
+    return true if during_game? or after_game?
 
     redirect_to dashboard_path
     return false
