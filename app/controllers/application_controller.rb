@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
   end
 
   def require_no_team
-    return requre_logged_in unless current_user
+    return require_logged_in unless current_user
     return true unless current_team
 
     flash[:error] = "You're on a team."
