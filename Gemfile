@@ -46,6 +46,7 @@ gem 'mini_magick'
 gem 'rails_12factor'
 
 gem 'marked-rails'
+gem 'jbuilder'
 
 group :development do
   gem 'rails-erd'
