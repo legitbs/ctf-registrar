@@ -4,6 +4,6 @@
     - unless @challenge.locked?
       %p.clue= simple_format @challenge.clue
       = form_for @solution, url: challenge_path(@challenge.id), method: :post do |f|
-        = f.text_field :answer, placeholder: 'answer'
+        = text_field_tag :answer, '', placeholder: 'answer'
         = f.submit 'Solve it'
         %a{href: scoreboard_path} Back to Scoreboard
