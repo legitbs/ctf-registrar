@@ -313,6 +313,7 @@ GEM
       rack
     rdiscount (2.1.8)
     recaptcha (0.3.6)
+    redis (3.2.1)
     rotp (2.1.0)
     rqrcode (0.4.2)
     ruby-graphviz (1.0.9)
@@ -412,6 +413,7 @@ DEPENDENCIES
   raygun4ruby
   rdiscount
   recaptcha (~> 0.3.6)
+  redis
   rotp
   sass-rails (~> 4.0.2)
   shoulda

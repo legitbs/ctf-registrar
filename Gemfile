@@ -8,6 +8,7 @@ gem 'delayed_paperclip'
 
 gem 'newrelic_rpm'
 gem 'pg'
+gem 'redis'
 # gem 'foreigner'
 # gem 'immigrant'
 gem 'haml-rails'
@@ -42,6 +43,7 @@ gem 'bcrypt'
 gem 'rotp'
 gem 'pngqr'
 gem 'mini_magick'
+
 
 gem 'rails_12factor'
 
