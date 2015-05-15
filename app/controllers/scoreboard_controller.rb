@@ -63,6 +63,12 @@ class ScoreboardController < ApplicationController
     if sticky_situation
       logbuf << 'STICKY SITUATION'
     elsif !correct
+      REDIS.publish('wrong', {
+                      team: current_team.as_redis,
+                      challenge: @challenge.as_json({  }),
+                      category: @challenge.category.as_json,
+                      wrong_answer: params[:answer],
+                    })
       logbuf << "WRONG ANSWER"
     end
 
