@@ -19,6 +19,6 @@ class Solution < ActiveRecord::Base
   private
 
   def publish!
-    REDIS.publish 'solution', as_redis.to_json
+    REDIS.publish 'solution', as_redis.to_json rescue true
   end
 end

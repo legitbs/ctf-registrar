@@ -68,7 +68,7 @@ class ScoreboardController < ApplicationController
                       challenge: @challenge.as_json({  }),
                       category: @challenge.category.as_json,
                       wrong_answer: params[:answer],
-                    })
+                    }.to_json) rescue nil
       logbuf << "WRONG ANSWER"
     end
 
