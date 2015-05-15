@@ -13,7 +13,7 @@
       #{time_ago_in_words game_window.first, include_seconds: true}.
       = link_to 'Too vague?',
       "http://www.timeanddate.com/worldclock/fixedtime.html?iso=#{game_window.first.utc.iso8601}"
-%h1 Information and Rules
+%h1 Information
 :markdown
   We're hosting CTF chat in #defconctf on the "Hackint"
   network. See [http://www.hackint.org/](http://www.hackint.org/) for
@@ -21,3 +21,32 @@
   be broadcast on our Twitter account at
   [https://twitter.com/legitbs_ctf](https://twitter.com/legitbs_ctf), and
   displayed on the scoreboard as well.
+
+  The game will start with several challenge unlocked, including a "burning"
+  challenge.
+
+  When a "burning" challenge is solved for the first time, any member of the
+  solving team will be able to unlock another challenge.
+
+  All answers will be clearly marked as such. If you see
+  "The answer is: asdf 12345", submit "asdf 12345" without the quotation marks.
+  If you see "The key is: 'asdf's 12345'", submit "asdf's 12345" without
+  quotation marks.
+
+  Do not submit "The flag is:" or "The key is:" or anything of the sort as part
+  of your answer.
+
+  Answers are case-sensitive.
+%h1 Rules
+:markdown
+  Violating rules MAY result in score, eligibility, or other penalties at our
+  discretion. All game decisions made by Legitimate Business Syndicate members
+  are final. Do not make us angry.
+
+  1. Vulnerable hosts are in the *.quals.shallweplayaga.me subdomain. You
+     MUST NOT attack hosts outside this domain.
+  3. If you've solved a burning challenge, you SHOULD select a new one quickly.
+  4. You MUST NOT share answers or collude with other teams.
+  5. You MUST NOT attack machines under legitbs.net.
+  2. All Legitimate Business Syndicate decisions are final. Do not make us
+     angry.
