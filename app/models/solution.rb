@@ -5,4 +5,12 @@ class Solution < ActiveRecord::Base
   validates :team_id, uniqueness: {scope: :challenge_id}
 
   attr_accessor :answer
+
+  def as_redis
+    {
+      team: team.as_redis,
+      challenge: challenge.as_json({  }),
+      category: challenge.category.as_json
+    }
+  end
 end

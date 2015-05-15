@@ -31,6 +31,14 @@ class Team < ActiveRecord::Base
     solutions.where(challenge_id: challenge.id).first_or_initialize
   end
 
+  def as_redis
+    {
+      id: id,
+      name: name,
+      logo: logo.url(:thumb)
+    }
+  end
+
   def self.entire_scoreboard
     connection.select_all(<<-SQL).to_a
       SELECT
