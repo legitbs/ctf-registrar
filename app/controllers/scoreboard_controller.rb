@@ -101,7 +101,7 @@ class ScoreboardController < ApplicationController
         logbuf << "OMG HOT"
         current_team.reload.update_attribute :hot, true
 
-        message = { kind: :popped,
+        message = { kind: 'popped',
                     user: current_user,
                     team: current_team,
                     challenge: @challenge
