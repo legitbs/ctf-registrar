@@ -2,12 +2,14 @@
   %table
     %thead
       %tr
+        %th rank
         %th team
         %th score
         %th last solve
     %tbody
-      - @leaderboard.each do |r|
+      - @leaderboard.each_with_index do |r, i|
         %tr
+          %td= i
           %td= r['team_name']
           %td= r['score'].to_i
           %td= r['last_solve']
