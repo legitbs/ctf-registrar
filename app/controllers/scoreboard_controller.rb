@@ -1,5 +1,5 @@
 class ScoreboardController < ApplicationController
-  before_filter :require_on_team, except: :index
+  before_filter :require_on_team, except: %i(index ctftime)
   before_filter :require_during_game, except: %i(index ctftime)
   before_filter :require_during_or_after_game, only: %i(index)
 
