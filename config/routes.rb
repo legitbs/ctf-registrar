@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   post "scoreboard/choice/:id", to: 'picker#pick', as: :pick
   get "scoreboard/categories", to: 'high_voltage/pages#show', id: 'categories', as: :categories
   get 'scoreboard/ctftime', format: :json
+  get 'scoreboard/complete'
 
   get "notices", to: 'notices#index', as: :notices, format: :json
 

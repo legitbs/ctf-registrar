@@ -85,6 +85,29 @@ class Team < ActiveRecord::Base
     SQL
   end
 
+  def self.complete_scoreboard
+    connection.select_all(<<-SQL).to_a
+      SELECT
+        t.id AS team_id,
+        t.name AS team_name,
+        SUM(c.points) AS score,
+        MAX(s.created_at) AS last_solve
+      FROM
+        teams AS t
+        INNER JOIN solutions AS s
+          ON s.team_id = t.id
+        INNER JOIN challenges AS c
+          ON s.challenge_id = c.id
+      WHERE
+        team_id != 1
+      GROUP BY t.id
+      ORDER BY
+        score DESC,
+        MAX(s.created_at) ASC,
+        MAX(s.id) ASC
+    SQL
+  end
+
   def self.for_scoreboard(current_team)
     scoreboard_rows = anonymous_scoreboard
 

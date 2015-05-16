@@ -1,0 +1,13 @@
+.content#scoreboard_complete
+  %table
+    %thead
+      %tr
+        %th team
+        %th score
+        %th last solve
+    %tbody
+      - @leaderboard.each do |r|
+        %tr
+          %td= r['team_name']
+          %td= r['score'].to_i
+          %td= r['last_solve']
