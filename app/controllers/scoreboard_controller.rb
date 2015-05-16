@@ -68,7 +68,7 @@ class ScoreboardController < ApplicationController
                       challenge: @challenge.as_json({  }),
                       category: @challenge.category.as_json,
                       wrong_answer: params[:answer],
-                    })
+                    }.to_json) rescue nil
       logbuf << "WRONG ANSWER"
     end
 
@@ -101,7 +101,7 @@ class ScoreboardController < ApplicationController
         logbuf << "OMG HOT"
         current_team.reload.update_attribute :hot, true
 
-        message = { kind: :popped,
+        message = { kind: 'popped',
                     user: current_user,
                     team: current_team,
                     challenge: @challenge
