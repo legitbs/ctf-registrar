@@ -86,7 +86,7 @@ body.con-scoreboard, body.con-picker
           display: inline-block
           list-style-type: none
           padding-left: 0
-          margin: 0
+          margin: 6px 0 0 0
           li
             display: inline-block
             @mixin block-color($background, $text, $border: $text)
@@ -143,6 +143,8 @@ body.con-scoreboard, body.con-picker
           font-weight: 100
 
   @media screen and (min-width: 1200px)
+    #container
+      width: 1200px
     #scene
       display: block
       #layer-altar, #layer-ziggurat
@@ -167,6 +169,7 @@ body.con-scoreboard, body.con-picker
               width: 280px
       #gameboard
         font-size: 1.4em
+        width: 800px
 
   @media screen and (max-width: 1000px)
     #content
@@ -189,6 +192,7 @@ body.con-scoreboard, body.con-picker
             &.score
               width: 15px
       #gameboard
+        width: 500px
         font-size: 0.8em
 
   @media screen and (max-width: 24px) and (max-height: 32px)
