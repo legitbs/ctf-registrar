@@ -9,7 +9,11 @@
     %tbody
       - @leaderboard.each_with_index do |r, i|
         %tr
-          %td= i
+          %td= i + 1
           %td= r['team_name']
           %td= r['score'].to_i
-          %td= r['last_solve']
+          %td
+            - Time.parse(r['last_solve']).tap do |t|
+              = time_ago_in_words t
+              ago /
+              = t.utc
