@@ -55,6 +55,18 @@
           - else
             %s{title: "can't kick the captain"} kick
 
+%h2 solutions
+%table
+  %thead
+    %th name
+    %th points
+    %th solved at
+  %tbody
+    - @team.solutions.joins(:challenge).each do |s|
+      %tr
+        %td= s.challenge.name
+        %td= s.challenge.points
+        %td= s.created_at
 
 %h2 awards
 %table
