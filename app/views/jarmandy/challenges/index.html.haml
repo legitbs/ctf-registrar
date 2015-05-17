@@ -8,10 +8,11 @@
 %table
   %thead
     %th name
-    %th category
-    %th points
+    %th cat
+    %th pts
     %th unlocked
     %th solved
+    %th it took
     %th activities
   %tbody
     - @challenges.each do |c|
@@ -21,6 +22,10 @@
         %td= c.points
         %td= c.unlocked_at
         %td= c.solved_at
+        %td
+          - if c.unlocked_at && c.solved_at
+            = distance_of_time_in_words c.unlocked_at, c.solved_at
+            or #{(c.solved_at - c.unlocked_at).to_i} seconds
         %td
           = link_to 'show', jarmandy_challenge_path(c)
           = link_to 'edit', edit_jarmandy_challenge_path(c)
