@@ -24,6 +24,7 @@ class Team < ActiveRecord::Base
                       )
 
   def score
+    return 0 if solutions.count == 0
     solutions.joins(:challenge).sum('challenges.points')
   end
 
