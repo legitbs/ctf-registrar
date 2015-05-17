@@ -4,9 +4,10 @@ class Notice < ActiveRecord::Base
   def self.for(team, since=nil)
     since ||= 0
     where(
-          '(created_at > :since) and (team_id is null or team_id = :team_id)', 
+          '(created_at > :since) and (team_id is null or team_id = :team_id)',
           since: Time.at(since.to_i + 1),
           team_id: team.id)
+      .order(created_at: :asc)
   end
 
   def self.search(text)
