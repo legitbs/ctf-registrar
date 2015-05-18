@@ -25,7 +25,7 @@ class ScoreboardController < ApplicationController
   end
 
   def ctftime
-    @leaderboard = Team.anonymous_scoreboard
+    @leaderboard = Team.complete_scoreboard
   end
 
   def challenge
