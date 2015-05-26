@@ -15,11 +15,11 @@ class Statdump
 
   def template_engine(template_name)
     @template_engine ||= Hash.new
-    @template_engine[template_name] ||= 
+    @template_engine[template_name] ||=
       Haml::Engine.new File.read Rails.root.join "app/views/statdump/#{template_name}.html.haml"
   end
 
-  def render(template, presenter)
+  def render(template, presenter = Object.new)
     layout_engine.render do
       template_engine(template).render presenter
     end

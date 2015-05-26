@@ -1,9 +1,7 @@
-%h1 Stat Dump for DEF CON CTF 2014 Qualifiers
+%h1 Stat Dump for DEF CON CTF 2015 Qualifiers
 
 %nav
   %ul
-    %li
-      %a{href: 'achievements.html'} Achievements
     %li
       %a{href: 'challenges.html'} Challenges
     %li
@@ -14,6 +12,6 @@
 %p
   We have JSON dumps of most of our tables for your processing pleasure.
 %ul
-  - %w{achievements awards categories challenges notices teams users}.sort.each do |j|
+  - %w{categories challenges notices teams users}.sort.each do |j|
     %li
       %a{href: "#{j}.json"}= j

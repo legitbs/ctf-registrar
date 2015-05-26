@@ -1,13 +1,13 @@
 namespace :statdump do
   require 'statdump'
 
-  SUBDIRS = %w{teams challenges achievements images}
+  SUBDIRS = %w{teams challenges images}
 
   desc 'Package statdump in a bz2ball'
   task :package => :all do
-    sh "tar jcf tmp/statdump_2014.tar.bz2 tmp/statdump"
+    sh "tar jcf tmp/statdump_2015.tar.bz2 tmp/statdump"
     puts "HEY YO sign it with:"
-    puts "gpg -u vito@legitbs.net -b tmp/statdump_2014.tar.bz2"
+    puts "gpg -u vito@legitbs.net -b tmp/statdump_2015.tar.bz2"
   end
 
   desc 'Dump all the public stats'
@@ -15,18 +15,27 @@ namespace :statdump do
 
   task :subdirs => SUBDIRS.map{ |d| "tmp/statdump/#{d}" }
 
-  task :index => [:env, 'tmp/statdump'] do
-    File.open("tmp/statdump/index.html", 'w') do |f|
-      f.write Statdump.instance.render 'index', nil
+  task :index => ['tmp/statdump/index.html', 'tmp/statdump/README.txt']
+
+  file 'tmp/statdump/index.html' => %i(env tmp/statdump) do |t|
+    File.open(t.name, 'w') do |f|
+      f.write Statdump.instance.render 'index'
     end
+  end
+
+  file 'tmp/statdump/README.txt' => 'tmp/statdump' do
     FileUtils.cp 'app/views/statdump/README.txt', 'tmp/statdump/'
   end
 
-  task :stylesheet => [:env, :subdirs] do
-    File.open("tmp/statdump/statdump.css", 'w') do |f|
+  task :stylesheet => ['tmp/statdump/statdump.css', :copy_styles]
+
+  file 'tmp/statdump/statdump.css' => [:env, :subdirs, 'app/assets/stylesheets/statdump.css.sass'] do |t|
+    File.open(t.name, 'w') do |f|
       f.write Statdump.instance.sass_engine.render
     end
+  end
 
+  task :copy_styles => 'tmp/statdump/statdump.css' do
     SUBDIRS.each do |sd|
       FileUtils.cp 'tmp/statdump/statdump.css', "tmp/statdump/#{sd}/statdump.css"
     end
@@ -52,14 +61,14 @@ namespace :statdump do
     File.open("tmp/statdump/solutions.json", 'w') do |f|
       f.write Solution.all.to_json except: %i{ updated_at }
     end
-    File.open("tmp/statdump/achievements.json", 'w') do |f|
-      f.write Achievement.all.to_json except: :trophy_id, include: { 
-        trophy: { only: :name }
-      }
-    end
-    File.open("tmp/statdump/awards.json", 'w') do |f|
-      f.write Award.all.to_json except: %i{ comment updated_at }
-    end
+    # File.open("tmp/statdump/achievements.json", 'w') do |f|
+    #   f.write Achievement.all.to_json except: :trophy_id, include: {
+    #     trophy: { only: :name }
+    #   }
+    # end
+    # File.open("tmp/statdump/awards.json", 'w') do |f|
+    #   f.write Award.all.to_json except: %i{ comment updated_at }
+    # end
     File.open("tmp/statdump/notices.json", 'w') do |f|
       f.write Notice.all.to_json except: %i{ updated_at }
     end
@@ -97,17 +106,17 @@ namespace :statdump do
     end
   end
 
-  task :achievements => :env do
-    Achievement.find_each do |a|
-      next if a.awards.count == 0
-      File.open("tmp/statdump/achievements/#{a.id}.html", 'w') do |f|
-        f.write Statdump.instance.render 'achievement', a
-      end
-    end
-    File.open("tmp/statdump/achievements.html", 'w') do |f|
-      f.write Statdump.instance.render 'achievements', Achievement
-    end
-  end
+  # task :achievements => :env do
+  #   Achievement.find_each do |a|
+  #     next if a.awards.count == 0
+  #     File.open("tmp/statdump/achievements/#{a.id}.html", 'w') do |f|
+  #       f.write Statdump.instance.render 'achievement', a
+  #     end
+  #   end
+  #   File.open("tmp/statdump/achievements.html", 'w') do |f|
+  #     f.write Statdump.instance.render 'achievements', Achievement
+  #   end
+  # end
 
   SUBDIRS.each do |d|
     directory "tmp/statdump/#{d}" => 'tmp/statdump'
