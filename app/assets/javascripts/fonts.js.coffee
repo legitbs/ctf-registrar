@@ -2,8 +2,8 @@ jQuery ($)->
   window.WebFontConfig =
     google:
       families: [
-        'Rambla:400,700,400italic,700italic:latin,latin-ext',
-        'Michroma::latin'
+        'Open+Sans:300,400,400italic,700,800,800italic',
+        'Oxygen+Mono::latin'
         ]
   wf = document.createElement 'script'
   wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js'
