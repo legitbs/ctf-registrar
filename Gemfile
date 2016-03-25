@@ -4,13 +4,13 @@ ruby '2.3.0'
 gem 'rails', '~> 4.2.6'
 gem 'puma'
 
+gem 'neat'
+
 gem 'delayed_paperclip'
 
 gem 'newrelic_rpm'
 gem 'pg'
 gem 'redis'
-# gem 'foreigner'
-# gem 'immigrant'
 gem 'haml-rails'
 gem 'high_voltage'
 gem 'rdiscount'

@@ -289,6 +289,9 @@ GEM
     multi_xml (0.5.5)
     multipart-post (2.0.0)
     naught (1.1.0)
+    neat (1.5.1)
+      bourbon (>= 3.1)
+      sass (~> 3.2.19)
     newrelic_rpm (3.15.1.316)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
@@ -445,6 +448,7 @@ DEPENDENCIES
   marked-rails
   mini_magick
   mocha (~> 0.13.3)
+  neat
   newrelic_rpm
   pg
   pngqr
