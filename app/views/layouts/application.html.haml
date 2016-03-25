@@ -7,18 +7,10 @@
       %title DEF CON CTF 2016
     = stylesheet_link_tag "application", media: "all"
     = csrf_meta_tags
-    - %w{32x32 16x16}.each do |s|
-      = favicon_link_tag "favicon-#{s}.png", sizes: s
+    = favicon_link_tag "businesscore-300x300.png", sizes: '300x300'
     = yield :head
   %body{class: body_class, data: {hacker_count: hacker_count}}
     #container
-      #canvas
-        = image_tag 'scene-840x1344.jpg', width: 420, height: 672
-        %canvas#actualScene.stealth{width: 420, height: 672}
-        #stop-button{style: 'display: none'} start animation
-        %canvas#countdown{width: 160, height: 120}
-        #timer{data:{remain: (Time.at(game_window.last) - Time.now)}, style: 'display: none'}
-        = image_tag '2015-canvas-160x120.png', id: 'canvas-template', width: 160, height: 120, crossorigin: 'anonymous'
       - unless display_flash.empty?
         #flashes
           - display_flash.each do |k,v|

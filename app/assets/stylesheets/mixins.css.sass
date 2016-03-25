@@ -1,13 +1,3 @@
-@mixin jp-en-columns
-  &.jp
-    text-align: right
-  &.en
-    text-align: left
-
-@mixin letter($letterBackground: #ffe)
-  background-color: $letterBackground
-  border: 1px solid darken($letterBackground, 30%)
-
 @mixin unnumbered-list
   list-style-type: none
   &, & li
@@ -18,11 +8,11 @@
   font-family: "Oxygen Mono", Monaco, Consolas, Courier, monospace
 
 @mixin button
-  border: 1px solid $dark_amber
-  color: $dark_amber
-  background-color: $amber
+  border: 1px solid $lefty
+  color: $lefty
+  background-color: $light_tielight
   font-size: 1em
   text-decoration: none
   &:active
     border: 1px solid white
-    box-shadow: 0 1px 2px $light_purple
+    box-shadow: 0 1px 2px $light_tielight
