@@ -1,26 +1,19 @@
-.content#dashboard
-  .account
-    %h1 Account Options
-    = render partial: 'shared/who'
-    %ul.account_options
-      - if current_user.auth_secret.blank?
-        %li
-          = link_to 'Set up Two Factor Authentication', new_token_path
-      %li
-        = link_to 'View password resets', resets_path
-      - if current_user.participant?
-        %li
-          = link_to 'Achievements', achievements_path
-      - if current_user.owner?
-        %li
-          = link_to 'Modify team', edit_team_path
-          - unless current_team.logo.present?
-            New! Add a logo!
-      %li= link_to 'Log out', session_path, method: :delete
-
-  .team
+.account
+  %h1 Account Options
+  = render partial: 'shared/who'
+  .account_options
+    - if current_user.auth_secret.blank?
+      = link_to 'Set up Two Factor Authentication', new_token_path
+    = link_to 'View password resets', resets_path
     - if current_user.participant?
-      = render partial: 'participant'
-      = render partial: 'yes_team'
-    - else
-      = render partial: 'no_team'
+      = link_to 'Achievements', achievements_path
+    - if current_user.owner?
+      = link_to 'Modify team', edit_team_path
+    = link_to 'Log out', session_path, method: :delete
+
+.team
+  - if current_user.participant?
+    = render partial: 'participant'
+    = render partial: 'yes_team'
+  - else
+    = render partial: 'no_team'

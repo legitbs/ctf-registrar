@@ -40,6 +40,7 @@ class TeamsController < ApplicationController
       cheevo('syn')
 
       analytics_flash '_trackEvent', 'Teams', 'create'
+      flash[:success] = "Created and captained team"
       redirect_to dashboard_path
     else
       render action: "new"
