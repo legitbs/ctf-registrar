@@ -10,9 +10,10 @@
 @mixin button
   border: 1px solid $lefty
   color: $lefty
-  background-color: $light_tielight
+  background-color: lighten($light_tielight, 15%)
   font-size: 1em
   text-decoration: none
+  padding: 4px
   &:active
     border: 1px solid white
     box-shadow: 0 1px 2px $light_tielight

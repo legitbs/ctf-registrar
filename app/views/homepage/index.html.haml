@@ -1,42 +1,40 @@
-#index.page
-  .invitation
-    %p
-      Grab &infin; of your leetest friends and get ready for DEF CON CTF
-      qualifications. We're building another great game for you this year,
-      with brain-destroying binaries, super-sick shellcode shenanigans, and
-      challenging fun for you. Register yourself, create or join a team, and
-      get your affairs in order for DEF CON CTF 2015.
-    %table#timetable
-      %tbody
-        %tr
-          %th Qualifications begin
-          %td Midnight UTC, May 21
-          %td.time_t= game_window.first.to_i
-        %tr
-          %th Qualifications end
-          %td Midnight UTC, May 23
-          %td.time_t= game_window.last.to_i
+.invitation
+  %p
+    Prepare yourself for the newest iteration of DEF CON Capture the Flag.
+    For 2016, we have challenges for every player, from basic buffer
+    buffoonery to truly tiring tasks that will crush your complacency and
+    separate the elite from everyone else.
+  %table#timetable
+    %tbody
+      %tr
+        %th Qualifications begin
+        %td Midnight UTC, May 21
+        %td.time_t= game_window.first.to_i
+      %tr
+        %th Qualifications end
+        %td Midnight UTC, May 23
+        %td.time_t= game_window.last.to_i
 
-  .new
-    %h1 Register
+.new
+  %h1 Register
+  %div
+    = link_to 'Sign Up', new_user_path, class: 'btn'
+.login
+  %h1 Log In
+  = form_tag session_path do
     %div
-      = link_to 'Sign Up', new_user_path, class: 'btn'
-  .login
-    %h1 Log In
-    = form_tag session_path do
-      %div
-        = label_tag :username
-        = text_field_tag :username
-      %div
-        = label_tag :password
-        = password_field_tag :password
-      %div
-        %label
-        = submit_tag 'Log In'
-  .forgot
-    %h1 Forgot Password
+      = label_tag :username
+      = text_field_tag :username
     %div
-      = link_to 'Reset Password', new_reset_path, class: 'btn'
+      = label_tag :password
+      = password_field_tag :password
+    %div
+      %label &nbsp;
+      = submit_tag 'Log In'
+.forgot
+  %h1 Forgot Password
+  %div
+    = link_to 'Reset Password', new_reset_path, class: 'btn'
 
 - content_for :head do
   %meta(name="twitter:card" content="summary")

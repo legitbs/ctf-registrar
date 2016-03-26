@@ -21,7 +21,7 @@
         Choose a secure but memorable password.
         %a{href: 'http://xkcd.com/936/'}<
           Non-memorable garbage isn't necessarily secure.
-        If you screw up, you can reset your password later.
+        If you mess up, you can reset your password later.
     %div
       = f.label :email
       = f.text_field :email
@@ -34,13 +34,14 @@
         you qualify. Your address will only be used for official game
         communication.
     %div.checkbox
-      = f.label :visa, "I'll need a visa to travel to Las Vegas"
       = f.check_box :visa
+      = f.label :visa, "I'll need a visa to travel to Las Vegas"
       .explanation
         We welcome competitors from all over the world, but acknowledge
         that a trip to the US might require extra paperwork.
-        = link_to 'http://travel.state.gov/content/visas/english.html' do
-          The US Department of State has more information about visa requirements.
+        = link_to 'http://travel.state.gov/content/visas/en.html' do
+          The US Department of State has more information about visa
+          requirements.
     %div
       %label &nbsp;
       = f.submit value: 'Create Account'

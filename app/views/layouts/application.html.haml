@@ -19,6 +19,21 @@
       #content
         = yield
       #splash
+        %h1#main DEF CON CTF 2016
+        %h1#quals Qualifiers
+        %h2#lbs
+          Legitimate
+          %br
+          Business
+          %br
+          Syndicate
+    %footer
+      .block
+        = link_to 'Legitimate Business Syndicate', 'https://legitbs.net'
+        = link_to 'DEF CON', 'https://defcon.org'
+      .block
+        = image_tag 'businesscore-300x300.png', alt: '#', width: 16, height: 16
+        &copy; 2012-2016 Legitimate Business Syndicate.
     = cheevos
     = javascript_include_tag "application"
     = render partial: 'shared/analytics'
