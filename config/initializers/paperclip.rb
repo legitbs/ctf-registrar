@@ -8,7 +8,7 @@ opts = (
       aws_secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'],
       path_style: true,
     },
-    fog_directory: 'teams-2015.legitbs.net',
+    fog_directory: 'teams-2016.legitbs.net',
 
     # image format
     # see http://www.imagemagick.org/script/command-line-processing.php#geometry
@@ -20,9 +20,9 @@ opts = (
     },
 
     # urls
-    hash_secret: 'spewing torrents of bees from my mouth',
+    hash_secret: 'cats',
     hash_data: ":rails_env/:class/:attachment/:id/:style/:updated_at",
-    url: 'https://teams-2015.legitbs.net/t/:hash.:extension',
+    url: 'https://teams-2016.legitbs.net/t/:hash.:extension',
     path: 't/:hash.:extension',
   })
 
