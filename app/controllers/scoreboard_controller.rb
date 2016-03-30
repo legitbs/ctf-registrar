@@ -3,6 +3,8 @@ class ScoreboardController < ApplicationController
   before_filter :require_during_game, except: %i(index ctftime)
   before_filter :require_during_or_after_game, only: %i(index)
 
+  layout 'scoreboard'
+
   def index
     return anonymous_index unless current_team
 

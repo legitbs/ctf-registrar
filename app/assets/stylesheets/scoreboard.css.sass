@@ -1,0 +1,18 @@
+.con-scoreboard
+  section#topzone
+    @include outer-container
+    #messages
+      @include span-columns(9)
+      ol
+        @include unnumbered-list
+    #timer
+      @include span-columns(3)
+
+  section#main
+    @include outer-container
+    #gameboard
+      @include span-columns(8)
+    #scorelist
+      @include span-columns(4)
+      ol
+        @include unnumbered-list

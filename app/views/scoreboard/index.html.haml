@@ -1,4 +1,4 @@
-.content#scoreboard
+%section#topzone
   #messages{:'data-message-path' => notices_path, :'data-message-interval' => 60_000}
     %ol#messages-inner
       %li
@@ -6,20 +6,11 @@
           %span.timestamp {{ timestamp }}
           %span.sender {{ sender }}
         %p.message {{ message }}
-  #scorelist
-    #timer{:'data-remain' => (Time.at(game_window.last) - Time.now), style: 'display: none'}
-      {{ hours }}:{{ minutes }}:{{ seconds }}
-    #scoreboard_template{style: 'display: none'}
-      {{#teams}}
-      %li{class: '{{classname}}'}
-        %span.teamname {{{linked_team_name}}}
-        %span.score {{score}}
-      {{/teams}}
-    %ul
-      - @leaderboard.each do |t|
-        %li{class: t['current'] ? 'current' : ''}
-          %span.teamname= t['team_name']
-          %span.score= t['score']
+
+  #timer{:'data-remain' => (Time.at(game_window.last) - Time.now), style: 'display: none'}
+    {{ hours }}:{{ minutes }}:{{ seconds }}
+
+%section#main
   #gameboard
     - @challenges.each do |row|
       .category
@@ -55,4 +46,15 @@
           %div
             %label
             %input{type: 'submit'}
-  %br.clear
+  #scorelist
+    #scoreboard_template{style: 'display: none'}
+      {{#teams}}
+      %li{class: '{{classname}}'}
+        %span.teamname {{{linked_team_name}}}
+        %span.score {{score}}
+      {{/teams}}
+    %ol
+      - @leaderboard.each do |t|
+        %li{class: t['current'] ? 'current' : ''}
+          %span.teamname= t['team_name']
+          %span.score= t['score']

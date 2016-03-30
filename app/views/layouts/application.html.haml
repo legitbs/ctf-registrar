@@ -9,7 +9,7 @@
     = csrf_meta_tags
     = favicon_link_tag "businesscore-300x300.png", sizes: '300x300'
     = yield :head
-  %body{class: body_class, data: {hacker_count: hacker_count}}
+  %body{class: body_class}
     %section
       - unless display_flash.empty?
         #flashes

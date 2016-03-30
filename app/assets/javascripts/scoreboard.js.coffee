@@ -1,5 +1,5 @@
 jQuery ($)->
-  return unless $('.content#scoreboard').length == 1
+  return unless $('.con-scoreboard').length == 1
 
   $('#gameboard .tooltip').tooltipster
     delay: 50
@@ -37,7 +37,7 @@ jQuery ($)->
         seconds = @remain - diff
         minutes = seconds / 60
         hours = minutes / 60
-        cd = 
+        cd =
           hours: ~~hours
           minutes: pad(~~(minutes % 60))
           seconds: pad(~~(seconds % 60))
@@ -96,7 +96,7 @@ jQuery ($)->
       f = (data, textStatus, jqx)->
         for notice in data['notices']
           timestamp = new Date(notice['created_at'])
-          
+
           if Number(timestamp) > @since
             @since = Number(timestamp) / 1000
 
@@ -146,7 +146,7 @@ jQuery ($)->
   challengeWindow = $('#challenge')
 
   loadChallenge = (challengeId, url)->
-    $.ajax 
+    $.ajax
       url: url
       dataType: 'json'
       method: 'get'
@@ -158,7 +158,7 @@ jQuery ($)->
         challengeWindow.show()
 
   submitChallenge = (formData, url)->
-    $.ajax 
+    $.ajax
       url: url
       data: formData
       dataType: 'json'
@@ -169,7 +169,7 @@ jQuery ($)->
         else
           document.location.hash = "#!solved"
           document.location.reload()
-      statusCode: 
+      statusCode:
         500: (data, textStatus, jqx)->
           Log.log.appendLocal "you broke it :("
         400: (data, textStatus, jqx)->
