@@ -58,7 +58,7 @@ Rails.application.configure do
   # config.cache_store = :mem_cache_store
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
-  config.action_controller.asset_host = 'https://assets-2015.legitbs.net'
+  config.action_controller.asset_host = 'https://assets-2016.legitbs.net'
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
@@ -78,6 +78,6 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   config.action_mailer.default_url_options = {
-    host: '2015.legitbs.net', protocol: 'https'
+    host: '2016.legitbs.net', protocol: 'https'
   }
 end
