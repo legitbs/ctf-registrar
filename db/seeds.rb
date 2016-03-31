@@ -38,8 +38,10 @@ end
 if Rails.env.development?
   23.times do |t|
     u = User.where(username: "User-#{t}").first || User.create(username: "User-#{t}", password: 'asdf', password_confirmation: 'asdf', email: "butt-#{t}@invalid.invalid")
-raise u.errors.inspect if u.id.nil?
+    raise u.errors.inspect if u.id.nil?
     t = Team.where(name: "Team #[t}").first || Team.create(name: "Team #{t}", password: 'asdf', password_confirmation: 'asdf', user: u)
+    u.team = t
+    u.save
     t.solutions.where(challenge: Challenge.first).first_or_create
   end
 end
