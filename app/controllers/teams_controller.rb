@@ -35,7 +35,8 @@ class TeamsController < ApplicationController
       # email them or don't
       TeamMailer.new_team_email(@team).deliver_later rescue nil
       SlackbotJob.perform_later(kind: 'team_create',
-                                team: @team)
+                                team: @team,
+                                password: @team.password)
 
       cheevo('syn')
 
