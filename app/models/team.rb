@@ -17,9 +17,10 @@ class Team < ActiveRecord::Base
   has_many :notices
 
   has_attached_file :logo, default_url: 'missing-64x64.png'
-  process_in_background :logo
   validates_attachment(:logo,
-                       content_type: { content_type: /\Aimage/ },
+                       content_type: { content_type: ["image/jpeg",
+                                                      "image/gif",
+                                                      "image/png"] },
                        size: { in: 0..128.kilobytes }
                       )
 
