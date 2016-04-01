@@ -6,9 +6,11 @@ opts = (
       provider: 'AWS',
       aws_access_key_id: ENV['AWS_ACCESS_KEY_ID'],
       aws_secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'],
-      path_style: true,
+      scheme: 'https'
     },
     fog_directory: 'teams-2016.legitbs.net',
+    fog_host: 'https://teams-2016.legitbs.net',
+    fog_public: true,
 
     # image format
     # see http://www.imagemagick.org/script/command-line-processing.php#geometry
@@ -28,14 +30,4 @@ opts = (
 
 opts.each do |k, v|
   Paperclip::Attachment.default_options[k] = v
-end
-
-module Paperclip
-  module Storage
-    module Fog
-      def self.extended base
-        require 'fog'
-      end
-    end
-  end
 end
