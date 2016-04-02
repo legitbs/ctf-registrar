@@ -6,7 +6,7 @@ gem 'puma'
 
 gem 'neat'
 
-gem 'delayed_paperclip'
+gem 'paperclip'
 
 gem 'newrelic_rpm'
 gem 'pg'

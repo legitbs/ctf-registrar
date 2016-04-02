@@ -43,7 +43,7 @@ class TokensController < ApplicationController
         unless secret =~ /^[a-zA-Z0-9]{16}$/
           return render qrcode: 'lol', status: 400
         end
-        payload = "otpauth://totp/legitbs%202015?secret=#{secret}"
+        payload = "otpauth://totp/legitbs%202016?secret=#{secret}"
         send_data Pngqr.encode(payload, scale: 9), disposition: :inline, type: 'image/png'
       end
     end

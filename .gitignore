@@ -17,3 +17,4 @@ erd.pdf
 .ruby-version
 .powrc
 *.iml
+.powenv
