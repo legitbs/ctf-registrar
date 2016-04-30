@@ -13,4 +13,22 @@ module ScoreboardHelper
   def challenge_id_for(single_challenge_row)
     "#{single_challenge_row['category_name'].parameterize}-#{single_challenge_row['id']}"
   end
+
+  def challenge_li(row, &blk)
+    content_tag(:li,
+                class: challenge_class_for(row) + ' challenge',
+                id: challenge_id_for(row),
+                &blk)
+  end
+
+  def timer_placeholder
+    now = Time.now
+    seconds = game_window.last - now
+    return "Game Over" if seconds <= 0
+
+    minutes = seconds / 60
+    hours = minutes / 60
+
+    "%02d:%02d:%02d" % [hours, minutes % 60, seconds % 60]
+  end
 end

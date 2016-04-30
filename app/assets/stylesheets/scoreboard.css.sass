@@ -1,18 +1,61 @@
 .con-scoreboard
-  section#topzone
-    @include outer-container
-    #messages
-      @include span-columns(9)
-      ol
-        @include unnumbered-list
-    #timer
-      @include span-columns(3)
-
   section#main
     @include outer-container
-    #gameboard
+    #leftcol
       @include span-columns(8)
-    #scorelist
+    #rightcol
       @include span-columns(4)
-      ol
-        @include unnumbered-list
+      @include pad
+      padding-top: 0
+      background-color: $shirt
+#messages
+  @include pad
+  padding-top: 0
+  max-height: 8em
+  overflow: scroll
+  background-color: $light_tielight
+  ol
+    @include unnumbered-list
+
+#timer
+  text-align: center
+  font-size: 1.8em
+
+#gameboard
+  @include pad
+  .category
+    ul.challenges
+      padding-left: 0
+      list-style-type: none
+      li
+        padding-left: 20px
+        background-repeat: no-repeat
+        background-position: left center
+        &.locked
+          background-image: image-url('red-x.png')
+        &.solved
+          background-image: image-url('green-check.png')
+        &.live
+          background-image: image-url('pink-heart.png')
+        &.burning
+          background-image: image-url('burning-love.gif')
+          background-position: bottom
+          background-repeat: repeat-x
+          $tbc: transparentize($background_color, .15)
+          a:link, a:visited
+            font-weight: bold
+            color: black
+            background-color: $tbc
+          em, span.points
+            background-color: $tbc
+
+#scorelist
+  table
+    width: 100%
+    border-spacing: 0
+    tr
+      td.teamname
+      td.score
+        text-align: right
+      &.current, &.current td
+        background-color: $background_color

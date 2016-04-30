@@ -7,3 +7,23 @@
         = text_field_tag :answer, '', placeholder: 'answer'
         = f.submit 'Solve it'
         %a{href: scoreboard_path} Back to Scoreboard
+    %h2 Statistics
+    %table
+      %tbody
+        %tr
+          %th views
+          %td 12345
+        %tr
+          %th solves
+          %td= @challenge.solutions.count
+        %tr
+          %th unlocked at
+          %td{title: @challenge.unlocked_at}
+            = time_ago_in_words @challenge.unlocked_at
+            ago
+        %tr
+          %th first solved at
+          - first_solve = @challenge.solutions.order(created_at: :asc).first
+          %td{title: first_solve.created_at}
+            = time_ago_in_words first_solve.created_at
+            ago

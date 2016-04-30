@@ -18,7 +18,7 @@ jQuery ($)->
   class Countdown
     constructor: ->
       @timer = $('#timer')
-      @timerTemplate = @timer.html()
+      @timerTemplate = $('#timer .template').html()
       @timer.html('')
       @update(@timer.data 'remain')
       @startPoll()
@@ -66,6 +66,7 @@ jQuery ($)->
   class Poller
     constructor: ->
       @messages = $('#messages')
+      return unless @messages.length > 0
       @messagePath = @messages.data('message-path')
       @interval = Number @messages.data('message-interval')
       @since = 0
@@ -142,62 +143,3 @@ jQuery ($)->
   if document.location.hash == "#!solved"
     Log.log.appendLocal "You got it!"
   document.location.hash = ""
-
-  challengeWindow = $('#challenge')
-
-  loadChallenge = (challengeId, url)->
-    $.ajax
-      url: url
-      dataType: 'json'
-      method: 'get'
-      success: (data)->
-        data.challenge.clue = marked(data.challenge.clue)
-        new_data = Mustache.render(template, data)
-        challengeWindow.html(new_data)
-        $('#challenge_form').attr('action', url)
-        challengeWindow.show()
-
-  submitChallenge = (formData, url)->
-    $.ajax
-      url: url
-      data: formData
-      dataType: 'json'
-      method: 'post'
-      success: (data, textStatus, jqx)->
-        if data.hot
-          document.location.href = "/scoreboard/choice"
-        else
-          document.location.hash = "#!solved"
-          document.location.reload()
-      statusCode:
-        500: (data, textStatus, jqx)->
-          Log.log.appendLocal "you broke it :("
-        400: (data, textStatus, jqx)->
-          response = $.parseJSON(data.responseText)
-          if response['weird']
-            return document.location.reload()
-          else
-            Log.log.appendLocal "Wrong answer :("
-            el = challengeWindow.find('input#answer')
-            blink el
-            el.val('')
-
-
-
-  $('#gameboard').on 'click', 'a.live_challenge', (e) ->
-    e.preventDefault()
-    id = this.dataset['challengeId']
-    url = this.href
-    loadChallenge(id, url)
-
-  challengeWindow.on 'click', 'a#close_button', (e)->
-    challengeWindow.hide()
-    e.preventDefault()
-
-  challengeWindow.on 'submit', 'form', (e)->
-    e.preventDefault()
-    formData = $(this).serializeArray()
-    submitChallenge(formData, this.action)
-    false
-
-  template = challengeWindow.html()

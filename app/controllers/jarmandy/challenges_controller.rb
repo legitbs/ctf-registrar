@@ -67,7 +67,7 @@ class Jarmandy::ChallengesController < Jarmandy::BaseController
   end
 
   def unsolve
-    challenge.update_attribute(solved_at: nil)
+    challenge.update_attribute(:solved_at, nil)
     redirect_to jarmandy_challenge_path challenge
   end
 

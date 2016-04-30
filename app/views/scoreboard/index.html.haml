@@ -1,60 +1,52 @@
-%section#topzone
-  #messages{:'data-message-path' => notices_path, :'data-message-interval' => 60_000}
-    %ol#messages-inner
-      %li
-        .metadata
-          %span.timestamp {{ timestamp }}
-          %span.sender {{ sender }}
-        %p.message {{ message }}
-
-  #timer{:'data-remain' => (Time.at(game_window.last) - Time.now), style: 'display: none'}
-    {{ hours }}:{{ minutes }}:{{ seconds }}
-
 %section#main
-  #gameboard
-    - @challenges.each do |row|
-      .category
-        %h1= row.first['category_name']
-        %ul.challenges
-          - row.each do |single|
-            %li{:class => challenge_class_for(single), id: challenge_id_for(single)}
-              - if single['created_at'] # solved
-                %a.tooltip{title: "#{single['challenge_name']}: #{challenge_class_for(single)}"}= single['points']
-              - elsif single['unlocked_at'] # unsolved
-                = link_to(single['points'],
-                  challenge_path(single['challenge_id']),
-                  class: 'live_challenge tooltip',
-                  :'data-challenge-id' => single['challenge_id'],
-                  title: "#{single['challenge_name']}: #{challenge_class_for(single)}")
-              - else # locked
-                %a.tooltip{title: 'locked'}= single['points']
-    #challenge{style: 'display: none'}
-      .bar
-        %a#close_button{href: '#'} close
-        %h3.meta
-          {{ category.name }}:
-          {{ challenge.points }}
-          {{#challenge.plural_points}} points {{/challenge.plural_points}}
-          {{^challenge.plural_points}} point {{/challenge.plural_points}}
-      .content
-        %h1.name {{ challenge.name }}
-        .clue {{{ challenge.clue }}}
-        =form_tag(challenge_path(":challenge_id"), method: :post, id: 'challenge_form') do
-          %div
-            %label{for: 'answer'} The flag is:
-            %input#answer{type: 'text', name: 'answer'}
-          %div
-            %label
-            %input{type: 'submit'}
-  #scorelist
-    #scoreboard_template{style: 'display: none'}
-      {{#teams}}
-      %li{class: '{{classname}}'}
-        %span.teamname {{{linked_team_name}}}
-        %span.score {{score}}
-      {{/teams}}
-    %ol
-      - @leaderboard.each do |t|
-        %li{class: t['current'] ? 'current' : ''}
-          %span.teamname= t['team_name']
-          %span.score= t['score']
+  #leftcol
+    #messages{:'data-message-path' => notices_path, :'data-message-interval' => 60_000}
+      %ol#messages-inner
+        %li
+          .metadata
+            %span.timestamp {{ timestamp }}
+            %span.sender {{ sender }}
+          %p.message {{ message }}
+
+    #gameboard
+      - @challenges.each do |row|
+        .category
+          %h1= row.first['category_name']
+          %ul.challenges
+            - row.each do |single|
+              = challenge_li single do
+                %span.points
+                  = single['points']
+                - if single['created_at'] # solved
+                  = link_to(single['challenge_name'],
+                    challenge_path(single['challenge_id']))
+                  %em
+                    Solved
+                    = time_ago_in_words single['created_at']
+                    ago
+                - elsif single['unlocked_at'] # unsolved
+                  = link_to(single['challenge_name'],
+                    challenge_path(single['challenge_id']))
+                  - if !single['solved_at']
+                    %em Hot stuff! Solve this for scoreboard control.
+                - else # locked
+                  locked
+
+  #rightcol
+    #timer{:'data-remain' => (Time.at(game_window.last) - Time.now), style: 'display: none'}
+      = timer_placeholder
+      .template{style: 'display: none'}
+        {{ hours }}:{{ minutes }}:{{ seconds }}
+
+    #scorelist
+      #scoreboard_template{style: 'display: none'}
+        {{#teams}}
+        %tr{class: '{{classname}}'}
+          %td.teamname {{{linked_team_name}}}
+          %td.score {{score}}
+        {{/teams}}
+      %table
+        - @leaderboard.each do |t|
+          %tr{class: t['current'] ? 'current' : ''}
+            %td.teamname= t['team_name']
+            %td.score= t['score']
