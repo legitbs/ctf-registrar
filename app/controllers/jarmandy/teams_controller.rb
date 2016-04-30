@@ -37,6 +37,18 @@ class Jarmandy::TeamsController < Jarmandy::BaseController
     @team = Team.find params[:id]
   end
 
+  def update
+    @team = Team.find params[:id]
+    @team.update_attributes team_params
+    if @team.save
+      flash[:success] = 'display name updated'
+      return redirect_to action: 'show'
+    end
+
+    flash[:error] = "display name change broke"
+    render action: 'show'
+  end
+
   def kick
     @team = Team.find params[:id]
     @player = @team.members.find params[:player_id]
@@ -62,5 +74,11 @@ class Jarmandy::TeamsController < Jarmandy::BaseController
     @team.save
     flash[:success] = "wiped logo"
     redirect_to jarmandy_team_path @team.id
+  end
+
+  private
+
+  def team_params
+    params.require(:team).permit(:display)
   end
 end

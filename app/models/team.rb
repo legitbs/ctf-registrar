@@ -41,72 +41,19 @@ class Team < ActiveRecord::Base
     }
   end
 
+  def display_name
+    self.display || self.name
+  end
+
   def self.entire_scoreboard
     connection.select_all(<<-SQL).to_a
-      SELECT
-        t.id AS team_id,
-        t.name AS team_name,
-        SUM(c.points) AS score,
-        MAX(s.created_at) AS last_solution_time
-      FROM
-        teams AS t
-        INNER JOIN solutions AS s
-          ON s.team_id = t.id
-        INNER JOIN challenges AS c
-          ON s.challenge_id = c.id
-      WHERE
-        team_id != 1
-      GROUP BY t.id
-      ORDER BY
-        score DESC,
-        MAX(s.created_at) ASC,
-        MAX(s.id) ASC
+      SELECT * from scoreboard
     SQL
   end
 
   def self.anonymous_scoreboard
     connection.select_all(<<-SQL).to_a
-      SELECT
-        t.id AS team_id,
-        t.name AS team_name,
-        SUM(c.points) AS score
-      FROM
-        teams AS t
-        INNER JOIN solutions AS s
-          ON s.team_id = t.id
-        INNER JOIN challenges AS c
-          ON s.challenge_id = c.id
-      WHERE
-        team_id != 1
-      GROUP BY t.id
-      ORDER BY
-        score DESC,
-        MAX(s.created_at) ASC,
-        MAX(s.id) ASC
-      LIMIT 25
-    SQL
-  end
-
-  def self.complete_scoreboard
-    connection.select_all(<<-SQL).to_a
-      SELECT
-        t.id AS team_id,
-        t.name AS team_name,
-        SUM(c.points) AS score,
-        MAX(s.created_at) AS last_solve
-      FROM
-        teams AS t
-        INNER JOIN solutions AS s
-          ON s.team_id = t.id
-        INNER JOIN challenges AS c
-          ON s.challenge_id = c.id
-      WHERE
-        team_id != 1
-      GROUP BY t.id
-      ORDER BY
-        score DESC,
-        MAX(s.created_at) ASC,
-        MAX(s.id) ASC
+      SELECT * from scoreboard LIMIT 25
     SQL
   end
 
@@ -119,6 +66,7 @@ class Team < ActiveRecord::Base
       scoreboard_rows << {
         'team_id' => current_team.id,
         'team_name' => current_team.name,
+        'display_name' => current_team.display_name,
         'score' => current_team.score,
         'current' => true}
     end

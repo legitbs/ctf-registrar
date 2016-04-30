@@ -9,6 +9,15 @@
 %table.deflist
   %tbody
     %tr
+      %th displays as
+      %td= @team.display_name
+    %tr
+      %th display name
+      %td
+        = form_for @team, url: jarmandy_team_path(@team) do |f|
+          = f.text_field :display
+          = f.submit 'change'
+    %tr
       %th captain
       %td
         = link_to @team.user.username, jarmandy_user_path(@team.user)

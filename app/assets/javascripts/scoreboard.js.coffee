@@ -54,7 +54,7 @@ jQuery ($)->
 
     return (scoreboard)->
       for t in scoreboard
-        t['linked_team_name'] = "<a href='/achievements/#{t['team_id']}'>#{t['team_name']}</a>"
+        t['linked_team_name'] = "<a href='/achievements/#{t['team_id']}'>#{t['display_name']}</a>"
         t['classname'] = 'current' if t['current']
 
       team_html = Mustache.render(template, {teams: scoreboard})

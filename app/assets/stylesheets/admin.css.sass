@@ -1,4 +1,18 @@
 body.admin
+  #flashes
+    float: none
+    width: 600px
+    margin-left: auto
+    margin-right: auto
+    padding: 8px auto
+    p
+      border-left: 4px solid
+      border-left-color: $honky
+      padding-left: 4px
+      &.error
+        border-left-color: red
+      &.success
+        border-left-color: green
   #content
     float: none
     width: 800px
