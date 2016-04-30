@@ -1,10 +1,17 @@
-class ScorebaordMaterializedView < ActiveRecord::Migration
+class AddDisplayNameToScoreboard < ActiveRecord::Migration
   def up
+    Team.connection.execute "DROP TRIGGER IF EXISTS scoreboard_update_trigger ON solutions"
+    Team.connection.execute "DROP FUNCTION IF EXISTS scoreboard_refresh_proc()"
+    Team.connection.execute "DROP MATERIALIZED VIEW IF EXISTS scoreboard"
+
     Team.connection.execute <<-SQL
       CREATE MATERIALIZED VIEW scoreboard AS
       SELECT
         t.id AS team_id,
         t.name AS team_name,
+        CASE WHEN t.display IS NULL THEN t.name
+             WHEN t.display IS NOT NULL THEN t.display
+          END AS display_name,
         SUM(c.points) AS score,
         MAX(s.created_at) AS last_solve
       FROM
