@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150516180242) do
+ActiveRecord::Schema.define(version: 20160430215440) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -129,6 +129,7 @@ ActiveRecord::Schema.define(version: 20150516180242) do
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
     t.string   "logo_fingerprint"
+    t.string   "display"
   end
 
   add_index "teams", ["name"], name: "index_teams_on_name", unique: true, using: :btree
