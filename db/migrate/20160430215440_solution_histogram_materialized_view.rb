@@ -34,7 +34,7 @@ class SolutionHistogramMaterializedView < ActiveRecord::Migration
       RETURNS trigger AS
       $$
       BEGIN
-        REFRESH MATERIALIZED VIEW CONCURRENTLY solution_histogram;
+        REFRESH MATERIALIZED VIEW solution_histogram;
       END;
       $$
       LANGUAGE plpgsql
@@ -48,7 +48,7 @@ class SolutionHistogramMaterializedView < ActiveRecord::Migration
     SQL
 
     Solution.connection.execute <<-SQL
-      REFRESH MATERIALIZED VIEW CONCURRENTLY solution_histogram;
+      REFRESH MATERIALIZED VIEW solution_histogram;
     SQL
   end
 
