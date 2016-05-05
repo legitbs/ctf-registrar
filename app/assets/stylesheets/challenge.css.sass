@@ -1,0 +1,37 @@
+.con-scoreboard.act-challenge
+  section#challenge
+    @include outer-container
+    #chalcol
+      @include span-columns(8)
+      #chaldata
+        @include outer-container
+        h1, #timer
+          font-size: 24px
+          margin: 4px 0
+        h1
+          @include span-columns(8)
+        #timer
+          @include span-columns(4)
+          font-style: italic
+          text-align: right
+    #piccol
+      @include span-columns(4)
+      #pic
+        background-image: image-url('ipad-haver-watermarked.jpg')
+        background-position: center center
+        background-size: cover
+        background-repeat: no-repeat
+        width: 345px
+        height: 345px * (534/419)
+        border: 1px solid $lefty
+        h1
+          margin: 0 -1px
+          text-align: right
+          margin-top: 4em
+          padding: 0.15em
+          background-color: $background_color
+          border: solid $lefty
+          border-width: 1px 0 1px 0
+
+table#histogram
+  display: none

@@ -1,29 +1,59 @@
-.content#challenge
-  .challenge
-    %h1.name= @challenge.name
+%section#challenge
+  #chalcol
+    #chaldata
+      %h1.name= @challenge.name
+      #timer{:'data-remain' => (Time.at(game_window.last) - Time.now), style: 'display: none'}
+        = timer_placeholder
+        .template{style: 'display: none'}
+          {{ hours }}:{{ minutes }}:{{ seconds }}
     - unless @challenge.locked?
-      %p.clue= simple_format @challenge.clue
+      %p.clue= RDiscount.new(@challenge.clue).to_html.html_safe
       = form_for @solution, url: challenge_path(@challenge.id), method: :post do |f|
         = text_field_tag :answer, '', placeholder: 'answer'
         = f.submit 'Solve it'
         %a{href: scoreboard_path} Back to Scoreboard
-    %h2 Statistics
-    %table
-      %tbody
-        %tr
-          %th views
-          %td 12345
-        %tr
-          %th solves
-          %td= @challenge.solutions.count
-        %tr
-          %th unlocked at
-          %td{title: @challenge.unlocked_at}
-            = time_ago_in_words @challenge.unlocked_at
-            ago
-        %tr
-          %th first solved at
-          - first_solve = @challenge.solutions.order(created_at: :asc).first
-          %td{title: first_solve.created_at}
-            = time_ago_in_words first_solve.created_at
-            ago
+    .stats
+      %h2 Statistics
+      %table
+        %tbody
+          %tr
+            %th views
+            %td 12345
+          %tr
+            %th solves
+            %td= @challenge.solutions.count
+          %tr
+            %th unlocked at
+            %td{title: @challenge.unlocked_at}
+              = time_ago_in_words @challenge.unlocked_at
+              ago
+          %tr
+            %th first solved at
+            - first_solve = @challenge.solutions.order(created_at: :asc).first
+            %td{title: first_solve.created_at}
+              = time_ago_in_words first_solve.created_at
+              ago
+      #histogram_canvas
+      %table#histogram
+        %thead
+          %tr
+            %th end time
+            %th solves
+            %th percent
+        %tbody
+          - @histogram.each do |h|
+            %tr{data: {end: h.end_time,
+                count: h.count,
+                complete: (h.end_time < Time.parse('may 22, 2016'))}}
+              %td= h.end_time
+              %td= h.count
+              %td= h.pct
+  #piccol
+    #pic
+      %h1.name= @challenge.name
+    #other
+      %h2
+        #{@challenge.category.name}, #{@challenge.points} points
+
+%script{type: 'text/javascript',
+        src: 'https://www.gstatic.com/charts/loader.js'}
