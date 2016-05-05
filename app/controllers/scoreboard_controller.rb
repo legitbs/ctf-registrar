@@ -34,6 +34,7 @@ class ScoreboardController < ApplicationController
     @challenge = Challenge.find params[:id]
     @title = @challenge.name
     @solution = current_team.solution_for @challenge
+    @histogram = @challenge.solution_histograms.order(end_time: :asc)
 
     return redirect_to scoreboard_path if @challenge.locked?
 

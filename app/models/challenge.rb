@@ -1,6 +1,7 @@
 class Challenge < ActiveRecord::Base
   belongs_to :category
   has_many :solutions
+  has_many :solution_histograms
 
   def self.for_scoreboard(team)
     challenge_rows = connection.select_all <<-SQL
