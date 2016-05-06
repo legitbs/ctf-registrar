@@ -2,16 +2,16 @@
   #chalcol
     #chaldata
       %h1.name= @challenge.name
-      #timer{:'data-remain' => (Time.at(game_window.last) - Time.now), style: 'display: none'}
-        = timer_placeholder
-        .template{style: 'display: none'}
-          {{ hours }}:{{ minutes }}:{{ seconds }}
-    - unless @challenge.locked?
-      %p.clue= RDiscount.new(@challenge.clue).to_html.html_safe
-      = form_for @solution, url: challenge_path(@challenge.id), method: :post do |f|
-        = text_field_tag :answer, '', placeholder: 'answer'
-        = f.submit 'Solve it'
-        %a{href: scoreboard_path} Back to Scoreboard
+      %h2
+        #{@challenge.category.name},
+        = pluralize @challenge.points, 'point'
+    #actual_challenge
+      - unless @challenge.locked?
+        %p.clue= RDiscount.new(@challenge.clue).to_html.html_safe
+        = form_for @solution, url: challenge_path(@challenge.id), method: :post do |f|
+          = text_field_tag :answer, '', placeholder: 'answer'
+          = f.submit 'Solve it'
+          %a{href: scoreboard_path} Back to Scoreboard
     .stats
       %h2 Statistics
       %table
@@ -50,10 +50,12 @@
               %td= h.pct
   #piccol
     #pic
-      %h1.name= @challenge.name
+      #timer{:'data-remain' => (Time.at(game_window.last) - Time.now), style: 'display: none'}
+        = timer_placeholder
+        .template{style: 'display: none'}
+          {{ hours }}:{{ minutes }}:{{ seconds }}
     #other
-      %h2
-        #{@challenge.category.name}, #{@challenge.points} points
+
 
 %script{type: 'text/javascript',
         src: 'https://www.gstatic.com/charts/loader.js'}

@@ -2,7 +2,7 @@ jQuery ($)->
   window.WebFontConfig =
     google:
       families: [
-        'Open+Sans:300,400,400italic,700,800,800italic:greek,greek-ext,latin,vietnamese,cyrillic-ext,latin-ext,cyrillic',
+        'Open+Sans:300,400,400italic,700italic:greek,greek-ext,latin,vietnamese,cyrillic-ext,latin-ext,cyrillic',
         'Oxygen+Mono::latin'
         ]
   wf = document.createElement 'script'

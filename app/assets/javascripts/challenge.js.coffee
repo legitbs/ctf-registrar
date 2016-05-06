@@ -36,13 +36,11 @@ jQuery ($) ->
       chartArea:
         left: 0
         top: 0
-        width: parseInt(canvas.css('width'))
+        width: canvas.width()
+        height: 180
       colors: [body.css('color')]
       enableInteractivity: false
       fontName: body.css('font-family')
-      hAxis:
-        gridlines:
-          count: 0
       legend:
         position: 'none'
       vAxes:
