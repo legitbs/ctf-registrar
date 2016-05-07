@@ -3,6 +3,18 @@ module ApplicationHelper
     (Math::log(User.count.abs + 1) * 4).round + rand(4)
   end
 
+  def timer_placeholder
+    now = Time.now
+    seconds = game_window.last - now
+    return "Game Over" if seconds <= 0
+
+    minutes = seconds / 60
+    hours = minutes / 60
+
+    "%02d:%02d:%02d" % [hours, minutes % 60, seconds % 60]
+  end
+
+
   def teaminfo(team)
     content_tag :div, class: "teaminfo team_#{team.id}" do
       content_tag(:span, team.name, class: 'teamname')

@@ -1,25 +1,39 @@
-.content#scoreboard
-  #scorelist
-    %ul
-      - @leaderboard.each do |t|
-        %li{class: t['current'] ? 'current' : ''}
-          %span.teamname= t['team_name']
-          %span.score= t['score']
-  #instructions
-    %p
-      Good job getting that challenge before everyone else. 
-      Pick a new hot challenge!
-    %p= link_to 'Category info', categories_path
-  #gameboard
-    - @challenges.each do |row|
-      .category
-        %h1= row.first['category_name']
-        %ul.challenges
-          - row.each do |single|
-            %li{:class => choice_class_for(single), id: challenge_id_for(single)}
-              - if single['class'] == 'burning'
-                = link_to(single['points'], 
-                  pick_path(single['challenge_id']),
-                  method: 'post')
-              - else
-                %a= single['points']
+%section#main
+  #leftcol
+    #instructions
+      %p
+        Good job getting that challenge before everyone else.
+        Pick a new challenge.
+
+    #gameboard
+      - @challenges.each do |row|
+        .category
+          %h1= row.first['category_name']
+          %ul.challenges
+            - row.each do |single|
+              %li{:class => choice_class_for(single), id: challenge_id_for(single)}
+                - if single['class'] == 'burning'
+                  = link_to(pick_path(single['challenge_id']), method: 'post') do
+                    = single['points']
+                    point challenge,
+                    = single['category_name']
+                    category
+                - elsif single['class'] == 'locked'
+                  %a
+                    = single['points']
+                    point challenge, can't unlock yet
+                - else
+                  %a
+                    #{single['points']}
+                    #{single['challenge_name']},
+                    already unlocked
+
+
+  #rightcol
+    = render partial: 'scoreboard/timer'
+    #scorelist
+      %table
+        - @leaderboard.each do |t|
+          %tr{class: t['current'] ? 'current' : ''}
+            %td.teamname= t['team_name']
+            %td.score= t['score']

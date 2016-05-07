@@ -1,0 +1,4 @@
+#timer{:'data-remain' => (Time.at(game_window.last) - Time.now)}
+  = timer_placeholder
+  .template{style: 'display: none'}
+    {{ hours }}:{{ minutes }}:{{ seconds }}

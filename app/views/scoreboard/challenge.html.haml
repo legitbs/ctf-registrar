@@ -50,10 +50,7 @@
               %td= h.pct
   #piccol
     #pic
-      #timer{:'data-remain' => (Time.at(game_window.last) - Time.now), style: 'display: none'}
-        = timer_placeholder
-        .template{style: 'display: none'}
-          {{ hours }}:{{ minutes }}:{{ seconds }}
+      = render partial: 'scoreboard/timer'
     #other
 
 
