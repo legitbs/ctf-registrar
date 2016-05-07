@@ -87,4 +87,16 @@ class Challenge < ActiveRecord::Base
     count = self.class.where(id: id, solved_at: nil).update_all(solved_at: Time.now)
     return count == 1
   end
+
+  def view!
+    REDIS.incr views_key
+  end
+
+  def views
+    REDIS.get(views_key).to_i
+  end
+
+  def views_key
+    "challenge-#{id}-views"
+  end
 end
