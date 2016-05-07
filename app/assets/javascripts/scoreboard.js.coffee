@@ -1,5 +1,5 @@
 jQuery ($)->
-  return unless $('.con-scoreboard').length == 1
+  return unless $('.con-scoreboard, .con-picker').length == 1
 
   $('#gameboard .tooltip').tooltipster
     delay: 50

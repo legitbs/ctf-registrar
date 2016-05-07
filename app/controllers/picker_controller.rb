@@ -2,6 +2,8 @@ class PickerController < ApplicationController
   before_filter :require_hot_team
   before_filter :require_during_game
 
+  layout 'scoreboard'
+
   def choice
     @leaderboard = Team.for_scoreboard current_team
     @categories = Category.for_scoreboard
