@@ -35,6 +35,7 @@ class SolutionHistogramMaterializedView < ActiveRecord::Migration
       $$
       BEGIN
         REFRESH MATERIALIZED VIEW solution_histogram;
+        RETURN new;
       END;
       $$
       LANGUAGE plpgsql

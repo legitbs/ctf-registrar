@@ -27,7 +27,8 @@ class ScorebaordMaterializedView < ActiveRecord::Migration
       CREATE OR REPLACE FUNCTION scoreboard_refresh_proc() RETURNS trigger AS
       $$
       BEGIN
-        REFRESH MATERIALIZED VIEW CONCURRENTLY scoreboard;
+        REFRESH MATERIALIZED VIEW scoreboard;
+        RETURN new;
       END;
       $$
       LANGUAGE plpgsql
