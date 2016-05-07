@@ -38,6 +38,15 @@
       %td= !!@team.fun
 
     %tr
+      %th hot?
+      %td
+        - if @team.hot
+          hot
+          = link_to 'Chill them out', cool_jarmandy_team_path(@team), method: :post
+        - else
+          cool
+          = link_to 'Make them hot', hot_jarmandy_team_path(@team), method: :post
+    %tr
       %th notices
       %td
         = link_to @team.notices.count, jarmandy_notices_path(team_id: @team.id)

@@ -35,6 +35,8 @@ Rails.application.routes.draw do
       member do
         post :kick
         post :wipe
+        post :hot
+        post :cool
       end
     end
     resources :notices

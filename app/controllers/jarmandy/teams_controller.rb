@@ -76,6 +76,18 @@ class Jarmandy::TeamsController < Jarmandy::BaseController
     redirect_to jarmandy_team_path @team.id
   end
 
+  def hot
+    @team = Team.find params[:id]
+    @team.update_attribute :hot, true
+    redirect_to jarmandy_team_path @team.id
+  end
+
+  def cool
+    @team = Team.find params[:id]
+    @team.update_attribute :hot, false
+    redirect_to jarmandy_team_path @team.id
+  end
+
   private
 
   def team_params
