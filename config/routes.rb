@@ -16,6 +16,8 @@ Rails.application.routes.draw do
 
   root to: 'homepage#index', id: 'home'
 
+  get '/api/hot', to: 'api#hot'
+
   resource :user
   resource :team
   resource :membership
