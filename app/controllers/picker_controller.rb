@@ -24,6 +24,14 @@ class PickerController < ApplicationController
       current_team.save
     end
 
+    message = { kind: 'picked',
+                user: current_user,
+                team: current_team,
+                challenge: @challenge
+              }
+    SlackbotJob.perform_later message
+    PushbulletJob.perform_later message
+
     redirect_to scoreboard_path
   end
 end

@@ -22,7 +22,7 @@ class ProwlJob < ActiveJob::Base
     challenge = message[:challenge]
 
     payload = {
-      event: "challenge #{challenge.name} popped",
+      event: "#{challenge.name} popped by #{team.name}",
       description:
         "#{challenge.points} points for #{team.name} won by #{user.username}"
     }
