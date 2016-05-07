@@ -18,14 +18,23 @@
   max-height: 8em
   overflow: scroll
   background-color: $light_tielight
+  border-bottom: 1px solid $tielight
   ol
     @include unnumbered-list
-
+    .metadata
+      margin: 0.5em 0 0 0
+      font-style: italic
+    p.message
+      margin-top: 0
 
 #gameboard
   @include pad
   .category
+    h1
+      margin-top: 0.25em
+      margin-bottom: 0
     ul.challenges
+      margin-top: 0
       padding-left: 0
       list-style-type: none
       li
@@ -42,13 +51,16 @@
           background-image: image-url('burning-love.gif')
           background-position: bottom
           background-repeat: repeat-x
-          $tbc: transparentize($background_color, .15)
+          $tbc: $background_color
           a:link, a:visited
             font-weight: bold
             color: black
             background-color: $tbc
+            padding-right: 0.5em
           em, span.points
             background-color: $tbc
+          em
+            padding: 0 0.5em
 
 #scorelist
   table

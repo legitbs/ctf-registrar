@@ -28,26 +28,31 @@
               = time_ago_in_words @challenge.unlocked_at
               ago
           %tr
-            %th first solved at
-            - first_solve = @challenge.solutions.order(created_at: :asc).first
-            %td{title: first_solve.created_at}
-              = time_ago_in_words first_solve.created_at
-              ago
-      #histogram_canvas
-      %table#histogram
-        %thead
-          %tr
-            %th end time
-            %th solves
-            %th percent
-        %tbody
-          - @histogram.each do |h|
-            %tr{data: {end: h.end_time,
-                count: h.count,
-                complete: (h.end_time < Time.parse('may 22, 2016'))}}
-              %td= h.end_time
-              %td= h.count
-              %td= h.pct
+            - if @challenge.solutions.count > 0
+              %th first solved
+              - first_solve = @challenge.solutions.order(created_at: :asc).first
+              %td{title: first_solve.created_at}
+                = time_ago_in_words first_solve.created_at
+                ago
+            - else
+              %th first solved
+              %td not yet
+      - unless @histogram.empty?
+        #histogram_canvas
+        %table#histogram
+          %thead
+            %tr
+              %th end time
+              %th solves
+              %th percent
+          %tbody
+            - @histogram.each do |h|
+              %tr{data: {end: h.end_time,
+                  count: h.count,
+                  complete: (h.end_time < Time.parse('may 22, 2016') rescue false)}}
+                %td= h.end_time
+                %td= h.count
+                %td= h.pct
   #piccol
     #pic
       = render partial: 'scoreboard/timer'
