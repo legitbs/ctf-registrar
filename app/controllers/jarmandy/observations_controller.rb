@@ -1,4 +1,4 @@
-class ObservationsController < ApplicationController
+class Jarmandy::ObservationsController < Jarmandy::BaseController
   before_action :set_observation, only: [:show, :edit, :update, :destroy]
 
   # GET /observations

@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :observations
   get "scoreboard", to: 'scoreboard#index', as: :scoreboard
   get "scoreboard/challenge/:id", to: 'scoreboard#challenge', as: :challenge
   post "scoreboard/challenge/:id", to: 'scoreboard#answer'
@@ -49,6 +48,8 @@ Rails.application.routes.draw do
         post :unsolve
       end
     end
+
+    resources :observations
     resources :categories
   end
 end
