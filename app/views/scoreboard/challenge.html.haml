@@ -4,7 +4,7 @@
       %h1.name= @challenge.name
       %h2
         #{@challenge.category.name},
-        = pluralize @challenge.points, 'point'
+        = pluralize @challenge.scored.points, 'point'
     #actual_challenge
       - unless @challenge.locked?
         %p.clue= RDiscount.new(@challenge.clue).to_html.html_safe

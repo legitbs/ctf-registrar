@@ -9,12 +9,12 @@ class Challenge < ActiveRecord::Base
         c.id as challenge_id,
         a.name as category_name,
         c.name as challenge_name,
-        c.points,
+        round(c.calc_points, 0) as points,
         s.created_at,
         c.unlocked_at,
         c.solved_at
       FROM
-        challenges AS c
+        scored_challenges AS c
         INNER JOIN categories AS a
           ON c.category_id = a.id
         LEFT JOIN solutions AS s
@@ -45,6 +45,10 @@ class Challenge < ActiveRecord::Base
     end
 
     return challenges
+  end
+
+  def scored
+    ScoredChallenge.find_by id: self.id
   end
 
   def as_json(args)
