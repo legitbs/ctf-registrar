@@ -1,0 +1,25 @@
+%h1 Listing observations
+
+%table
+  %thead
+    %tr
+      %th Team
+      %th Challenge
+      %th User
+      %th
+      %th
+      %th
+
+  %tbody
+    - @observations.each do |observation|
+      %tr
+        %td= observation.team
+        %td= observation.challenge
+        %td= observation.user
+        %td= link_to 'Show', observation
+        %td= link_to 'Edit', edit_observation_path(observation)
+        %td= link_to 'Destroy', observation, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Observation', new_observation_path

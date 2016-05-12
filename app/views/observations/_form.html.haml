@@ -1,0 +1,19 @@
+= form_for @observation do |f|
+  - if @observation.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@observation.errors.count, "error")} prohibited this observation from being saved:"
+      %ul
+        - @observation.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :team
+    = f.text_field :team
+  .field
+    = f.label :challenge
+    = f.text_field :challenge
+  .field
+    = f.label :user
+    = f.text_field :user
+  .actions
+    = f.submit 'Save'

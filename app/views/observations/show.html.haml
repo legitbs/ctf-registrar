@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Team:
+  = @observation.team
+%p
+  %b Challenge:
+  = @observation.challenge
+%p
+  %b User:
+  = @observation.user
+
+= link_to 'Edit', edit_observation_path(@observation)
+\|
+= link_to 'Back', observations_path
