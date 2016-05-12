@@ -45,5 +45,5 @@
       %table
         - @leaderboard.each do |t|
           %tr{class: t['current'] ? 'current' : ''}
-            %td.teamname= t['display_name']
+            %td.teamname= t['team_name']
             %td.score= t['score']

@@ -25,8 +25,11 @@ class Team < ActiveRecord::Base
                       )
 
   def score
-    return 0 if solutions.count == 0
-    solutions.joins(:challenge).sum('challenges.points')
+    self.class.connection.select_value(<<-SQL)
+      SELECT round(sum(calc_points), 0) FROM scored_challenges AS c
+      INNER JOIN solutions AS s ON s.challenge_id = c.id
+      WHERE s.team_id=#{id}
+    SQL
   end
 
   def solution_for(challenge)
