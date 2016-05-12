@@ -1,15 +1,36 @@
-%p#notice= notice
+=render partial: 'shared/jarmandy_nav'
 
 %p
   %b Team:
-  = @observation.team
+  = link_to @observation.team.name, jarmandy_team_path(@observation.team)
 %p
   %b Challenge:
-  = @observation.challenge
+  = link_to @observation.challenge.name, jarmandy_challenge_path(@observation.challenge)
 %p
   %b User:
-  = @observation.user
+  = link_to @observation.user.username, jarmandy_user_path(@observation.user)
 
-= link_to 'Edit', edit_observation_path(@observation)
-\|
-= link_to 'Back', observations_path
+%p
+  %b Created at:
+  #{time_ago_in_words @observation.created_at} ago
+  (#{ @observation.created_at })
+
+
+%h1 Solution
+- unless soln = @observation.solution
+  %p not yet, heh
+- else
+  %p
+    Solved at #{soln.created_at} (#{time_ago_in_words soln.created_at})
+  %p
+    Took
+    = distance_of_time_in_words soln.created_at, @observation.created_at, include_seconds: true
+    to solve.
+    (#{(soln.created_at - @observation.created_at).round} seconds)
+
+%p For comparison&hellip;
+- stats = @observation.challenge.solution_stats
+%p Solve count: #{stats['count']}
+%p Average time: #{stats['avg']} seconds (#{time_ago_in_words(stats['avg'])})
+- unless stats['stddev'].nil?
+  %p Standard deviation: #{stats['stddev'].to_f.round} seconds

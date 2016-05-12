@@ -32,6 +32,7 @@ Rails.application.routes.draw do
     root to: 'root#index'
     resources :users
     resources :teams do
+      resources :observations
       member do
         post :kick
         post :wipe
@@ -41,6 +42,7 @@ Rails.application.routes.draw do
     end
     resources :notices
     resources :challenges do
+      resources :observations
       member do
         post :unlock
         post :lock

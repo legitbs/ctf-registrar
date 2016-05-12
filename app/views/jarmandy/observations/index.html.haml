@@ -1,25 +1,26 @@
-%h1 Listing observations
+%h1= @title
+=render partial: 'shared/jarmandy_nav'
 
 %table
   %thead
     %tr
-      %th Team
-      %th Challenge
+      - unless @filtered == :team
+        %th Team
+      - unless @filtered == :challenge
+        %th Challenge
       %th User
-      %th
-      %th
+      %th Solved?
+      %th Created
       %th
 
   %tbody
     - @observations.each do |observation|
       %tr
-        %td= observation.team
-        %td= observation.challenge
-        %td= observation.user
-        %td= link_to 'Show', observation
-        %td= link_to 'Edit', edit_observation_path(observation)
-        %td= link_to 'Destroy', observation, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-%br
-
-= link_to 'New Observation', new_observation_path
+        - unless @filtered == :team
+          %td= link_to observation.team.name, jarmandy_team_path(observation.team)
+        - unless :challenge == @filtered
+          %td= link_to observation.challenge.name, jarmandy_challenge_path(observation.challenge)
+        %td= link_to observation.user.username, jarmandy_user_path(observation.user)
+        %td= !!observation.solution
+        %td= observation.created_at
+        %td= link_to 'Show observation', jarmandy_observation_path(observation)

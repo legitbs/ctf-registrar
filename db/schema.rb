@@ -99,6 +99,7 @@ ActiveRecord::Schema.define(version: 20160512174805) do
   end
 
   add_index "observations", ["challenge_id"], name: "index_observations_on_challenge_id", using: :btree
+  add_index "observations", ["team_id", "challenge_id"], name: "index_observations_on_team_id_and_challenge_id", unique: true, using: :btree
   add_index "observations", ["team_id"], name: "index_observations_on_team_id", using: :btree
   add_index "observations", ["user_id"], name: "index_observations_on_user_id", using: :btree
 

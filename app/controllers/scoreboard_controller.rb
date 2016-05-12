@@ -39,7 +39,7 @@ class ScoreboardController < ApplicationController
     return redirect_to scoreboard_path if @challenge.locked?
 
     cheevo "ack"
-    @challenge.view!
+    @challenge.view! current_user
 
     respond_to do |f|
       f.html

@@ -15,6 +15,7 @@ class Team < ActiveRecord::Base
   has_many :achievements, through: :awards
   has_many :members, class_name: 'User'
   has_many :notices
+  has_many :observations
 
   has_attached_file :logo, default_url: 'missing-64x64.png'
   validates_attachment(:logo,

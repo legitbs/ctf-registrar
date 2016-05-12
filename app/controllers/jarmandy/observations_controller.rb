@@ -4,7 +4,7 @@ class Jarmandy::ObservationsController < Jarmandy::BaseController
   # GET /observations
   # GET /observations.json
   def index
-    @observations = Observation.all
+    @observations = scope.all
   end
 
   # GET /observations/1
@@ -14,7 +14,7 @@ class Jarmandy::ObservationsController < Jarmandy::BaseController
 
   # GET /observations/new
   def new
-    @observation = Observation.new
+    @observation = scope.new
   end
 
   # GET /observations/1/edit
@@ -24,7 +24,7 @@ class Jarmandy::ObservationsController < Jarmandy::BaseController
   # POST /observations
   # POST /observations.json
   def create
-    @observation = Observation.new(observation_params)
+    @observation = scope.new(observation_params)
 
     respond_to do |format|
       if @observation.save
@@ -37,34 +37,29 @@ class Jarmandy::ObservationsController < Jarmandy::BaseController
     end
   end
 
-  # PATCH/PUT /observations/1
-  # PATCH/PUT /observations/1.json
-  def update
-    respond_to do |format|
-      if @observation.update(observation_params)
-        format.html { redirect_to @observation, notice: 'Observation was successfully updated.' }
-        format.json { render :show, status: :ok, location: @observation }
-      else
-        format.html { render :edit }
-        format.json { render json: @observation.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /observations/1
-  # DELETE /observations/1.json
-  def destroy
-    @observation.destroy
-    respond_to do |format|
-      format.html { redirect_to observations_url, notice: 'Observation was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
-
   private
-    # Use callbacks to share common setup or constraints between actions.
+  def scope
+    return @scope if defined? @scope
+    if params[:challenge_id]
+      chall = Challenge.find(params[:challenge_id])
+      @title = "Observations of challenge #{chall.name}"
+      @filtered = :challenge
+      @scope = chall.observations
+    elsif params[:team_id]
+      team = Team.find(params[:team_id])
+      @title = "Observations of team #{team.name}"
+      @filtered = :team
+      @scope = team.observations
+    else
+      @title = "All observations"
+      @filtered = false
+      @scope = Observation.limit(25)
+    end
+  end
+
+  # Use callbacks to share common setup or constraints between actions.
     def set_observation
-      @observation = Observation.find(params[:id])
+      @observation = scope.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

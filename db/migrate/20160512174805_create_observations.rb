@@ -7,5 +7,7 @@ class CreateObservations < ActiveRecord::Migration
 
       t.timestamps null: false
     end
+
+    add_index :observations, %i{team_id challenge_id}, unique: true
   end
 end

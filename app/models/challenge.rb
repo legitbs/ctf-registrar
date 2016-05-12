@@ -2,6 +2,7 @@ class Challenge < ActiveRecord::Base
   belongs_to :category
   has_many :solutions
   has_many :solution_histograms
+  has_many :observations
 
   def self.for_scoreboard(team)
     challenge_rows = connection.select_all <<-SQL
@@ -92,8 +93,9 @@ class Challenge < ActiveRecord::Base
     return count == 1
   end
 
-  def view!
+  def view!(user)
     REDIS.incr views_key
+    Observation.observe! self, user
   end
 
   def views
@@ -102,5 +104,20 @@ class Challenge < ActiveRecord::Base
 
   def views_key
     "challenge-#{id}-views"
+  end
+
+  def solution_stats
+    self.class.connection.select_one(<<-SQL)
+      SELECT
+        s.challenge_id AS challenge_id,
+        COUNT(s.challenge_id),
+        AVG(EXTRACT(epoch FROM s.created_at - o.created_at)),
+        STDDEV(EXTRACT(epoch FROM (s.created_at - o.created_at)))
+      FROM solutions AS s
+      RIGHT JOIN observations AS o ON
+        o.team_id = s.team_id AND o.challenge_id = s.challenge_id
+      WHERE s.challenge_id=#{id.to_i}
+      GROUP BY s.challenge_id
+    SQL
   end
 end

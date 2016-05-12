@@ -22,6 +22,15 @@
       %th points
       %td= challenge.points
     %tr
+      %th views
+      %td= challenge.views
+    %tr
+      %th{title: 'unique views'} observations
+      %td= challenge.observations.count
+    %tr
+      %th solves
+      %td= challenge.solutions.count
+    %tr
       %th clue
       %td= challenge.clue
     %tr
@@ -47,6 +56,14 @@
           correct
         - else
           not correct
+
+%h2 solution stats
+- stats = challenge.solution_stats
+%p Solve count: #{stats['count']}
+%p Average time: #{stats['avg']} seconds (#{time_ago_in_words(stats['avg'])})
+- unless stats['stddev'].nil?
+  %p Standard deviation: #{stats['stddev'].to_f.round} seconds
+
 
 %h2 solutions
 %p
