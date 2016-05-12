@@ -19,7 +19,9 @@
       %tr
         %td= c.name
         %td= c.category.name
-        %td= c.points
+        %td
+          = c.scored.points
+          (#{c.points})
         %td= c.unlocked_at
         %td= c.solved_at
         %td
