@@ -58,12 +58,13 @@
           not correct
 
 %h2 solution stats
-- stats = challenge.solution_stats
-%p Solve count: #{stats['count']}
-%p Average time: #{stats['avg']} seconds (#{time_ago_in_words(stats['avg'])})
-- unless stats['stddev'].nil?
-  %p Standard deviation: #{stats['stddev'].to_f.round} seconds
-
+- if stats = challenge.solution_stats
+  %p Solve count: #{stats['count']}
+  %p Average time: #{stats['avg']} seconds (#{time_ago_in_words(stats['avg'])})
+  - unless stats['stddev'].nil?
+    %p Standard deviation: #{stats['stddev'].to_f.round} seconds
+- else
+  %p not yet
 
 %h2 solutions
 %p
