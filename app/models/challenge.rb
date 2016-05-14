@@ -29,8 +29,33 @@ class Challenge < ActiveRecord::Base
     challenge_rows.group_by{|r| r['category_name']}.values
   end
 
+  def self.unscored_for_scoreboard(team)
+    challenge_rows = connection.select_all <<-SQL
+      SELECT
+        c.id as challenge_id,
+        a.name as category_name,
+        c.name as challenge_name,
+        c.points,
+        s.created_at,
+        c.unlocked_at,
+        c.solved_at
+      FROM
+        challenges AS c
+        INNER JOIN categories AS a
+          ON c.category_id = a.id
+        LEFT JOIN solutions AS s
+          ON c.id = s.challenge_id and s.team_id=#{team.id.to_i}
+      ORDER BY
+        a.order ASC,
+        c.points ASC,
+        c.name ASC
+    SQL
+
+    challenge_rows.group_by{|r| r['category_name']}.values
+  end
+
   def self.for_picker(team)
-    challenges = for_scoreboard team
+    challenges = unscored_for_scoreboard team
 
     category_min_unsolved = Category.all.inject({  }) do |mem, cat|
       mem[cat.name] = cat.challenges.where(solved_at: nil).map(&:points).min || 1
