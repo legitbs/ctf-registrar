@@ -20,7 +20,7 @@
         %td= c.name
         %td= c.category.name
         %td
-          = c.scored.points
+          = c.scored.points rescue 'idk call vito'
           (#{c.points})
         %td= c.unlocked_at
         %td= c.solved_at
