@@ -58,7 +58,7 @@ class Challenge < ActiveRecord::Base
     challenges = unscored_for_scoreboard team
 
     category_min_unsolved = Category.all.inject({  }) do |mem, cat|
-      mem[cat.name] = cat.challenges.where(solved_at: nil).map(&:points).min || 1
+      mem[cat.name] = cat.challenges.where(solved_at: nil).map(&:points).compact.min || 1
       mem
     end
 
