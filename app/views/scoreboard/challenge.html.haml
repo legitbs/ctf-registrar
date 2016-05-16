@@ -23,7 +23,7 @@
             %th solves
             %td= @challenge.solutions.count
           %tr
-            %th unlocked at
+            %th unlocked
             %td{title: @challenge.unlocked_at}
               = time_ago_in_words @challenge.unlocked_at
               ago
@@ -54,7 +54,7 @@
                 %td= h.count
                 %td= h.pct
   #piccol
-    #pic
+    #manglepic{class: mangle_class}
       = render partial: 'scoreboard/timer'
     #other
 

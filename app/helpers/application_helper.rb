@@ -14,6 +14,27 @@ module ApplicationHelper
     "%02d:%02d:%02d" % [hours, minutes % 60, seconds % 60]
   end
 
+  MANGLE_LEVELS = %w{clean mangle-1 mangle-2 mangle-3}
+
+  def mangle_class
+    actor = rand(4) + 1
+
+    total_seconds = game_window.last - game_window.first
+    elapsed_seconds = Time.now - game_window.first
+    progress = elapsed_seconds.to_f / total_seconds.to_f
+
+    if (progress < 0) || (progress > 1)
+      progress = rand
+    end
+
+    bias = progress * MANGLE_LEVELS.length
+
+    index = (rand * bias).to_i
+
+    pick = MANGLE_LEVELS[(rand * bias).to_i]
+
+    "mangle_#{actor}_#{pick}"
+  end
 
   def teaminfo(team)
     content_tag :div, class: "teaminfo team_#{team.id}" do

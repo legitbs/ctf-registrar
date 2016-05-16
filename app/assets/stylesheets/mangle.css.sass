@@ -1,0 +1,8 @@
+@for $actor from 1 through 4
+  @each $mangle_level in clean, mangle-1, mangle-2, mangle-3
+    .mangle_#{$actor}_#{$mangle_level}
+      background-image: image-url('mangle/native/#{$actor}-#{$mangle_level}.jpg')
+      @include media(min-resolution 2dppx)
+        background-image: image-url('mangle/retina/#{$actor}-#{$mangle_level}.jpg')
+      @include media(-webkit-min-device-pixel-ratio 2)
+        background-image: image-url('mangle/retina/#{$actor}-#{$mangle_level}.jpg')
