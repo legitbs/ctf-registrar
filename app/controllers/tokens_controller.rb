@@ -37,18 +37,16 @@ class TokensController < ApplicationController
   end
 
   def show
-    respond_to do |fmt|
-      fmt.png do
-        secret = params[:id]
-        unless secret =~ /^[a-zA-Z0-9]{16}$/
-          return render qrcode: 'lol', status: 400
-        end
-        payload = "otpauth://totp/legitbs%202016?secret=#{secret}"
-        send_data Pngqr.encode(payload, scale: 9), disposition: :inline, type: 'image/png'
-      end
+    secret = params[:id]
+    unless secret =~ /^[a-zA-Z0-9]{16}$/
+      return send_data(
+               Pngqr.encode('lol', scale: 9),
+               disposition: :inline,
+               type: 'image/png',
+               status: 400)
     end
-  rescue ActionController::UnknownFormat
-    return render qrcode: 'lol', status: 400
+    payload = "otpauth://totp/legitbs%202016?secret=#{secret}"
+    send_data Pngqr.encode(payload, scale: 9), disposition: :inline, type: 'image/png'
   end
 
   private

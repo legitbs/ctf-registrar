@@ -34,6 +34,9 @@ module ApplicationHelper
     pick = MANGLE_LEVELS[(rand * bias).to_i]
 
     "mangle_#{actor}_#{pick}"
+  rescue e
+    Raygun.track_exception(e) if defined? Raygun
+    "mangle_1_clean"
   end
 
   def teaminfo(team)
