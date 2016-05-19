@@ -27,7 +27,7 @@ module ApplicationHelper
       progress = rand
     end
 
-    bias = progress * MANGLE_LEVELS.length
+    bias = progress * (MANGLE_LEVELS.length + 1)
 
     index = (rand * bias).to_i
 
