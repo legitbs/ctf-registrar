@@ -23,7 +23,7 @@ class Jarmandy::NoticesController < Jarmandy::BaseController
 
   def create
     notice_attrs = notice_params
-    do_tweet = notice_attrs.delete :tweet
+    do_tweet = notice_attrs.delete(:tweet) == '1'
     do_post = notice_attrs.delete :post
 
     @notice = Notice.new notice_attrs
