@@ -74,6 +74,9 @@
             %s{title: "can't kick the captain"} kick
 
 %h2 solutions
+%p
+  = link_to jarmandy_team_observations_path(team_id: @team.id) do
+    Observations
 %table
   %thead
     %th name
@@ -86,19 +89,19 @@
         %td= s.challenge.points
         %td= s.created_at
 
-%h2 awards
-%table
-  %thead
-    %tr
-      %th name
-      %th description
-      %th awarded at
-  %tbody
-    - @team.awards.includes(:achievement).each do |a|
-      %tr
-        %td= a.achievement.name
-        %td= a.achievement.description
-        %td= a.created_at
+-# %h2 awards
+-# %table
+-#   %thead
+-#     %tr
+-#       %th name
+-#       %th description
+-#       %th awarded at
+-#   %tbody
+-#     - @team.awards.includes(:achievement).each do |a|
+-#       %tr
+-#         %td= a.achievement.name
+-#         %td= a.achievement.description
+-#         %td= a.created_at
 
 %h2
   %a{name: 'logo'} logo

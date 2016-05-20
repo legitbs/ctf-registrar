@@ -62,6 +62,7 @@
 
 %h2 solution stats
 - if stats = challenge.solution_stats
+  %p= link_to 'Observations', jarmandy_challenge_observations_path(challenge_id: challenge.id)
   %p Solve count: #{stats['count']}
   %p Average time: #{stats['avg']} seconds (#{time_ago_in_words(stats['avg'])})
   - unless stats['stddev'].nil?
