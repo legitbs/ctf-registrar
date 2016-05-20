@@ -34,6 +34,9 @@
       %th clue
       %td= challenge.clue
     %tr
+      %th formatted clue
+      %td= RDiscount.new(challenge.clue).to_html.html_safe
+    %tr
       %th unlocked
       %td= challenge.unlocked_at
     %tr
