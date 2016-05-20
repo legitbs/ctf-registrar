@@ -5,6 +5,12 @@
       %h2
         #{@challenge.category.name},
         = pluralize @challenge.scored.points, 'point'
+    - unless display_flash.empty?
+      #flashes
+        - display_flash.each do |k,v|
+          - next if k.to_s == 'analytics' || k.to_s == 'cheevo'
+          %p{class: "flash #{k}"}= v
+
     #actual_challenge
       - unless @challenge.locked?
         %p.clue= RDiscount.new(@challenge.clue).to_html.html_safe
