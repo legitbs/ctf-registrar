@@ -64,10 +64,10 @@
 - if stats = challenge.solution_stats
   %p= link_to 'Observations', jarmandy_challenge_observations_path(challenge_id: challenge.id)
   %p Solve count: #{stats['count']}
-  - if stats['avg'].is_a? Numeric
-    %p Average time: #{stats['avg']} seconds (#{time_ago_in_words(stats['avg'])})
-  - if stats['stddev'].is_a? Numeric
-    %p Standard deviation: #{stats['stddev'].to_f.round} seconds
+  %p
+    Average time: #{stats['avg'].to_f.round} seconds
+    (#{time_ago_in_words(Time.now - stats['avg'].to_f)})
+  %p Standard deviation: #{stats['stddev'].to_f.round} seconds
 - else
   %p not yet
 

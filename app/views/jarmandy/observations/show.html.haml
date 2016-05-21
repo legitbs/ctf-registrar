@@ -31,6 +31,7 @@
 %p For comparison&hellip;
 - stats = @observation.challenge.solution_stats
 %p Solve count: #{stats['count']}
-%p Average time: #{stats['avg']} seconds (#{time_ago_in_words(stats['avg'])})
-- unless stats['stddev'].nil?
-  %p Standard deviation: #{stats['stddev'].to_f.round} seconds
+%p
+  Average time: #{stats['avg'].to_f.round} seconds
+  (#{time_ago_in_words(Time.now - stats['avg'].to_f)})
+%p Standard deviation: #{stats['stddev'].to_f.round} seconds
