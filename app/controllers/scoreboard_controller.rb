@@ -23,7 +23,7 @@ class ScoreboardController < ApplicationController
   end
 
   def complete
-    @leaderboard = Team.complete_scoreboard
+    @leaderboard = Team.entire_scoreboard
   end
 
   def ctftime
