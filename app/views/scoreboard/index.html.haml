@@ -36,12 +36,12 @@
     = render partial: 'scoreboard/timer'
 
     #scorelist
-      #scoreboard_template{style: 'display: none'}
-        {{#teams}}
+      %script#scoreboard_template{type: 'text/plain'}
+        = "{{#teams}}"
         %tr{class: '{{classname}}'}
-          %td.teamname {{{linked_team_name}}}
+          %td.teamname {{team_name}}
           %td.score {{score}}
-        {{/teams}}
+        = "{{/teams}}"
       %table
         - @leaderboard.each do |t|
           %tr{class: t['current'] ? 'current' : ''}

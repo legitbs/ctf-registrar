@@ -50,11 +50,10 @@ jQuery ($)->
     template = sbt.html()
     sbt.remove()
 
-    list = $('#scorelist ul')
+    list = $('#scorelist table')
 
     return (scoreboard)->
       for t in scoreboard
-        t['linked_team_name'] = "<a href='/achievements/#{t['team_id']}'>#{t['display_name']}</a>"
         t['classname'] = 'current' if t['current']
 
       team_html = Mustache.render(template, {teams: scoreboard})
