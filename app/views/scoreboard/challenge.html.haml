@@ -53,9 +53,9 @@
               %th percent
           %tbody
             - @histogram.each do |h|
-              %tr{data: {end: h.end_time,
+              %tr{data: {end: h.end_time.iso8601,
                   count: h.count,
-                  complete: (h.end_time < Time.parse('may 22, 2016') rescue false)}}
+                  complete: (h.end_time < Time.now rescue false)}}
                 %td= h.end_time
                 %td= h.count
                 %td= h.pct
