@@ -51,13 +51,13 @@ class Team < ActiveRecord::Base
 
   def self.entire_scoreboard
     connection.select_all(<<-SQL).to_a
-      SELECT * from scoreboard
+      SELECT * from scoreboard ORDER BY score DESC, last_solve DESC, team_id DESC
     SQL
   end
 
   def self.anonymous_scoreboard
     connection.select_all(<<-SQL).to_a
-      SELECT * from scoreboard LIMIT 25
+      SELECT * from scoreboard  ORDER BY score DESC, last_solve DESC, team_id DESC LIMIT 25
     SQL
   end
 
