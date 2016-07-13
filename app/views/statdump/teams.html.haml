@@ -1,6 +1,12 @@
+%nav
+  %ul
+    %li
+      %a{href: 'index.html'} Statdump Root
+
 %h1 all #{length} teams
+
 %p sorted by creation date
 %ol
   - each do |t|
     %li
-      %a{href: "teams/#{t[0]}.html"}= t[1]
+      %a{href: "teams/#{t[0]}.html"}&= t[1]

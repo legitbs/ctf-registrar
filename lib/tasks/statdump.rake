@@ -47,19 +47,25 @@ namespace :statdump do
 
   task :json => [:env] do
     File.open("tmp/statdump/teams.json", 'w') do |f|
-      f.write Team.all.to_json except: %i{ password_digest prequalified }
+      f.write Team.order(id: :asc).all.to_json except: %i{ password_digest prequalified }
     end
     File.open("tmp/statdump/users.json", 'w') do |f|
-      f.write User.all.to_json only: %i{ id username team_id created_at }
+      f.write User.order(id: :asc).all.to_json only: %i{ id username team_id created_at }
     end
     File.open("tmp/statdump/challenges.json", 'w') do |f|
-      f.write Challenge.all.to_json
+      f.write Challenge.order(id: :asc).all.to_json
     end
     File.open("tmp/statdump/categories.json", 'w') do |f|
-      f.write Category.all.to_json except: %i{ updated_at }
+      f.write Category.order(id: :asc).all.to_json except: %i{ updated_at }
     end
     File.open("tmp/statdump/solutions.json", 'w') do |f|
-      f.write Solution.all.to_json except: %i{ updated_at }
+      f.write Solution.order(id: :asc).all.to_json except: %i{ updated_at }
+    end
+    File.open("tmp/statdump/observations.json", 'w') do |f|
+      f.write Observation.order(id: :asc).all.to_json except: %i{ updated_at }
+    end
+    File.open("tmp/statdump/solutions.json", 'w') do |f|
+      f.write Solution.order(id: :asc).all.to_json except: %i{ updated_at }
     end
     # File.open("tmp/statdump/achievements.json", 'w') do |f|
     #   f.write Achievement.all.to_json except: :trophy_id, include: {
@@ -70,7 +76,7 @@ namespace :statdump do
     #   f.write Award.all.to_json except: %i{ comment updated_at }
     # end
     File.open("tmp/statdump/notices.json", 'w') do |f|
-      f.write Notice.all.to_json except: %i{ updated_at }
+      f.write Notice.order(id: :asc).all.to_json except: %i{ updated_at }
     end
   end
 
@@ -80,8 +86,12 @@ namespace :statdump do
     Team.find_each do |t|
       print "Teams: #{t.id} / #{c}"
       tn << [t.id, t.name]
+
+      delegate = SimpleDelegator.new(t)
+      delegate.extend ActionView::Helpers::DateHelper
+
       File.open("tmp/statdump/teams/#{t.id}.html", 'w') do |f|
-        f.write Statdump.instance.render 'team', t
+        f.write Statdump.instance.render 'team', delegate
       end
       print "\r"
     end
@@ -96,10 +106,29 @@ namespace :statdump do
   end
 
   task :challenges => :env do
+    ct = Challenge.count
     Challenge.find_each do |c|
+      print "Challenges: #{c.id} / #{ct}"
+      g = Gruff::Bar.new
+      g.theme = {colors: ["#493733"],
+                 marker_color: "#493733",
+                 font_color: "#493733",
+                 background_colors: 'transparent'}
+      g.data(:solves,
+             c.solution_histograms.select(:count).map(&:count),
+             "#493733")
+      g.minimum_value = 0
+      g.hide_legend = true
+      g.hide_title = true
+      g.write("tmp/statdump/challenges/#{c.id}.png")
+
+      delegate = SimpleDelegator.new(c)
+      delegate.extend ActionView::Helpers::DateHelper
+
       File.open("tmp/statdump/challenges/#{c.id}.html", 'w') do |f|
-        f.write Statdump.instance.render 'challenge', c
+        f.write Statdump.instance.render 'challenge', delegate
       end
+      print "\r"
     end
     File.open("tmp/statdump/challenges.html", 'w') do |f|
       f.write Statdump.instance.render 'challenges', Category

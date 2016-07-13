@@ -1,8 +1,13 @@
+%nav
+  %ul
+    %li
+      %a{href: 'index.html'} Statdump Root
+
 %h1 all challenges
+
 - Category.order(order: :asc).all.each do |cat|
   %h2= cat.name
   %ul
     - cat.challenges.order(points: :asc, name: :asc).each do |ch|
       %li
-        %a{href: "challenges/#{ch.id}.html"} #{ch.points}: #{ch.name}
-        
+        %a{href: "challenges/#{ch.id}.html"} #{ch.scored.points}: #{ch.name}

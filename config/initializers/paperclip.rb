@@ -23,7 +23,7 @@ opts = (
 
     # urls
     hash_secret: 'cats',
-    hash_data: ":rails_env/:class/:attachment/:id/:style/:updated_at",
+    hash_data: "production/:class/:attachment/:id/:style/:updated_at",
     url: 'https://teams-2016.legitbs.net/t/:hash.:extension',
     path: 't/:hash.:extension',
   })

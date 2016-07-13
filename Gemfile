@@ -55,6 +55,7 @@ group :development do
   gem 'binding_of_caller'
   gem 'web-console'
   gem 'better_errors'
+  gem 'gruff'
 end
 
 group :test do

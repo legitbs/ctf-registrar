@@ -16,6 +16,10 @@ class Solution < ActiveRecord::Base
     }
   end
 
+  def observation
+    Observation.find_by(team_id: team_id, challenge_id: challenge_id)
+  end
+
   private
 
   def publish!

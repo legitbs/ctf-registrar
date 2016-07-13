@@ -9,19 +9,32 @@ body
   width: 100%
   height: 100%
   margin: 0
-  background: linear-gradient($darker_crimson 0%, $dark_crimson 100%) fixed no-repeat
+  background: lighten($shirt, 6%)
   background-size: cover
-  color: $light_amber
+  color: $lefty
   a
     &:link, &:visited
-      color: $amber
+      color: darken($honky, 35%)
   #content
     width: 980px
     margin: 12px auto
-    border: 1px solid $light_amber
+    border: 1px solid $lefty
     padding: 12px
-    nav
+    nav.big
       padding: 12px
+      ul
+        list-style-type: none
+        padding: 0
+        margin: 0
+        li
+          a
+            font-size: 2em
+            text-decoration: none
+            font-style: italic
+            font-weight: 700
+            &:hover
+              background-color: $shirt
+    nav
       ul
         list-style-type: none
         padding: 0
@@ -30,13 +43,5 @@ body
           display: inline-block
           a
             display: inline-block
-            border: 1px solid $bright_amber
-            margin: 4px
-            padding: 24px
-            width: 258px
-            text-align: center
-            text-decoration: none
-            font-size: 18px
-            &:hover
-              background-color: $light_amber
-              color: $dark_amber
+            padding: 0.5em
+            border: 1px solid $shirt

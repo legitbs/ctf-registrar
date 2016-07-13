@@ -1,42 +1,69 @@
-%h1= name
-%p Score: #{score}
-%p Captain: #{user.username}
+%nav
+  %ul
+    %li
+      %a{href: '../teams.html'} All Teams
+    %li
+      %a{href: '../index.html'} Statdump Root
+
+%h1&= name
+
+%table
+  %tbody
+    %tr
+      %th score
+      %td= score
+    %tr
+      %th captain
+      %td&= user.username
+    %tr
+      %th registered at
+      %td= created_at
+
 %h2 Challenges solved
 %table
   %thead
     %tr
       %th category & points
       %th name
+      %th observed at
       %th solved at
+      %th took
   %tbody
     - solutions.order(created_at: :asc).joins(:challenge).each do |s|
       %tr
         %td
           = s.challenge.category.name
-          = s.challenge.points
+          = s.challenge.scored.points
         %td
           %a{href: "../challenges/#{s.challenge.id}.html"}
             = s.challenge.name
+        %td= s.observation.created_at
         %td= s.created_at
-%h2 Achievements
+        %td= distance_of_time_in_words s.observation.created_at, s.created_at
+
+%h2 Challenges observed
 %table
   %thead
     %tr
+      %th category & points
       %th name
-      %th description
-      %th condition
-      %th unlocked at
-      %th unlocked by
+      %th observed at
+      %th solved
   %tbody
-    - awards.order(created_at: :asc).joins(:achievement).each do |a|
+    - observations.order(created_at: :asc).each do |o|
       %tr
         %td
-          %a{href: "../achievements/#{a.achievement.id}.html"}= a.achievement.name
-        %td= a.achievement.description
-        %td= a.achievement.condition
-        %td= a.created_at
-        %td= a.user.username rescue ''
+          = o.challenge.category.name
+          = o.challenge.scored.points
+        %td
+          %a{href: "../challenges/#{o.challenge.id}.html"}
+            = o.challenge.name
+        %td= o.created_at
+        %td
+          = !!o.solution
+
+
 %h2 Members
 %ol
   - members.order(created_at: :asc).each do |m|
-    %li= m.username
+    %li&= m.username
