@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 ruby '2.4.0'
 
-gem 'rails', '~> 4.2.6'
+gem 'rails', '~> 5.0.2'
 gem 'puma'
 
 gem 'neat'
@@ -21,12 +21,12 @@ gem 'http'
 
 gem 'twitter'
 
-gem "recaptcha", "~> 0.3.6"
+gem "recaptcha", "~> 4.1.0"
 
 gem 'validates_email_format_of'
 
-gem 'sass-rails',   '~> 4.0.2'
-gem 'coffee-rails', '~> 4.0.0'
+gem 'sass-rails',   '~> 5.0'
+gem 'coffee-rails', '~> 4.2'
 
 gem 'bourbon'
 
@@ -62,7 +62,7 @@ group :test do
   gem 'cucumber-rails', require: false
   gem 'database_cleaner'
   gem 'shoulda'
-  gem 'mocha', '~> 0.13.3', require: 'mocha/setup'
+  gem 'mocha', '~> 1.2.1', require: 'mocha/setup'
   gem 'factory_girl_rails'
 end
 
