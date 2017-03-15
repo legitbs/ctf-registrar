@@ -8,13 +8,13 @@ class TeamsControllerTest < ActionController::TestCase
     end
 
     context 'without a team' do
-      context 'GET to show' do
-        setup do
-          get :show
-        end
+      # context 'GET to show' do
+      #   setup do
+      #     get :show
+      #   end
 
-        should redirect_to('dashboard'){ dashboard_path }
-      end
+      #   should redirect_to('dashboard'){ dashboard_path }
+      # end
     end
   end
 end

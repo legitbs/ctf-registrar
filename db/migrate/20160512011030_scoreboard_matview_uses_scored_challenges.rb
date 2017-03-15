@@ -1,6 +1,6 @@
 class ScoreboardMatviewUsesScoredChallenges < ActiveRecord::Migration
   def change
-    Team.connection.execute "DROP MATERIALIZED VIEW scoreboard"
+    Team.connection.execute "DROP MATERIALIZED VIEW IF EXISTS scoreboard"
 
     Team.connection.execute <<-SQL
       CREATE MATERIALIZED VIEW scoreboard AS
