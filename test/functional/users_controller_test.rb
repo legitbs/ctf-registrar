@@ -7,10 +7,10 @@ class UsersControllerTest < ActionController::TestCase
         be_before_game
         @user_attrs = FactoryGirl.attributes_for :user_params_valid
         @old_users = User.all
-        post :create, user: @user_attrs
+        post :create, params: { user: @user_attrs }
       end
       should redirect_to('the dashboard'){ dashboard_path }
-      should set_session(:user_id)
+      should set_session[:user_id]
       should 'send a confirmation'
     end
   end

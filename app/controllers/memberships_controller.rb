@@ -1,5 +1,5 @@
 class MembershipsController < ApplicationController
-  before_filter :require_no_team
+  before_action :require_no_team
 
   def create
     m = Membership.new params[:membership]

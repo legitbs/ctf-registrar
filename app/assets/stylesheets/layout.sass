@@ -4,9 +4,9 @@ body
   margin-top: 0
 
 section
-  @include outer-container
+  @include grid-container
   #flashes
-    @include span-columns(12)
+    @include grid-column(12)
     border-bottom: 4px solid $tielight
     margin-top: 0
     p
@@ -21,9 +21,9 @@ section
       &.error
         border-left-color: #b00
   #content
-    @include span-columns(6)
+    @include grid-column(6)
   #splash
-    @include span-columns(6)
+    @include grid-column(6)
     border: 1px solid $lefty
     margin-top: -1px
     $image_width: 667px
@@ -35,9 +35,9 @@ section
     background-position: center center
     background-repeat: no-repeat
     background-size: cover
-    @include media(min-resolution 2dppx)
+    @media(min-resolution 2dppx)
       background-image: image-url('AdobeStock_69618226-1058x1788.jpeg')
-    @include media(-webkit-min-device-pixel-ratio 2)
+    @media(-webkit-min-device-pixel-ratio 2)
       background-image: image-url('AdobeStock_69618226-1058x1788.jpeg')
     h1, h2
       background-color: $background_color
@@ -55,9 +55,9 @@ section
       margin-top: 1.1em
 
 footer
-  @include outer-container
+  @include grid-container
   margin: 2em auto
   .block
-    @include span-columns(6)
+    @include grid-column(6)
   a:link, a:visited
     @include bubble_button

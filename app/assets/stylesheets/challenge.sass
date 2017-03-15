@@ -1,19 +1,18 @@
 .con-scoreboard.act-challenge
   section#challenge
-    @include outer-container
+    @include grid-container
     #chalcol
-      @include span-columns(8)
+      @include grid-column(8)
       #chaldata
-        @include outer-container
-        @include pad
+        @include grid-container
         background-color: $light-tielight
         h1, h2
           font-size: 24px
           margin: 4px 0
         h1
-          @include span-columns(6)
+          @include grid-column(6)
         h2
-          @include span-columns(6)
+          @include grid-column(6)
           font-style: italic
           text-align: right
       #flashes
@@ -24,9 +23,8 @@
           background-color: $background_color
       #actual_challenge
         background-color: $shirt
-        @include pad
     #piccol
-      @include span-columns(4)
+      @include grid-column(4)
       text-align: center
       #manglepic
         background-position: center center

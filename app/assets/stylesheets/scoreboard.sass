@@ -1,11 +1,10 @@
 .con-scoreboard, .con-picker
   section#main
-    @include outer-container
+    @include grid-container
     #leftcol
-      @include span-columns(8)
+      @include grid-column(8)
     #rightcol
-      @include span-columns(4)
-      @include pad
+      @include grid-column(4)
       padding-top: 0
       background-color: $shirt
   #timer
@@ -13,7 +12,6 @@
     font-size: 1.8em
 
 #messages, #instructions
-  @include pad
   padding-top: 0
   max-height: 8em
   overflow: scroll
@@ -28,7 +26,6 @@
       margin-top: 0
 
 #gameboard
-  @include pad
   .category
     h1
       margin-top: 0.25em

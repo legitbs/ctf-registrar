@@ -11,7 +11,7 @@ class MembershipsControllerTest < ActionController::TestCase
     context 'without a team' do
       context 'POST to create' do
         setup do
-          post :create, membership: {name: @team.name, password: 'kenny'}
+          post :create, params: { membership: {name: @team.name, password: 'kenny'} }
         end
 
         should redirect_to('the dashboard'){ dashboard_path }
