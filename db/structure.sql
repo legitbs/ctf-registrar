@@ -1044,27 +1044,18 @@ ALTER TABLE ONLY users
 
 SET search_path TO "$user", public;
 
-INSERT INTO schema_migrations (version) VALUES ('20150405204455');
+INSERT INTO "schema_migrations" (version) VALUES
+('20150405204455'),
+('20150428023637'),
+('20150510162044'),
+('20150516180242'),
+('20160430183739'),
+('20160430185139'),
+('20160430215440'),
+('20160507192341'),
+('20160512000142'),
+('20160512011030'),
+('20160512174805'),
+('20160515184309');
 
-INSERT INTO schema_migrations (version) VALUES ('20150428023637');
-
-INSERT INTO schema_migrations (version) VALUES ('20150510162044');
-
-INSERT INTO schema_migrations (version) VALUES ('20150516180242');
-
-INSERT INTO schema_migrations (version) VALUES ('20160430183739');
-
-INSERT INTO schema_migrations (version) VALUES ('20160430185139');
-
-INSERT INTO schema_migrations (version) VALUES ('20160430215440');
-
-INSERT INTO schema_migrations (version) VALUES ('20160507192341');
-
-INSERT INTO schema_migrations (version) VALUES ('20160512000142');
-
-INSERT INTO schema_migrations (version) VALUES ('20160512011030');
-
-INSERT INTO schema_migrations (version) VALUES ('20160512174805');
-
-INSERT INTO schema_migrations (version) VALUES ('20160515184309');
 
