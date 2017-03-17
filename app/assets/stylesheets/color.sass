@@ -35,11 +35,16 @@ $light_bluegrey: lighten($bluegrey, 25%)
 $tielight: #8b858b
 $light_tielight: lighten($tielight, 25%)
 
-$background_color: lighten($shirt, 6%)
+// 2017
+$mustard: #F0B62F
+$pale_mustard: lighten($mustard, 25%)
+$dark_grape: #0F0533
+
+$background_color: $dark_grape
 
 // useful
-$deemphasized: lighten($lefty, 15%)
-$emphasized: $bright_amber
+$deemphasized: desaturate($mustard, 45%)
+$emphasized: saturate($mustard, 15%)
 
 $error: $crimson
 $error_bright: #faa

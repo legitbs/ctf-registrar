@@ -2,8 +2,9 @@ jQuery ($)->
   window.WebFontConfig =
     google:
       families: [
-        'Open+Sans:300,400,400italic,700,700italic:greek,greek-ext,latin,vietnamese,cyrillic-ext,latin-ext,cyrillic',
-        'Oxygen+Mono::latin'
+        'Ubuntu:400,400italic,700,700italic',
+        'Ubuntu+Mono:400',
+        'Permanent+Marker'
         ]
   wf = document.createElement 'script'
   wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js'
