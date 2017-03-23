@@ -5,15 +5,16 @@
     padding: 0
 
 @mixin mono
-  font-family: "Oxygen Mono", Monaco, Consolas, Courier, monospace
+  font-family: $mono_font
 
 @mixin button
   border: 1px solid $lefty
-  color: $lefty
-  background-color: lighten($light_tielight, 15%)
+  color: $dark_grape
+  background-color: $pale_mustard
   font-size: 1em
   text-decoration: none
   padding: 4px
+  margin: 4px
   &:active
     border: 1px solid white
     box-shadow: 0 1px 2px $light_tielight
@@ -25,5 +26,5 @@
   border-radius: 0.4em
   padding: 0.2em
   margin: 0.2em
-  color: black
-  background-color: $tan
+  color: $dark_grape
+  background-color: $pale_mustard

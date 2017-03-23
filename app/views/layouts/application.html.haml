@@ -10,23 +10,19 @@
     = favicon_link_tag "businesscore-300x300.png", sizes: '300x300'
     = yield :head
   %body{class: body_class}
-    %section
-      - unless display_flash.empty?
-        #flashes
-          - display_flash.each do |k,v|
-            - next if k.to_s == 'analytics' || k.to_s == 'cheevo'
-            %p{class: "flash #{k}"}= v
-      #content
-        = yield
-      #splash
-        %h1#main DEF CON CTF 2016
-        %h1#quals Qualifiers
-        %h2#lbs
-          Legitimate
-          %br
-          Business
-          %br
-          Syndicate
+    .poster
+      %header
+        %h1#main DEF CON CTF 2017 Qualifiers
+        %h1#lbs
+          Legitimate Business Syndicate
+      %section
+        - unless display_flash.empty?
+          #flashes
+            - display_flash.each do |k,v|
+              - next if k.to_s == 'analytics' || k.to_s == 'cheevo'
+              %p{class: "flash #{k}"}= v
+        #content
+          = yield
     %footer
       .block
         = link_to 'Code of Conduct', 'https://defcon.org/html/links/dc-code-of-conduct.html'
@@ -34,7 +30,7 @@
         = link_to 'DEF CON', 'https://defcon.org'
       .block
         = image_tag 'businesscore-300x300.png', alt: '#', width: 16, height: 16
-        &copy; 2012-2016 Legitimate Business Syndicate.
+        &copy; 2012-2017 Legitimate Business Syndicate.
     = cheevos
     = javascript_include_tag "application"
     = render partial: 'shared/analytics'

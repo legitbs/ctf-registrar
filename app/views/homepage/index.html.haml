@@ -1,43 +1,48 @@
 .invitation
   %p
-    Prepare yourself for the newest iteration of DEF CON Capture the Flag.
-    For 2016, we have challenges for every player, from basic buffer
-    buffoonery to truly tiring tasks that will crush your complacency and
-    separate the elite from everyone else.
+    Get ready for DEF CON Capture The Flag 2017, because this year's game is
+    gonna
+    rock. We've been putting together all new challenges for players of every
+    skill level. We've got quick warm-ups and short ditties for new competitors.
+    Experienced players can't rest easy though, because we have sprawling
+    prog-rock epic challenges that won't just blow your mind, they'll blow your
+    soul.
+  %p
+    The Final Countdown begins on April 29.
   %table#timetable
     %tbody
       %tr
         %th Qualifications begin
-        %td Midnight UTC, May 21
+        %td Midnight UTC, April 29
         %td.time_t= game_window.first.to_i
       %tr
         %th Qualifications end
-        %td Midnight UTC, May 23
+        %td Midnight UTC, May 1
         %td.time_t= game_window.last.to_i
-
-.new
-  %h1 Register
-  %div
-    = link_to 'Sign Up', new_user_path, class: 'btn'
-.login
-  %h1 Log In
-  = form_tag session_path do
+.actions
+  .new
+    %h1 Register
     %div
-      = label_tag :username
-      = text_field_tag :username
+      = link_to 'Sign Up', new_user_path, class: 'btn'
+  .forgot
+    %h1 Forgot Password
     %div
-      = label_tag :password
-      = password_field_tag :password
-    %div
-      %label &nbsp;
-      = submit_tag 'Log In'
-.forgot
-  %h1 Forgot Password
-  %div
-    = link_to 'Reset Password', new_reset_path, class: 'btn'
+      = link_to 'Reset Password', new_reset_path, class: 'btn'
+  .login
+    %h1 Log In
+    = form_tag session_path do
+      %div
+        = label_tag :username
+        = text_field_tag :username
+      %div
+        = label_tag :password
+        = password_field_tag :password
+      %div
+        %label &nbsp;
+        = submit_tag 'Log In'
 
 - content_for :head do
   %meta(name="twitter:card" content="summary")
   %meta(name="twitter:site" content="@legitbs_ctf")
-  %meta(name="twitter:title" content="DEF CON Capture The Flag 2016")
+  %meta(name="twitter:title" content="DEF CON Capture The Flag 2017")
   %meta(name="twitter:description" content="DEF CON CTF is the world series of computer hacking, with qualifications online in May and finals at DEF CON in Las Vegas.")

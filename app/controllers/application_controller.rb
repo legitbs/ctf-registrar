@@ -40,7 +40,7 @@ class ApplicationController < ActionController::Base
   end
 
   def game_window
-    Time.at(1463788800)..Time.at(1463961600)
+    Time.at(1493424000)..Time.at(1493596800)
   end
 
   def during_game?

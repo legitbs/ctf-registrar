@@ -1,11 +1,43 @@
 .con-homepage.act-index
   #content
+    @include grid-container
     .invitation, .new, .login, .forgot
       h1:first-child
         margin-top: 0em
-    .new
-      background-color: $light_tielight
-    .login
-      background-color: $tan
-    .forgot
-      background-color: $shirt
+    .invitation
+      @include grid-column(5)
+      table#timetable .time_t
+        font-family: $mono_font
+    .actions
+      @include grid-column(7)
+      > div
+        padding: 0.5em 1em
+        height: 9em
+        background-color: transparent
+        background-image: image-url('big-ticket.png')
+        background-size: cover
+        background-repeat: no-repeat
+        background-position: right
+        margin: 1em
+        filter: drop-shadow(2px 2px 4px black)
+        label
+          display: inline-block
+          width: 6em
+        input
+          width: 12em
+          &[type='text'], &[type='password']
+            background-color: white
+      $mult: 5deg
+      $base: 1.2
+      $inc: -1
+      .new
+        transform: rotateZ($base + ($mult * (0 * $inc)))
+        margin-bottom: -6em
+      .login
+        transform: rotateZ($base + ($mult * (1 * $inc)))
+        margin-bottom: 3em
+        h1
+          margin-bottom: 0
+      .forgot
+        transform: rotateZ($base + ($mult * (2 * $inc)))
+        margin-bottom: -4em
