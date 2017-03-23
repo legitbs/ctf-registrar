@@ -1,4 +1,20 @@
 .con-homepage.act-index
+  header
+    h1
+      &#main, &#lbs
+        font-size: 5em
+        @include grid-column(12)
+        text-align: center
+        transform: rotateZ(2.017deg)
+        -webkit-text-stroke: .05em $dark_grape
+        text-shadow: 2px 2px 8px black
+      &#main
+        color: $pale_mustard
+        margin-bottom: 0
+      &#lbs
+        margin-top: 0
+        color: $mustard
+
   #content
     @include grid-container
     .invitation, .new, .login, .forgot
@@ -10,6 +26,7 @@
         font-family: $mono_font
     .actions
       @include grid-column(7)
+      text-align: right
       > div
         padding: 0.5em 1em
         height: 9em
@@ -20,6 +37,8 @@
         background-position: right
         margin: 1em
         filter: drop-shadow(2px 2px 4px black)
+        max-width: 30em
+        text-align: left
         label
           display: inline-block
           width: 6em
