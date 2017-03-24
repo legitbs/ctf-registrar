@@ -1,19 +1,20 @@
 .con-homepage.act-index
-  header
-    h1
-      &#main, &#lbs
-        font-size: 5em
-        @include grid-column(12)
-        text-align: center
-        transform: rotateZ(2.017deg)
-        -webkit-text-stroke: .05em $dark_grape
-        text-shadow: 2px 2px 8px black
-      &#main
-        color: $pale_mustard
-        margin-bottom: 0
-      &#lbs
-        margin-top: 0
-        color: $mustard
+  @media(min-width: 1024px)
+    header
+      h1
+        &#main, &#lbs
+          font-size: 3em
+          @include grid-column(12)
+          text-align: center
+          transform: rotateZ(2.017deg)
+          -webkit-text-stroke: .05em $dark_grape
+          text-shadow: 2px 2px 8px black
+        &#main
+          color: $pale_mustard
+          margin-bottom: 0
+        &#lbs
+          margin-top: 0
+          color: $mustard
 
   #content
     @include grid-container
@@ -21,11 +22,11 @@
       h1:first-child
         margin-top: 0em
     .invitation
-      @include grid-column(5)
+      @include grid-column(6)
       table#timetable .time_t
         font-family: $mono_font
     .actions
-      @include grid-column(7)
+      @include grid-column(6)
       text-align: right
       > div
         padding: 0.5em 1em
