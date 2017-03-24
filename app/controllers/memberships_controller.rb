@@ -10,6 +10,9 @@ class MembershipsController < ApplicationController
       SlackbotJob.perform_later(kind: 'team_join',
                                 team: m.team,
                                 user: current_user)
+      RedisJob.perform_later(kind: 'team_join',
+                             team: m.team,
+                             user: current_user)
       cheevo 'syn-ack'
       analytics_flash '_trackEvent', 'Teams', 'join'
       flash[:notice] = "Joined the team \"#{m.team.name}\"."

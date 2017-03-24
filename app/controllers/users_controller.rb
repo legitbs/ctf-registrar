@@ -25,6 +25,8 @@ class UsersController < ApplicationController
     UserMailer.welcome_email(@user).deliver_later
     SlackbotJob.perform_later(kind: 'user_create',
                               user: @user)
+    RedisJob.perform_later(kind: 'user_create',
+                           user: @user)
     self.current_user = @user
     redirect_to dashboard_path
   end

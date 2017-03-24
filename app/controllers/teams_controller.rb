@@ -35,8 +35,10 @@ class TeamsController < ApplicationController
       # email them or don't
       TeamMailer.new_team_email(@team).deliver_later rescue nil
       SlackbotJob.perform_later(kind: 'team_create',
-                                team: @team,
-                                password: @team.password)
+                                team: @team)
+      RedisJob.perform_later(kind: 'team_create',
+                             team: @team,
+                             user: current_user)
 
       cheevo('syn')
 
