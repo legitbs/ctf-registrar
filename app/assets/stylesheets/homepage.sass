@@ -4,6 +4,8 @@
       h1
         &#main, &#lbs
           font-size: 3em
+          @media(min-width: 1200px)
+            font-size: 4em
           @include grid-column(12)
           text-align: center
           transform: rotateZ(2.017deg)
@@ -22,13 +24,17 @@
       h1:first-child
         margin-top: 0em
     .invitation
-      @include grid-column(6)
-      font-size: 1.1em
+      @include grid-column(12)
+      @media(min-width: 1024px)
+        @include grid-column(6)
+      font-size: 1.2em
+      line-height: 1.5
       table#timetable .time_t
         font-family: $mono_font
     .actions
-      @include grid-column(6)
-      text-align: right
+      @include grid-column(12)
+      @media(min-width: 1024px)
+        @include grid-column(6)
       > div
         padding: 0.5em 1em
         height: 9em
@@ -48,17 +54,22 @@
           width: 12em
           &[type='text'], &[type='password']
             background-color: white
-      $mult: 5deg
-      $base: 1.2
-      $inc: -1
-      .new
-        transform: rotateZ($base + ($mult * (0 * $inc)))
-        margin-bottom: -6em
-      .login
-        transform: rotateZ($base + ($mult * (1 * $inc)))
-        margin-bottom: 3em
-        h1
-          margin-bottom: 0
-      .forgot
-        transform: rotateZ($base + ($mult * (2 * $inc)))
-        margin-bottom: -4em
+          &[type='submit']
+            width: 12.6em
+        &.login
+          h1
+            margin-bottom: 0
+
+      @media(min-width: 1024px)
+        $mult: 5deg
+        $base: 1.2
+        $inc: -1
+        .new
+          transform: rotateZ($base + ($mult * (0 * $inc)))
+          margin-bottom: -6em
+        .login
+          transform: rotateZ($base + ($mult * (1 * $inc)))
+          margin-bottom: 3em
+        .forgot
+          transform: rotateZ($base + ($mult * (2 * $inc)))
+          margin-bottom: -3em
