@@ -13,6 +13,10 @@ class SlackbotJob < ActiveJob::Base
       Rails.logger.error "Slackbot payload error: #{e}"
     end
 
+    unless Rails.env.production?
+      payload[:text] = "#{Rails.env.upcase}: #{payload[:text]}"
+    end
+
     begin
       HTTP.post SLACK_URL, json: payload
     rescue => e

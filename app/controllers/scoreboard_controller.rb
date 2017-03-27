@@ -102,8 +102,6 @@ class ScoreboardController < ApplicationController
       hot = @challenge.solve!
       @solution.save
 
-      ChallengeCheevo.new(@solution, self).process!
-
       if hot
         cheevo "Pop it & unlock it"
         logbuf << "OMG HOT"
