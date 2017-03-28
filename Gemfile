@@ -32,6 +32,7 @@ gem 'bourbon'
 gem 'uglifier', '>= 1.0.3'
 
 gem 'asset_sync'
+gem 'fog-aws'
 gem 'unf'
 
 gem 'jquery-rails'
