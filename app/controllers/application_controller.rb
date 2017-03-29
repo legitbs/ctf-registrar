@@ -94,13 +94,13 @@ class ApplicationController < ActionController::Base
   end
 
   def lbs_cookie
-    return unless params[:butts] == 'BithBietwi'
+    return unless params[:butts] == 'CenibainOmfacboajRul'
     cookies[:legitbs] = params[:legitbs]
   end
 
   def legitbs_cookie?
     (current_team.try(:id) == 1) &&
-      (cookies[:legitbs] == 'muAlshEtaf')
+      (cookies[:legitbs] == 'gumwyfructAfPhaikec4')
   end
 
   def current_user

@@ -45,7 +45,7 @@ class TokensController < ApplicationController
                type: 'image/png',
                status: 400)
     end
-    payload = "otpauth://totp/legitbs%202016?secret=#{secret}"
+    payload = "otpauth://totp/legitbs%202017?secret=#{secret}"
     send_data Pngqr.encode(payload, scale: 9), disposition: :inline, type: 'image/png'
   end
 
