@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   post "scoreboard/challenge/:id", to: 'scoreboard#answer'
   get "scoreboard/choice", to: 'picker#choice', as: :choice
   post "scoreboard/choice/:id", to: 'picker#pick', as: :pick
-  get "scoreboard/categories", to: 'high_voltage/pages#show', id: 'categories', as: :categories
+  # get "scoreboard/categories", to: 'high_voltage/pages#show', id: 'categories', as: :categories
   get 'scoreboard/ctftime', format: :json
   get 'scoreboard/complete'
 
@@ -18,15 +18,15 @@ Rails.application.routes.draw do
 
   get '/api/hot', to: 'api#hot'
 
-  resource :user
-  resource :team
-  resource :membership
-  resources :resets
-  resource :session do
+  resource :user, only: %i{new create}
+  resource :team, only: %i{new edit create update}
+  resource :membership, only: :create
+  resources :resets, except: :show
+  resource :session, only: %i{create token destroy} do
     post 'token', on: :new
   end
-  resource :token
-  resources :achievements
+  resource :token, only: %i{new create show}
+  # resources :achievements
 
   namespace :jarmandy do
     root to: 'root#index'
