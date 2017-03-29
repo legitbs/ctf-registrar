@@ -5,8 +5,6 @@
     - if current_user.auth_secret.blank?
       = link_to 'Set up Two Factor Authentication', new_token_path
     = link_to 'View password resets', resets_path
-    - if current_user.participant?
-      = link_to 'Achievements', achievements_path
     - if current_user.owner?
       = link_to 'Modify team', edit_team_path
     = link_to 'Log out', session_path, method: :delete
