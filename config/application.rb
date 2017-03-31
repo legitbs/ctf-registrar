@@ -22,6 +22,8 @@ module CtfRegistrar
 
     config.active_job.queue_adapter = :async
 
+    config.active_record.schema_format = :sql
+
     config.generators do |g|
       g.fixture_replacement :factory_girl
     end

@@ -72,6 +72,20 @@ CREATE FUNCTION scored_challenges_refresh_proc() RETURNS trigger
       $$;
 
 
+--
+-- Name: solution_histogram_refresh_proc(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION solution_histogram_refresh_proc() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+      BEGIN
+        REFRESH MATERIALIZED VIEW solution_histogram;
+        RETURN new;
+      END;
+      $$;
+
+
 SET default_tablespace = '';
 
 SET default_with_oids = false;
@@ -109,6 +123,18 @@ CREATE SEQUENCE achievements_id_seq
 --
 
 ALTER SEQUENCE achievements_id_seq OWNED BY achievements.id;
+
+
+--
+-- Name: ar_internal_metadata; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE ar_internal_metadata (
+    key character varying NOT NULL,
+    value character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
 
 
 --
@@ -369,6 +395,27 @@ CREATE TABLE solutions (
     created_at timestamp without time zone,
     updated_at timestamp without time zone
 );
+
+
+--
+-- Name: solution_histogram; Type: MATERIALIZED VIEW; Schema: public; Owner: -
+--
+
+CREATE MATERIALIZED VIEW solution_histogram AS
+ SELECT s.challenge_id,
+    end_time.end_time,
+    count(s.id) AS count,
+    ( SELECT count(q.id) AS count
+           FROM solutions q
+          WHERE (q.challenge_id = s.challenge_id)) AS tot,
+    (((100 * count(s.id)) / ( SELECT count(q.id) AS count
+           FROM solutions q
+          WHERE (q.challenge_id = s.challenge_id))))::double precision AS pct
+   FROM (generate_series(( SELECT ('1970-01-01 00:00:00'::timestamp without time zone + ((1463788800)::double precision * '00:00:01'::interval))), ( SELECT ('1970-01-01 00:00:00'::timestamp without time zone + ((1463961600)::double precision * '00:00:01'::interval))), '01:00:00'::interval) end_time(end_time)
+     RIGHT JOIN solutions s ON (((s.created_at <= end_time.end_time) AND (s.challenge_id = s.challenge_id))))
+  GROUP BY end_time.end_time, s.challenge_id
+  ORDER BY s.challenge_id, end_time.end_time
+  WITH NO DATA;
 
 
 --
@@ -651,6 +698,14 @@ CREATE MATERIALIZED VIEW scoreboard AS
 
 ALTER TABLE ONLY achievements
     ADD CONSTRAINT achievements_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: ar_internal_metadata ar_internal_metadata_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY ar_internal_metadata
+    ADD CONSTRAINT ar_internal_metadata_pkey PRIMARY KEY (key);
 
 
 --
@@ -940,6 +995,13 @@ CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (v
 --
 
 CREATE TRIGGER scored_challenges_update_trigger AFTER INSERT ON solutions FOR EACH STATEMENT EXECUTE PROCEDURE scored_challenges_refresh_proc();
+
+
+--
+-- Name: solutions solution_histogram_update_trigger; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE TRIGGER solution_histogram_update_trigger AFTER INSERT ON solutions FOR EACH STATEMENT EXECUTE PROCEDURE solution_histogram_refresh_proc();
 
 
 --
