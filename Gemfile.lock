@@ -1,10 +1,9 @@
 GIT
   remote: https://github.com/vito-lbs/pushover
-  revision: 26d06e43ef945f96eaa5eb8376e513ef25c709e2
+  revision: 3bbb7ea026b3d30c043ba033d596dab6fec2a031
   branch: master
   specs:
     pushover (1.0.4)
-      bini
       httparty
       yajl-ruby
 
@@ -63,8 +62,6 @@ GEM
       rack (>= 0.9.0)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
-    bini (0.7.0)
-      sys-proctable
     bourbon (4.3.3)
       sass (~> 3.4)
       thor (~> 0.19)
@@ -304,7 +301,6 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
-    sys-proctable (1.1.4-universal-aix-5)
     thor (0.19.4)
     thread_safe (0.3.6)
     tilt (2.0.6)
@@ -381,7 +377,6 @@ DEPENDENCIES
   rotp
   sass-rails (~> 5.0)
   shoulda
-  sys-proctable
   twitter
   uglifier (>= 1.0.3)
   unf
