@@ -44,6 +44,7 @@ gem 'rotp'
 gem 'pngqr'
 gem 'mini_magick'
 
+gem 'pushover', git: 'https://github.com/vito-lbs/pushover', branch: 'master'
 
 gem 'rails_12factor'
 
