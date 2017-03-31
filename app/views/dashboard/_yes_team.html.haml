@@ -1,5 +1,6 @@
 #yes_team
-  %h2#on_team
+  %h1 Your Team
+  %h2
     = teaminfo team
     - if team.logo.present?
       .team_logo= image_tag team.logo.url :thumb
