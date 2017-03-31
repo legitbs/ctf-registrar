@@ -381,6 +381,7 @@ DEPENDENCIES
   rotp
   sass-rails (~> 5.0)
   shoulda
+  sys-proctable
   twitter
   uglifier (>= 1.0.3)
   unf
