@@ -18,11 +18,22 @@ body.admin
     width: 800px
     margin-left: auto
     margin-right: auto
+    padding: 0 1em 1em
+    margin-top: 1em
+    color: $superdark_grape
+    background-color: $paper_average
+    background-image: image-url('crinkled-paper-05x.jpg')
+    @media(min-resolution 2dppx)
+      background-image: image-url('crinkled-paper-1x.jpg')
+    @media(-webkit-min-device-pixel-ratio 2)
+      background-image: image-url('crinkled-paper-1x.jpg')
     .team_logo
       float: right
       margin: 1em
       img
         border: 1px solid darken($honky, 45%)
+    input
+      background-color: $paper_average
     th
       font-weight: 100
       text-align: left
