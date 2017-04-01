@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   resource :user, only: %i{new create}
   resource :team, only: %i{new edit create update}
   resource :membership, only: :create
-  resources :resets, except: :show
+  resources :resets
   resource :session, only: %i{create token destroy} do
     post 'token', on: :new
   end
