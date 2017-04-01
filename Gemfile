@@ -20,7 +20,7 @@ gem 'http'
 
 gem 'twitter'
 
-gem "recaptcha", "~> 4.1.0"
+gem "recaptcha", "~> 4.1.0", require: 'recaptcha/rails'
 
 gem 'validates_email_format_of'
 
