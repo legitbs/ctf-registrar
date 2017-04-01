@@ -3,7 +3,7 @@
   %h1 Two-Factor Authentication
   :markdown
     Two-factor authentication makes your account even more secure. It requires
-    you to enter your username, your existing password, and a code from a 
+    you to enter your username, your existing password, and a code from a
     TOTP-compatible app when logging in.
 
     ## Getting Started
@@ -21,13 +21,13 @@
   = form_tag token_path do
     %input{type: 'hidden', name: 'temporary_secret', value: @temporary_secret}
     %div.checkbox
+      %input#i-promise{type: 'checkbox', name: 'i-promise'}
       %label{for: 'i-promise'}
         By enabling two-factor authentication I promise I won't forget my password,
         lose my token, or fail to keep my recovery tokens.
-      %input#i-promise{type: 'checkbox', name: 'i-promise'}
     %div
       %label{for: 'first-code'} Code from application
-      %input#first-code{type: 'text', name: 'first-code', value: ''}
+      %input#first-code{type: 'text', name: 'first-code', value: '', placeholder: 'Please promise to not lose your code above'}
     %div
       %label
       %input{type: 'submit', value: 'Enable Two-Factor'}
