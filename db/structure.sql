@@ -523,7 +523,8 @@ CREATE TABLE uploads (
     file_file_size integer,
     file_updated_at timestamp without time zone,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    file_fingerprint bytea
 );
 
 
@@ -1200,6 +1201,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20160512011030'),
 ('20160512174805'),
 ('20160515184309'),
-('20170415195705');
+('20170415195705'),
+('20170415213829');
 
 
