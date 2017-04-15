@@ -3,6 +3,7 @@ class Challenge < ActiveRecord::Base
   has_many :solutions
   has_many :solution_histograms
   has_many :observations
+  has_many :uploads
 
   def self.for_scoreboard(team)
     challenge_rows = connection.select_all <<-SQL

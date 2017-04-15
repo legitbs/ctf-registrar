@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   has_many :fallback_tokens
   has_many :resets
   has_many :awards
+  has_many :uploads
 
   has_secure_password
 
