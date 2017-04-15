@@ -1,15 +1,23 @@
-%p#notice= notice
+%h1 Upload #{@upload.id}
+%table.deflist
+  %tbody
+    %tr
+      %th user
+      %td= @upload.user&.username
+    %tr
+      %th challenge
+      %td= link_to @upload.challenge&.name, [:jarmandy, @upload.challenge]
+    %tr
+      %th url
+      %td.filename= link_to @upload.file, @upload.file.url
+    %tr
+      %th size
+      %td.filename= @upload.file.size
+    %tr
+      %th md5sum
+      %td.filename= @upload.file.fingerprint
 
-%p
-  %b User:
-  = @upload.user
-%p
-  %b Challenge:
-  = @upload.challenge
-%p
-  %b File:
-  = @upload.file
 
-= link_to 'Edit', edit_upload_path(@upload)
+= link_to 'Edit', edit_jarmandy_upload_path(@upload)
 \|
-= link_to 'Back', uploads_path
+= link_to 'Back', jarmandy_uploads_path

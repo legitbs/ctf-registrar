@@ -1,4 +1,4 @@
-= form_for @upload do |f|
+= form_for [:jarmandy, @upload], multipart: true do |f|
   - if @upload.errors.any?
     #error_explanation
       %h2= "#{pluralize(@upload.errors.count, "error")} prohibited this upload from being saved:"
@@ -7,13 +7,10 @@
           %li= msg
 
   .field
-    = f.label :user
-    = f.text_field :user
-  .field
     = f.label :challenge
-    = f.text_field :challenge
+    = challenge_picker(f)
   .field
     = f.label :file
-    = f.text_field :file
+    = f.file_field :file
   .actions
     = f.submit 'Save'

@@ -24,11 +24,11 @@ class Jarmandy::UploadsController < Jarmandy::BaseController
   # POST /uploads
   # POST /uploads.json
   def create
-    @upload = Upload.new(upload_params)
+    @upload = current_user.uploads.new(upload_params)
 
     respond_to do |format|
       if @upload.save
-        format.html { redirect_to @upload, notice: 'Upload was successfully created.' }
+        format.html { redirect_to [:jarmandy, @upload], notice: 'Upload was successfully created.' }
         format.json { render :show, status: :created, location: @upload }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class Jarmandy::UploadsController < Jarmandy::BaseController
   def update
     respond_to do |format|
       if @upload.update(upload_params)
-        format.html { redirect_to @upload, notice: 'Upload was successfully updated.' }
+        format.html { redirect_to [:jarmandy, @upload], notice: 'Upload was successfully updated.' }
         format.json { render :show, status: :ok, location: @upload }
       else
         format.html { render :edit }
@@ -69,6 +69,6 @@ class Jarmandy::UploadsController < Jarmandy::BaseController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def upload_params
-      params.require(:upload).permit(:user_id, :challenge_id, :file)
+      params.require(:upload).permit(:challenge_id, :file)
     end
 end

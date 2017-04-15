@@ -60,6 +60,36 @@
         - else
           not correct
 
+%h2 uploads
+%nav
+  %ul
+    %li= link_to 'Add upload', new_jarmandy_upload_path(challenge_id: challenge.id)
+- uploads = challenge.uploads.order(created_at: :desc).all
+- unless uploads.blank?
+  %p
+    Uploaded files are not automatically linked to users, so
+    make sure you link them in the clue.
+  %table
+    %thead
+      %tr
+        %th uploaded at (newest first)
+        %th size
+        %th url
+        %th activities
+    %tbody
+      - uploads.each do |u|
+        %tr
+          %td
+            = u.created_at
+            %br
+            = time_ago_in_words u.created_at
+            ago
+          %td.filesize= u.file.size
+          %td.filename= link_to u.file, u.file.url
+          %td= link_to 'Details', jarmandy_upload_path(u)
+- else
+  %p No uploads yet.
+
 %h2 solution stats
 - if stats = challenge.solution_stats
   %p= link_to 'Observations', jarmandy_challenge_observations_path(challenge_id: challenge.id)
