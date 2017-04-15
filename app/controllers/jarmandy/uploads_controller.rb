@@ -1,4 +1,4 @@
-class UploadsController < ApplicationController
+class Jarmandy::UploadsController < Jarmandy::BaseController
   before_action :set_upload, only: [:show, :edit, :update, :destroy]
 
   # GET /uploads
