@@ -511,6 +511,42 @@ ALTER SEQUENCE trophies_id_seq OWNED BY trophies.id;
 
 
 --
+-- Name: uploads; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE uploads (
+    id integer NOT NULL,
+    user_id integer,
+    challenge_id integer,
+    file_file_name character varying,
+    file_content_type character varying,
+    file_file_size integer,
+    file_updated_at timestamp without time zone,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: uploads_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE uploads_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: uploads_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE uploads_id_seq OWNED BY uploads.id;
+
+
+--
 -- Name: users; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -623,6 +659,13 @@ ALTER TABLE ONLY teams ALTER COLUMN id SET DEFAULT nextval('teams_id_seq'::regcl
 --
 
 ALTER TABLE ONLY trophies ALTER COLUMN id SET DEFAULT nextval('trophies_id_seq'::regclass);
+
+
+--
+-- Name: uploads id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY uploads ALTER COLUMN id SET DEFAULT nextval('uploads_id_seq'::regclass);
 
 
 --
@@ -770,6 +813,14 @@ ALTER TABLE ONLY solutions
 
 ALTER TABLE ONLY trophies
     ADD CONSTRAINT trophies_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: uploads uploads_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY uploads
+    ADD CONSTRAINT uploads_pkey PRIMARY KEY (id);
 
 
 --
@@ -956,6 +1007,20 @@ CREATE UNIQUE INDEX index_teams_on_user_id ON teams USING btree (user_id);
 
 
 --
+-- Name: index_uploads_on_challenge_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_uploads_on_challenge_id ON uploads USING btree (challenge_id);
+
+
+--
+-- Name: index_uploads_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_uploads_on_user_id ON uploads USING btree (user_id);
+
+
+--
 -- Name: index_users_on_email; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1045,6 +1110,14 @@ ALTER TABLE ONLY challenges
 
 
 --
+-- Name: uploads fk_rails_15d41e668d; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY uploads
+    ADD CONSTRAINT fk_rails_15d41e668d FOREIGN KEY (user_id) REFERENCES users(id);
+
+
+--
 -- Name: observations fk_rails_60d667a791; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1058,6 +1131,14 @@ ALTER TABLE ONLY observations
 
 ALTER TABLE ONLY observations
     ADD CONSTRAINT fk_rails_9c84189689 FOREIGN KEY (challenge_id) REFERENCES challenges(id);
+
+
+--
+-- Name: uploads fk_rails_ad8e6a4ed1; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY uploads
+    ADD CONSTRAINT fk_rails_ad8e6a4ed1 FOREIGN KEY (challenge_id) REFERENCES challenges(id);
 
 
 --
@@ -1118,6 +1199,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20160512000142'),
 ('20160512011030'),
 ('20160512174805'),
-('20160515184309');
+('20160515184309'),
+('20170415195705');
 
 
