@@ -1,0 +1,19 @@
+= form_for @upload do |f|
+  - if @upload.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@upload.errors.count, "error")} prohibited this upload from being saved:"
+      %ul
+        - @upload.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :user
+    = f.text_field :user
+  .field
+    = f.label :challenge
+    = f.text_field :challenge
+  .field
+    = f.label :file
+    = f.text_field :file
+  .actions
+    = f.submit 'Save'
