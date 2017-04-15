@@ -4,7 +4,6 @@ class TeamMailer < ActionMailer::Base
   def new_team_email(team)
     @team = team
     @user = team.user
-    @password = team.password
 
     mail to: @user.email,
          subject: 'You registered a team for the 2017 DEF CON CTF Quals'
