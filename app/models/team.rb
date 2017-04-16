@@ -28,7 +28,7 @@ class Team < ActiveRecord::Base
                       large: '512x512'
                     },
                     hash_secret: 'cats',
-                    hash_data: "x/:class/:attachment/:id/:style/:updated_at",
+                    hash_data: "production/:class/:attachment/:id/:style/:updated_at",
                     url: 'https://teams-2017.legitbs.net/t/:hash.:extension',
                     path: 't/:hash.:extension',
                    )
