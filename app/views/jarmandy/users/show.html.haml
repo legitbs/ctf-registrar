@@ -17,7 +17,7 @@
           %em (#{@user.team_id})
         - else
           %em not on a team
-  
+
     %tr
       %th created at
       %td= @user.created_at
@@ -35,6 +35,14 @@
     %tr
       %th think they need a visa?
       %td= !!@user.visa
+
+%h2 become
+%p
+  This will log you out of your cool admin account and make you this user.
+  Please use this responsibly. It'll probably mess up all your admin tabs.
+%nav
+  %ul
+    %li= link_to "become #{@user.username}", become_jarmandy_user_path(@user.id), confirm: "Really become #{@user.username}?", method: :post
 
 %h2 password resets
 %table

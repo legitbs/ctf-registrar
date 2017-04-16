@@ -30,7 +30,11 @@ Rails.application.routes.draw do
 
   namespace :jarmandy do
     root to: 'root#index'
-    resources :users
+    resources :users do
+      member do
+        post :become
+      end
+    end
     resources :teams do
       resources :observations
       member do

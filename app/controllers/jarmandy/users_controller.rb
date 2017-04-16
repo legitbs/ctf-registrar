@@ -33,4 +33,15 @@ class Jarmandy::UsersController < Jarmandy::BaseController
   def show
     @user = User.find params[:id]
   end
+
+  def become
+    @user = User.find params[:id]
+
+    SlackbotJob.perform_later(kind: 'admin_becoming',
+                              user_id: @user.id,
+                              admin_id: current_user.id)
+
+    session[:user_id] = @user.id
+    redirect_to dashboard_path
+  end
 end

@@ -41,6 +41,26 @@ User <#{ user_url user }|#{user.username}> signed up.
 MESG
   end
 
+  def admin_becoming(message)
+    admin = User.find message[:admin_id]
+    user = User.find message[:user_id]
+    payload = {
+      text: 'Admin impersonating user',
+      color: 'danger',
+      fields: [
+        { title: 'Admin', value: admin.username, short: true },
+        {
+          title: 'User',
+          value: "<#{user_url}|#{user.username}>",
+          short: true
+        }
+      ],
+      fallback: <<-MESG }
+Admin <#{user_url admin }|#{admin.username}> impersonating
+user <#{user_url user}|#{user.username}>.
+MESG
+  end
+
   def team_create(message)
     team = message[:team]
     team_url = jarmandy_team_url team
