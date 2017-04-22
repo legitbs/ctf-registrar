@@ -6,16 +6,22 @@
     #rightcol
       @include grid-column(4)
       padding-top: 0
-      background-color: $shirt
   #timer
-    text-align: center
-    font-size: 1.8em
+    @include big_ticket
+    @include mono
+    font-size: 3em
+    margin-top: .5em
+    margin-bottom: 0.5em
+    transform: rotateZ(4.20deg)
+    color: $superdark_grape
 
 #messages, #instructions
   padding-top: 0
-  max-height: 8em
+  padding: 0.25em
+  max-height: 8.70em
   overflow: scroll
-  background-color: $light_tielight
+  background-color: $pale_mustard
+  color: $superdark_grape
   border-bottom: 1px solid $tielight
   ol
     @include unnumbered-list
@@ -26,6 +32,16 @@
       margin-top: 0
 
 #gameboard
+  padding: 1em
+  margin-top: 2em
+  box-shadow: 2px 2px 10px 4px black
+  color: $superdark_grape
+  background-color: $paper_average
+  background-image: image-url('crinkled-paper-05x.jpg')
+  @media(min-resolution 2dppx)
+    background-image: image-url('crinkled-paper-1x.jpg')
+  @media(-webkit-min-device-pixel-ratio 2)
+    background-image: image-url('crinkled-paper-1x.jpg')
   .category
     h1
       margin-top: 0.25em
@@ -51,11 +67,12 @@
           $tbc: $background_color
           a:link, a:visited
             font-weight: bold
-            color: black
+            color: $mustard
             background-color: $tbc
             padding-right: 0.5em
           em, span.points
             background-color: $tbc
+            color: $pale_mustard
           em
             padding: 0 0.5em
 
@@ -68,4 +85,5 @@
       td.score
         text-align: right
       &.current, &.current td
-        background-color: $background_color
+        background-color: $mustard
+        color: $superdark_grape

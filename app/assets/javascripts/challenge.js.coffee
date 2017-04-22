@@ -32,15 +32,14 @@ jQuery ($) ->
       axisTitlesPosition: 'none'
       bar:
         groupWidth: '100%'
-      backgroundColor: body.css('background-color')
+      backgroundColor: $.Color(body.css('background-color')).toHexString()
       chartArea:
         left: 0
         top: 0
         width: canvas.width()
         height: 180
-      colors: [body.css('color')]
       enableInteractivity: false
-      fontName: body.css('font-family')
+      fontName: 'Ubuntu'
       legend:
         position: 'none'
       vAxes:

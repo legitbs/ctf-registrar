@@ -14,18 +14,22 @@
               %li{:class => choice_class_for(single), id: challenge_id_for(single)}
                 - if single['class'] == 'burning'
                   = link_to(pick_path(single['challenge_id']), method: 'post') do
+                    tier
                     = single['points']
-                    point challenge,
+                    challenge
                     = single['category_name']
                     category
                 - elsif single['class'] == 'locked'
                   %a
+                    tier
                     = single['points']
-                    point challenge, can't unlock yet
+                    challenge, can't unlock yet
                 - else
                   %a
+                    tier
                     #{single['points']}
-                    #{single['challenge_name']},
+                    challenge
+                    "#{single['challenge_name']}",
                     already unlocked
 
 

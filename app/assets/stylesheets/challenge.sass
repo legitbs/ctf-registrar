@@ -1,11 +1,12 @@
 .con-scoreboard.act-challenge
   section#challenge
-    @include grid-container
-    #chalcol
-      @include grid-column(8)
+    #headercol
+      @include grid-container
       #chaldata
+        @include grid-column(8)
         @include grid-container
-        background-color: $light-tielight
+        background-color: $pale_mustard
+        color: $superdark_grape
         h1, h2
           font-size: 24px
           margin: 4px 0
@@ -13,34 +14,36 @@
           @include grid-column(6)
         h2
           @include grid-column(6)
-          font-style: italic
           text-align: right
+      #timer
+        @include grid-column(3)
+        @include big_ticket
+        @include mono
+        transform: rotateZ(4.20deg)
+        color: $superdark_grape
+        font-size: 3em
+        margin-top: .5em
+        margin-bottom: -2em
+    #flashcol
       #flashes
-        margin: 1em 0
         background-color: $background_color
         border-bottom: none
         p
           background-color: $background_color
+    #chalcol
+      @include grid-column(8)
       #actual_challenge
-        background-color: $shirt
-    #piccol
-      @include grid-column(4)
-      text-align: center
-      #manglepic
-        background-position: center center
-        background-size: cover
-        background-repeat: no-repeat
-        width: 345px
-        height: 539px
-        border: 1px solid $lefty
-        margin-top: -1px
-        #timer
-          margin: 0 -1px
-          margin-top: 4em
-          padding: 0.15em
-          background-color: $background_color
-          border: solid $lefty
-          border-width: 1px 0 1px 0
+        padding: 1em
+        margin-top: 2em
+        box-shadow: 2px 2px 10px 4px black
+        color: $superdark_grape
+        background-color: $paper_average
+        background-image: image-url('crinkled-paper-05x.jpg')
+        @media(min-resolution 2dppx)
+          background-image: image-url('crinkled-paper-1x.jpg')
+        @media(-webkit-min-device-pixel-ratio 2)
+          background-image: image-url('crinkled-paper-1x.jpg')
+
 
   .stats
     th
@@ -49,3 +52,9 @@
       padding-right: 0.5em
 table#histogram
   display: none
+
+svg
+  text
+    fill: $pale_mustard
+  g g g rect
+    fill: $mustard

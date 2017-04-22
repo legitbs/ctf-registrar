@@ -1,16 +1,18 @@
 %section#challenge
-  #chalcol
+  #headercol
     #chaldata
       %h1.name= @challenge.name
       %h2
         #{@challenge.category.name},
         = pluralize @challenge.scored.points, 'point'
+    = render partial: 'scoreboard/timer'
+  #flashcol
     - unless display_flash.empty?
       #flashes
         - display_flash.each do |k,v|
           - next if k.to_s == 'analytics' || k.to_s == 'cheevo'
           %p{class: "flash #{k}"}= v
-
+  #chalcol
     #actual_challenge
       - unless @challenge.locked?
         %p.clue= RDiscount.new(@challenge.clue).to_html.html_safe
@@ -59,10 +61,6 @@
                 %td= h.end_time
                 %td= h.count
                 %td= h.pct
-  #piccol
-    #manglepic{class: mangle_class}
-      = render partial: 'scoreboard/timer'
-    #other
 
 
 %script{type: 'text/javascript',
