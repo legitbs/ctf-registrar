@@ -18,8 +18,8 @@ class SolutionHistogramMaterializedView < ActiveRecord::Migration
             WHERE q.challenge_id = s.challenge_id
         ))::float AS pct
       FROM generate_series(
-        (select timestamp 'epoch' + 1463788800 * interval '1 second'),
-        (select timestamp 'epoch' + 1463961600 * interval '1 second'),
+        (select timestamp 'epoch' + 1493424000 * interval '1 second'),
+        (select timestamp 'epoch' + 1493596800 * interval '1 second'),
         '1 hour') AS end_time
       RIGHT JOIN
         solutions AS s
