@@ -16,6 +16,12 @@
     #actual_challenge
       - unless @challenge.locked?
         %p.clue= RDiscount.new(@challenge.clue).to_html.html_safe
+        - unless @challenge.uploads.visible.blank?
+          %h2 Files
+          %ul.files
+            - @challenge.uploads.visible.each do |u|
+              %li.filename
+                = link_to u.file.url, u.file.url
         = form_for @solution, url: challenge_path(@challenge.id), method: :post do |f|
           = text_field_tag :answer, '', placeholder: 'answer'
           = f.submit 'Solve it'

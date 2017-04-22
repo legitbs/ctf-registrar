@@ -69,6 +69,6 @@ class Jarmandy::UploadsController < Jarmandy::BaseController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def upload_params
-      params.require(:upload).permit(:challenge_id, :file)
+      params.require(:upload).permit(:challenge_id, :file, :visible)
     end
 end

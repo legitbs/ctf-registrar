@@ -1,4 +1,15 @@
 %h1 Upload #{@upload.id}
+
+%nav
+  %ul
+    %li= link_to 'Edit', edit_jarmandy_upload_path(@upload)
+    %li= link_to('Show', jarmandy_upload_path(@upload,
+    upload: {visible: true}), method: :put)
+    %li= link_to('Hide', jarmandy_upload_path(@upload,
+    upload: {visible: false}), method: :put)
+    %li= link_to 'List All Uploads', jarmandy_uploads_path
+    %li= link_to 'See Challenge', [:jarmandy, @upload.challenge]
+
 %table.deflist
   %tbody
     %tr
@@ -8,6 +19,9 @@
       %th challenge
       %td= link_to @upload.challenge&.name, [:jarmandy, @upload.challenge]
     %tr
+      %th visible
+      %td= @upload.visible ? 'showing' : 'hidden'
+    %tr
       %th url
       %td.filename= link_to @upload.file, @upload.file.url
     %tr
@@ -16,8 +30,3 @@
     %tr
       %th md5sum
       %td.filename= @upload.file.fingerprint
-
-
-= link_to 'Edit', edit_jarmandy_upload_path(@upload)
-\|
-= link_to 'Back', jarmandy_uploads_path

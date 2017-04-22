@@ -10,6 +10,9 @@
     = f.label :challenge
     = challenge_picker(f)
   .field
+    = f.label :visible
+    = f.check_box :visible
+  .field
     = f.label :file
     = f.file_field :file
   .actions

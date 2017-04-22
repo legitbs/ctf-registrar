@@ -36,7 +36,7 @@ class ScoreboardController < ApplicationController
     @solution = current_team.solution_for @challenge
     @histogram = @challenge.solution_histograms.order(end_time: :asc)
 
-    return redirect_to scoreboard_path if @challenge.locked?
+    return redirect_to scoreboard_path if @challenge.locked? && !legitbs_cookie?
 
     cheevo "ack"
     @challenge.view! current_user

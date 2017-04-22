@@ -411,7 +411,7 @@ CREATE MATERIALIZED VIEW solution_histogram AS
     (((100 * count(s.id)) / ( SELECT count(q.id) AS count
            FROM solutions q
           WHERE (q.challenge_id = s.challenge_id))))::double precision AS pct
-   FROM (generate_series(( SELECT ('1970-01-01 00:00:00'::timestamp without time zone + ((1463788800)::double precision * '00:00:01'::interval))), ( SELECT ('1970-01-01 00:00:00'::timestamp without time zone + ((1463961600)::double precision * '00:00:01'::interval))), '01:00:00'::interval) end_time(end_time)
+   FROM (generate_series(( SELECT ('1970-01-01 00:00:00'::timestamp without time zone + ((1493424000)::double precision * '00:00:01'::interval))), ( SELECT ('1970-01-01 00:00:00'::timestamp without time zone + ((1493596800)::double precision * '00:00:01'::interval))), '01:00:00'::interval) end_time(end_time)
      RIGHT JOIN solutions s ON (((s.created_at <= end_time.end_time) AND (s.challenge_id = s.challenge_id))))
   GROUP BY end_time.end_time, s.challenge_id
   ORDER BY s.challenge_id, end_time.end_time
@@ -524,7 +524,8 @@ CREATE TABLE uploads (
     file_updated_at timestamp without time zone,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    file_fingerprint bytea
+    file_fingerprint bytea,
+    visible boolean
 );
 
 
@@ -1057,6 +1058,20 @@ CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (v
 
 
 --
+-- Name: solutions scoreboard_update_trigger; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE TRIGGER scoreboard_update_trigger AFTER INSERT ON solutions FOR EACH STATEMENT EXECUTE PROCEDURE scoreboard_refresh_proc();
+
+
+--
+-- Name: challenges scored_challenges_update_on_challenge_change; Type: TRIGGER; Schema: public; Owner: -
+--
+
+CREATE TRIGGER scored_challenges_update_on_challenge_change AFTER INSERT OR UPDATE ON challenges FOR EACH STATEMENT EXECUTE PROCEDURE scored_challenges_refresh_proc();
+
+
+--
 -- Name: solutions scored_challenges_update_trigger; Type: TRIGGER; Schema: public; Owner: -
 --
 
@@ -1202,6 +1217,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20160512174805'),
 ('20160515184309'),
 ('20170415195705'),
-('20170415213829');
+('20170415213829'),
+('20170422220554');
 
 

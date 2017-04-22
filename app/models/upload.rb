@@ -2,6 +2,8 @@ class Upload < ApplicationRecord
   belongs_to :user
   belongs_to :challenge
 
+  scope :visible, -> { where(visible: true) }
+
   has_attached_file(:file,
                     fog_directory: '2017.notmalware.ru',
                     fog_host: 'https://2017.notmalware.ru',

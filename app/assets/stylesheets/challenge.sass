@@ -43,7 +43,16 @@
           background-image: image-url('crinkled-paper-1x.jpg')
         @media(-webkit-min-device-pixel-ratio 2)
           background-image: image-url('crinkled-paper-1x.jpg')
-
+        ul.files
+          list-style-type: none
+          padding-left: 0
+          li
+            @include mono
+            max-width: 40em
+            overflow: wrap
+            overflow-wrap: break-word
+            padding-left: 3em
+            text-indent: -3em
 
   .stats
     th

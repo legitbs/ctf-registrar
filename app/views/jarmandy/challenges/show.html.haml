@@ -74,6 +74,7 @@
       %tr
         %th uploaded at (newest first)
         %th size
+        %th visible?
         %th url
         %th activities
     %tbody
@@ -85,8 +86,14 @@
             = time_ago_in_words u.created_at
             ago
           %td.filesize= u.file.size
+          %td= u.visible ? 'showing' : 'hidden'
           %td.filename= link_to u.file, u.file.url
-          %td= link_to 'Details', jarmandy_upload_path(u)
+          %td
+            = link_to('Show',
+            jarmandy_upload_path(u, upload: {visible: true}), method: :put)
+            = link_to('Hide',
+            jarmandy_upload_path(u, upload: {visible: false}), method: :put)
+            = link_to 'Details', jarmandy_upload_path(u)
 - else
   %p No uploads yet.
 
