@@ -40,6 +40,12 @@ class Jarmandy::UsersController < Jarmandy::BaseController
     SlackbotJob.perform_later(kind: 'admin_becoming',
                               user_id: @user.id,
                               admin_id: current_user.id)
+    if @user.team
+      Notice.create(team: @user.team,
+                    body: <<-MESG)
+An administrator is impersonating #{@user.username} on your team.
+MESG
+    end
 
     session[:user_id] = @user.id
     redirect_to dashboard_path
