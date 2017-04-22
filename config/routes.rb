@@ -30,6 +30,7 @@ Rails.application.routes.draw do
 
   namespace :jarmandy do
     root to: 'root#index'
+    post 'matviews', to: 'root#matviews', as: 'matviews'
     resources :users do
       member do
         post :become

@@ -18,3 +18,9 @@
     %tr
       %th Average team size
       %td= Team.average_size.round(2)
+
+%h1 weird stuff
+%p
+  = button_to 'refresh matviews', jarmandy_matviews_path, method: :post
+  Use this after a database update or if there's persistent scoreboard
+  weirdness. Shouldn't cause problems.
