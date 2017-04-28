@@ -34,6 +34,7 @@ class PickerController < ApplicationController
     SlackbotJob.perform_later message
     PushbulletJob.perform_later message
     PushoverJob.perform_later message
+    TwitterJob.perform_later message
 
     redirect_to scoreboard_path
   end
