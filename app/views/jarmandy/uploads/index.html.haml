@@ -20,4 +20,5 @@
         %td= link_to upload.challenge&.name, [:jarmandy, upload.challenge]
         %td.filename= upload.file
         %td
+          = link_to 'Show', jarmandy_upload_path(upload)
           = link_to 'Edit', edit_jarmandy_upload_path(upload)

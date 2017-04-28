@@ -4,7 +4,7 @@ class Jarmandy::UploadsController < Jarmandy::BaseController
   # GET /uploads
   # GET /uploads.json
   def index
-    @uploads = Upload.order(challenge_id: :asc, id: :asc).all
+    @uploads = Upload.joins(:challenge).order('challenges.name asc, id asc').all
   end
 
   # GET /uploads/1
