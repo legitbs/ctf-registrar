@@ -6,7 +6,7 @@ namespace :pushover do
 
     percent_solved = 1.0 - (unsolved_challs_count.to_f / total_challs_count)
 
-    leading_team_name = Team.entire_scoreboard.first["team_name"]
+    leading_team_name = Team.entire_scoreboard.first["team_name"] rescue 'nobody'
 
     Pushover.glance(
       title: 'DC 25 CTF',
