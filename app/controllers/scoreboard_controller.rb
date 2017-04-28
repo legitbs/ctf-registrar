@@ -114,6 +114,7 @@ class ScoreboardController < ApplicationController
                   }
         SlackbotJob.perform_later message
         PushbulletJob.perform_later message
+        PushoverJob.perform_later message
 
         n = Notice.new
         n.body = "#{current_team.name} solved #{@challenge.name} [#{@challenge.category.name}] for #{@challenge.points} points."

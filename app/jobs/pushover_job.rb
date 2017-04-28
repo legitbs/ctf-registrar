@@ -8,7 +8,7 @@ class PushoverJob < ActiveJob::Base
       return Rails.logger.error "Pushover payload error: #{e}"
     end
 
-    Pushover.send(payload)
+    Pushover.notification(payload)
   end
 
   def popped(message)
