@@ -52,21 +52,24 @@
               %th first solved
               %td not yet
       - unless @histogram.empty?
-        #histogram_canvas
-        %table#histogram
-          %thead
-            %tr
-              %th end time
-              %th solves
-              %th percent
-          %tbody
-            - @histogram.each do |h|
-              %tr{data: {end: h.end_time.iso8601,
-                  count: h.count,
-                  complete: (h.end_time < Time.now rescue false)}}
-                %td= h.end_time
-                %td= h.count
-                %td= h.pct
+        - begin
+          #histogram_canvas
+            %table#histogram
+              %thead
+                %tr
+                  %th end time
+                  %th solves
+                  %th percent
+              %tbody
+                - @histogram.each do |h|
+                  %tr{data: {end: h.end_time.iso8601,
+                      count: h.count,
+                      complete: (h.end_time < Time.now rescue false)}}
+                    %td= h.end_time
+                    %td= h.count
+                    %td= h.pct
+        - rescue
+          #histogram
 
 
 %script{type: 'text/javascript',
