@@ -118,11 +118,11 @@ class ScoreboardController < ApplicationController
         TwitterJob.perform_later message
 
         n = Notice.new
-        n.body = "#{current_team.name} solved #{@challenge.name} [#{@challenge.category.name}] for #{@challenge.points} points."
+        n.body = "#{current_team.name} solved #{@challenge.name} from #{@challenge.category.name}."
         n.save
       else
         n = Notice.new
-        n.body = "Your teammate #{current_user.username} solved #{@challenge.name} [#{@challenge.category.name}] for #{@challenge.points} points."
+        n.body = "Your teammate #{current_user.username} solved #{@challenge.name} from #{@challenge.category.name}."
         n.team = current_team
         n.save
       end
