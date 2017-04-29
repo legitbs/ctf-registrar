@@ -12,7 +12,8 @@ class ApiController < ApplicationController
   private
 
   def require_auth_param
-    return true if params[:auth] == ENV['AUTH_PARAM']
+    password = BCrypt::Password.new(ENV['AUTH_PARAM_B'])
+    return true if password == params[:auth]
     return true if Rails.env.development?
 
     raise ActionController::RoutingError.new('Not Found')
