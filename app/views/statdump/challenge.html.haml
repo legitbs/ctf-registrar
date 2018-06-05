@@ -10,57 +10,61 @@
   = category.name
 %p= RDiscount.new(clue).to_html.html_safe
 
+%h1 Solution Statistics
 - stats = solution_stats
-%table
-  %tbody
-    %tr
-      %th bcrypted answer
-      %td= answer_digest
-    %tr
-      %th observations
-      %td= observations.count
-    %tr
-      %th views
-      %td= views
-    %tr
-      %th solves
-      %td= stats['count']
-    %tr
-      %th points
-      %td= scored.points
-    %tr
-      %th average solve seconds
-      %td
-        = stats['avg'].to_f.round
-        seconds, or
-        = time_ago_in_words(Time.now - stats['avg'].to_f)
-    %tr
-      %th stddev solve time
-      %td
-        = stats['stddev'].to_f.round
-        seconds, or
-        = time_ago_in_words(Time.now - stats['stddev'].to_f)
-
-%h2 Solutions Over Time
-%img{src: "#{id}.png"}
-%h2 solving teams:
-%p solved by #{solutions.count} teams
-%table
-  %thead
-    %tr
-      %th team
-      %th solved at
-      %th it took
-  %tbody
-    - solutions.order(created_at: :asc).joins(:team).each do |s|
+- unless stats
+  %p Not solved during the game.
+- else
+  %table
+    %tbody
       %tr
-        %th
-          %a{href: "../teams/#{s.team.id}.html"}&= s.team.name
-        - observation = s.observation
+        %th bcrypted answer
+        %td= answer_digest
+      %tr
+        %th observations
+        %td= observations.count
+      %tr
+        %th views
+        %td= views
+      %tr
+        %th solves
+        %td= stats['count']
+      %tr
+        %th points
+        %td= scored.points
+      %tr
+        %th average solve seconds
         %td
-          = s.created_at
-        %td
-          = (s.created_at - observation.created_at).round.abs
+          = stats['avg'].to_f.round
           seconds, or
-          = ((s.created_at - observation.created_at).abs.to_f / 3600).round(2)
-          hours
+          = time_ago_in_words(Time.now - stats['avg'].to_f)
+      %tr
+        %th stddev solve time
+        %td
+          = stats['stddev'].to_f.round
+          seconds, or
+          = time_ago_in_words(Time.now - stats['stddev'].to_f)
+
+  %h2 Solutions Over Time
+  -# %img{src: "#{id}.png"}
+  %h2 solving teams:
+  %p solved by #{solutions.count} teams
+  %table
+    %thead
+      %tr
+        %th team
+        %th solved at
+        %th it took
+    %tbody
+      - solutions.order(created_at: :asc).joins(:team).each do |s|
+        %tr
+          %th
+            %a{href: "../teams/#{s.team.id}.html"}&= s.team.name
+          - observation = s.observation
+          %td
+            = s.created_at
+          %td
+            = (s.created_at - observation.created_at).round.abs
+            seconds, or
+            = ((s.created_at - observation.created_at).abs.to_f / 3600).round(2)
+            hours

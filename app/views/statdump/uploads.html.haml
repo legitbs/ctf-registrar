@@ -1,0 +1,16 @@
+%h1 Challenge Files
+
+- each do |cat|
+  %h2= cat.first['category_name']
+  - cat.each do |c|
+    - chall = Challenge.find c['challenge_id']
+    %h3= chall.name
+    %blockquote= RDiscount.new(chall.clue).to_html.html_safe
+    - if chall.uploads.visible.blank?
+      %p
+        %em No files
+    - else
+      %ul
+        - chall.uploads.visible.find_each do |u|
+          %li
+            %a{href: u.file.url}= u.file.url

@@ -4,7 +4,7 @@ class Statdump
   def sass_engine
     return @sass_engine if defined? @sass_engine
 
-    root = Rails.root.join('app/assets/stylesheets/statdump.css.sass').to_s
+    root = Rails.root.join('app/assets/stylesheets/statdump.sass').to_s
     load = ['.', File.dirname(root)]
     @sass_engine = Sass::Engine.for_file(root, load_paths: load, template_location: File.dirname(root))
   end

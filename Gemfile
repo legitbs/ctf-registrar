@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.4.0'
+ruby '2.4.1'
 
 gem 'rails', '~> 5.0.2'
 gem 'puma'
@@ -9,7 +9,7 @@ gem 'neat'
 gem 'paperclip'
 
 gem 'newrelic_rpm'
-gem 'pg'
+gem 'pg', '~> 0.18'
 gem 'redis'
 gem 'haml-rails'
 gem 'high_voltage'
@@ -56,7 +56,7 @@ group :development do
   gem 'binding_of_caller'
   gem 'web-console'
   gem 'better_errors'
-  gem 'gruff'
+  # gem 'gruff'
 end
 
 group :test do

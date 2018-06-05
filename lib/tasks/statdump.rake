@@ -5,9 +5,9 @@ namespace :statdump do
 
   desc 'Package statdump in a bz2ball'
   task :package => :all do
-    sh "tar jcf tmp/statdump_2015.tar.bz2 tmp/statdump"
+    sh "tar jcf tmp/statdump_2017.tar.bz2 tmp/statdump"
     puts "HEY YO sign it with:"
-    puts "gpg -u vito@legitbs.net -b tmp/statdump_2015.tar.bz2"
+    puts "gpg -u vito@legitbs.net -b tmp/statdump_2017.tar.bz2"
   end
 
   desc 'Dump all the public stats'
@@ -29,11 +29,19 @@ namespace :statdump do
 
   task :stylesheet => ['tmp/statdump/statdump.css', :copy_styles]
 
-  file 'tmp/statdump/statdump.css' => [:env, :subdirs, 'app/assets/stylesheets/statdump.css.sass'] do |t|
+  file 'tmp/statdump/statdump.css' => [:env, :subdirs, 'app/assets/stylesheets/statdump.sass'] do |t|
     File.open(t.name, 'w') do |f|
       f.write Statdump.instance.sass_engine.render
     end
   end
+
+  file 'tmp/statdump/uploads.html' => %i(env) do |t|
+    File.open(t.name, 'w') do |f|
+      f.write(Statdump.instance.render('uploads',
+                                       Challenge.for_scoreboard(Team.find(1))))
+    end
+  end
+
 
   task :copy_styles => 'tmp/statdump/statdump.css' do
     SUBDIRS.each do |sd|
@@ -109,18 +117,18 @@ namespace :statdump do
     ct = Challenge.count
     Challenge.find_each do |c|
       print "Challenges: #{c.id} / #{ct}"
-      g = Gruff::Bar.new
-      g.theme = {colors: ["#493733"],
-                 marker_color: "#493733",
-                 font_color: "#493733",
-                 background_colors: 'transparent'}
-      g.data(:solves,
-             c.solution_histograms.select(:count).map(&:count),
-             "#493733")
-      g.minimum_value = 0
-      g.hide_legend = true
-      g.hide_title = true
-      g.write("tmp/statdump/challenges/#{c.id}.png")
+      # g = Gruff::Bar.new
+      # g.theme = {colors: ["#493733"],
+      #            marker_color: "#493733",
+      #            font_color: "#493733",
+      #            background_colors: 'transparent'}
+      # g.data(:solves,
+      #        c.solution_histograms.select(:count).map(&:count),
+      #        "#493733")
+      # g.minimum_value = 0
+      # g.hide_legend = true
+      # g.hide_title = true
+      # g.write("tmp/statdump/challenges/#{c.id}.png")
 
       delegate = SimpleDelegator.new(c)
       delegate.extend ActionView::Helpers::DateHelper
